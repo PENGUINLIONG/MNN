@@ -4,6 +4,7 @@
 #ifndef FLATBUFFERS_GENERATED_TENSORFLOWOP_MNN_H_
 #define FLATBUFFERS_GENERATED_TENSORFLOWOP_MNN_H_
 
+#include "flatbuffers/flatbuffers.h"
 
 #include "Tensor_generated.h"
 #include "Type_generated.h"
@@ -11,117 +12,155 @@
 namespace MNN {
 
 struct BinaryOp;
+struct BinaryOpBuilder;
 struct BinaryOpT;
 
 struct PackParam;
+struct PackParamBuilder;
 struct PackParamT;
 
 struct StridedSliceParam;
+struct StridedSliceParamBuilder;
 struct StridedSliceParamT;
 
 struct SqueezeParam;
+struct SqueezeParamBuilder;
 struct SqueezeParamT;
 
 struct CastParam;
+struct CastParamBuilder;
 struct CastParamT;
 
 struct ReductionParam;
+struct ReductionParamBuilder;
 struct ReductionParamT;
 
 struct Gather;
+struct GatherBuilder;
 struct GatherT;
 
 struct ExpandDims;
+struct ExpandDimsBuilder;
 struct ExpandDimsT;
 
 struct Selu;
+struct SeluBuilder;
 struct SeluT;
 
 struct AsString;
+struct AsStringBuilder;
 struct AsStringT;
 
 struct ReduceJoin;
+struct ReduceJoinBuilder;
 struct ReduceJoinT;
 
 struct UnaryOp;
+struct UnaryOpBuilder;
 struct UnaryOpT;
 
 struct TopKV2;
+struct TopKV2Builder;
 struct TopKV2T;
 
 struct CropAndResize;
+struct CropAndResizeBuilder;
 struct CropAndResizeT;
 
 struct Fill;
+struct FillBuilder;
 struct FillT;
 
 struct GatherV2;
+struct GatherV2Builder;
 struct GatherV2T;
 
 struct NonMaxSuppressionV2;
+struct NonMaxSuppressionV2Builder;
 struct NonMaxSuppressionV2T;
 
 struct Range;
+struct RangeBuilder;
 struct RangeT;
 
 struct Rank;
+struct RankBuilder;
 struct RankT;
 
 struct Size;
+struct SizeBuilder;
 struct SizeT;
 
 struct Transpose;
+struct TransposeBuilder;
 struct TransposeT;
 
 struct SliceTf;
+struct SliceTfBuilder;
 struct SliceTfT;
 
 struct QuantizeMaxMin;
+struct QuantizeMaxMinBuilder;
 struct QuantizeMaxMinT;
 
 struct Crop;
+struct CropBuilder;
 struct CropT;
 
 struct SpaceBatch;
+struct SpaceBatchBuilder;
 struct SpaceBatchT;
 
 struct MatMul;
+struct MatMulBuilder;
 struct MatMulT;
 
 struct MomentsParam;
+struct MomentsParamBuilder;
 struct MomentsParamT;
 
 struct RNNParam;
+struct RNNParamBuilder;
 struct RNNParamT;
 
 struct BatchMatMulParam;
+struct BatchMatMulParamBuilder;
 struct BatchMatMulParamT;
 
 struct DepthSpaceParam;
+struct DepthSpaceParamBuilder;
 struct DepthSpaceParamT;
 
 struct ReverseSequenceParam;
+struct ReverseSequenceParamBuilder;
 struct ReverseSequenceParamT;
 
 struct DetectionPostProcessParam;
+struct DetectionPostProcessParamBuilder;
 struct DetectionPostProcessParamT;
 
 struct OneHotParam;
+struct OneHotParamBuilder;
 struct OneHotParamT;
 
 struct PadParam;
+struct PadParamBuilder;
 struct PadParamT;
 
 struct LayerNorm;
+struct LayerNormBuilder;
 struct LayerNormT;
 
 struct RandomUniform;
+struct RandomUniformBuilder;
 struct RandomUniformT;
 
 struct TensorArray;
+struct TensorArrayBuilder;
 struct TensorArrayT;
 
 struct LSTMBlockCell;
+struct LSTMBlockCellBuilder;
 struct LSTMBlockCellT;
 
 inline const flatbuffers::TypeTable *BinaryOpTypeTable();
@@ -256,7 +295,7 @@ inline const BinaryOpOperation (&EnumValuesBinaryOpOperation())[22] {
 }
 
 inline const char * const *EnumNamesBinaryOpOperation() {
-  static const char * const names[] = {
+  static const char * const names[24] = {
     "ADD",
     "SUB",
     "MUL",
@@ -286,8 +325,8 @@ inline const char * const *EnumNamesBinaryOpOperation() {
 }
 
 inline const char *EnumNameBinaryOpOperation(BinaryOpOperation e) {
-  if (e < BinaryOpOperation_ADD || e > BinaryOpOperation_NOTEQUAL) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, BinaryOpOperation_ADD, BinaryOpOperation_NOTEQUAL)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesBinaryOpOperation()[index];
 }
 
@@ -321,7 +360,7 @@ inline const ReductionType (&EnumValuesReductionType())[9] {
 }
 
 inline const char * const *EnumNamesReductionType() {
-  static const char * const names[] = {
+  static const char * const names[10] = {
     "SUM",
     "ASUM",
     "SUMSQ",
@@ -337,8 +376,8 @@ inline const char * const *EnumNamesReductionType() {
 }
 
 inline const char *EnumNameReductionType(ReductionType e) {
-  if (e < ReductionType_SUM || e > ReductionType_ALL) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, ReductionType_SUM, ReductionType_ALL)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesReductionType()[index];
 }
 
@@ -418,7 +457,7 @@ inline const UnaryOpOperation (&EnumValuesUnaryOpOperation())[32] {
 }
 
 inline const char * const *EnumNamesUnaryOpOperation() {
-  static const char * const names[] = {
+  static const char * const names[33] = {
     "ABS",
     "NEG",
     "FLOOR",
@@ -457,8 +496,8 @@ inline const char * const *EnumNamesUnaryOpOperation() {
 }
 
 inline const char *EnumNameUnaryOpOperation(UnaryOpOperation e) {
-  if (e < UnaryOpOperation_ABS || e > UnaryOpOperation_HARDSWISH) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, UnaryOpOperation_ABS, UnaryOpOperation_HARDSWISH)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesUnaryOpOperation()[index];
 }
 
@@ -478,7 +517,7 @@ inline const CropAndResizeMethod (&EnumValuesCropAndResizeMethod())[2] {
 }
 
 inline const char * const *EnumNamesCropAndResizeMethod() {
-  static const char * const names[] = {
+  static const char * const names[3] = {
     "BILINEAR",
     "NEAREST",
     nullptr
@@ -487,8 +526,8 @@ inline const char * const *EnumNamesCropAndResizeMethod() {
 }
 
 inline const char *EnumNameCropAndResizeMethod(CropAndResizeMethod e) {
-  if (e < CropAndResizeMethod_BILINEAR || e > CropAndResizeMethod_NEAREST) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, CropAndResizeMethod_BILINEAR, CropAndResizeMethod_NEAREST)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesCropAndResizeMethod()[index];
 }
 
@@ -508,7 +547,7 @@ inline const DepthToSpaceMode (&EnumValuesDepthToSpaceMode())[2] {
 }
 
 inline const char * const *EnumNamesDepthToSpaceMode() {
-  static const char * const names[] = {
+  static const char * const names[3] = {
     "DCR",
     "CRD",
     nullptr
@@ -517,8 +556,8 @@ inline const char * const *EnumNamesDepthToSpaceMode() {
 }
 
 inline const char *EnumNameDepthToSpaceMode(DepthToSpaceMode e) {
-  if (e < DepthToSpaceMode_DCR || e > DepthToSpaceMode_CRD) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, DepthToSpaceMode_DCR, DepthToSpaceMode_CRD)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesDepthToSpaceMode()[index];
 }
 
@@ -540,7 +579,7 @@ inline const PadValueMode (&EnumValuesPadValueMode())[3] {
 }
 
 inline const char * const *EnumNamesPadValueMode() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "CONSTANT",
     "REFLECT",
     "SYMMETRIC",
@@ -550,23 +589,24 @@ inline const char * const *EnumNamesPadValueMode() {
 }
 
 inline const char *EnumNamePadValueMode(PadValueMode e) {
-  if (e < PadValueMode_CONSTANT || e > PadValueMode_SYMMETRIC) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, PadValueMode_CONSTANT, PadValueMode_SYMMETRIC)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesPadValueMode()[index];
 }
 
 struct BinaryOpT : public flatbuffers::NativeTable {
   typedef BinaryOp TableType;
   int32_t opType;
-  DataType T;
+  MNN::DataType T;
   BinaryOpT()
       : opType(0),
-        T(DataType_DT_FLOAT) {
+        T(MNN::DataType_DT_FLOAT) {
   }
 };
 
 struct BinaryOp FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef BinaryOpT NativeTableType;
+  typedef BinaryOpBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return BinaryOpTypeTable();
   }
@@ -577,8 +617,8 @@ struct BinaryOp FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t opType() const {
     return GetField<int32_t>(VT_OPTYPE, 0);
   }
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 1));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 1));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -592,12 +632,13 @@ struct BinaryOp FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct BinaryOpBuilder {
+  typedef BinaryOp Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_opType(int32_t opType) {
     fbb_.AddElement<int32_t>(BinaryOp::VT_OPTYPE, opType, 0);
   }
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(BinaryOp::VT_T, static_cast<int32_t>(T), 1);
   }
   explicit BinaryOpBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -615,7 +656,7 @@ struct BinaryOpBuilder {
 inline flatbuffers::Offset<BinaryOp> CreateBinaryOp(
     flatbuffers::FlatBufferBuilder &_fbb,
     int32_t opType = 0,
-    DataType T = DataType_DT_FLOAT) {
+    MNN::DataType T = MNN::DataType_DT_FLOAT) {
   BinaryOpBuilder builder_(_fbb);
   builder_.add_T(T);
   builder_.add_opType(opType);
@@ -626,16 +667,17 @@ flatbuffers::Offset<BinaryOp> CreateBinaryOp(flatbuffers::FlatBufferBuilder &_fb
 
 struct PackParamT : public flatbuffers::NativeTable {
   typedef PackParam TableType;
-  DataType dataType;
+  MNN::DataType dataType;
   int32_t axis;
   PackParamT()
-      : dataType(DataType_DT_INVALID),
+      : dataType(MNN::DataType_DT_INVALID),
         axis(0) {
   }
 };
 
 struct PackParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef PackParamT NativeTableType;
+  typedef PackParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return PackParamTypeTable();
   }
@@ -643,8 +685,8 @@ struct PackParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_DATATYPE = 4,
     VT_AXIS = 6
   };
-  DataType dataType() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_DATATYPE, 0));
+  MNN::DataType dataType() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_DATATYPE, 0));
   }
   int32_t axis() const {
     return GetField<int32_t>(VT_AXIS, 0);
@@ -661,9 +703,10 @@ struct PackParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct PackParamBuilder {
+  typedef PackParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_dataType(DataType dataType) {
+  void add_dataType(MNN::DataType dataType) {
     fbb_.AddElement<int32_t>(PackParam::VT_DATATYPE, static_cast<int32_t>(dataType), 0);
   }
   void add_axis(int32_t axis) {
@@ -683,7 +726,7 @@ struct PackParamBuilder {
 
 inline flatbuffers::Offset<PackParam> CreatePackParam(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType dataType = DataType_DT_INVALID,
+    MNN::DataType dataType = MNN::DataType_DT_INVALID,
     int32_t axis = 0) {
   PackParamBuilder builder_(_fbb);
   builder_.add_axis(axis);
@@ -695,16 +738,16 @@ flatbuffers::Offset<PackParam> CreatePackParam(flatbuffers::FlatBufferBuilder &_
 
 struct StridedSliceParamT : public flatbuffers::NativeTable {
   typedef StridedSliceParam TableType;
-  DataType Index;
-  DataType T;
+  MNN::DataType Index;
+  MNN::DataType T;
   int32_t beginMask;
   int32_t endMask;
   int32_t ellipsisMask;
   int32_t newAxisMask;
   int32_t shrinkAxisMask;
   StridedSliceParamT()
-      : Index(DataType_DT_INVALID),
-        T(DataType_DT_INVALID),
+      : Index(MNN::DataType_DT_INVALID),
+        T(MNN::DataType_DT_INVALID),
         beginMask(0),
         endMask(0),
         ellipsisMask(0),
@@ -715,6 +758,7 @@ struct StridedSliceParamT : public flatbuffers::NativeTable {
 
 struct StridedSliceParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef StridedSliceParamT NativeTableType;
+  typedef StridedSliceParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return StridedSliceParamTypeTable();
   }
@@ -727,11 +771,11 @@ struct StridedSliceParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_NEWAXISMASK = 14,
     VT_SHRINKAXISMASK = 16
   };
-  DataType Index() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_INDEX, 0));
+  MNN::DataType Index() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_INDEX, 0));
   }
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 0));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 0));
   }
   int32_t beginMask() const {
     return GetField<int32_t>(VT_BEGINMASK, 0);
@@ -765,12 +809,13 @@ struct StridedSliceParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct StridedSliceParamBuilder {
+  typedef StridedSliceParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_Index(DataType Index) {
+  void add_Index(MNN::DataType Index) {
     fbb_.AddElement<int32_t>(StridedSliceParam::VT_INDEX, static_cast<int32_t>(Index), 0);
   }
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(StridedSliceParam::VT_T, static_cast<int32_t>(T), 0);
   }
   void add_beginMask(int32_t beginMask) {
@@ -802,8 +847,8 @@ struct StridedSliceParamBuilder {
 
 inline flatbuffers::Offset<StridedSliceParam> CreateStridedSliceParam(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType Index = DataType_DT_INVALID,
-    DataType T = DataType_DT_INVALID,
+    MNN::DataType Index = MNN::DataType_DT_INVALID,
+    MNN::DataType T = MNN::DataType_DT_INVALID,
     int32_t beginMask = 0,
     int32_t endMask = 0,
     int32_t ellipsisMask = 0,
@@ -831,6 +876,7 @@ struct SqueezeParamT : public flatbuffers::NativeTable {
 
 struct SqueezeParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef SqueezeParamT NativeTableType;
+  typedef SqueezeParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return SqueezeParamTypeTable();
   }
@@ -852,6 +898,7 @@ struct SqueezeParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct SqueezeParamBuilder {
+  typedef SqueezeParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_squeezeDims(flatbuffers::Offset<flatbuffers::Vector<int32_t>> squeezeDims) {
@@ -890,16 +937,17 @@ flatbuffers::Offset<SqueezeParam> CreateSqueezeParam(flatbuffers::FlatBufferBuil
 
 struct CastParamT : public flatbuffers::NativeTable {
   typedef CastParam TableType;
-  DataType srcT;
-  DataType dstT;
+  MNN::DataType srcT;
+  MNN::DataType dstT;
   CastParamT()
-      : srcT(DataType_DT_INVALID),
-        dstT(DataType_DT_INVALID) {
+      : srcT(MNN::DataType_DT_INVALID),
+        dstT(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct CastParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef CastParamT NativeTableType;
+  typedef CastParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return CastParamTypeTable();
   }
@@ -907,11 +955,11 @@ struct CastParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_SRCT = 4,
     VT_DSTT = 6
   };
-  DataType srcT() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_SRCT, 0));
+  MNN::DataType srcT() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_SRCT, 0));
   }
-  DataType dstT() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_DSTT, 0));
+  MNN::DataType dstT() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_DSTT, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -925,12 +973,13 @@ struct CastParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct CastParamBuilder {
+  typedef CastParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_srcT(DataType srcT) {
+  void add_srcT(MNN::DataType srcT) {
     fbb_.AddElement<int32_t>(CastParam::VT_SRCT, static_cast<int32_t>(srcT), 0);
   }
-  void add_dstT(DataType dstT) {
+  void add_dstT(MNN::DataType dstT) {
     fbb_.AddElement<int32_t>(CastParam::VT_DSTT, static_cast<int32_t>(dstT), 0);
   }
   explicit CastParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -947,8 +996,8 @@ struct CastParamBuilder {
 
 inline flatbuffers::Offset<CastParam> CreateCastParam(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType srcT = DataType_DT_INVALID,
-    DataType dstT = DataType_DT_INVALID) {
+    MNN::DataType srcT = MNN::DataType_DT_INVALID,
+    MNN::DataType dstT = MNN::DataType_DT_INVALID) {
   CastParamBuilder builder_(_fbb);
   builder_.add_dstT(dstT);
   builder_.add_srcT(srcT);
@@ -959,21 +1008,22 @@ flatbuffers::Offset<CastParam> CreateCastParam(flatbuffers::FlatBufferBuilder &_
 
 struct ReductionParamT : public flatbuffers::NativeTable {
   typedef ReductionParam TableType;
-  ReductionType operation;
+  MNN::ReductionType operation;
   std::vector<int32_t> dim;
   float coeff;
   bool keepDims;
-  DataType dType;
+  MNN::DataType dType;
   ReductionParamT()
-      : operation(ReductionType_SUM),
+      : operation(MNN::ReductionType_SUM),
         coeff(0.0f),
         keepDims(false),
-        dType(DataType_DT_FLOAT) {
+        dType(MNN::DataType_DT_FLOAT) {
   }
 };
 
 struct ReductionParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ReductionParamT NativeTableType;
+  typedef ReductionParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ReductionParamTypeTable();
   }
@@ -984,8 +1034,8 @@ struct ReductionParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_KEEPDIMS = 10,
     VT_DTYPE = 12
   };
-  ReductionType operation() const {
-    return static_cast<ReductionType>(GetField<int8_t>(VT_OPERATION, 0));
+  MNN::ReductionType operation() const {
+    return static_cast<MNN::ReductionType>(GetField<int8_t>(VT_OPERATION, 0));
   }
   const flatbuffers::Vector<int32_t> *dim() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_DIM);
@@ -996,8 +1046,8 @@ struct ReductionParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   bool keepDims() const {
     return GetField<uint8_t>(VT_KEEPDIMS, 0) != 0;
   }
-  DataType dType() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_DTYPE, 1));
+  MNN::DataType dType() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_DTYPE, 1));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1015,9 +1065,10 @@ struct ReductionParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ReductionParamBuilder {
+  typedef ReductionParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_operation(ReductionType operation) {
+  void add_operation(MNN::ReductionType operation) {
     fbb_.AddElement<int8_t>(ReductionParam::VT_OPERATION, static_cast<int8_t>(operation), 0);
   }
   void add_dim(flatbuffers::Offset<flatbuffers::Vector<int32_t>> dim) {
@@ -1029,7 +1080,7 @@ struct ReductionParamBuilder {
   void add_keepDims(bool keepDims) {
     fbb_.AddElement<uint8_t>(ReductionParam::VT_KEEPDIMS, static_cast<uint8_t>(keepDims), 0);
   }
-  void add_dType(DataType dType) {
+  void add_dType(MNN::DataType dType) {
     fbb_.AddElement<int32_t>(ReductionParam::VT_DTYPE, static_cast<int32_t>(dType), 1);
   }
   explicit ReductionParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1046,11 +1097,11 @@ struct ReductionParamBuilder {
 
 inline flatbuffers::Offset<ReductionParam> CreateReductionParam(
     flatbuffers::FlatBufferBuilder &_fbb,
-    ReductionType operation = ReductionType_SUM,
+    MNN::ReductionType operation = MNN::ReductionType_SUM,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> dim = 0,
     float coeff = 0.0f,
     bool keepDims = false,
-    DataType dType = DataType_DT_FLOAT) {
+    MNN::DataType dType = MNN::DataType_DT_FLOAT) {
   ReductionParamBuilder builder_(_fbb);
   builder_.add_dType(dType);
   builder_.add_coeff(coeff);
@@ -1062,11 +1113,11 @@ inline flatbuffers::Offset<ReductionParam> CreateReductionParam(
 
 inline flatbuffers::Offset<ReductionParam> CreateReductionParamDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    ReductionType operation = ReductionType_SUM,
+    MNN::ReductionType operation = MNN::ReductionType_SUM,
     const std::vector<int32_t> *dim = nullptr,
     float coeff = 0.0f,
     bool keepDims = false,
-    DataType dType = DataType_DT_FLOAT) {
+    MNN::DataType dType = MNN::DataType_DT_FLOAT) {
   auto dim__ = dim ? _fbb.CreateVector<int32_t>(*dim) : 0;
   return MNN::CreateReductionParam(
       _fbb,
@@ -1081,13 +1132,13 @@ flatbuffers::Offset<ReductionParam> CreateReductionParam(flatbuffers::FlatBuffer
 
 struct GatherT : public flatbuffers::NativeTable {
   typedef Gather TableType;
-  DataType Tindices;
-  DataType Tparams;
+  MNN::DataType Tindices;
+  MNN::DataType Tparams;
   bool validateIndices;
   int32_t axis;
   GatherT()
-      : Tindices(DataType_DT_INVALID),
-        Tparams(DataType_DT_INVALID),
+      : Tindices(MNN::DataType_DT_INVALID),
+        Tparams(MNN::DataType_DT_INVALID),
         validateIndices(false),
         axis(0) {
   }
@@ -1095,6 +1146,7 @@ struct GatherT : public flatbuffers::NativeTable {
 
 struct Gather FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef GatherT NativeTableType;
+  typedef GatherBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GatherTypeTable();
   }
@@ -1104,11 +1156,11 @@ struct Gather FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_VALIDATEINDICES = 8,
     VT_AXIS = 10
   };
-  DataType Tindices() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TINDICES, 0));
+  MNN::DataType Tindices() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TINDICES, 0));
   }
-  DataType Tparams() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TPARAMS, 0));
+  MNN::DataType Tparams() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TPARAMS, 0));
   }
   bool validateIndices() const {
     return GetField<uint8_t>(VT_VALIDATEINDICES, 0) != 0;
@@ -1130,12 +1182,13 @@ struct Gather FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct GatherBuilder {
+  typedef Gather Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_Tindices(DataType Tindices) {
+  void add_Tindices(MNN::DataType Tindices) {
     fbb_.AddElement<int32_t>(Gather::VT_TINDICES, static_cast<int32_t>(Tindices), 0);
   }
-  void add_Tparams(DataType Tparams) {
+  void add_Tparams(MNN::DataType Tparams) {
     fbb_.AddElement<int32_t>(Gather::VT_TPARAMS, static_cast<int32_t>(Tparams), 0);
   }
   void add_validateIndices(bool validateIndices) {
@@ -1158,8 +1211,8 @@ struct GatherBuilder {
 
 inline flatbuffers::Offset<Gather> CreateGather(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType Tindices = DataType_DT_INVALID,
-    DataType Tparams = DataType_DT_INVALID,
+    MNN::DataType Tindices = MNN::DataType_DT_INVALID,
+    MNN::DataType Tparams = MNN::DataType_DT_INVALID,
     bool validateIndices = false,
     int32_t axis = 0) {
   GatherBuilder builder_(_fbb);
@@ -1174,18 +1227,19 @@ flatbuffers::Offset<Gather> CreateGather(flatbuffers::FlatBufferBuilder &_fbb, c
 
 struct ExpandDimsT : public flatbuffers::NativeTable {
   typedef ExpandDims TableType;
-  DataType T;
-  DataType Tdim;
+  MNN::DataType T;
+  MNN::DataType Tdim;
   int32_t axis;
   ExpandDimsT()
-      : T(DataType_DT_INVALID),
-        Tdim(DataType_DT_INVALID),
+      : T(MNN::DataType_DT_INVALID),
+        Tdim(MNN::DataType_DT_INVALID),
         axis(0) {
   }
 };
 
 struct ExpandDims FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ExpandDimsT NativeTableType;
+  typedef ExpandDimsBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ExpandDimsTypeTable();
   }
@@ -1194,11 +1248,11 @@ struct ExpandDims FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_TDIM = 6,
     VT_AXIS = 8
   };
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 0));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 0));
   }
-  DataType Tdim() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TDIM, 0));
+  MNN::DataType Tdim() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TDIM, 0));
   }
   int32_t axis() const {
     return GetField<int32_t>(VT_AXIS, 0);
@@ -1216,12 +1270,13 @@ struct ExpandDims FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ExpandDimsBuilder {
+  typedef ExpandDims Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(ExpandDims::VT_T, static_cast<int32_t>(T), 0);
   }
-  void add_Tdim(DataType Tdim) {
+  void add_Tdim(MNN::DataType Tdim) {
     fbb_.AddElement<int32_t>(ExpandDims::VT_TDIM, static_cast<int32_t>(Tdim), 0);
   }
   void add_axis(int32_t axis) {
@@ -1241,8 +1296,8 @@ struct ExpandDimsBuilder {
 
 inline flatbuffers::Offset<ExpandDims> CreateExpandDims(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType T = DataType_DT_INVALID,
-    DataType Tdim = DataType_DT_INVALID,
+    MNN::DataType T = MNN::DataType_DT_INVALID,
+    MNN::DataType Tdim = MNN::DataType_DT_INVALID,
     int32_t axis = 0) {
   ExpandDimsBuilder builder_(_fbb);
   builder_.add_axis(axis);
@@ -1265,6 +1320,7 @@ struct SeluT : public flatbuffers::NativeTable {
 
 struct Selu FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef SeluT NativeTableType;
+  typedef SeluBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return SeluTypeTable();
   }
@@ -1290,6 +1346,7 @@ struct Selu FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct SeluBuilder {
+  typedef Selu Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_scale(float scale) {
@@ -1324,14 +1381,14 @@ flatbuffers::Offset<Selu> CreateSelu(flatbuffers::FlatBufferBuilder &_fbb, const
 
 struct AsStringT : public flatbuffers::NativeTable {
   typedef AsString TableType;
-  DataType T;
+  MNN::DataType T;
   int32_t precision;
   bool scientific;
   bool shortest;
   int32_t width;
   std::string fillString;
   AsStringT()
-      : T(DataType_DT_INVALID),
+      : T(MNN::DataType_DT_INVALID),
         precision(0),
         scientific(false),
         shortest(false),
@@ -1341,6 +1398,7 @@ struct AsStringT : public flatbuffers::NativeTable {
 
 struct AsString FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef AsStringT NativeTableType;
+  typedef AsStringBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return AsStringTypeTable();
   }
@@ -1352,8 +1410,8 @@ struct AsString FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_WIDTH = 12,
     VT_FILLSTRING = 14
   };
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 0));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 0));
   }
   int32_t precision() const {
     return GetField<int32_t>(VT_PRECISION, 0);
@@ -1387,9 +1445,10 @@ struct AsString FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct AsStringBuilder {
+  typedef AsString Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(AsString::VT_T, static_cast<int32_t>(T), 0);
   }
   void add_precision(int32_t precision) {
@@ -1421,7 +1480,7 @@ struct AsStringBuilder {
 
 inline flatbuffers::Offset<AsString> CreateAsString(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType T = DataType_DT_INVALID,
+    MNN::DataType T = MNN::DataType_DT_INVALID,
     int32_t precision = 0,
     bool scientific = false,
     bool shortest = false,
@@ -1439,7 +1498,7 @@ inline flatbuffers::Offset<AsString> CreateAsString(
 
 inline flatbuffers::Offset<AsString> CreateAsStringDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType T = DataType_DT_INVALID,
+    MNN::DataType T = MNN::DataType_DT_INVALID,
     int32_t precision = 0,
     bool scientific = false,
     bool shortest = false,
@@ -1469,6 +1528,7 @@ struct ReduceJoinT : public flatbuffers::NativeTable {
 
 struct ReduceJoin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ReduceJoinT NativeTableType;
+  typedef ReduceJoinBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ReduceJoinTypeTable();
   }
@@ -1495,6 +1555,7 @@ struct ReduceJoin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ReduceJoinBuilder {
+  typedef ReduceJoin Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_keepDims(bool keepDims) {
@@ -1540,16 +1601,17 @@ flatbuffers::Offset<ReduceJoin> CreateReduceJoin(flatbuffers::FlatBufferBuilder 
 
 struct UnaryOpT : public flatbuffers::NativeTable {
   typedef UnaryOp TableType;
-  UnaryOpOperation opType;
-  DataType T;
+  MNN::UnaryOpOperation opType;
+  MNN::DataType T;
   UnaryOpT()
-      : opType(UnaryOpOperation_ABS),
-        T(DataType_DT_INVALID) {
+      : opType(MNN::UnaryOpOperation_ABS),
+        T(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct UnaryOp FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef UnaryOpT NativeTableType;
+  typedef UnaryOpBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return UnaryOpTypeTable();
   }
@@ -1557,11 +1619,11 @@ struct UnaryOp FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_OPTYPE = 4,
     VT_T = 6
   };
-  UnaryOpOperation opType() const {
-    return static_cast<UnaryOpOperation>(GetField<int32_t>(VT_OPTYPE, 0));
+  MNN::UnaryOpOperation opType() const {
+    return static_cast<MNN::UnaryOpOperation>(GetField<int32_t>(VT_OPTYPE, 0));
   }
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 0));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1575,12 +1637,13 @@ struct UnaryOp FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct UnaryOpBuilder {
+  typedef UnaryOp Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_opType(UnaryOpOperation opType) {
+  void add_opType(MNN::UnaryOpOperation opType) {
     fbb_.AddElement<int32_t>(UnaryOp::VT_OPTYPE, static_cast<int32_t>(opType), 0);
   }
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(UnaryOp::VT_T, static_cast<int32_t>(T), 0);
   }
   explicit UnaryOpBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1597,8 +1660,8 @@ struct UnaryOpBuilder {
 
 inline flatbuffers::Offset<UnaryOp> CreateUnaryOp(
     flatbuffers::FlatBufferBuilder &_fbb,
-    UnaryOpOperation opType = UnaryOpOperation_ABS,
-    DataType T = DataType_DT_INVALID) {
+    MNN::UnaryOpOperation opType = MNN::UnaryOpOperation_ABS,
+    MNN::DataType T = MNN::DataType_DT_INVALID) {
   UnaryOpBuilder builder_(_fbb);
   builder_.add_T(T);
   builder_.add_opType(opType);
@@ -1609,16 +1672,17 @@ flatbuffers::Offset<UnaryOp> CreateUnaryOp(flatbuffers::FlatBufferBuilder &_fbb,
 
 struct TopKV2T : public flatbuffers::NativeTable {
   typedef TopKV2 TableType;
-  DataType T;
+  MNN::DataType T;
   bool sorted;
   TopKV2T()
-      : T(DataType_DT_FLOAT),
+      : T(MNN::DataType_DT_FLOAT),
         sorted(false) {
   }
 };
 
 struct TopKV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef TopKV2T NativeTableType;
+  typedef TopKV2Builder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return TopKV2TypeTable();
   }
@@ -1626,8 +1690,8 @@ struct TopKV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_T = 4,
     VT_SORTED = 6
   };
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 1));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 1));
   }
   bool sorted() const {
     return GetField<uint8_t>(VT_SORTED, 0) != 0;
@@ -1644,9 +1708,10 @@ struct TopKV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct TopKV2Builder {
+  typedef TopKV2 Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(TopKV2::VT_T, static_cast<int32_t>(T), 1);
   }
   void add_sorted(bool sorted) {
@@ -1666,7 +1731,7 @@ struct TopKV2Builder {
 
 inline flatbuffers::Offset<TopKV2> CreateTopKV2(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType T = DataType_DT_FLOAT,
+    MNN::DataType T = MNN::DataType_DT_FLOAT,
     bool sorted = false) {
   TopKV2Builder builder_(_fbb);
   builder_.add_T(T);
@@ -1679,15 +1744,16 @@ flatbuffers::Offset<TopKV2> CreateTopKV2(flatbuffers::FlatBufferBuilder &_fbb, c
 struct CropAndResizeT : public flatbuffers::NativeTable {
   typedef CropAndResize TableType;
   float extrapolationValue;
-  CropAndResizeMethod method;
+  MNN::CropAndResizeMethod method;
   CropAndResizeT()
       : extrapolationValue(0.0f),
-        method(CropAndResizeMethod_BILINEAR) {
+        method(MNN::CropAndResizeMethod_BILINEAR) {
   }
 };
 
 struct CropAndResize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef CropAndResizeT NativeTableType;
+  typedef CropAndResizeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return CropAndResizeTypeTable();
   }
@@ -1698,8 +1764,8 @@ struct CropAndResize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   float extrapolationValue() const {
     return GetField<float>(VT_EXTRAPOLATIONVALUE, 0.0f);
   }
-  CropAndResizeMethod method() const {
-    return static_cast<CropAndResizeMethod>(GetField<int8_t>(VT_METHOD, 0));
+  MNN::CropAndResizeMethod method() const {
+    return static_cast<MNN::CropAndResizeMethod>(GetField<int8_t>(VT_METHOD, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1713,12 +1779,13 @@ struct CropAndResize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct CropAndResizeBuilder {
+  typedef CropAndResize Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_extrapolationValue(float extrapolationValue) {
     fbb_.AddElement<float>(CropAndResize::VT_EXTRAPOLATIONVALUE, extrapolationValue, 0.0f);
   }
-  void add_method(CropAndResizeMethod method) {
+  void add_method(MNN::CropAndResizeMethod method) {
     fbb_.AddElement<int8_t>(CropAndResize::VT_METHOD, static_cast<int8_t>(method), 0);
   }
   explicit CropAndResizeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1736,7 +1803,7 @@ struct CropAndResizeBuilder {
 inline flatbuffers::Offset<CropAndResize> CreateCropAndResize(
     flatbuffers::FlatBufferBuilder &_fbb,
     float extrapolationValue = 0.0f,
-    CropAndResizeMethod method = CropAndResizeMethod_BILINEAR) {
+    MNN::CropAndResizeMethod method = MNN::CropAndResizeMethod_BILINEAR) {
   CropAndResizeBuilder builder_(_fbb);
   builder_.add_extrapolationValue(extrapolationValue);
   builder_.add_method(method);
@@ -1753,6 +1820,7 @@ struct FillT : public flatbuffers::NativeTable {
 
 struct Fill FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef FillT NativeTableType;
+  typedef FillBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return FillTypeTable();
   }
@@ -1766,6 +1834,7 @@ struct Fill FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct FillBuilder {
+  typedef Fill Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   explicit FillBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1790,18 +1859,19 @@ flatbuffers::Offset<Fill> CreateFill(flatbuffers::FlatBufferBuilder &_fbb, const
 
 struct GatherV2T : public flatbuffers::NativeTable {
   typedef GatherV2 TableType;
-  DataType Taxis;
-  DataType Tindices;
-  DataType Tparams;
+  MNN::DataType Taxis;
+  MNN::DataType Tindices;
+  MNN::DataType Tparams;
   GatherV2T()
-      : Taxis(DataType_DT_INVALID),
-        Tindices(DataType_DT_INVALID),
-        Tparams(DataType_DT_INVALID) {
+      : Taxis(MNN::DataType_DT_INVALID),
+        Tindices(MNN::DataType_DT_INVALID),
+        Tparams(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct GatherV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef GatherV2T NativeTableType;
+  typedef GatherV2Builder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GatherV2TypeTable();
   }
@@ -1810,14 +1880,14 @@ struct GatherV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_TINDICES = 6,
     VT_TPARAMS = 8
   };
-  DataType Taxis() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TAXIS, 0));
+  MNN::DataType Taxis() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TAXIS, 0));
   }
-  DataType Tindices() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TINDICES, 0));
+  MNN::DataType Tindices() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TINDICES, 0));
   }
-  DataType Tparams() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TPARAMS, 0));
+  MNN::DataType Tparams() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TPARAMS, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1832,15 +1902,16 @@ struct GatherV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct GatherV2Builder {
+  typedef GatherV2 Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_Taxis(DataType Taxis) {
+  void add_Taxis(MNN::DataType Taxis) {
     fbb_.AddElement<int32_t>(GatherV2::VT_TAXIS, static_cast<int32_t>(Taxis), 0);
   }
-  void add_Tindices(DataType Tindices) {
+  void add_Tindices(MNN::DataType Tindices) {
     fbb_.AddElement<int32_t>(GatherV2::VT_TINDICES, static_cast<int32_t>(Tindices), 0);
   }
-  void add_Tparams(DataType Tparams) {
+  void add_Tparams(MNN::DataType Tparams) {
     fbb_.AddElement<int32_t>(GatherV2::VT_TPARAMS, static_cast<int32_t>(Tparams), 0);
   }
   explicit GatherV2Builder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1857,9 +1928,9 @@ struct GatherV2Builder {
 
 inline flatbuffers::Offset<GatherV2> CreateGatherV2(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType Taxis = DataType_DT_INVALID,
-    DataType Tindices = DataType_DT_INVALID,
-    DataType Tparams = DataType_DT_INVALID) {
+    MNN::DataType Taxis = MNN::DataType_DT_INVALID,
+    MNN::DataType Tindices = MNN::DataType_DT_INVALID,
+    MNN::DataType Tparams = MNN::DataType_DT_INVALID) {
   GatherV2Builder builder_(_fbb);
   builder_.add_Tparams(Tparams);
   builder_.add_Tindices(Tindices);
@@ -1877,6 +1948,7 @@ struct NonMaxSuppressionV2T : public flatbuffers::NativeTable {
 
 struct NonMaxSuppressionV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef NonMaxSuppressionV2T NativeTableType;
+  typedef NonMaxSuppressionV2Builder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return NonMaxSuppressionV2TypeTable();
   }
@@ -1890,6 +1962,7 @@ struct NonMaxSuppressionV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
 };
 
 struct NonMaxSuppressionV2Builder {
+  typedef NonMaxSuppressionV2 Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   explicit NonMaxSuppressionV2Builder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1914,22 +1987,23 @@ flatbuffers::Offset<NonMaxSuppressionV2> CreateNonMaxSuppressionV2(flatbuffers::
 
 struct RangeT : public flatbuffers::NativeTable {
   typedef Range TableType;
-  DataType Tidx;
+  MNN::DataType Tidx;
   RangeT()
-      : Tidx(DataType_DT_INVALID) {
+      : Tidx(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct Range FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef RangeT NativeTableType;
+  typedef RangeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return RangeTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_TIDX = 4
   };
-  DataType Tidx() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TIDX, 0));
+  MNN::DataType Tidx() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TIDX, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1942,9 +2016,10 @@ struct Range FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct RangeBuilder {
+  typedef Range Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_Tidx(DataType Tidx) {
+  void add_Tidx(MNN::DataType Tidx) {
     fbb_.AddElement<int32_t>(Range::VT_TIDX, static_cast<int32_t>(Tidx), 0);
   }
   explicit RangeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1961,7 +2036,7 @@ struct RangeBuilder {
 
 inline flatbuffers::Offset<Range> CreateRange(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType Tidx = DataType_DT_INVALID) {
+    MNN::DataType Tidx = MNN::DataType_DT_INVALID) {
   RangeBuilder builder_(_fbb);
   builder_.add_Tidx(Tidx);
   return builder_.Finish();
@@ -1977,6 +2052,7 @@ struct RankT : public flatbuffers::NativeTable {
 
 struct Rank FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef RankT NativeTableType;
+  typedef RankBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return RankTypeTable();
   }
@@ -1990,6 +2066,7 @@ struct Rank FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct RankBuilder {
+  typedef Rank Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   explicit RankBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2014,22 +2091,23 @@ flatbuffers::Offset<Rank> CreateRank(flatbuffers::FlatBufferBuilder &_fbb, const
 
 struct SizeT : public flatbuffers::NativeTable {
   typedef Size TableType;
-  DataType outputDataType;
+  MNN::DataType outputDataType;
   SizeT()
-      : outputDataType(DataType_DT_INVALID) {
+      : outputDataType(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct Size FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef SizeT NativeTableType;
+  typedef SizeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return SizeTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_OUTPUTDATATYPE = 4
   };
-  DataType outputDataType() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_OUTPUTDATATYPE, 0));
+  MNN::DataType outputDataType() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_OUTPUTDATATYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2042,9 +2120,10 @@ struct Size FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct SizeBuilder {
+  typedef Size Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_outputDataType(DataType outputDataType) {
+  void add_outputDataType(MNN::DataType outputDataType) {
     fbb_.AddElement<int32_t>(Size::VT_OUTPUTDATATYPE, static_cast<int32_t>(outputDataType), 0);
   }
   explicit SizeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2061,7 +2140,7 @@ struct SizeBuilder {
 
 inline flatbuffers::Offset<Size> CreateSize(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType outputDataType = DataType_DT_INVALID) {
+    MNN::DataType outputDataType = MNN::DataType_DT_INVALID) {
   SizeBuilder builder_(_fbb);
   builder_.add_outputDataType(outputDataType);
   return builder_.Finish();
@@ -2071,22 +2150,23 @@ flatbuffers::Offset<Size> CreateSize(flatbuffers::FlatBufferBuilder &_fbb, const
 
 struct TransposeT : public flatbuffers::NativeTable {
   typedef Transpose TableType;
-  DataType Tperm;
+  MNN::DataType Tperm;
   TransposeT()
-      : Tperm(DataType_DT_INVALID) {
+      : Tperm(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct Transpose FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef TransposeT NativeTableType;
+  typedef TransposeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return TransposeTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_TPERM = 4
   };
-  DataType Tperm() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TPERM, 0));
+  MNN::DataType Tperm() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TPERM, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2099,9 +2179,10 @@ struct Transpose FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct TransposeBuilder {
+  typedef Transpose Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_Tperm(DataType Tperm) {
+  void add_Tperm(MNN::DataType Tperm) {
     fbb_.AddElement<int32_t>(Transpose::VT_TPERM, static_cast<int32_t>(Tperm), 0);
   }
   explicit TransposeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2118,7 +2199,7 @@ struct TransposeBuilder {
 
 inline flatbuffers::Offset<Transpose> CreateTranspose(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType Tperm = DataType_DT_INVALID) {
+    MNN::DataType Tperm = MNN::DataType_DT_INVALID) {
   TransposeBuilder builder_(_fbb);
   builder_.add_Tperm(Tperm);
   return builder_.Finish();
@@ -2128,22 +2209,23 @@ flatbuffers::Offset<Transpose> CreateTranspose(flatbuffers::FlatBufferBuilder &_
 
 struct SliceTfT : public flatbuffers::NativeTable {
   typedef SliceTf TableType;
-  DataType T;
+  MNN::DataType T;
   SliceTfT()
-      : T(DataType_DT_INVALID) {
+      : T(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct SliceTf FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef SliceTfT NativeTableType;
+  typedef SliceTfBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return SliceTfTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_T = 4
   };
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 0));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2156,9 +2238,10 @@ struct SliceTf FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct SliceTfBuilder {
+  typedef SliceTf Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(SliceTf::VT_T, static_cast<int32_t>(T), 0);
   }
   explicit SliceTfBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2175,7 +2258,7 @@ struct SliceTfBuilder {
 
 inline flatbuffers::Offset<SliceTf> CreateSliceTf(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType T = DataType_DT_INVALID) {
+    MNN::DataType T = MNN::DataType_DT_INVALID) {
   SliceTfBuilder builder_(_fbb);
   builder_.add_T(T);
   return builder_.Finish();
@@ -2185,22 +2268,23 @@ flatbuffers::Offset<SliceTf> CreateSliceTf(flatbuffers::FlatBufferBuilder &_fbb,
 
 struct QuantizeMaxMinT : public flatbuffers::NativeTable {
   typedef QuantizeMaxMin TableType;
-  DataType T;
+  MNN::DataType T;
   QuantizeMaxMinT()
-      : T(DataType_DT_INVALID) {
+      : T(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct QuantizeMaxMin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizeMaxMinT NativeTableType;
+  typedef QuantizeMaxMinBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizeMaxMinTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_T = 4
   };
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 0));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2213,9 +2297,10 @@ struct QuantizeMaxMin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizeMaxMinBuilder {
+  typedef QuantizeMaxMin Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(QuantizeMaxMin::VT_T, static_cast<int32_t>(T), 0);
   }
   explicit QuantizeMaxMinBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2232,7 +2317,7 @@ struct QuantizeMaxMinBuilder {
 
 inline flatbuffers::Offset<QuantizeMaxMin> CreateQuantizeMaxMin(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType T = DataType_DT_INVALID) {
+    MNN::DataType T = MNN::DataType_DT_INVALID) {
   QuantizeMaxMinBuilder builder_(_fbb);
   builder_.add_T(T);
   return builder_.Finish();
@@ -2251,6 +2336,7 @@ struct CropT : public flatbuffers::NativeTable {
 
 struct Crop FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef CropT NativeTableType;
+  typedef CropBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return CropTypeTable();
   }
@@ -2277,6 +2363,7 @@ struct Crop FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct CropBuilder {
+  typedef Crop Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_axis(int32_t axis) {
@@ -2322,14 +2409,15 @@ flatbuffers::Offset<Crop> CreateCrop(flatbuffers::FlatBufferBuilder &_fbb, const
 
 struct SpaceBatchT : public flatbuffers::NativeTable {
   typedef SpaceBatch TableType;
-  std::unique_ptr<BlobT> blockShape;
-  std::unique_ptr<BlobT> padding;
+  std::unique_ptr<MNN::BlobT> blockShape;
+  std::unique_ptr<MNN::BlobT> padding;
   SpaceBatchT() {
   }
 };
 
 struct SpaceBatch FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef SpaceBatchT NativeTableType;
+  typedef SpaceBatchBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return SpaceBatchTypeTable();
   }
@@ -2337,11 +2425,11 @@ struct SpaceBatch FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_BLOCKSHAPE = 4,
     VT_PADDING = 6
   };
-  const Blob *blockShape() const {
-    return GetPointer<const Blob *>(VT_BLOCKSHAPE);
+  const MNN::Blob *blockShape() const {
+    return GetPointer<const MNN::Blob *>(VT_BLOCKSHAPE);
   }
-  const Blob *padding() const {
-    return GetPointer<const Blob *>(VT_PADDING);
+  const MNN::Blob *padding() const {
+    return GetPointer<const MNN::Blob *>(VT_PADDING);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2357,12 +2445,13 @@ struct SpaceBatch FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct SpaceBatchBuilder {
+  typedef SpaceBatch Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_blockShape(flatbuffers::Offset<Blob> blockShape) {
+  void add_blockShape(flatbuffers::Offset<MNN::Blob> blockShape) {
     fbb_.AddOffset(SpaceBatch::VT_BLOCKSHAPE, blockShape);
   }
-  void add_padding(flatbuffers::Offset<Blob> padding) {
+  void add_padding(flatbuffers::Offset<MNN::Blob> padding) {
     fbb_.AddOffset(SpaceBatch::VT_PADDING, padding);
   }
   explicit SpaceBatchBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2379,8 +2468,8 @@ struct SpaceBatchBuilder {
 
 inline flatbuffers::Offset<SpaceBatch> CreateSpaceBatch(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<Blob> blockShape = 0,
-    flatbuffers::Offset<Blob> padding = 0) {
+    flatbuffers::Offset<MNN::Blob> blockShape = 0,
+    flatbuffers::Offset<MNN::Blob> padding = 0) {
   SpaceBatchBuilder builder_(_fbb);
   builder_.add_padding(padding);
   builder_.add_blockShape(blockShape);
@@ -2391,13 +2480,13 @@ flatbuffers::Offset<SpaceBatch> CreateSpaceBatch(flatbuffers::FlatBufferBuilder 
 
 struct MatMulT : public flatbuffers::NativeTable {
   typedef MatMul TableType;
-  DataType T;
+  MNN::DataType T;
   bool transposeA;
   bool transposeB;
   std::vector<float> weight;
   std::vector<float> bias;
   MatMulT()
-      : T(DataType_DT_INVALID),
+      : T(MNN::DataType_DT_INVALID),
         transposeA(false),
         transposeB(false) {
   }
@@ -2405,6 +2494,7 @@ struct MatMulT : public flatbuffers::NativeTable {
 
 struct MatMul FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef MatMulT NativeTableType;
+  typedef MatMulBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return MatMulTypeTable();
   }
@@ -2415,8 +2505,8 @@ struct MatMul FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_WEIGHT = 10,
     VT_BIAS = 12
   };
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 0));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 0));
   }
   bool transposeA() const {
     return GetField<uint8_t>(VT_TRANSPOSEA, 0) != 0;
@@ -2447,9 +2537,10 @@ struct MatMul FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct MatMulBuilder {
+  typedef MatMul Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(MatMul::VT_T, static_cast<int32_t>(T), 0);
   }
   void add_transposeA(bool transposeA) {
@@ -2478,7 +2569,7 @@ struct MatMulBuilder {
 
 inline flatbuffers::Offset<MatMul> CreateMatMul(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType T = DataType_DT_INVALID,
+    MNN::DataType T = MNN::DataType_DT_INVALID,
     bool transposeA = false,
     bool transposeB = false,
     flatbuffers::Offset<flatbuffers::Vector<float>> weight = 0,
@@ -2494,7 +2585,7 @@ inline flatbuffers::Offset<MatMul> CreateMatMul(
 
 inline flatbuffers::Offset<MatMul> CreateMatMulDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType T = DataType_DT_INVALID,
+    MNN::DataType T = MNN::DataType_DT_INVALID,
     bool transposeA = false,
     bool transposeB = false,
     const std::vector<float> *weight = nullptr,
@@ -2516,15 +2607,16 @@ struct MomentsParamT : public flatbuffers::NativeTable {
   typedef MomentsParam TableType;
   std::vector<int32_t> dim;
   bool keepDims;
-  DataType dType;
+  MNN::DataType dType;
   MomentsParamT()
       : keepDims(true),
-        dType(DataType_DT_FLOAT) {
+        dType(MNN::DataType_DT_FLOAT) {
   }
 };
 
 struct MomentsParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef MomentsParamT NativeTableType;
+  typedef MomentsParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return MomentsParamTypeTable();
   }
@@ -2539,8 +2631,8 @@ struct MomentsParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   bool keepDims() const {
     return GetField<uint8_t>(VT_KEEPDIMS, 1) != 0;
   }
-  DataType dType() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_DTYPE, 1));
+  MNN::DataType dType() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_DTYPE, 1));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2556,6 +2648,7 @@ struct MomentsParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct MomentsParamBuilder {
+  typedef MomentsParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_dim(flatbuffers::Offset<flatbuffers::Vector<int32_t>> dim) {
@@ -2564,7 +2657,7 @@ struct MomentsParamBuilder {
   void add_keepDims(bool keepDims) {
     fbb_.AddElement<uint8_t>(MomentsParam::VT_KEEPDIMS, static_cast<uint8_t>(keepDims), 1);
   }
-  void add_dType(DataType dType) {
+  void add_dType(MNN::DataType dType) {
     fbb_.AddElement<int32_t>(MomentsParam::VT_DTYPE, static_cast<int32_t>(dType), 1);
   }
   explicit MomentsParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2583,7 +2676,7 @@ inline flatbuffers::Offset<MomentsParam> CreateMomentsParam(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> dim = 0,
     bool keepDims = true,
-    DataType dType = DataType_DT_FLOAT) {
+    MNN::DataType dType = MNN::DataType_DT_FLOAT) {
   MomentsParamBuilder builder_(_fbb);
   builder_.add_dType(dType);
   builder_.add_dim(dim);
@@ -2595,7 +2688,7 @@ inline flatbuffers::Offset<MomentsParam> CreateMomentsParamDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<int32_t> *dim = nullptr,
     bool keepDims = true,
-    DataType dType = DataType_DT_FLOAT) {
+    MNN::DataType dType = MNN::DataType_DT_FLOAT) {
   auto dim__ = dim ? _fbb.CreateVector<int32_t>(*dim) : 0;
   return MNN::CreateMomentsParam(
       _fbb,
@@ -2612,16 +2705,16 @@ struct RNNParamT : public flatbuffers::NativeTable {
   bool isBidirectionalRNN;
   bool linearBeforeReset;
   bool keepAllOutputs;
-  std::unique_ptr<BlobT> fwGateWeight;
-  std::unique_ptr<BlobT> fwGateBias;
-  std::unique_ptr<BlobT> fwCandidateWeight;
-  std::unique_ptr<BlobT> fwCandidateBias;
-  std::unique_ptr<BlobT> fwRecurrentBias;
-  std::unique_ptr<BlobT> bwGateWeight;
-  std::unique_ptr<BlobT> bwGateBias;
-  std::unique_ptr<BlobT> bwCandidateWeight;
-  std::unique_ptr<BlobT> bwCandidateBias;
-  std::unique_ptr<BlobT> bwRecurrentBias;
+  std::unique_ptr<MNN::BlobT> fwGateWeight;
+  std::unique_ptr<MNN::BlobT> fwGateBias;
+  std::unique_ptr<MNN::BlobT> fwCandidateWeight;
+  std::unique_ptr<MNN::BlobT> fwCandidateBias;
+  std::unique_ptr<MNN::BlobT> fwRecurrentBias;
+  std::unique_ptr<MNN::BlobT> bwGateWeight;
+  std::unique_ptr<MNN::BlobT> bwGateBias;
+  std::unique_ptr<MNN::BlobT> bwCandidateWeight;
+  std::unique_ptr<MNN::BlobT> bwCandidateBias;
+  std::unique_ptr<MNN::BlobT> bwRecurrentBias;
   RNNParamT()
       : numUnits(0),
         isBidirectionalRNN(false),
@@ -2632,6 +2725,7 @@ struct RNNParamT : public flatbuffers::NativeTable {
 
 struct RNNParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef RNNParamT NativeTableType;
+  typedef RNNParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return RNNParamTypeTable();
   }
@@ -2663,35 +2757,35 @@ struct RNNParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   bool keepAllOutputs() const {
     return GetField<uint8_t>(VT_KEEPALLOUTPUTS, 0) != 0;
   }
-  const Blob *fwGateWeight() const {
-    return GetPointer<const Blob *>(VT_FWGATEWEIGHT);
+  const MNN::Blob *fwGateWeight() const {
+    return GetPointer<const MNN::Blob *>(VT_FWGATEWEIGHT);
   }
-  const Blob *fwGateBias() const {
-    return GetPointer<const Blob *>(VT_FWGATEBIAS);
+  const MNN::Blob *fwGateBias() const {
+    return GetPointer<const MNN::Blob *>(VT_FWGATEBIAS);
   }
-  const Blob *fwCandidateWeight() const {
-    return GetPointer<const Blob *>(VT_FWCANDIDATEWEIGHT);
+  const MNN::Blob *fwCandidateWeight() const {
+    return GetPointer<const MNN::Blob *>(VT_FWCANDIDATEWEIGHT);
   }
-  const Blob *fwCandidateBias() const {
-    return GetPointer<const Blob *>(VT_FWCANDIDATEBIAS);
+  const MNN::Blob *fwCandidateBias() const {
+    return GetPointer<const MNN::Blob *>(VT_FWCANDIDATEBIAS);
   }
-  const Blob *fwRecurrentBias() const {
-    return GetPointer<const Blob *>(VT_FWRECURRENTBIAS);
+  const MNN::Blob *fwRecurrentBias() const {
+    return GetPointer<const MNN::Blob *>(VT_FWRECURRENTBIAS);
   }
-  const Blob *bwGateWeight() const {
-    return GetPointer<const Blob *>(VT_BWGATEWEIGHT);
+  const MNN::Blob *bwGateWeight() const {
+    return GetPointer<const MNN::Blob *>(VT_BWGATEWEIGHT);
   }
-  const Blob *bwGateBias() const {
-    return GetPointer<const Blob *>(VT_BWGATEBIAS);
+  const MNN::Blob *bwGateBias() const {
+    return GetPointer<const MNN::Blob *>(VT_BWGATEBIAS);
   }
-  const Blob *bwCandidateWeight() const {
-    return GetPointer<const Blob *>(VT_BWCANDIDATEWEIGHT);
+  const MNN::Blob *bwCandidateWeight() const {
+    return GetPointer<const MNN::Blob *>(VT_BWCANDIDATEWEIGHT);
   }
-  const Blob *bwCandidateBias() const {
-    return GetPointer<const Blob *>(VT_BWCANDIDATEBIAS);
+  const MNN::Blob *bwCandidateBias() const {
+    return GetPointer<const MNN::Blob *>(VT_BWCANDIDATEBIAS);
   }
-  const Blob *bwRecurrentBias() const {
-    return GetPointer<const Blob *>(VT_BWRECURRENTBIAS);
+  const MNN::Blob *bwRecurrentBias() const {
+    return GetPointer<const MNN::Blob *>(VT_BWRECURRENTBIAS);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2727,6 +2821,7 @@ struct RNNParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct RNNParamBuilder {
+  typedef RNNParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_numUnits(int32_t numUnits) {
@@ -2741,34 +2836,34 @@ struct RNNParamBuilder {
   void add_keepAllOutputs(bool keepAllOutputs) {
     fbb_.AddElement<uint8_t>(RNNParam::VT_KEEPALLOUTPUTS, static_cast<uint8_t>(keepAllOutputs), 0);
   }
-  void add_fwGateWeight(flatbuffers::Offset<Blob> fwGateWeight) {
+  void add_fwGateWeight(flatbuffers::Offset<MNN::Blob> fwGateWeight) {
     fbb_.AddOffset(RNNParam::VT_FWGATEWEIGHT, fwGateWeight);
   }
-  void add_fwGateBias(flatbuffers::Offset<Blob> fwGateBias) {
+  void add_fwGateBias(flatbuffers::Offset<MNN::Blob> fwGateBias) {
     fbb_.AddOffset(RNNParam::VT_FWGATEBIAS, fwGateBias);
   }
-  void add_fwCandidateWeight(flatbuffers::Offset<Blob> fwCandidateWeight) {
+  void add_fwCandidateWeight(flatbuffers::Offset<MNN::Blob> fwCandidateWeight) {
     fbb_.AddOffset(RNNParam::VT_FWCANDIDATEWEIGHT, fwCandidateWeight);
   }
-  void add_fwCandidateBias(flatbuffers::Offset<Blob> fwCandidateBias) {
+  void add_fwCandidateBias(flatbuffers::Offset<MNN::Blob> fwCandidateBias) {
     fbb_.AddOffset(RNNParam::VT_FWCANDIDATEBIAS, fwCandidateBias);
   }
-  void add_fwRecurrentBias(flatbuffers::Offset<Blob> fwRecurrentBias) {
+  void add_fwRecurrentBias(flatbuffers::Offset<MNN::Blob> fwRecurrentBias) {
     fbb_.AddOffset(RNNParam::VT_FWRECURRENTBIAS, fwRecurrentBias);
   }
-  void add_bwGateWeight(flatbuffers::Offset<Blob> bwGateWeight) {
+  void add_bwGateWeight(flatbuffers::Offset<MNN::Blob> bwGateWeight) {
     fbb_.AddOffset(RNNParam::VT_BWGATEWEIGHT, bwGateWeight);
   }
-  void add_bwGateBias(flatbuffers::Offset<Blob> bwGateBias) {
+  void add_bwGateBias(flatbuffers::Offset<MNN::Blob> bwGateBias) {
     fbb_.AddOffset(RNNParam::VT_BWGATEBIAS, bwGateBias);
   }
-  void add_bwCandidateWeight(flatbuffers::Offset<Blob> bwCandidateWeight) {
+  void add_bwCandidateWeight(flatbuffers::Offset<MNN::Blob> bwCandidateWeight) {
     fbb_.AddOffset(RNNParam::VT_BWCANDIDATEWEIGHT, bwCandidateWeight);
   }
-  void add_bwCandidateBias(flatbuffers::Offset<Blob> bwCandidateBias) {
+  void add_bwCandidateBias(flatbuffers::Offset<MNN::Blob> bwCandidateBias) {
     fbb_.AddOffset(RNNParam::VT_BWCANDIDATEBIAS, bwCandidateBias);
   }
-  void add_bwRecurrentBias(flatbuffers::Offset<Blob> bwRecurrentBias) {
+  void add_bwRecurrentBias(flatbuffers::Offset<MNN::Blob> bwRecurrentBias) {
     fbb_.AddOffset(RNNParam::VT_BWRECURRENTBIAS, bwRecurrentBias);
   }
   explicit RNNParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2789,16 +2884,16 @@ inline flatbuffers::Offset<RNNParam> CreateRNNParam(
     bool isBidirectionalRNN = false,
     bool linearBeforeReset = false,
     bool keepAllOutputs = false,
-    flatbuffers::Offset<Blob> fwGateWeight = 0,
-    flatbuffers::Offset<Blob> fwGateBias = 0,
-    flatbuffers::Offset<Blob> fwCandidateWeight = 0,
-    flatbuffers::Offset<Blob> fwCandidateBias = 0,
-    flatbuffers::Offset<Blob> fwRecurrentBias = 0,
-    flatbuffers::Offset<Blob> bwGateWeight = 0,
-    flatbuffers::Offset<Blob> bwGateBias = 0,
-    flatbuffers::Offset<Blob> bwCandidateWeight = 0,
-    flatbuffers::Offset<Blob> bwCandidateBias = 0,
-    flatbuffers::Offset<Blob> bwRecurrentBias = 0) {
+    flatbuffers::Offset<MNN::Blob> fwGateWeight = 0,
+    flatbuffers::Offset<MNN::Blob> fwGateBias = 0,
+    flatbuffers::Offset<MNN::Blob> fwCandidateWeight = 0,
+    flatbuffers::Offset<MNN::Blob> fwCandidateBias = 0,
+    flatbuffers::Offset<MNN::Blob> fwRecurrentBias = 0,
+    flatbuffers::Offset<MNN::Blob> bwGateWeight = 0,
+    flatbuffers::Offset<MNN::Blob> bwGateBias = 0,
+    flatbuffers::Offset<MNN::Blob> bwCandidateWeight = 0,
+    flatbuffers::Offset<MNN::Blob> bwCandidateBias = 0,
+    flatbuffers::Offset<MNN::Blob> bwRecurrentBias = 0) {
   RNNParamBuilder builder_(_fbb);
   builder_.add_bwRecurrentBias(bwRecurrentBias);
   builder_.add_bwCandidateBias(bwCandidateBias);
@@ -2831,6 +2926,7 @@ struct BatchMatMulParamT : public flatbuffers::NativeTable {
 
 struct BatchMatMulParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef BatchMatMulParamT NativeTableType;
+  typedef BatchMatMulParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return BatchMatMulParamTypeTable();
   }
@@ -2856,6 +2952,7 @@ struct BatchMatMulParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct BatchMatMulParamBuilder {
+  typedef BatchMatMulParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_adjX(bool adjX) {
@@ -2891,15 +2988,16 @@ flatbuffers::Offset<BatchMatMulParam> CreateBatchMatMulParam(flatbuffers::FlatBu
 struct DepthSpaceParamT : public flatbuffers::NativeTable {
   typedef DepthSpaceParam TableType;
   int32_t blockSize;
-  DepthToSpaceMode mode;
+  MNN::DepthToSpaceMode mode;
   DepthSpaceParamT()
       : blockSize(0),
-        mode(DepthToSpaceMode_DCR) {
+        mode(MNN::DepthToSpaceMode_DCR) {
   }
 };
 
 struct DepthSpaceParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef DepthSpaceParamT NativeTableType;
+  typedef DepthSpaceParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return DepthSpaceParamTypeTable();
   }
@@ -2910,8 +3008,8 @@ struct DepthSpaceParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t blockSize() const {
     return GetField<int32_t>(VT_BLOCKSIZE, 0);
   }
-  DepthToSpaceMode mode() const {
-    return static_cast<DepthToSpaceMode>(GetField<int8_t>(VT_MODE, 0));
+  MNN::DepthToSpaceMode mode() const {
+    return static_cast<MNN::DepthToSpaceMode>(GetField<int8_t>(VT_MODE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2925,12 +3023,13 @@ struct DepthSpaceParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct DepthSpaceParamBuilder {
+  typedef DepthSpaceParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_blockSize(int32_t blockSize) {
     fbb_.AddElement<int32_t>(DepthSpaceParam::VT_BLOCKSIZE, blockSize, 0);
   }
-  void add_mode(DepthToSpaceMode mode) {
+  void add_mode(MNN::DepthToSpaceMode mode) {
     fbb_.AddElement<int8_t>(DepthSpaceParam::VT_MODE, static_cast<int8_t>(mode), 0);
   }
   explicit DepthSpaceParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2948,7 +3047,7 @@ struct DepthSpaceParamBuilder {
 inline flatbuffers::Offset<DepthSpaceParam> CreateDepthSpaceParam(
     flatbuffers::FlatBufferBuilder &_fbb,
     int32_t blockSize = 0,
-    DepthToSpaceMode mode = DepthToSpaceMode_DCR) {
+    MNN::DepthToSpaceMode mode = MNN::DepthToSpaceMode_DCR) {
   DepthSpaceParamBuilder builder_(_fbb);
   builder_.add_blockSize(blockSize);
   builder_.add_mode(mode);
@@ -2969,6 +3068,7 @@ struct ReverseSequenceParamT : public flatbuffers::NativeTable {
 
 struct ReverseSequenceParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ReverseSequenceParamT NativeTableType;
+  typedef ReverseSequenceParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ReverseSequenceParamTypeTable();
   }
@@ -2994,6 +3094,7 @@ struct ReverseSequenceParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table
 };
 
 struct ReverseSequenceParamBuilder {
+  typedef ReverseSequenceParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_batchDim(int32_t batchDim) {
@@ -3049,6 +3150,7 @@ struct DetectionPostProcessParamT : public flatbuffers::NativeTable {
 
 struct DetectionPostProcessParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef DetectionPostProcessParamT NativeTableType;
+  typedef DetectionPostProcessParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return DetectionPostProcessParamTypeTable();
   }
@@ -3105,6 +3207,7 @@ struct DetectionPostProcessParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::
 };
 
 struct DetectionPostProcessParamBuilder {
+  typedef DetectionPostProcessParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_maxDetections(int32_t maxDetections) {
@@ -3192,16 +3295,17 @@ flatbuffers::Offset<DetectionPostProcessParam> CreateDetectionPostProcessParam(f
 
 struct OneHotParamT : public flatbuffers::NativeTable {
   typedef OneHotParam TableType;
-  DataType dType;
+  MNN::DataType dType;
   int32_t axis;
   OneHotParamT()
-      : dType(DataType_DT_FLOAT),
+      : dType(MNN::DataType_DT_FLOAT),
         axis(-1) {
   }
 };
 
 struct OneHotParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef OneHotParamT NativeTableType;
+  typedef OneHotParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return OneHotParamTypeTable();
   }
@@ -3209,8 +3313,8 @@ struct OneHotParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_DTYPE = 4,
     VT_AXIS = 6
   };
-  DataType dType() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_DTYPE, 1));
+  MNN::DataType dType() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_DTYPE, 1));
   }
   int32_t axis() const {
     return GetField<int32_t>(VT_AXIS, -1);
@@ -3227,9 +3331,10 @@ struct OneHotParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct OneHotParamBuilder {
+  typedef OneHotParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_dType(DataType dType) {
+  void add_dType(MNN::DataType dType) {
     fbb_.AddElement<int32_t>(OneHotParam::VT_DTYPE, static_cast<int32_t>(dType), 1);
   }
   void add_axis(int32_t axis) {
@@ -3249,7 +3354,7 @@ struct OneHotParamBuilder {
 
 inline flatbuffers::Offset<OneHotParam> CreateOneHotParam(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType dType = DataType_DT_FLOAT,
+    MNN::DataType dType = MNN::DataType_DT_FLOAT,
     int32_t axis = -1) {
   OneHotParamBuilder builder_(_fbb);
   builder_.add_axis(axis);
@@ -3261,22 +3366,23 @@ flatbuffers::Offset<OneHotParam> CreateOneHotParam(flatbuffers::FlatBufferBuilde
 
 struct PadParamT : public flatbuffers::NativeTable {
   typedef PadParam TableType;
-  PadValueMode mode;
+  MNN::PadValueMode mode;
   PadParamT()
-      : mode(PadValueMode_CONSTANT) {
+      : mode(MNN::PadValueMode_CONSTANT) {
   }
 };
 
 struct PadParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef PadParamT NativeTableType;
+  typedef PadParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return PadParamTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_MODE = 4
   };
-  PadValueMode mode() const {
-    return static_cast<PadValueMode>(GetField<int8_t>(VT_MODE, 0));
+  MNN::PadValueMode mode() const {
+    return static_cast<MNN::PadValueMode>(GetField<int8_t>(VT_MODE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -3289,9 +3395,10 @@ struct PadParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct PadParamBuilder {
+  typedef PadParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_mode(PadValueMode mode) {
+  void add_mode(MNN::PadValueMode mode) {
     fbb_.AddElement<int8_t>(PadParam::VT_MODE, static_cast<int8_t>(mode), 0);
   }
   explicit PadParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -3308,7 +3415,7 @@ struct PadParamBuilder {
 
 inline flatbuffers::Offset<PadParam> CreatePadParam(
     flatbuffers::FlatBufferBuilder &_fbb,
-    PadValueMode mode = PadValueMode_CONSTANT) {
+    MNN::PadValueMode mode = MNN::PadValueMode_CONSTANT) {
   PadParamBuilder builder_(_fbb);
   builder_.add_mode(mode);
   return builder_.Finish();
@@ -3329,6 +3436,7 @@ struct LayerNormT : public flatbuffers::NativeTable {
 
 struct LayerNorm FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef LayerNormT NativeTableType;
+  typedef LayerNormBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return LayerNormTypeTable();
   }
@@ -3367,6 +3475,7 @@ struct LayerNorm FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct LayerNormBuilder {
+  typedef LayerNorm Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_axis(flatbuffers::Offset<flatbuffers::Vector<int32_t>> axis) {
@@ -3430,18 +3539,19 @@ struct RandomUniformT : public flatbuffers::NativeTable {
   typedef RandomUniform TableType;
   int32_t seed;
   int32_t seed2;
-  DataType type;
-  DataType T;
+  MNN::DataType type;
+  MNN::DataType T;
   RandomUniformT()
       : seed(0),
         seed2(0),
-        type(DataType_DT_FLOAT),
-        T(DataType_DT_INT32) {
+        type(MNN::DataType_DT_FLOAT),
+        T(MNN::DataType_DT_INT32) {
   }
 };
 
 struct RandomUniform FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef RandomUniformT NativeTableType;
+  typedef RandomUniformBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return RandomUniformTypeTable();
   }
@@ -3457,11 +3567,11 @@ struct RandomUniform FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t seed2() const {
     return GetField<int32_t>(VT_SEED2, 0);
   }
-  DataType type() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TYPE, 1));
+  MNN::DataType type() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TYPE, 1));
   }
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 3));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 3));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -3477,6 +3587,7 @@ struct RandomUniform FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct RandomUniformBuilder {
+  typedef RandomUniform Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_seed(int32_t seed) {
@@ -3485,10 +3596,10 @@ struct RandomUniformBuilder {
   void add_seed2(int32_t seed2) {
     fbb_.AddElement<int32_t>(RandomUniform::VT_SEED2, seed2, 0);
   }
-  void add_type(DataType type) {
+  void add_type(MNN::DataType type) {
     fbb_.AddElement<int32_t>(RandomUniform::VT_TYPE, static_cast<int32_t>(type), 1);
   }
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(RandomUniform::VT_T, static_cast<int32_t>(T), 3);
   }
   explicit RandomUniformBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -3507,8 +3618,8 @@ inline flatbuffers::Offset<RandomUniform> CreateRandomUniform(
     flatbuffers::FlatBufferBuilder &_fbb,
     int32_t seed = 0,
     int32_t seed2 = 0,
-    DataType type = DataType_DT_FLOAT,
-    DataType T = DataType_DT_INT32) {
+    MNN::DataType type = MNN::DataType_DT_FLOAT,
+    MNN::DataType T = MNN::DataType_DT_INT32) {
   RandomUniformBuilder builder_(_fbb);
   builder_.add_T(T);
   builder_.add_type(type);
@@ -3524,16 +3635,17 @@ struct TensorArrayT : public flatbuffers::NativeTable {
   bool dynamic_size;
   bool identical_element_shapes;
   std::vector<int32_t> element_shape;
-  DataType T;
+  MNN::DataType T;
   TensorArrayT()
       : dynamic_size(false),
         identical_element_shapes(false),
-        T(DataType_DT_FLOAT) {
+        T(MNN::DataType_DT_FLOAT) {
   }
 };
 
 struct TensorArray FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef TensorArrayT NativeTableType;
+  typedef TensorArrayBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return TensorArrayTypeTable();
   }
@@ -3552,8 +3664,8 @@ struct TensorArray FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *element_shape() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_ELEMENT_SHAPE);
   }
-  DataType T() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_T, 1));
+  MNN::DataType T() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_T, 1));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -3570,6 +3682,7 @@ struct TensorArray FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct TensorArrayBuilder {
+  typedef TensorArray Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_dynamic_size(bool dynamic_size) {
@@ -3581,7 +3694,7 @@ struct TensorArrayBuilder {
   void add_element_shape(flatbuffers::Offset<flatbuffers::Vector<int32_t>> element_shape) {
     fbb_.AddOffset(TensorArray::VT_ELEMENT_SHAPE, element_shape);
   }
-  void add_T(DataType T) {
+  void add_T(MNN::DataType T) {
     fbb_.AddElement<int32_t>(TensorArray::VT_T, static_cast<int32_t>(T), 1);
   }
   explicit TensorArrayBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -3601,7 +3714,7 @@ inline flatbuffers::Offset<TensorArray> CreateTensorArray(
     bool dynamic_size = false,
     bool identical_element_shapes = false,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> element_shape = 0,
-    DataType T = DataType_DT_FLOAT) {
+    MNN::DataType T = MNN::DataType_DT_FLOAT) {
   TensorArrayBuilder builder_(_fbb);
   builder_.add_T(T);
   builder_.add_element_shape(element_shape);
@@ -3615,7 +3728,7 @@ inline flatbuffers::Offset<TensorArray> CreateTensorArrayDirect(
     bool dynamic_size = false,
     bool identical_element_shapes = false,
     const std::vector<int32_t> *element_shape = nullptr,
-    DataType T = DataType_DT_FLOAT) {
+    MNN::DataType T = MNN::DataType_DT_FLOAT) {
   auto element_shape__ = element_shape ? _fbb.CreateVector<int32_t>(*element_shape) : 0;
   return MNN::CreateTensorArray(
       _fbb,
@@ -3641,6 +3754,7 @@ struct LSTMBlockCellT : public flatbuffers::NativeTable {
 
 struct LSTMBlockCell FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef LSTMBlockCellT NativeTableType;
+  typedef LSTMBlockCellBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return LSTMBlockCellTypeTable();
   }
@@ -3671,6 +3785,7 @@ struct LSTMBlockCell FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct LSTMBlockCellBuilder {
+  typedef LSTMBlockCell Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_cell_clip(float cell_clip) {
@@ -3709,16 +3824,16 @@ inline flatbuffers::Offset<LSTMBlockCell> CreateLSTMBlockCell(
 flatbuffers::Offset<LSTMBlockCell> CreateLSTMBlockCell(flatbuffers::FlatBufferBuilder &_fbb, const LSTMBlockCellT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline BinaryOpT *BinaryOp::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new BinaryOpT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::BinaryOpT> _o = std::unique_ptr<MNN::BinaryOpT>(new BinaryOpT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void BinaryOp::UnPackTo(BinaryOpT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = opType(); _o->opType = _e; };
-  { auto _e = T(); _o->T = _e; };
+  { auto _e = opType(); _o->opType = _e; }
+  { auto _e = T(); _o->T = _e; }
 }
 
 inline flatbuffers::Offset<BinaryOp> BinaryOp::Pack(flatbuffers::FlatBufferBuilder &_fbb, const BinaryOpT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -3738,16 +3853,16 @@ inline flatbuffers::Offset<BinaryOp> CreateBinaryOp(flatbuffers::FlatBufferBuild
 }
 
 inline PackParamT *PackParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new PackParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::PackParamT> _o = std::unique_ptr<MNN::PackParamT>(new PackParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void PackParam::UnPackTo(PackParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dataType(); _o->dataType = _e; };
-  { auto _e = axis(); _o->axis = _e; };
+  { auto _e = dataType(); _o->dataType = _e; }
+  { auto _e = axis(); _o->axis = _e; }
 }
 
 inline flatbuffers::Offset<PackParam> PackParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const PackParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -3767,21 +3882,21 @@ inline flatbuffers::Offset<PackParam> CreatePackParam(flatbuffers::FlatBufferBui
 }
 
 inline StridedSliceParamT *StridedSliceParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new StridedSliceParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::StridedSliceParamT> _o = std::unique_ptr<MNN::StridedSliceParamT>(new StridedSliceParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void StridedSliceParam::UnPackTo(StridedSliceParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = Index(); _o->Index = _e; };
-  { auto _e = T(); _o->T = _e; };
-  { auto _e = beginMask(); _o->beginMask = _e; };
-  { auto _e = endMask(); _o->endMask = _e; };
-  { auto _e = ellipsisMask(); _o->ellipsisMask = _e; };
-  { auto _e = newAxisMask(); _o->newAxisMask = _e; };
-  { auto _e = shrinkAxisMask(); _o->shrinkAxisMask = _e; };
+  { auto _e = Index(); _o->Index = _e; }
+  { auto _e = T(); _o->T = _e; }
+  { auto _e = beginMask(); _o->beginMask = _e; }
+  { auto _e = endMask(); _o->endMask = _e; }
+  { auto _e = ellipsisMask(); _o->ellipsisMask = _e; }
+  { auto _e = newAxisMask(); _o->newAxisMask = _e; }
+  { auto _e = shrinkAxisMask(); _o->shrinkAxisMask = _e; }
 }
 
 inline flatbuffers::Offset<StridedSliceParam> StridedSliceParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const StridedSliceParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -3811,15 +3926,15 @@ inline flatbuffers::Offset<StridedSliceParam> CreateStridedSliceParam(flatbuffer
 }
 
 inline SqueezeParamT *SqueezeParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new SqueezeParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::SqueezeParamT> _o = std::unique_ptr<MNN::SqueezeParamT>(new SqueezeParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void SqueezeParam::UnPackTo(SqueezeParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = squeezeDims(); if (_e) { _o->squeezeDims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->squeezeDims[_i] = _e->Get(_i); } } };
+  { auto _e = squeezeDims(); if (_e) { _o->squeezeDims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->squeezeDims[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<SqueezeParam> SqueezeParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const SqueezeParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -3837,16 +3952,16 @@ inline flatbuffers::Offset<SqueezeParam> CreateSqueezeParam(flatbuffers::FlatBuf
 }
 
 inline CastParamT *CastParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new CastParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::CastParamT> _o = std::unique_ptr<MNN::CastParamT>(new CastParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void CastParam::UnPackTo(CastParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = srcT(); _o->srcT = _e; };
-  { auto _e = dstT(); _o->dstT = _e; };
+  { auto _e = srcT(); _o->srcT = _e; }
+  { auto _e = dstT(); _o->dstT = _e; }
 }
 
 inline flatbuffers::Offset<CastParam> CastParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const CastParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -3866,19 +3981,19 @@ inline flatbuffers::Offset<CastParam> CreateCastParam(flatbuffers::FlatBufferBui
 }
 
 inline ReductionParamT *ReductionParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ReductionParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ReductionParamT> _o = std::unique_ptr<MNN::ReductionParamT>(new ReductionParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void ReductionParam::UnPackTo(ReductionParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = operation(); _o->operation = _e; };
-  { auto _e = dim(); if (_e) { _o->dim.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dim[_i] = _e->Get(_i); } } };
-  { auto _e = coeff(); _o->coeff = _e; };
-  { auto _e = keepDims(); _o->keepDims = _e; };
-  { auto _e = dType(); _o->dType = _e; };
+  { auto _e = operation(); _o->operation = _e; }
+  { auto _e = dim(); if (_e) { _o->dim.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dim[_i] = _e->Get(_i); } } }
+  { auto _e = coeff(); _o->coeff = _e; }
+  { auto _e = keepDims(); _o->keepDims = _e; }
+  { auto _e = dType(); _o->dType = _e; }
 }
 
 inline flatbuffers::Offset<ReductionParam> ReductionParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ReductionParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -3904,18 +4019,18 @@ inline flatbuffers::Offset<ReductionParam> CreateReductionParam(flatbuffers::Fla
 }
 
 inline GatherT *Gather::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new GatherT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::GatherT> _o = std::unique_ptr<MNN::GatherT>(new GatherT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Gather::UnPackTo(GatherT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = Tindices(); _o->Tindices = _e; };
-  { auto _e = Tparams(); _o->Tparams = _e; };
-  { auto _e = validateIndices(); _o->validateIndices = _e; };
-  { auto _e = axis(); _o->axis = _e; };
+  { auto _e = Tindices(); _o->Tindices = _e; }
+  { auto _e = Tparams(); _o->Tparams = _e; }
+  { auto _e = validateIndices(); _o->validateIndices = _e; }
+  { auto _e = axis(); _o->axis = _e; }
 }
 
 inline flatbuffers::Offset<Gather> Gather::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GatherT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -3939,17 +4054,17 @@ inline flatbuffers::Offset<Gather> CreateGather(flatbuffers::FlatBufferBuilder &
 }
 
 inline ExpandDimsT *ExpandDims::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ExpandDimsT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ExpandDimsT> _o = std::unique_ptr<MNN::ExpandDimsT>(new ExpandDimsT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void ExpandDims::UnPackTo(ExpandDimsT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = T(); _o->T = _e; };
-  { auto _e = Tdim(); _o->Tdim = _e; };
-  { auto _e = axis(); _o->axis = _e; };
+  { auto _e = T(); _o->T = _e; }
+  { auto _e = Tdim(); _o->Tdim = _e; }
+  { auto _e = axis(); _o->axis = _e; }
 }
 
 inline flatbuffers::Offset<ExpandDims> ExpandDims::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ExpandDimsT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -3971,16 +4086,16 @@ inline flatbuffers::Offset<ExpandDims> CreateExpandDims(flatbuffers::FlatBufferB
 }
 
 inline SeluT *Selu::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new SeluT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::SeluT> _o = std::unique_ptr<MNN::SeluT>(new SeluT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Selu::UnPackTo(SeluT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = scale(); _o->scale = _e; };
-  { auto _e = alpha(); _o->alpha = _e; };
+  { auto _e = scale(); _o->scale = _e; }
+  { auto _e = alpha(); _o->alpha = _e; }
 }
 
 inline flatbuffers::Offset<Selu> Selu::Pack(flatbuffers::FlatBufferBuilder &_fbb, const SeluT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4000,20 +4115,20 @@ inline flatbuffers::Offset<Selu> CreateSelu(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline AsStringT *AsString::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new AsStringT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::AsStringT> _o = std::unique_ptr<MNN::AsStringT>(new AsStringT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void AsString::UnPackTo(AsStringT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = T(); _o->T = _e; };
-  { auto _e = precision(); _o->precision = _e; };
-  { auto _e = scientific(); _o->scientific = _e; };
-  { auto _e = shortest(); _o->shortest = _e; };
-  { auto _e = width(); _o->width = _e; };
-  { auto _e = fillString(); if (_e) _o->fillString = _e->str(); };
+  { auto _e = T(); _o->T = _e; }
+  { auto _e = precision(); _o->precision = _e; }
+  { auto _e = scientific(); _o->scientific = _e; }
+  { auto _e = shortest(); _o->shortest = _e; }
+  { auto _e = width(); _o->width = _e; }
+  { auto _e = fillString(); if (_e) _o->fillString = _e->str(); }
 }
 
 inline flatbuffers::Offset<AsString> AsString::Pack(flatbuffers::FlatBufferBuilder &_fbb, const AsStringT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4041,16 +4156,16 @@ inline flatbuffers::Offset<AsString> CreateAsString(flatbuffers::FlatBufferBuild
 }
 
 inline ReduceJoinT *ReduceJoin::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ReduceJoinT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ReduceJoinT> _o = std::unique_ptr<MNN::ReduceJoinT>(new ReduceJoinT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void ReduceJoin::UnPackTo(ReduceJoinT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = keepDims(); _o->keepDims = _e; };
-  { auto _e = separator(); if (_e) _o->separator = _e->str(); };
+  { auto _e = keepDims(); _o->keepDims = _e; }
+  { auto _e = separator(); if (_e) _o->separator = _e->str(); }
 }
 
 inline flatbuffers::Offset<ReduceJoin> ReduceJoin::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ReduceJoinT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4070,16 +4185,16 @@ inline flatbuffers::Offset<ReduceJoin> CreateReduceJoin(flatbuffers::FlatBufferB
 }
 
 inline UnaryOpT *UnaryOp::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new UnaryOpT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::UnaryOpT> _o = std::unique_ptr<MNN::UnaryOpT>(new UnaryOpT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void UnaryOp::UnPackTo(UnaryOpT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = opType(); _o->opType = _e; };
-  { auto _e = T(); _o->T = _e; };
+  { auto _e = opType(); _o->opType = _e; }
+  { auto _e = T(); _o->T = _e; }
 }
 
 inline flatbuffers::Offset<UnaryOp> UnaryOp::Pack(flatbuffers::FlatBufferBuilder &_fbb, const UnaryOpT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4099,16 +4214,16 @@ inline flatbuffers::Offset<UnaryOp> CreateUnaryOp(flatbuffers::FlatBufferBuilder
 }
 
 inline TopKV2T *TopKV2::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new TopKV2T();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::TopKV2T> _o = std::unique_ptr<MNN::TopKV2T>(new TopKV2T());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void TopKV2::UnPackTo(TopKV2T *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = T(); _o->T = _e; };
-  { auto _e = sorted(); _o->sorted = _e; };
+  { auto _e = T(); _o->T = _e; }
+  { auto _e = sorted(); _o->sorted = _e; }
 }
 
 inline flatbuffers::Offset<TopKV2> TopKV2::Pack(flatbuffers::FlatBufferBuilder &_fbb, const TopKV2T* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4128,16 +4243,16 @@ inline flatbuffers::Offset<TopKV2> CreateTopKV2(flatbuffers::FlatBufferBuilder &
 }
 
 inline CropAndResizeT *CropAndResize::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new CropAndResizeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::CropAndResizeT> _o = std::unique_ptr<MNN::CropAndResizeT>(new CropAndResizeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void CropAndResize::UnPackTo(CropAndResizeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = extrapolationValue(); _o->extrapolationValue = _e; };
-  { auto _e = method(); _o->method = _e; };
+  { auto _e = extrapolationValue(); _o->extrapolationValue = _e; }
+  { auto _e = method(); _o->method = _e; }
 }
 
 inline flatbuffers::Offset<CropAndResize> CropAndResize::Pack(flatbuffers::FlatBufferBuilder &_fbb, const CropAndResizeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4157,9 +4272,9 @@ inline flatbuffers::Offset<CropAndResize> CreateCropAndResize(flatbuffers::FlatB
 }
 
 inline FillT *Fill::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new FillT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::FillT> _o = std::unique_ptr<MNN::FillT>(new FillT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Fill::UnPackTo(FillT *_o, const flatbuffers::resolver_function_t *_resolver) const {
@@ -4180,17 +4295,17 @@ inline flatbuffers::Offset<Fill> CreateFill(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline GatherV2T *GatherV2::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new GatherV2T();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::GatherV2T> _o = std::unique_ptr<MNN::GatherV2T>(new GatherV2T());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void GatherV2::UnPackTo(GatherV2T *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = Taxis(); _o->Taxis = _e; };
-  { auto _e = Tindices(); _o->Tindices = _e; };
-  { auto _e = Tparams(); _o->Tparams = _e; };
+  { auto _e = Taxis(); _o->Taxis = _e; }
+  { auto _e = Tindices(); _o->Tindices = _e; }
+  { auto _e = Tparams(); _o->Tparams = _e; }
 }
 
 inline flatbuffers::Offset<GatherV2> GatherV2::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GatherV2T* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4212,9 +4327,9 @@ inline flatbuffers::Offset<GatherV2> CreateGatherV2(flatbuffers::FlatBufferBuild
 }
 
 inline NonMaxSuppressionV2T *NonMaxSuppressionV2::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new NonMaxSuppressionV2T();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::NonMaxSuppressionV2T> _o = std::unique_ptr<MNN::NonMaxSuppressionV2T>(new NonMaxSuppressionV2T());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void NonMaxSuppressionV2::UnPackTo(NonMaxSuppressionV2T *_o, const flatbuffers::resolver_function_t *_resolver) const {
@@ -4235,15 +4350,15 @@ inline flatbuffers::Offset<NonMaxSuppressionV2> CreateNonMaxSuppressionV2(flatbu
 }
 
 inline RangeT *Range::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new RangeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::RangeT> _o = std::unique_ptr<MNN::RangeT>(new RangeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Range::UnPackTo(RangeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = Tidx(); _o->Tidx = _e; };
+  { auto _e = Tidx(); _o->Tidx = _e; }
 }
 
 inline flatbuffers::Offset<Range> Range::Pack(flatbuffers::FlatBufferBuilder &_fbb, const RangeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4261,9 +4376,9 @@ inline flatbuffers::Offset<Range> CreateRange(flatbuffers::FlatBufferBuilder &_f
 }
 
 inline RankT *Rank::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new RankT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::RankT> _o = std::unique_ptr<MNN::RankT>(new RankT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Rank::UnPackTo(RankT *_o, const flatbuffers::resolver_function_t *_resolver) const {
@@ -4284,15 +4399,15 @@ inline flatbuffers::Offset<Rank> CreateRank(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline SizeT *Size::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new SizeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::SizeT> _o = std::unique_ptr<MNN::SizeT>(new SizeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Size::UnPackTo(SizeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = outputDataType(); _o->outputDataType = _e; };
+  { auto _e = outputDataType(); _o->outputDataType = _e; }
 }
 
 inline flatbuffers::Offset<Size> Size::Pack(flatbuffers::FlatBufferBuilder &_fbb, const SizeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4310,15 +4425,15 @@ inline flatbuffers::Offset<Size> CreateSize(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline TransposeT *Transpose::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new TransposeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::TransposeT> _o = std::unique_ptr<MNN::TransposeT>(new TransposeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Transpose::UnPackTo(TransposeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = Tperm(); _o->Tperm = _e; };
+  { auto _e = Tperm(); _o->Tperm = _e; }
 }
 
 inline flatbuffers::Offset<Transpose> Transpose::Pack(flatbuffers::FlatBufferBuilder &_fbb, const TransposeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4336,15 +4451,15 @@ inline flatbuffers::Offset<Transpose> CreateTranspose(flatbuffers::FlatBufferBui
 }
 
 inline SliceTfT *SliceTf::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new SliceTfT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::SliceTfT> _o = std::unique_ptr<MNN::SliceTfT>(new SliceTfT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void SliceTf::UnPackTo(SliceTfT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = T(); _o->T = _e; };
+  { auto _e = T(); _o->T = _e; }
 }
 
 inline flatbuffers::Offset<SliceTf> SliceTf::Pack(flatbuffers::FlatBufferBuilder &_fbb, const SliceTfT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4362,15 +4477,15 @@ inline flatbuffers::Offset<SliceTf> CreateSliceTf(flatbuffers::FlatBufferBuilder
 }
 
 inline QuantizeMaxMinT *QuantizeMaxMin::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizeMaxMinT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizeMaxMinT> _o = std::unique_ptr<MNN::QuantizeMaxMinT>(new QuantizeMaxMinT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizeMaxMin::UnPackTo(QuantizeMaxMinT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = T(); _o->T = _e; };
+  { auto _e = T(); _o->T = _e; }
 }
 
 inline flatbuffers::Offset<QuantizeMaxMin> QuantizeMaxMin::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizeMaxMinT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4388,16 +4503,16 @@ inline flatbuffers::Offset<QuantizeMaxMin> CreateQuantizeMaxMin(flatbuffers::Fla
 }
 
 inline CropT *Crop::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new CropT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::CropT> _o = std::unique_ptr<MNN::CropT>(new CropT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Crop::UnPackTo(CropT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = axis(); _o->axis = _e; };
-  { auto _e = offset(); if (_e) { _o->offset.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->offset[_i] = _e->Get(_i); } } };
+  { auto _e = axis(); _o->axis = _e; }
+  { auto _e = offset(); if (_e) { _o->offset.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->offset[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<Crop> Crop::Pack(flatbuffers::FlatBufferBuilder &_fbb, const CropT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4417,16 +4532,16 @@ inline flatbuffers::Offset<Crop> CreateCrop(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline SpaceBatchT *SpaceBatch::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new SpaceBatchT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::SpaceBatchT> _o = std::unique_ptr<MNN::SpaceBatchT>(new SpaceBatchT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void SpaceBatch::UnPackTo(SpaceBatchT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = blockShape(); if (_e) _o->blockShape = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = padding(); if (_e) _o->padding = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
+  { auto _e = blockShape(); if (_e) _o->blockShape = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = padding(); if (_e) _o->padding = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<SpaceBatch> SpaceBatch::Pack(flatbuffers::FlatBufferBuilder &_fbb, const SpaceBatchT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4446,19 +4561,19 @@ inline flatbuffers::Offset<SpaceBatch> CreateSpaceBatch(flatbuffers::FlatBufferB
 }
 
 inline MatMulT *MatMul::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new MatMulT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::MatMulT> _o = std::unique_ptr<MNN::MatMulT>(new MatMulT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void MatMul::UnPackTo(MatMulT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = T(); _o->T = _e; };
-  { auto _e = transposeA(); _o->transposeA = _e; };
-  { auto _e = transposeB(); _o->transposeB = _e; };
-  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } };
-  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } };
+  { auto _e = T(); _o->T = _e; }
+  { auto _e = transposeA(); _o->transposeA = _e; }
+  { auto _e = transposeB(); _o->transposeB = _e; }
+  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } }
+  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<MatMul> MatMul::Pack(flatbuffers::FlatBufferBuilder &_fbb, const MatMulT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4484,17 +4599,17 @@ inline flatbuffers::Offset<MatMul> CreateMatMul(flatbuffers::FlatBufferBuilder &
 }
 
 inline MomentsParamT *MomentsParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new MomentsParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::MomentsParamT> _o = std::unique_ptr<MNN::MomentsParamT>(new MomentsParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void MomentsParam::UnPackTo(MomentsParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dim(); if (_e) { _o->dim.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dim[_i] = _e->Get(_i); } } };
-  { auto _e = keepDims(); _o->keepDims = _e; };
-  { auto _e = dType(); _o->dType = _e; };
+  { auto _e = dim(); if (_e) { _o->dim.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dim[_i] = _e->Get(_i); } } }
+  { auto _e = keepDims(); _o->keepDims = _e; }
+  { auto _e = dType(); _o->dType = _e; }
 }
 
 inline flatbuffers::Offset<MomentsParam> MomentsParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const MomentsParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4516,28 +4631,28 @@ inline flatbuffers::Offset<MomentsParam> CreateMomentsParam(flatbuffers::FlatBuf
 }
 
 inline RNNParamT *RNNParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new RNNParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::RNNParamT> _o = std::unique_ptr<MNN::RNNParamT>(new RNNParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void RNNParam::UnPackTo(RNNParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = numUnits(); _o->numUnits = _e; };
-  { auto _e = isBidirectionalRNN(); _o->isBidirectionalRNN = _e; };
-  { auto _e = linearBeforeReset(); _o->linearBeforeReset = _e; };
-  { auto _e = keepAllOutputs(); _o->keepAllOutputs = _e; };
-  { auto _e = fwGateWeight(); if (_e) _o->fwGateWeight = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = fwGateBias(); if (_e) _o->fwGateBias = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = fwCandidateWeight(); if (_e) _o->fwCandidateWeight = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = fwCandidateBias(); if (_e) _o->fwCandidateBias = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = fwRecurrentBias(); if (_e) _o->fwRecurrentBias = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = bwGateWeight(); if (_e) _o->bwGateWeight = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = bwGateBias(); if (_e) _o->bwGateBias = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = bwCandidateWeight(); if (_e) _o->bwCandidateWeight = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = bwCandidateBias(); if (_e) _o->bwCandidateBias = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = bwRecurrentBias(); if (_e) _o->bwRecurrentBias = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
+  { auto _e = numUnits(); _o->numUnits = _e; }
+  { auto _e = isBidirectionalRNN(); _o->isBidirectionalRNN = _e; }
+  { auto _e = linearBeforeReset(); _o->linearBeforeReset = _e; }
+  { auto _e = keepAllOutputs(); _o->keepAllOutputs = _e; }
+  { auto _e = fwGateWeight(); if (_e) _o->fwGateWeight = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = fwGateBias(); if (_e) _o->fwGateBias = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = fwCandidateWeight(); if (_e) _o->fwCandidateWeight = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = fwCandidateBias(); if (_e) _o->fwCandidateBias = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = fwRecurrentBias(); if (_e) _o->fwRecurrentBias = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = bwGateWeight(); if (_e) _o->bwGateWeight = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = bwGateBias(); if (_e) _o->bwGateBias = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = bwCandidateWeight(); if (_e) _o->bwCandidateWeight = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = bwCandidateBias(); if (_e) _o->bwCandidateBias = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = bwRecurrentBias(); if (_e) _o->bwRecurrentBias = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<RNNParam> RNNParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const RNNParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4581,16 +4696,16 @@ inline flatbuffers::Offset<RNNParam> CreateRNNParam(flatbuffers::FlatBufferBuild
 }
 
 inline BatchMatMulParamT *BatchMatMulParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new BatchMatMulParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::BatchMatMulParamT> _o = std::unique_ptr<MNN::BatchMatMulParamT>(new BatchMatMulParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void BatchMatMulParam::UnPackTo(BatchMatMulParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = adjX(); _o->adjX = _e; };
-  { auto _e = adjY(); _o->adjY = _e; };
+  { auto _e = adjX(); _o->adjX = _e; }
+  { auto _e = adjY(); _o->adjY = _e; }
 }
 
 inline flatbuffers::Offset<BatchMatMulParam> BatchMatMulParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const BatchMatMulParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4610,16 +4725,16 @@ inline flatbuffers::Offset<BatchMatMulParam> CreateBatchMatMulParam(flatbuffers:
 }
 
 inline DepthSpaceParamT *DepthSpaceParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new DepthSpaceParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::DepthSpaceParamT> _o = std::unique_ptr<MNN::DepthSpaceParamT>(new DepthSpaceParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void DepthSpaceParam::UnPackTo(DepthSpaceParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = blockSize(); _o->blockSize = _e; };
-  { auto _e = mode(); _o->mode = _e; };
+  { auto _e = blockSize(); _o->blockSize = _e; }
+  { auto _e = mode(); _o->mode = _e; }
 }
 
 inline flatbuffers::Offset<DepthSpaceParam> DepthSpaceParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const DepthSpaceParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4639,16 +4754,16 @@ inline flatbuffers::Offset<DepthSpaceParam> CreateDepthSpaceParam(flatbuffers::F
 }
 
 inline ReverseSequenceParamT *ReverseSequenceParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ReverseSequenceParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ReverseSequenceParamT> _o = std::unique_ptr<MNN::ReverseSequenceParamT>(new ReverseSequenceParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void ReverseSequenceParam::UnPackTo(ReverseSequenceParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = batchDim(); _o->batchDim = _e; };
-  { auto _e = seqDim(); _o->seqDim = _e; };
+  { auto _e = batchDim(); _o->batchDim = _e; }
+  { auto _e = seqDim(); _o->seqDim = _e; }
 }
 
 inline flatbuffers::Offset<ReverseSequenceParam> ReverseSequenceParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ReverseSequenceParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4668,22 +4783,22 @@ inline flatbuffers::Offset<ReverseSequenceParam> CreateReverseSequenceParam(flat
 }
 
 inline DetectionPostProcessParamT *DetectionPostProcessParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new DetectionPostProcessParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::DetectionPostProcessParamT> _o = std::unique_ptr<MNN::DetectionPostProcessParamT>(new DetectionPostProcessParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void DetectionPostProcessParam::UnPackTo(DetectionPostProcessParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = maxDetections(); _o->maxDetections = _e; };
-  { auto _e = maxClassesPerDetection(); _o->maxClassesPerDetection = _e; };
-  { auto _e = detectionsPerClass(); _o->detectionsPerClass = _e; };
-  { auto _e = nmsScoreThreshold(); _o->nmsScoreThreshold = _e; };
-  { auto _e = iouThreshold(); _o->iouThreshold = _e; };
-  { auto _e = numClasses(); _o->numClasses = _e; };
-  { auto _e = useRegularNMS(); _o->useRegularNMS = _e; };
-  { auto _e = centerSizeEncoding(); if (_e) { _o->centerSizeEncoding.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->centerSizeEncoding[_i] = _e->Get(_i); } } };
+  { auto _e = maxDetections(); _o->maxDetections = _e; }
+  { auto _e = maxClassesPerDetection(); _o->maxClassesPerDetection = _e; }
+  { auto _e = detectionsPerClass(); _o->detectionsPerClass = _e; }
+  { auto _e = nmsScoreThreshold(); _o->nmsScoreThreshold = _e; }
+  { auto _e = iouThreshold(); _o->iouThreshold = _e; }
+  { auto _e = numClasses(); _o->numClasses = _e; }
+  { auto _e = useRegularNMS(); _o->useRegularNMS = _e; }
+  { auto _e = centerSizeEncoding(); if (_e) { _o->centerSizeEncoding.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->centerSizeEncoding[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<DetectionPostProcessParam> DetectionPostProcessParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const DetectionPostProcessParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4715,16 +4830,16 @@ inline flatbuffers::Offset<DetectionPostProcessParam> CreateDetectionPostProcess
 }
 
 inline OneHotParamT *OneHotParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new OneHotParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::OneHotParamT> _o = std::unique_ptr<MNN::OneHotParamT>(new OneHotParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void OneHotParam::UnPackTo(OneHotParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dType(); _o->dType = _e; };
-  { auto _e = axis(); _o->axis = _e; };
+  { auto _e = dType(); _o->dType = _e; }
+  { auto _e = axis(); _o->axis = _e; }
 }
 
 inline flatbuffers::Offset<OneHotParam> OneHotParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const OneHotParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4744,15 +4859,15 @@ inline flatbuffers::Offset<OneHotParam> CreateOneHotParam(flatbuffers::FlatBuffe
 }
 
 inline PadParamT *PadParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new PadParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::PadParamT> _o = std::unique_ptr<MNN::PadParamT>(new PadParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void PadParam::UnPackTo(PadParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = mode(); _o->mode = _e; };
+  { auto _e = mode(); _o->mode = _e; }
 }
 
 inline flatbuffers::Offset<PadParam> PadParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const PadParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4770,18 +4885,18 @@ inline flatbuffers::Offset<PadParam> CreatePadParam(flatbuffers::FlatBufferBuild
 }
 
 inline LayerNormT *LayerNorm::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new LayerNormT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::LayerNormT> _o = std::unique_ptr<MNN::LayerNormT>(new LayerNormT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void LayerNorm::UnPackTo(LayerNormT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = axis(); if (_e) { _o->axis.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->axis[_i] = _e->Get(_i); } } };
-  { auto _e = epsilon(); _o->epsilon = _e; };
-  { auto _e = gamma(); if (_e) { _o->gamma.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->gamma[_i] = _e->Get(_i); } } };
-  { auto _e = beta(); if (_e) { _o->beta.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->beta[_i] = _e->Get(_i); } } };
+  { auto _e = axis(); if (_e) { _o->axis.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->axis[_i] = _e->Get(_i); } } }
+  { auto _e = epsilon(); _o->epsilon = _e; }
+  { auto _e = gamma(); if (_e) { _o->gamma.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->gamma[_i] = _e->Get(_i); } } }
+  { auto _e = beta(); if (_e) { _o->beta.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->beta[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<LayerNorm> LayerNorm::Pack(flatbuffers::FlatBufferBuilder &_fbb, const LayerNormT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4805,18 +4920,18 @@ inline flatbuffers::Offset<LayerNorm> CreateLayerNorm(flatbuffers::FlatBufferBui
 }
 
 inline RandomUniformT *RandomUniform::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new RandomUniformT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::RandomUniformT> _o = std::unique_ptr<MNN::RandomUniformT>(new RandomUniformT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void RandomUniform::UnPackTo(RandomUniformT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = seed(); _o->seed = _e; };
-  { auto _e = seed2(); _o->seed2 = _e; };
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = T(); _o->T = _e; };
+  { auto _e = seed(); _o->seed = _e; }
+  { auto _e = seed2(); _o->seed2 = _e; }
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = T(); _o->T = _e; }
 }
 
 inline flatbuffers::Offset<RandomUniform> RandomUniform::Pack(flatbuffers::FlatBufferBuilder &_fbb, const RandomUniformT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4840,18 +4955,18 @@ inline flatbuffers::Offset<RandomUniform> CreateRandomUniform(flatbuffers::FlatB
 }
 
 inline TensorArrayT *TensorArray::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new TensorArrayT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::TensorArrayT> _o = std::unique_ptr<MNN::TensorArrayT>(new TensorArrayT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void TensorArray::UnPackTo(TensorArrayT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dynamic_size(); _o->dynamic_size = _e; };
-  { auto _e = identical_element_shapes(); _o->identical_element_shapes = _e; };
-  { auto _e = element_shape(); if (_e) { _o->element_shape.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->element_shape[_i] = _e->Get(_i); } } };
-  { auto _e = T(); _o->T = _e; };
+  { auto _e = dynamic_size(); _o->dynamic_size = _e; }
+  { auto _e = identical_element_shapes(); _o->identical_element_shapes = _e; }
+  { auto _e = element_shape(); if (_e) { _o->element_shape.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->element_shape[_i] = _e->Get(_i); } } }
+  { auto _e = T(); _o->T = _e; }
 }
 
 inline flatbuffers::Offset<TensorArray> TensorArray::Pack(flatbuffers::FlatBufferBuilder &_fbb, const TensorArrayT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4875,17 +4990,17 @@ inline flatbuffers::Offset<TensorArray> CreateTensorArray(flatbuffers::FlatBuffe
 }
 
 inline LSTMBlockCellT *LSTMBlockCell::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new LSTMBlockCellT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::LSTMBlockCellT> _o = std::unique_ptr<MNN::LSTMBlockCellT>(new LSTMBlockCellT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void LSTMBlockCell::UnPackTo(LSTMBlockCellT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = cell_clip(); _o->cell_clip = _e; };
-  { auto _e = forget_bias(); _o->forget_bias = _e; };
-  { auto _e = use_peephole(); _o->use_peephole = _e; };
+  { auto _e = cell_clip(); _o->cell_clip = _e; }
+  { auto _e = forget_bias(); _o->forget_bias = _e; }
+  { auto _e = use_peephole(); _o->use_peephole = _e; }
 }
 
 inline flatbuffers::Offset<LSTMBlockCell> LSTMBlockCell::Pack(flatbuffers::FlatBufferBuilder &_fbb, const LSTMBlockCellT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4932,7 +5047,7 @@ inline const flatbuffers::TypeTable *BinaryOpOperationTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    BinaryOpOperationTypeTable
+    MNN::BinaryOpOperationTypeTable
   };
   static const int64_t values[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22 };
   static const char * const names[] = {
@@ -4978,7 +5093,7 @@ inline const flatbuffers::TypeTable *ReductionTypeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ReductionTypeTypeTable
+    MNN::ReductionTypeTypeTable
   };
   static const char * const names[] = {
     "SUM",
@@ -5033,7 +5148,7 @@ inline const flatbuffers::TypeTable *UnaryOpOperationTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    UnaryOpOperationTypeTable
+    MNN::UnaryOpOperationTypeTable
   };
   static const char * const names[] = {
     "ABS",
@@ -5081,7 +5196,7 @@ inline const flatbuffers::TypeTable *CropAndResizeMethodTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    CropAndResizeMethodTypeTable
+    MNN::CropAndResizeMethodTypeTable
   };
   static const char * const names[] = {
     "BILINEAR",
@@ -5099,7 +5214,7 @@ inline const flatbuffers::TypeTable *DepthToSpaceModeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DepthToSpaceModeTypeTable
+    MNN::DepthToSpaceModeTypeTable
   };
   static const char * const names[] = {
     "DCR",
@@ -5118,7 +5233,7 @@ inline const flatbuffers::TypeTable *PadValueModeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    PadValueModeTypeTable
+    MNN::PadValueModeTypeTable
   };
   static const char * const names[] = {
     "CONSTANT",
@@ -5137,7 +5252,7 @@ inline const flatbuffers::TypeTable *BinaryOpTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "opType",
@@ -5155,7 +5270,7 @@ inline const flatbuffers::TypeTable *PackParamTypeTable() {
     { flatbuffers::ET_INT, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "dataType",
@@ -5178,7 +5293,7 @@ inline const flatbuffers::TypeTable *StridedSliceParamTypeTable() {
     { flatbuffers::ET_INT, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "Index",
@@ -5214,7 +5329,7 @@ inline const flatbuffers::TypeTable *CastParamTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "srcT",
@@ -5235,8 +5350,8 @@ inline const flatbuffers::TypeTable *ReductionParamTypeTable() {
     { flatbuffers::ET_INT, 0, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ReductionTypeTypeTable,
-    DataTypeTypeTable
+    MNN::ReductionTypeTypeTable,
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "operation",
@@ -5259,7 +5374,7 @@ inline const flatbuffers::TypeTable *GatherTypeTable() {
     { flatbuffers::ET_INT, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "Tindices",
@@ -5280,7 +5395,7 @@ inline const flatbuffers::TypeTable *ExpandDimsTypeTable() {
     { flatbuffers::ET_INT, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "T",
@@ -5318,7 +5433,7 @@ inline const flatbuffers::TypeTable *AsStringTypeTable() {
     { flatbuffers::ET_STRING, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "T",
@@ -5355,8 +5470,8 @@ inline const flatbuffers::TypeTable *UnaryOpTypeTable() {
     { flatbuffers::ET_INT, 0, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    UnaryOpOperationTypeTable,
-    DataTypeTypeTable
+    MNN::UnaryOpOperationTypeTable,
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "opType",
@@ -5374,7 +5489,7 @@ inline const flatbuffers::TypeTable *TopKV2TypeTable() {
     { flatbuffers::ET_BOOL, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "T",
@@ -5392,7 +5507,7 @@ inline const flatbuffers::TypeTable *CropAndResizeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    CropAndResizeMethodTypeTable
+    MNN::CropAndResizeMethodTypeTable
   };
   static const char * const names[] = {
     "extrapolationValue",
@@ -5418,7 +5533,7 @@ inline const flatbuffers::TypeTable *GatherV2TypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "Taxis",
@@ -5443,7 +5558,7 @@ inline const flatbuffers::TypeTable *RangeTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "Tidx"
@@ -5466,7 +5581,7 @@ inline const flatbuffers::TypeTable *SizeTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "outputDataType"
@@ -5482,7 +5597,7 @@ inline const flatbuffers::TypeTable *TransposeTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "Tperm"
@@ -5498,7 +5613,7 @@ inline const flatbuffers::TypeTable *SliceTfTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "T"
@@ -5514,7 +5629,7 @@ inline const flatbuffers::TypeTable *QuantizeMaxMinTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "T"
@@ -5546,7 +5661,7 @@ inline const flatbuffers::TypeTable *SpaceBatchTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    BlobTypeTable
+    MNN::BlobTypeTable
   };
   static const char * const names[] = {
     "blockShape",
@@ -5567,7 +5682,7 @@ inline const flatbuffers::TypeTable *MatMulTypeTable() {
     { flatbuffers::ET_FLOAT, 1, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "T",
@@ -5589,7 +5704,7 @@ inline const flatbuffers::TypeTable *MomentsParamTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "dim",
@@ -5620,7 +5735,7 @@ inline const flatbuffers::TypeTable *RNNParamTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    BlobTypeTable
+    MNN::BlobTypeTable
   };
   static const char * const names[] = {
     "numUnits",
@@ -5665,7 +5780,7 @@ inline const flatbuffers::TypeTable *DepthSpaceParamTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DepthToSpaceModeTypeTable
+    MNN::DepthToSpaceModeTypeTable
   };
   static const char * const names[] = {
     "blockSize",
@@ -5725,7 +5840,7 @@ inline const flatbuffers::TypeTable *OneHotParamTypeTable() {
     { flatbuffers::ET_INT, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "dType",
@@ -5742,7 +5857,7 @@ inline const flatbuffers::TypeTable *PadParamTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    PadValueModeTypeTable
+    MNN::PadValueModeTypeTable
   };
   static const char * const names[] = {
     "mode"
@@ -5780,7 +5895,7 @@ inline const flatbuffers::TypeTable *RandomUniformTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "seed",
@@ -5802,7 +5917,7 @@ inline const flatbuffers::TypeTable *TensorArrayTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "dynamic_size",

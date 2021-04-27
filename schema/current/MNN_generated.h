@@ -4,6 +4,7 @@
 #ifndef FLATBUFFERS_GENERATED_MNN_MNN_H_
 #define FLATBUFFERS_GENERATED_MNN_MNN_H_
 
+#include "flatbuffers/flatbuffers.h"
 
 #include "CaffeOp_generated.h"
 #include "GpuLibrary_generated.h"
@@ -16,39 +17,51 @@
 namespace MNN {
 
 struct Plugin;
+struct PluginBuilder;
 struct PluginT;
 
 struct Extra;
+struct ExtraBuilder;
 struct ExtraT;
 
 struct StringVec;
+struct StringVecBuilder;
 struct StringVecT;
 
 struct WhileParam;
+struct WhileParamBuilder;
 struct WhileParamT;
 
 struct IfParam;
+struct IfParamBuilder;
 struct IfParamT;
 
 struct Op;
+struct OpBuilder;
 struct OpT;
 
 struct View;
+struct ViewBuilder;
 struct ViewT;
 
 struct Region;
+struct RegionBuilder;
 struct RegionT;
 
 struct TensorDescribe;
+struct TensorDescribeBuilder;
 struct TensorDescribeT;
 
 struct SubGraphProto;
+struct SubGraphProtoBuilder;
 struct SubGraphProtoT;
 
 struct TensorQuantInfo;
+struct TensorQuantInfoBuilder;
 struct TensorQuantInfoT;
 
 struct Net;
+struct NetBuilder;
 struct NetT;
 
 inline const flatbuffers::TypeTable *PluginTypeTable();
@@ -409,7 +422,7 @@ inline const OpType (&EnumValuesOpType())[161] {
 }
 
 inline const char * const *EnumNamesOpType() {
-  static const char * const names[] = {
+  static const char * const names[606] = {
     "AbsVal",
     "QuantizedAdd",
     "ArgMax",
@@ -1021,8 +1034,8 @@ inline const char * const *EnumNamesOpType() {
 }
 
 inline const char *EnumNameOpType(OpType e) {
-  if (e < OpType_AbsVal || e > OpType_GridSample) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, OpType_AbsVal, OpType_GridSample)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesOpType()[index];
 }
 
@@ -1222,7 +1235,7 @@ inline const OpParameter (&EnumValuesOpParameter())[92] {
 }
 
 inline const char * const *EnumNamesOpParameter() {
-  static const char * const names[] = {
+  static const char * const names[93] = {
     "NONE",
     "QuantizedAdd",
     "ArgMax",
@@ -1321,8 +1334,8 @@ inline const char * const *EnumNamesOpParameter() {
 }
 
 inline const char *EnumNameOpParameter(OpParameter e) {
-  if (e < OpParameter_NONE || e > OpParameter_GridSample) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, OpParameter_NONE, OpParameter_GridSample)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesOpParameter()[index];
 }
 
@@ -1330,367 +1343,367 @@ template<typename T> struct OpParameterTraits {
   static const OpParameter enum_value = OpParameter_NONE;
 };
 
-template<> struct OpParameterTraits<QuantizedAdd> {
+template<> struct OpParameterTraits<MNN::QuantizedAdd> {
   static const OpParameter enum_value = OpParameter_QuantizedAdd;
 };
 
-template<> struct OpParameterTraits<ArgMax> {
+template<> struct OpParameterTraits<MNN::ArgMax> {
   static const OpParameter enum_value = OpParameter_ArgMax;
 };
 
-template<> struct OpParameterTraits<AsString> {
+template<> struct OpParameterTraits<MNN::AsString> {
   static const OpParameter enum_value = OpParameter_AsString;
 };
 
-template<> struct OpParameterTraits<Axis> {
+template<> struct OpParameterTraits<MNN::Axis> {
   static const OpParameter enum_value = OpParameter_Axis;
 };
 
-template<> struct OpParameterTraits<BatchNorm> {
+template<> struct OpParameterTraits<MNN::BatchNorm> {
   static const OpParameter enum_value = OpParameter_BatchNorm;
 };
 
-template<> struct OpParameterTraits<BinaryOp> {
+template<> struct OpParameterTraits<MNN::BinaryOp> {
   static const OpParameter enum_value = OpParameter_BinaryOp;
 };
 
-template<> struct OpParameterTraits<Blob> {
+template<> struct OpParameterTraits<MNN::Blob> {
   static const OpParameter enum_value = OpParameter_Blob;
 };
 
-template<> struct OpParameterTraits<CastParam> {
+template<> struct OpParameterTraits<MNN::CastParam> {
   static const OpParameter enum_value = OpParameter_CastParam;
 };
 
-template<> struct OpParameterTraits<Convolution2D> {
+template<> struct OpParameterTraits<MNN::Convolution2D> {
   static const OpParameter enum_value = OpParameter_Convolution2D;
 };
 
-template<> struct OpParameterTraits<Crop> {
+template<> struct OpParameterTraits<MNN::Crop> {
   static const OpParameter enum_value = OpParameter_Crop;
 };
 
-template<> struct OpParameterTraits<CropAndResize> {
+template<> struct OpParameterTraits<MNN::CropAndResize> {
   static const OpParameter enum_value = OpParameter_CropAndResize;
 };
 
-template<> struct OpParameterTraits<Dequantize> {
+template<> struct OpParameterTraits<MNN::Dequantize> {
   static const OpParameter enum_value = OpParameter_Dequantize;
 };
 
-template<> struct OpParameterTraits<DetectionOutput> {
+template<> struct OpParameterTraits<MNN::DetectionOutput> {
   static const OpParameter enum_value = OpParameter_DetectionOutput;
 };
 
-template<> struct OpParameterTraits<Eltwise> {
+template<> struct OpParameterTraits<MNN::Eltwise> {
   static const OpParameter enum_value = OpParameter_Eltwise;
 };
 
-template<> struct OpParameterTraits<ExpandDims> {
+template<> struct OpParameterTraits<MNN::ExpandDims> {
   static const OpParameter enum_value = OpParameter_ExpandDims;
 };
 
-template<> struct OpParameterTraits<Fill> {
+template<> struct OpParameterTraits<MNN::Fill> {
   static const OpParameter enum_value = OpParameter_Fill;
 };
 
-template<> struct OpParameterTraits<Flatten> {
+template<> struct OpParameterTraits<MNN::Flatten> {
   static const OpParameter enum_value = OpParameter_Flatten;
 };
 
-template<> struct OpParameterTraits<Gather> {
+template<> struct OpParameterTraits<MNN::Gather> {
   static const OpParameter enum_value = OpParameter_Gather;
 };
 
-template<> struct OpParameterTraits<GatherV2> {
+template<> struct OpParameterTraits<MNN::GatherV2> {
   static const OpParameter enum_value = OpParameter_GatherV2;
 };
 
-template<> struct OpParameterTraits<InnerProduct> {
+template<> struct OpParameterTraits<MNN::InnerProduct> {
   static const OpParameter enum_value = OpParameter_InnerProduct;
 };
 
-template<> struct OpParameterTraits<Input> {
+template<> struct OpParameterTraits<MNN::Input> {
   static const OpParameter enum_value = OpParameter_Input;
 };
 
-template<> struct OpParameterTraits<Interp> {
+template<> struct OpParameterTraits<MNN::Interp> {
   static const OpParameter enum_value = OpParameter_Interp;
 };
 
-template<> struct OpParameterTraits<LRN> {
+template<> struct OpParameterTraits<MNN::LRN> {
   static const OpParameter enum_value = OpParameter_LRN;
 };
 
-template<> struct OpParameterTraits<LSTM> {
+template<> struct OpParameterTraits<MNN::LSTM> {
   static const OpParameter enum_value = OpParameter_LSTM;
 };
 
-template<> struct OpParameterTraits<MatMul> {
+template<> struct OpParameterTraits<MNN::MatMul> {
   static const OpParameter enum_value = OpParameter_MatMul;
 };
 
-template<> struct OpParameterTraits<NonMaxSuppressionV2> {
+template<> struct OpParameterTraits<MNN::NonMaxSuppressionV2> {
   static const OpParameter enum_value = OpParameter_NonMaxSuppressionV2;
 };
 
-template<> struct OpParameterTraits<Normalize> {
+template<> struct OpParameterTraits<MNN::Normalize> {
   static const OpParameter enum_value = OpParameter_Normalize;
 };
 
-template<> struct OpParameterTraits<PackParam> {
+template<> struct OpParameterTraits<MNN::PackParam> {
   static const OpParameter enum_value = OpParameter_PackParam;
 };
 
-template<> struct OpParameterTraits<Permute> {
+template<> struct OpParameterTraits<MNN::Permute> {
   static const OpParameter enum_value = OpParameter_Permute;
 };
 
-template<> struct OpParameterTraits<Plugin> {
+template<> struct OpParameterTraits<MNN::Plugin> {
   static const OpParameter enum_value = OpParameter_Plugin;
 };
 
-template<> struct OpParameterTraits<Pool> {
+template<> struct OpParameterTraits<MNN::Pool> {
   static const OpParameter enum_value = OpParameter_Pool;
 };
 
-template<> struct OpParameterTraits<PRelu> {
+template<> struct OpParameterTraits<MNN::PRelu> {
   static const OpParameter enum_value = OpParameter_PRelu;
 };
 
-template<> struct OpParameterTraits<PriorBox> {
+template<> struct OpParameterTraits<MNN::PriorBox> {
   static const OpParameter enum_value = OpParameter_PriorBox;
 };
 
-template<> struct OpParameterTraits<Proposal> {
+template<> struct OpParameterTraits<MNN::Proposal> {
   static const OpParameter enum_value = OpParameter_Proposal;
 };
 
-template<> struct OpParameterTraits<QuantizedAvgPool> {
+template<> struct OpParameterTraits<MNN::QuantizedAvgPool> {
   static const OpParameter enum_value = OpParameter_QuantizedAvgPool;
 };
 
-template<> struct OpParameterTraits<QuantizedBiasAdd> {
+template<> struct OpParameterTraits<MNN::QuantizedBiasAdd> {
   static const OpParameter enum_value = OpParameter_QuantizedBiasAdd;
 };
 
-template<> struct OpParameterTraits<QuantizedConcat> {
+template<> struct OpParameterTraits<MNN::QuantizedConcat> {
   static const OpParameter enum_value = OpParameter_QuantizedConcat;
 };
 
-template<> struct OpParameterTraits<QuantizedLogistic> {
+template<> struct OpParameterTraits<MNN::QuantizedLogistic> {
   static const OpParameter enum_value = OpParameter_QuantizedLogistic;
 };
 
-template<> struct OpParameterTraits<QuantizedMatMul> {
+template<> struct OpParameterTraits<MNN::QuantizedMatMul> {
   static const OpParameter enum_value = OpParameter_QuantizedMatMul;
 };
 
-template<> struct OpParameterTraits<QuantizedMaxPool> {
+template<> struct OpParameterTraits<MNN::QuantizedMaxPool> {
   static const OpParameter enum_value = OpParameter_QuantizedMaxPool;
 };
 
-template<> struct OpParameterTraits<QuantizedRelu> {
+template<> struct OpParameterTraits<MNN::QuantizedRelu> {
   static const OpParameter enum_value = OpParameter_QuantizedRelu;
 };
 
-template<> struct OpParameterTraits<QuantizedRelu6> {
+template<> struct OpParameterTraits<MNN::QuantizedRelu6> {
   static const OpParameter enum_value = OpParameter_QuantizedRelu6;
 };
 
-template<> struct OpParameterTraits<QuantizedReshape> {
+template<> struct OpParameterTraits<MNN::QuantizedReshape> {
   static const OpParameter enum_value = OpParameter_QuantizedReshape;
 };
 
-template<> struct OpParameterTraits<QuantizedSoftmax> {
+template<> struct OpParameterTraits<MNN::QuantizedSoftmax> {
   static const OpParameter enum_value = OpParameter_QuantizedSoftmax;
 };
 
-template<> struct OpParameterTraits<QuantizeMaxMin> {
+template<> struct OpParameterTraits<MNN::QuantizeMaxMin> {
   static const OpParameter enum_value = OpParameter_QuantizeMaxMin;
 };
 
-template<> struct OpParameterTraits<QuantizeV2> {
+template<> struct OpParameterTraits<MNN::QuantizeV2> {
   static const OpParameter enum_value = OpParameter_QuantizeV2;
 };
 
-template<> struct OpParameterTraits<Range> {
+template<> struct OpParameterTraits<MNN::Range> {
   static const OpParameter enum_value = OpParameter_Range;
 };
 
-template<> struct OpParameterTraits<Rank> {
+template<> struct OpParameterTraits<MNN::Rank> {
   static const OpParameter enum_value = OpParameter_Rank;
 };
 
-template<> struct OpParameterTraits<ReduceJoin> {
+template<> struct OpParameterTraits<MNN::ReduceJoin> {
   static const OpParameter enum_value = OpParameter_ReduceJoin;
 };
 
-template<> struct OpParameterTraits<ReductionParam> {
+template<> struct OpParameterTraits<MNN::ReductionParam> {
   static const OpParameter enum_value = OpParameter_ReductionParam;
 };
 
-template<> struct OpParameterTraits<Relu> {
+template<> struct OpParameterTraits<MNN::Relu> {
   static const OpParameter enum_value = OpParameter_Relu;
 };
 
-template<> struct OpParameterTraits<Relu6> {
+template<> struct OpParameterTraits<MNN::Relu6> {
   static const OpParameter enum_value = OpParameter_Relu6;
 };
 
-template<> struct OpParameterTraits<RequantizationRange> {
+template<> struct OpParameterTraits<MNN::RequantizationRange> {
   static const OpParameter enum_value = OpParameter_RequantizationRange;
 };
 
-template<> struct OpParameterTraits<Requantize> {
+template<> struct OpParameterTraits<MNN::Requantize> {
   static const OpParameter enum_value = OpParameter_Requantize;
 };
 
-template<> struct OpParameterTraits<Reshape> {
+template<> struct OpParameterTraits<MNN::Reshape> {
   static const OpParameter enum_value = OpParameter_Reshape;
 };
 
-template<> struct OpParameterTraits<Resize> {
+template<> struct OpParameterTraits<MNN::Resize> {
   static const OpParameter enum_value = OpParameter_Resize;
 };
 
-template<> struct OpParameterTraits<RoiPooling> {
+template<> struct OpParameterTraits<MNN::RoiPooling> {
   static const OpParameter enum_value = OpParameter_RoiPooling;
 };
 
-template<> struct OpParameterTraits<Scale> {
+template<> struct OpParameterTraits<MNN::Scale> {
   static const OpParameter enum_value = OpParameter_Scale;
 };
 
-template<> struct OpParameterTraits<Selu> {
+template<> struct OpParameterTraits<MNN::Selu> {
   static const OpParameter enum_value = OpParameter_Selu;
 };
 
-template<> struct OpParameterTraits<Size> {
+template<> struct OpParameterTraits<MNN::Size> {
   static const OpParameter enum_value = OpParameter_Size;
 };
 
-template<> struct OpParameterTraits<Slice> {
+template<> struct OpParameterTraits<MNN::Slice> {
   static const OpParameter enum_value = OpParameter_Slice;
 };
 
-template<> struct OpParameterTraits<SliceTf> {
+template<> struct OpParameterTraits<MNN::SliceTf> {
   static const OpParameter enum_value = OpParameter_SliceTf;
 };
 
-template<> struct OpParameterTraits<SpaceBatch> {
+template<> struct OpParameterTraits<MNN::SpaceBatch> {
   static const OpParameter enum_value = OpParameter_SpaceBatch;
 };
 
-template<> struct OpParameterTraits<SqueezeParam> {
+template<> struct OpParameterTraits<MNN::SqueezeParam> {
   static const OpParameter enum_value = OpParameter_SqueezeParam;
 };
 
-template<> struct OpParameterTraits<StridedSliceParam> {
+template<> struct OpParameterTraits<MNN::StridedSliceParam> {
   static const OpParameter enum_value = OpParameter_StridedSliceParam;
 };
 
-template<> struct OpParameterTraits<TensorConvertInfo> {
+template<> struct OpParameterTraits<MNN::TensorConvertInfo> {
   static const OpParameter enum_value = OpParameter_TensorConvertInfo;
 };
 
-template<> struct OpParameterTraits<TfQuantizedConv2D> {
+template<> struct OpParameterTraits<MNN::TfQuantizedConv2D> {
   static const OpParameter enum_value = OpParameter_TfQuantizedConv2D;
 };
 
-template<> struct OpParameterTraits<TopKV2> {
+template<> struct OpParameterTraits<MNN::TopKV2> {
   static const OpParameter enum_value = OpParameter_TopKV2;
 };
 
-template<> struct OpParameterTraits<Transpose> {
+template<> struct OpParameterTraits<MNN::Transpose> {
   static const OpParameter enum_value = OpParameter_Transpose;
 };
 
-template<> struct OpParameterTraits<UnaryOp> {
+template<> struct OpParameterTraits<MNN::UnaryOp> {
   static const OpParameter enum_value = OpParameter_UnaryOp;
 };
 
-template<> struct OpParameterTraits<MomentsParam> {
+template<> struct OpParameterTraits<MNN::MomentsParam> {
   static const OpParameter enum_value = OpParameter_MomentsParam;
 };
 
-template<> struct OpParameterTraits<RNNParam> {
+template<> struct OpParameterTraits<MNN::RNNParam> {
   static const OpParameter enum_value = OpParameter_RNNParam;
 };
 
-template<> struct OpParameterTraits<BatchMatMulParam> {
+template<> struct OpParameterTraits<MNN::BatchMatMulParam> {
   static const OpParameter enum_value = OpParameter_BatchMatMulParam;
 };
 
-template<> struct OpParameterTraits<QuantizedFloatParam> {
+template<> struct OpParameterTraits<MNN::QuantizedFloatParam> {
   static const OpParameter enum_value = OpParameter_QuantizedFloatParam;
 };
 
-template<> struct OpParameterTraits<DepthSpaceParam> {
+template<> struct OpParameterTraits<MNN::DepthSpaceParam> {
   static const OpParameter enum_value = OpParameter_DepthSpaceParam;
 };
 
-template<> struct OpParameterTraits<EltwiseInt8> {
+template<> struct OpParameterTraits<MNN::EltwiseInt8> {
   static const OpParameter enum_value = OpParameter_EltwiseInt8;
 };
 
-template<> struct OpParameterTraits<ReverseSequenceParam> {
+template<> struct OpParameterTraits<MNN::ReverseSequenceParam> {
   static const OpParameter enum_value = OpParameter_ReverseSequenceParam;
 };
 
-template<> struct OpParameterTraits<Extra> {
+template<> struct OpParameterTraits<MNN::Extra> {
   static const OpParameter enum_value = OpParameter_Extra;
 };
 
-template<> struct OpParameterTraits<Pool3D> {
+template<> struct OpParameterTraits<MNN::Pool3D> {
   static const OpParameter enum_value = OpParameter_Pool3D;
 };
 
-template<> struct OpParameterTraits<Convolution3D> {
+template<> struct OpParameterTraits<MNN::Convolution3D> {
   static const OpParameter enum_value = OpParameter_Convolution3D;
 };
 
-template<> struct OpParameterTraits<ELU> {
+template<> struct OpParameterTraits<MNN::ELU> {
   static const OpParameter enum_value = OpParameter_ELU;
 };
 
-template<> struct OpParameterTraits<DetectionPostProcessParam> {
+template<> struct OpParameterTraits<MNN::DetectionPostProcessParam> {
   static const OpParameter enum_value = OpParameter_DetectionPostProcessParam;
 };
 
-template<> struct OpParameterTraits<OneHotParam> {
+template<> struct OpParameterTraits<MNN::OneHotParam> {
   static const OpParameter enum_value = OpParameter_OneHotParam;
 };
 
-template<> struct OpParameterTraits<PadParam> {
+template<> struct OpParameterTraits<MNN::PadParam> {
   static const OpParameter enum_value = OpParameter_PadParam;
 };
 
-template<> struct OpParameterTraits<WhileParam> {
+template<> struct OpParameterTraits<MNN::WhileParam> {
   static const OpParameter enum_value = OpParameter_WhileParam;
 };
 
-template<> struct OpParameterTraits<IfParam> {
+template<> struct OpParameterTraits<MNN::IfParam> {
   static const OpParameter enum_value = OpParameter_IfParam;
 };
 
-template<> struct OpParameterTraits<RandomUniform> {
+template<> struct OpParameterTraits<MNN::RandomUniform> {
   static const OpParameter enum_value = OpParameter_RandomUniform;
 };
 
-template<> struct OpParameterTraits<LayerNorm> {
+template<> struct OpParameterTraits<MNN::LayerNorm> {
   static const OpParameter enum_value = OpParameter_LayerNorm;
 };
 
-template<> struct OpParameterTraits<TensorArray> {
+template<> struct OpParameterTraits<MNN::TensorArray> {
   static const OpParameter enum_value = OpParameter_TensorArray;
 };
 
-template<> struct OpParameterTraits<LSTMBlockCell> {
+template<> struct OpParameterTraits<MNN::LSTMBlockCell> {
   static const OpParameter enum_value = OpParameter_LSTMBlockCell;
 };
 
-template<> struct OpParameterTraits<GridSample> {
+template<> struct OpParameterTraits<MNN::GridSample> {
   static const OpParameter enum_value = OpParameter_GridSample;
 };
 
@@ -1702,8 +1715,8 @@ struct OpParameterUnion {
   OpParameterUnion(OpParameterUnion&& u) FLATBUFFERS_NOEXCEPT :
     type(OpParameter_NONE), value(nullptr)
     { std::swap(type, u.type); std::swap(value, u.value); }
-  OpParameterUnion(const OpParameterUnion &) FLATBUFFERS_NOEXCEPT;
-  OpParameterUnion &operator=(const OpParameterUnion &u) FLATBUFFERS_NOEXCEPT
+  OpParameterUnion(const OpParameterUnion &);
+  OpParameterUnion &operator=(const OpParameterUnion &u)
     { OpParameterUnion t(u); std::swap(type, t.type); std::swap(value, t.value); return *this; }
   OpParameterUnion &operator=(OpParameterUnion &&u) FLATBUFFERS_NOEXCEPT
     { std::swap(type, u.type); std::swap(value, u.value); return *this; }
@@ -1714,10 +1727,11 @@ struct OpParameterUnion {
 #ifndef FLATBUFFERS_CPP98_STL
   template <typename T>
   void Set(T&& val) {
+    using RT = typename std::remove_reference<T>::type;
     Reset();
-    type = OpParameterTraits<typename T::TableType>::enum_value;
+    type = OpParameterTraits<typename RT::TableType>::enum_value;
     if (type != OpParameter_NONE) {
-      value = new T(std::forward<T>(val));
+      value = new RT(std::forward<T>(val));
     }
   }
 #endif  // FLATBUFFERS_CPP98_STL
@@ -1725,733 +1739,733 @@ struct OpParameterUnion {
   static void *UnPack(const void *obj, OpParameter type, const flatbuffers::resolver_function_t *resolver);
   flatbuffers::Offset<void> Pack(flatbuffers::FlatBufferBuilder &_fbb, const flatbuffers::rehasher_function_t *_rehasher = nullptr) const;
 
-  QuantizedAddT *AsQuantizedAdd() {
+  MNN::QuantizedAddT *AsQuantizedAdd() {
     return type == OpParameter_QuantizedAdd ?
-      reinterpret_cast<QuantizedAddT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedAddT *>(value) : nullptr;
   }
-  const QuantizedAddT *AsQuantizedAdd() const {
+  const MNN::QuantizedAddT *AsQuantizedAdd() const {
     return type == OpParameter_QuantizedAdd ?
-      reinterpret_cast<const QuantizedAddT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedAddT *>(value) : nullptr;
   }
-  ArgMaxT *AsArgMax() {
+  MNN::ArgMaxT *AsArgMax() {
     return type == OpParameter_ArgMax ?
-      reinterpret_cast<ArgMaxT *>(value) : nullptr;
+      reinterpret_cast<MNN::ArgMaxT *>(value) : nullptr;
   }
-  const ArgMaxT *AsArgMax() const {
+  const MNN::ArgMaxT *AsArgMax() const {
     return type == OpParameter_ArgMax ?
-      reinterpret_cast<const ArgMaxT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ArgMaxT *>(value) : nullptr;
   }
-  AsStringT *AsAsString() {
+  MNN::AsStringT *AsAsString() {
     return type == OpParameter_AsString ?
-      reinterpret_cast<AsStringT *>(value) : nullptr;
+      reinterpret_cast<MNN::AsStringT *>(value) : nullptr;
   }
-  const AsStringT *AsAsString() const {
+  const MNN::AsStringT *AsAsString() const {
     return type == OpParameter_AsString ?
-      reinterpret_cast<const AsStringT *>(value) : nullptr;
+      reinterpret_cast<const MNN::AsStringT *>(value) : nullptr;
   }
-  AxisT *AsAxis() {
+  MNN::AxisT *AsAxis() {
     return type == OpParameter_Axis ?
-      reinterpret_cast<AxisT *>(value) : nullptr;
+      reinterpret_cast<MNN::AxisT *>(value) : nullptr;
   }
-  const AxisT *AsAxis() const {
+  const MNN::AxisT *AsAxis() const {
     return type == OpParameter_Axis ?
-      reinterpret_cast<const AxisT *>(value) : nullptr;
+      reinterpret_cast<const MNN::AxisT *>(value) : nullptr;
   }
-  BatchNormT *AsBatchNorm() {
+  MNN::BatchNormT *AsBatchNorm() {
     return type == OpParameter_BatchNorm ?
-      reinterpret_cast<BatchNormT *>(value) : nullptr;
+      reinterpret_cast<MNN::BatchNormT *>(value) : nullptr;
   }
-  const BatchNormT *AsBatchNorm() const {
+  const MNN::BatchNormT *AsBatchNorm() const {
     return type == OpParameter_BatchNorm ?
-      reinterpret_cast<const BatchNormT *>(value) : nullptr;
+      reinterpret_cast<const MNN::BatchNormT *>(value) : nullptr;
   }
-  BinaryOpT *AsBinaryOp() {
+  MNN::BinaryOpT *AsBinaryOp() {
     return type == OpParameter_BinaryOp ?
-      reinterpret_cast<BinaryOpT *>(value) : nullptr;
+      reinterpret_cast<MNN::BinaryOpT *>(value) : nullptr;
   }
-  const BinaryOpT *AsBinaryOp() const {
+  const MNN::BinaryOpT *AsBinaryOp() const {
     return type == OpParameter_BinaryOp ?
-      reinterpret_cast<const BinaryOpT *>(value) : nullptr;
+      reinterpret_cast<const MNN::BinaryOpT *>(value) : nullptr;
   }
-  BlobT *AsBlob() {
+  MNN::BlobT *AsBlob() {
     return type == OpParameter_Blob ?
-      reinterpret_cast<BlobT *>(value) : nullptr;
+      reinterpret_cast<MNN::BlobT *>(value) : nullptr;
   }
-  const BlobT *AsBlob() const {
+  const MNN::BlobT *AsBlob() const {
     return type == OpParameter_Blob ?
-      reinterpret_cast<const BlobT *>(value) : nullptr;
+      reinterpret_cast<const MNN::BlobT *>(value) : nullptr;
   }
-  CastParamT *AsCastParam() {
+  MNN::CastParamT *AsCastParam() {
     return type == OpParameter_CastParam ?
-      reinterpret_cast<CastParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::CastParamT *>(value) : nullptr;
   }
-  const CastParamT *AsCastParam() const {
+  const MNN::CastParamT *AsCastParam() const {
     return type == OpParameter_CastParam ?
-      reinterpret_cast<const CastParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::CastParamT *>(value) : nullptr;
   }
-  Convolution2DT *AsConvolution2D() {
+  MNN::Convolution2DT *AsConvolution2D() {
     return type == OpParameter_Convolution2D ?
-      reinterpret_cast<Convolution2DT *>(value) : nullptr;
+      reinterpret_cast<MNN::Convolution2DT *>(value) : nullptr;
   }
-  const Convolution2DT *AsConvolution2D() const {
+  const MNN::Convolution2DT *AsConvolution2D() const {
     return type == OpParameter_Convolution2D ?
-      reinterpret_cast<const Convolution2DT *>(value) : nullptr;
+      reinterpret_cast<const MNN::Convolution2DT *>(value) : nullptr;
   }
-  CropT *AsCrop() {
+  MNN::CropT *AsCrop() {
     return type == OpParameter_Crop ?
-      reinterpret_cast<CropT *>(value) : nullptr;
+      reinterpret_cast<MNN::CropT *>(value) : nullptr;
   }
-  const CropT *AsCrop() const {
+  const MNN::CropT *AsCrop() const {
     return type == OpParameter_Crop ?
-      reinterpret_cast<const CropT *>(value) : nullptr;
+      reinterpret_cast<const MNN::CropT *>(value) : nullptr;
   }
-  CropAndResizeT *AsCropAndResize() {
+  MNN::CropAndResizeT *AsCropAndResize() {
     return type == OpParameter_CropAndResize ?
-      reinterpret_cast<CropAndResizeT *>(value) : nullptr;
+      reinterpret_cast<MNN::CropAndResizeT *>(value) : nullptr;
   }
-  const CropAndResizeT *AsCropAndResize() const {
+  const MNN::CropAndResizeT *AsCropAndResize() const {
     return type == OpParameter_CropAndResize ?
-      reinterpret_cast<const CropAndResizeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::CropAndResizeT *>(value) : nullptr;
   }
-  DequantizeT *AsDequantize() {
+  MNN::DequantizeT *AsDequantize() {
     return type == OpParameter_Dequantize ?
-      reinterpret_cast<DequantizeT *>(value) : nullptr;
+      reinterpret_cast<MNN::DequantizeT *>(value) : nullptr;
   }
-  const DequantizeT *AsDequantize() const {
+  const MNN::DequantizeT *AsDequantize() const {
     return type == OpParameter_Dequantize ?
-      reinterpret_cast<const DequantizeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::DequantizeT *>(value) : nullptr;
   }
-  DetectionOutputT *AsDetectionOutput() {
+  MNN::DetectionOutputT *AsDetectionOutput() {
     return type == OpParameter_DetectionOutput ?
-      reinterpret_cast<DetectionOutputT *>(value) : nullptr;
+      reinterpret_cast<MNN::DetectionOutputT *>(value) : nullptr;
   }
-  const DetectionOutputT *AsDetectionOutput() const {
+  const MNN::DetectionOutputT *AsDetectionOutput() const {
     return type == OpParameter_DetectionOutput ?
-      reinterpret_cast<const DetectionOutputT *>(value) : nullptr;
+      reinterpret_cast<const MNN::DetectionOutputT *>(value) : nullptr;
   }
-  EltwiseT *AsEltwise() {
+  MNN::EltwiseT *AsEltwise() {
     return type == OpParameter_Eltwise ?
-      reinterpret_cast<EltwiseT *>(value) : nullptr;
+      reinterpret_cast<MNN::EltwiseT *>(value) : nullptr;
   }
-  const EltwiseT *AsEltwise() const {
+  const MNN::EltwiseT *AsEltwise() const {
     return type == OpParameter_Eltwise ?
-      reinterpret_cast<const EltwiseT *>(value) : nullptr;
+      reinterpret_cast<const MNN::EltwiseT *>(value) : nullptr;
   }
-  ExpandDimsT *AsExpandDims() {
+  MNN::ExpandDimsT *AsExpandDims() {
     return type == OpParameter_ExpandDims ?
-      reinterpret_cast<ExpandDimsT *>(value) : nullptr;
+      reinterpret_cast<MNN::ExpandDimsT *>(value) : nullptr;
   }
-  const ExpandDimsT *AsExpandDims() const {
+  const MNN::ExpandDimsT *AsExpandDims() const {
     return type == OpParameter_ExpandDims ?
-      reinterpret_cast<const ExpandDimsT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ExpandDimsT *>(value) : nullptr;
   }
-  FillT *AsFill() {
+  MNN::FillT *AsFill() {
     return type == OpParameter_Fill ?
-      reinterpret_cast<FillT *>(value) : nullptr;
+      reinterpret_cast<MNN::FillT *>(value) : nullptr;
   }
-  const FillT *AsFill() const {
+  const MNN::FillT *AsFill() const {
     return type == OpParameter_Fill ?
-      reinterpret_cast<const FillT *>(value) : nullptr;
+      reinterpret_cast<const MNN::FillT *>(value) : nullptr;
   }
-  FlattenT *AsFlatten() {
+  MNN::FlattenT *AsFlatten() {
     return type == OpParameter_Flatten ?
-      reinterpret_cast<FlattenT *>(value) : nullptr;
+      reinterpret_cast<MNN::FlattenT *>(value) : nullptr;
   }
-  const FlattenT *AsFlatten() const {
+  const MNN::FlattenT *AsFlatten() const {
     return type == OpParameter_Flatten ?
-      reinterpret_cast<const FlattenT *>(value) : nullptr;
+      reinterpret_cast<const MNN::FlattenT *>(value) : nullptr;
   }
-  GatherT *AsGather() {
+  MNN::GatherT *AsGather() {
     return type == OpParameter_Gather ?
-      reinterpret_cast<GatherT *>(value) : nullptr;
+      reinterpret_cast<MNN::GatherT *>(value) : nullptr;
   }
-  const GatherT *AsGather() const {
+  const MNN::GatherT *AsGather() const {
     return type == OpParameter_Gather ?
-      reinterpret_cast<const GatherT *>(value) : nullptr;
+      reinterpret_cast<const MNN::GatherT *>(value) : nullptr;
   }
-  GatherV2T *AsGatherV2() {
+  MNN::GatherV2T *AsGatherV2() {
     return type == OpParameter_GatherV2 ?
-      reinterpret_cast<GatherV2T *>(value) : nullptr;
+      reinterpret_cast<MNN::GatherV2T *>(value) : nullptr;
   }
-  const GatherV2T *AsGatherV2() const {
+  const MNN::GatherV2T *AsGatherV2() const {
     return type == OpParameter_GatherV2 ?
-      reinterpret_cast<const GatherV2T *>(value) : nullptr;
+      reinterpret_cast<const MNN::GatherV2T *>(value) : nullptr;
   }
-  InnerProductT *AsInnerProduct() {
+  MNN::InnerProductT *AsInnerProduct() {
     return type == OpParameter_InnerProduct ?
-      reinterpret_cast<InnerProductT *>(value) : nullptr;
+      reinterpret_cast<MNN::InnerProductT *>(value) : nullptr;
   }
-  const InnerProductT *AsInnerProduct() const {
+  const MNN::InnerProductT *AsInnerProduct() const {
     return type == OpParameter_InnerProduct ?
-      reinterpret_cast<const InnerProductT *>(value) : nullptr;
+      reinterpret_cast<const MNN::InnerProductT *>(value) : nullptr;
   }
-  InputT *AsInput() {
+  MNN::InputT *AsInput() {
     return type == OpParameter_Input ?
-      reinterpret_cast<InputT *>(value) : nullptr;
+      reinterpret_cast<MNN::InputT *>(value) : nullptr;
   }
-  const InputT *AsInput() const {
+  const MNN::InputT *AsInput() const {
     return type == OpParameter_Input ?
-      reinterpret_cast<const InputT *>(value) : nullptr;
+      reinterpret_cast<const MNN::InputT *>(value) : nullptr;
   }
-  InterpT *AsInterp() {
+  MNN::InterpT *AsInterp() {
     return type == OpParameter_Interp ?
-      reinterpret_cast<InterpT *>(value) : nullptr;
+      reinterpret_cast<MNN::InterpT *>(value) : nullptr;
   }
-  const InterpT *AsInterp() const {
+  const MNN::InterpT *AsInterp() const {
     return type == OpParameter_Interp ?
-      reinterpret_cast<const InterpT *>(value) : nullptr;
+      reinterpret_cast<const MNN::InterpT *>(value) : nullptr;
   }
-  LRNT *AsLRN() {
+  MNN::LRNT *AsLRN() {
     return type == OpParameter_LRN ?
-      reinterpret_cast<LRNT *>(value) : nullptr;
+      reinterpret_cast<MNN::LRNT *>(value) : nullptr;
   }
-  const LRNT *AsLRN() const {
+  const MNN::LRNT *AsLRN() const {
     return type == OpParameter_LRN ?
-      reinterpret_cast<const LRNT *>(value) : nullptr;
+      reinterpret_cast<const MNN::LRNT *>(value) : nullptr;
   }
-  LSTMT *AsLSTM() {
+  MNN::LSTMT *AsLSTM() {
     return type == OpParameter_LSTM ?
-      reinterpret_cast<LSTMT *>(value) : nullptr;
+      reinterpret_cast<MNN::LSTMT *>(value) : nullptr;
   }
-  const LSTMT *AsLSTM() const {
+  const MNN::LSTMT *AsLSTM() const {
     return type == OpParameter_LSTM ?
-      reinterpret_cast<const LSTMT *>(value) : nullptr;
+      reinterpret_cast<const MNN::LSTMT *>(value) : nullptr;
   }
-  MatMulT *AsMatMul() {
+  MNN::MatMulT *AsMatMul() {
     return type == OpParameter_MatMul ?
-      reinterpret_cast<MatMulT *>(value) : nullptr;
+      reinterpret_cast<MNN::MatMulT *>(value) : nullptr;
   }
-  const MatMulT *AsMatMul() const {
+  const MNN::MatMulT *AsMatMul() const {
     return type == OpParameter_MatMul ?
-      reinterpret_cast<const MatMulT *>(value) : nullptr;
+      reinterpret_cast<const MNN::MatMulT *>(value) : nullptr;
   }
-  NonMaxSuppressionV2T *AsNonMaxSuppressionV2() {
+  MNN::NonMaxSuppressionV2T *AsNonMaxSuppressionV2() {
     return type == OpParameter_NonMaxSuppressionV2 ?
-      reinterpret_cast<NonMaxSuppressionV2T *>(value) : nullptr;
+      reinterpret_cast<MNN::NonMaxSuppressionV2T *>(value) : nullptr;
   }
-  const NonMaxSuppressionV2T *AsNonMaxSuppressionV2() const {
+  const MNN::NonMaxSuppressionV2T *AsNonMaxSuppressionV2() const {
     return type == OpParameter_NonMaxSuppressionV2 ?
-      reinterpret_cast<const NonMaxSuppressionV2T *>(value) : nullptr;
+      reinterpret_cast<const MNN::NonMaxSuppressionV2T *>(value) : nullptr;
   }
-  NormalizeT *AsNormalize() {
+  MNN::NormalizeT *AsNormalize() {
     return type == OpParameter_Normalize ?
-      reinterpret_cast<NormalizeT *>(value) : nullptr;
+      reinterpret_cast<MNN::NormalizeT *>(value) : nullptr;
   }
-  const NormalizeT *AsNormalize() const {
+  const MNN::NormalizeT *AsNormalize() const {
     return type == OpParameter_Normalize ?
-      reinterpret_cast<const NormalizeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::NormalizeT *>(value) : nullptr;
   }
-  PackParamT *AsPackParam() {
+  MNN::PackParamT *AsPackParam() {
     return type == OpParameter_PackParam ?
-      reinterpret_cast<PackParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::PackParamT *>(value) : nullptr;
   }
-  const PackParamT *AsPackParam() const {
+  const MNN::PackParamT *AsPackParam() const {
     return type == OpParameter_PackParam ?
-      reinterpret_cast<const PackParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::PackParamT *>(value) : nullptr;
   }
-  PermuteT *AsPermute() {
+  MNN::PermuteT *AsPermute() {
     return type == OpParameter_Permute ?
-      reinterpret_cast<PermuteT *>(value) : nullptr;
+      reinterpret_cast<MNN::PermuteT *>(value) : nullptr;
   }
-  const PermuteT *AsPermute() const {
+  const MNN::PermuteT *AsPermute() const {
     return type == OpParameter_Permute ?
-      reinterpret_cast<const PermuteT *>(value) : nullptr;
+      reinterpret_cast<const MNN::PermuteT *>(value) : nullptr;
   }
-  PluginT *AsPlugin() {
+  MNN::PluginT *AsPlugin() {
     return type == OpParameter_Plugin ?
-      reinterpret_cast<PluginT *>(value) : nullptr;
+      reinterpret_cast<MNN::PluginT *>(value) : nullptr;
   }
-  const PluginT *AsPlugin() const {
+  const MNN::PluginT *AsPlugin() const {
     return type == OpParameter_Plugin ?
-      reinterpret_cast<const PluginT *>(value) : nullptr;
+      reinterpret_cast<const MNN::PluginT *>(value) : nullptr;
   }
-  PoolT *AsPool() {
+  MNN::PoolT *AsPool() {
     return type == OpParameter_Pool ?
-      reinterpret_cast<PoolT *>(value) : nullptr;
+      reinterpret_cast<MNN::PoolT *>(value) : nullptr;
   }
-  const PoolT *AsPool() const {
+  const MNN::PoolT *AsPool() const {
     return type == OpParameter_Pool ?
-      reinterpret_cast<const PoolT *>(value) : nullptr;
+      reinterpret_cast<const MNN::PoolT *>(value) : nullptr;
   }
-  PReluT *AsPRelu() {
+  MNN::PReluT *AsPRelu() {
     return type == OpParameter_PRelu ?
-      reinterpret_cast<PReluT *>(value) : nullptr;
+      reinterpret_cast<MNN::PReluT *>(value) : nullptr;
   }
-  const PReluT *AsPRelu() const {
+  const MNN::PReluT *AsPRelu() const {
     return type == OpParameter_PRelu ?
-      reinterpret_cast<const PReluT *>(value) : nullptr;
+      reinterpret_cast<const MNN::PReluT *>(value) : nullptr;
   }
-  PriorBoxT *AsPriorBox() {
+  MNN::PriorBoxT *AsPriorBox() {
     return type == OpParameter_PriorBox ?
-      reinterpret_cast<PriorBoxT *>(value) : nullptr;
+      reinterpret_cast<MNN::PriorBoxT *>(value) : nullptr;
   }
-  const PriorBoxT *AsPriorBox() const {
+  const MNN::PriorBoxT *AsPriorBox() const {
     return type == OpParameter_PriorBox ?
-      reinterpret_cast<const PriorBoxT *>(value) : nullptr;
+      reinterpret_cast<const MNN::PriorBoxT *>(value) : nullptr;
   }
-  ProposalT *AsProposal() {
+  MNN::ProposalT *AsProposal() {
     return type == OpParameter_Proposal ?
-      reinterpret_cast<ProposalT *>(value) : nullptr;
+      reinterpret_cast<MNN::ProposalT *>(value) : nullptr;
   }
-  const ProposalT *AsProposal() const {
+  const MNN::ProposalT *AsProposal() const {
     return type == OpParameter_Proposal ?
-      reinterpret_cast<const ProposalT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ProposalT *>(value) : nullptr;
   }
-  QuantizedAvgPoolT *AsQuantizedAvgPool() {
+  MNN::QuantizedAvgPoolT *AsQuantizedAvgPool() {
     return type == OpParameter_QuantizedAvgPool ?
-      reinterpret_cast<QuantizedAvgPoolT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedAvgPoolT *>(value) : nullptr;
   }
-  const QuantizedAvgPoolT *AsQuantizedAvgPool() const {
+  const MNN::QuantizedAvgPoolT *AsQuantizedAvgPool() const {
     return type == OpParameter_QuantizedAvgPool ?
-      reinterpret_cast<const QuantizedAvgPoolT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedAvgPoolT *>(value) : nullptr;
   }
-  QuantizedBiasAddT *AsQuantizedBiasAdd() {
+  MNN::QuantizedBiasAddT *AsQuantizedBiasAdd() {
     return type == OpParameter_QuantizedBiasAdd ?
-      reinterpret_cast<QuantizedBiasAddT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedBiasAddT *>(value) : nullptr;
   }
-  const QuantizedBiasAddT *AsQuantizedBiasAdd() const {
+  const MNN::QuantizedBiasAddT *AsQuantizedBiasAdd() const {
     return type == OpParameter_QuantizedBiasAdd ?
-      reinterpret_cast<const QuantizedBiasAddT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedBiasAddT *>(value) : nullptr;
   }
-  QuantizedConcatT *AsQuantizedConcat() {
+  MNN::QuantizedConcatT *AsQuantizedConcat() {
     return type == OpParameter_QuantizedConcat ?
-      reinterpret_cast<QuantizedConcatT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedConcatT *>(value) : nullptr;
   }
-  const QuantizedConcatT *AsQuantizedConcat() const {
+  const MNN::QuantizedConcatT *AsQuantizedConcat() const {
     return type == OpParameter_QuantizedConcat ?
-      reinterpret_cast<const QuantizedConcatT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedConcatT *>(value) : nullptr;
   }
-  QuantizedLogisticT *AsQuantizedLogistic() {
+  MNN::QuantizedLogisticT *AsQuantizedLogistic() {
     return type == OpParameter_QuantizedLogistic ?
-      reinterpret_cast<QuantizedLogisticT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedLogisticT *>(value) : nullptr;
   }
-  const QuantizedLogisticT *AsQuantizedLogistic() const {
+  const MNN::QuantizedLogisticT *AsQuantizedLogistic() const {
     return type == OpParameter_QuantizedLogistic ?
-      reinterpret_cast<const QuantizedLogisticT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedLogisticT *>(value) : nullptr;
   }
-  QuantizedMatMulT *AsQuantizedMatMul() {
+  MNN::QuantizedMatMulT *AsQuantizedMatMul() {
     return type == OpParameter_QuantizedMatMul ?
-      reinterpret_cast<QuantizedMatMulT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedMatMulT *>(value) : nullptr;
   }
-  const QuantizedMatMulT *AsQuantizedMatMul() const {
+  const MNN::QuantizedMatMulT *AsQuantizedMatMul() const {
     return type == OpParameter_QuantizedMatMul ?
-      reinterpret_cast<const QuantizedMatMulT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedMatMulT *>(value) : nullptr;
   }
-  QuantizedMaxPoolT *AsQuantizedMaxPool() {
+  MNN::QuantizedMaxPoolT *AsQuantizedMaxPool() {
     return type == OpParameter_QuantizedMaxPool ?
-      reinterpret_cast<QuantizedMaxPoolT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedMaxPoolT *>(value) : nullptr;
   }
-  const QuantizedMaxPoolT *AsQuantizedMaxPool() const {
+  const MNN::QuantizedMaxPoolT *AsQuantizedMaxPool() const {
     return type == OpParameter_QuantizedMaxPool ?
-      reinterpret_cast<const QuantizedMaxPoolT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedMaxPoolT *>(value) : nullptr;
   }
-  QuantizedReluT *AsQuantizedRelu() {
+  MNN::QuantizedReluT *AsQuantizedRelu() {
     return type == OpParameter_QuantizedRelu ?
-      reinterpret_cast<QuantizedReluT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedReluT *>(value) : nullptr;
   }
-  const QuantizedReluT *AsQuantizedRelu() const {
+  const MNN::QuantizedReluT *AsQuantizedRelu() const {
     return type == OpParameter_QuantizedRelu ?
-      reinterpret_cast<const QuantizedReluT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedReluT *>(value) : nullptr;
   }
-  QuantizedRelu6T *AsQuantizedRelu6() {
+  MNN::QuantizedRelu6T *AsQuantizedRelu6() {
     return type == OpParameter_QuantizedRelu6 ?
-      reinterpret_cast<QuantizedRelu6T *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedRelu6T *>(value) : nullptr;
   }
-  const QuantizedRelu6T *AsQuantizedRelu6() const {
+  const MNN::QuantizedRelu6T *AsQuantizedRelu6() const {
     return type == OpParameter_QuantizedRelu6 ?
-      reinterpret_cast<const QuantizedRelu6T *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedRelu6T *>(value) : nullptr;
   }
-  QuantizedReshapeT *AsQuantizedReshape() {
+  MNN::QuantizedReshapeT *AsQuantizedReshape() {
     return type == OpParameter_QuantizedReshape ?
-      reinterpret_cast<QuantizedReshapeT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedReshapeT *>(value) : nullptr;
   }
-  const QuantizedReshapeT *AsQuantizedReshape() const {
+  const MNN::QuantizedReshapeT *AsQuantizedReshape() const {
     return type == OpParameter_QuantizedReshape ?
-      reinterpret_cast<const QuantizedReshapeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedReshapeT *>(value) : nullptr;
   }
-  QuantizedSoftmaxT *AsQuantizedSoftmax() {
+  MNN::QuantizedSoftmaxT *AsQuantizedSoftmax() {
     return type == OpParameter_QuantizedSoftmax ?
-      reinterpret_cast<QuantizedSoftmaxT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedSoftmaxT *>(value) : nullptr;
   }
-  const QuantizedSoftmaxT *AsQuantizedSoftmax() const {
+  const MNN::QuantizedSoftmaxT *AsQuantizedSoftmax() const {
     return type == OpParameter_QuantizedSoftmax ?
-      reinterpret_cast<const QuantizedSoftmaxT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedSoftmaxT *>(value) : nullptr;
   }
-  QuantizeMaxMinT *AsQuantizeMaxMin() {
+  MNN::QuantizeMaxMinT *AsQuantizeMaxMin() {
     return type == OpParameter_QuantizeMaxMin ?
-      reinterpret_cast<QuantizeMaxMinT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizeMaxMinT *>(value) : nullptr;
   }
-  const QuantizeMaxMinT *AsQuantizeMaxMin() const {
+  const MNN::QuantizeMaxMinT *AsQuantizeMaxMin() const {
     return type == OpParameter_QuantizeMaxMin ?
-      reinterpret_cast<const QuantizeMaxMinT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizeMaxMinT *>(value) : nullptr;
   }
-  QuantizeV2T *AsQuantizeV2() {
+  MNN::QuantizeV2T *AsQuantizeV2() {
     return type == OpParameter_QuantizeV2 ?
-      reinterpret_cast<QuantizeV2T *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizeV2T *>(value) : nullptr;
   }
-  const QuantizeV2T *AsQuantizeV2() const {
+  const MNN::QuantizeV2T *AsQuantizeV2() const {
     return type == OpParameter_QuantizeV2 ?
-      reinterpret_cast<const QuantizeV2T *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizeV2T *>(value) : nullptr;
   }
-  RangeT *AsRange() {
+  MNN::RangeT *AsRange() {
     return type == OpParameter_Range ?
-      reinterpret_cast<RangeT *>(value) : nullptr;
+      reinterpret_cast<MNN::RangeT *>(value) : nullptr;
   }
-  const RangeT *AsRange() const {
+  const MNN::RangeT *AsRange() const {
     return type == OpParameter_Range ?
-      reinterpret_cast<const RangeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::RangeT *>(value) : nullptr;
   }
-  RankT *AsRank() {
+  MNN::RankT *AsRank() {
     return type == OpParameter_Rank ?
-      reinterpret_cast<RankT *>(value) : nullptr;
+      reinterpret_cast<MNN::RankT *>(value) : nullptr;
   }
-  const RankT *AsRank() const {
+  const MNN::RankT *AsRank() const {
     return type == OpParameter_Rank ?
-      reinterpret_cast<const RankT *>(value) : nullptr;
+      reinterpret_cast<const MNN::RankT *>(value) : nullptr;
   }
-  ReduceJoinT *AsReduceJoin() {
+  MNN::ReduceJoinT *AsReduceJoin() {
     return type == OpParameter_ReduceJoin ?
-      reinterpret_cast<ReduceJoinT *>(value) : nullptr;
+      reinterpret_cast<MNN::ReduceJoinT *>(value) : nullptr;
   }
-  const ReduceJoinT *AsReduceJoin() const {
+  const MNN::ReduceJoinT *AsReduceJoin() const {
     return type == OpParameter_ReduceJoin ?
-      reinterpret_cast<const ReduceJoinT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ReduceJoinT *>(value) : nullptr;
   }
-  ReductionParamT *AsReductionParam() {
+  MNN::ReductionParamT *AsReductionParam() {
     return type == OpParameter_ReductionParam ?
-      reinterpret_cast<ReductionParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::ReductionParamT *>(value) : nullptr;
   }
-  const ReductionParamT *AsReductionParam() const {
+  const MNN::ReductionParamT *AsReductionParam() const {
     return type == OpParameter_ReductionParam ?
-      reinterpret_cast<const ReductionParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ReductionParamT *>(value) : nullptr;
   }
-  ReluT *AsRelu() {
+  MNN::ReluT *AsRelu() {
     return type == OpParameter_Relu ?
-      reinterpret_cast<ReluT *>(value) : nullptr;
+      reinterpret_cast<MNN::ReluT *>(value) : nullptr;
   }
-  const ReluT *AsRelu() const {
+  const MNN::ReluT *AsRelu() const {
     return type == OpParameter_Relu ?
-      reinterpret_cast<const ReluT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ReluT *>(value) : nullptr;
   }
-  Relu6T *AsRelu6() {
+  MNN::Relu6T *AsRelu6() {
     return type == OpParameter_Relu6 ?
-      reinterpret_cast<Relu6T *>(value) : nullptr;
+      reinterpret_cast<MNN::Relu6T *>(value) : nullptr;
   }
-  const Relu6T *AsRelu6() const {
+  const MNN::Relu6T *AsRelu6() const {
     return type == OpParameter_Relu6 ?
-      reinterpret_cast<const Relu6T *>(value) : nullptr;
+      reinterpret_cast<const MNN::Relu6T *>(value) : nullptr;
   }
-  RequantizationRangeT *AsRequantizationRange() {
+  MNN::RequantizationRangeT *AsRequantizationRange() {
     return type == OpParameter_RequantizationRange ?
-      reinterpret_cast<RequantizationRangeT *>(value) : nullptr;
+      reinterpret_cast<MNN::RequantizationRangeT *>(value) : nullptr;
   }
-  const RequantizationRangeT *AsRequantizationRange() const {
+  const MNN::RequantizationRangeT *AsRequantizationRange() const {
     return type == OpParameter_RequantizationRange ?
-      reinterpret_cast<const RequantizationRangeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::RequantizationRangeT *>(value) : nullptr;
   }
-  RequantizeT *AsRequantize() {
+  MNN::RequantizeT *AsRequantize() {
     return type == OpParameter_Requantize ?
-      reinterpret_cast<RequantizeT *>(value) : nullptr;
+      reinterpret_cast<MNN::RequantizeT *>(value) : nullptr;
   }
-  const RequantizeT *AsRequantize() const {
+  const MNN::RequantizeT *AsRequantize() const {
     return type == OpParameter_Requantize ?
-      reinterpret_cast<const RequantizeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::RequantizeT *>(value) : nullptr;
   }
-  ReshapeT *AsReshape() {
+  MNN::ReshapeT *AsReshape() {
     return type == OpParameter_Reshape ?
-      reinterpret_cast<ReshapeT *>(value) : nullptr;
+      reinterpret_cast<MNN::ReshapeT *>(value) : nullptr;
   }
-  const ReshapeT *AsReshape() const {
+  const MNN::ReshapeT *AsReshape() const {
     return type == OpParameter_Reshape ?
-      reinterpret_cast<const ReshapeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ReshapeT *>(value) : nullptr;
   }
-  ResizeT *AsResize() {
+  MNN::ResizeT *AsResize() {
     return type == OpParameter_Resize ?
-      reinterpret_cast<ResizeT *>(value) : nullptr;
+      reinterpret_cast<MNN::ResizeT *>(value) : nullptr;
   }
-  const ResizeT *AsResize() const {
+  const MNN::ResizeT *AsResize() const {
     return type == OpParameter_Resize ?
-      reinterpret_cast<const ResizeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ResizeT *>(value) : nullptr;
   }
-  RoiPoolingT *AsRoiPooling() {
+  MNN::RoiPoolingT *AsRoiPooling() {
     return type == OpParameter_RoiPooling ?
-      reinterpret_cast<RoiPoolingT *>(value) : nullptr;
+      reinterpret_cast<MNN::RoiPoolingT *>(value) : nullptr;
   }
-  const RoiPoolingT *AsRoiPooling() const {
+  const MNN::RoiPoolingT *AsRoiPooling() const {
     return type == OpParameter_RoiPooling ?
-      reinterpret_cast<const RoiPoolingT *>(value) : nullptr;
+      reinterpret_cast<const MNN::RoiPoolingT *>(value) : nullptr;
   }
-  ScaleT *AsScale() {
+  MNN::ScaleT *AsScale() {
     return type == OpParameter_Scale ?
-      reinterpret_cast<ScaleT *>(value) : nullptr;
+      reinterpret_cast<MNN::ScaleT *>(value) : nullptr;
   }
-  const ScaleT *AsScale() const {
+  const MNN::ScaleT *AsScale() const {
     return type == OpParameter_Scale ?
-      reinterpret_cast<const ScaleT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ScaleT *>(value) : nullptr;
   }
-  SeluT *AsSelu() {
+  MNN::SeluT *AsSelu() {
     return type == OpParameter_Selu ?
-      reinterpret_cast<SeluT *>(value) : nullptr;
+      reinterpret_cast<MNN::SeluT *>(value) : nullptr;
   }
-  const SeluT *AsSelu() const {
+  const MNN::SeluT *AsSelu() const {
     return type == OpParameter_Selu ?
-      reinterpret_cast<const SeluT *>(value) : nullptr;
+      reinterpret_cast<const MNN::SeluT *>(value) : nullptr;
   }
-  SizeT *AsSize() {
+  MNN::SizeT *AsSize() {
     return type == OpParameter_Size ?
-      reinterpret_cast<SizeT *>(value) : nullptr;
+      reinterpret_cast<MNN::SizeT *>(value) : nullptr;
   }
-  const SizeT *AsSize() const {
+  const MNN::SizeT *AsSize() const {
     return type == OpParameter_Size ?
-      reinterpret_cast<const SizeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::SizeT *>(value) : nullptr;
   }
-  SliceT *AsSlice() {
+  MNN::SliceT *AsSlice() {
     return type == OpParameter_Slice ?
-      reinterpret_cast<SliceT *>(value) : nullptr;
+      reinterpret_cast<MNN::SliceT *>(value) : nullptr;
   }
-  const SliceT *AsSlice() const {
+  const MNN::SliceT *AsSlice() const {
     return type == OpParameter_Slice ?
-      reinterpret_cast<const SliceT *>(value) : nullptr;
+      reinterpret_cast<const MNN::SliceT *>(value) : nullptr;
   }
-  SliceTfT *AsSliceTf() {
+  MNN::SliceTfT *AsSliceTf() {
     return type == OpParameter_SliceTf ?
-      reinterpret_cast<SliceTfT *>(value) : nullptr;
+      reinterpret_cast<MNN::SliceTfT *>(value) : nullptr;
   }
-  const SliceTfT *AsSliceTf() const {
+  const MNN::SliceTfT *AsSliceTf() const {
     return type == OpParameter_SliceTf ?
-      reinterpret_cast<const SliceTfT *>(value) : nullptr;
+      reinterpret_cast<const MNN::SliceTfT *>(value) : nullptr;
   }
-  SpaceBatchT *AsSpaceBatch() {
+  MNN::SpaceBatchT *AsSpaceBatch() {
     return type == OpParameter_SpaceBatch ?
-      reinterpret_cast<SpaceBatchT *>(value) : nullptr;
+      reinterpret_cast<MNN::SpaceBatchT *>(value) : nullptr;
   }
-  const SpaceBatchT *AsSpaceBatch() const {
+  const MNN::SpaceBatchT *AsSpaceBatch() const {
     return type == OpParameter_SpaceBatch ?
-      reinterpret_cast<const SpaceBatchT *>(value) : nullptr;
+      reinterpret_cast<const MNN::SpaceBatchT *>(value) : nullptr;
   }
-  SqueezeParamT *AsSqueezeParam() {
+  MNN::SqueezeParamT *AsSqueezeParam() {
     return type == OpParameter_SqueezeParam ?
-      reinterpret_cast<SqueezeParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::SqueezeParamT *>(value) : nullptr;
   }
-  const SqueezeParamT *AsSqueezeParam() const {
+  const MNN::SqueezeParamT *AsSqueezeParam() const {
     return type == OpParameter_SqueezeParam ?
-      reinterpret_cast<const SqueezeParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::SqueezeParamT *>(value) : nullptr;
   }
-  StridedSliceParamT *AsStridedSliceParam() {
+  MNN::StridedSliceParamT *AsStridedSliceParam() {
     return type == OpParameter_StridedSliceParam ?
-      reinterpret_cast<StridedSliceParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::StridedSliceParamT *>(value) : nullptr;
   }
-  const StridedSliceParamT *AsStridedSliceParam() const {
+  const MNN::StridedSliceParamT *AsStridedSliceParam() const {
     return type == OpParameter_StridedSliceParam ?
-      reinterpret_cast<const StridedSliceParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::StridedSliceParamT *>(value) : nullptr;
   }
-  TensorConvertInfoT *AsTensorConvertInfo() {
+  MNN::TensorConvertInfoT *AsTensorConvertInfo() {
     return type == OpParameter_TensorConvertInfo ?
-      reinterpret_cast<TensorConvertInfoT *>(value) : nullptr;
+      reinterpret_cast<MNN::TensorConvertInfoT *>(value) : nullptr;
   }
-  const TensorConvertInfoT *AsTensorConvertInfo() const {
+  const MNN::TensorConvertInfoT *AsTensorConvertInfo() const {
     return type == OpParameter_TensorConvertInfo ?
-      reinterpret_cast<const TensorConvertInfoT *>(value) : nullptr;
+      reinterpret_cast<const MNN::TensorConvertInfoT *>(value) : nullptr;
   }
-  TfQuantizedConv2DT *AsTfQuantizedConv2D() {
+  MNN::TfQuantizedConv2DT *AsTfQuantizedConv2D() {
     return type == OpParameter_TfQuantizedConv2D ?
-      reinterpret_cast<TfQuantizedConv2DT *>(value) : nullptr;
+      reinterpret_cast<MNN::TfQuantizedConv2DT *>(value) : nullptr;
   }
-  const TfQuantizedConv2DT *AsTfQuantizedConv2D() const {
+  const MNN::TfQuantizedConv2DT *AsTfQuantizedConv2D() const {
     return type == OpParameter_TfQuantizedConv2D ?
-      reinterpret_cast<const TfQuantizedConv2DT *>(value) : nullptr;
+      reinterpret_cast<const MNN::TfQuantizedConv2DT *>(value) : nullptr;
   }
-  TopKV2T *AsTopKV2() {
+  MNN::TopKV2T *AsTopKV2() {
     return type == OpParameter_TopKV2 ?
-      reinterpret_cast<TopKV2T *>(value) : nullptr;
+      reinterpret_cast<MNN::TopKV2T *>(value) : nullptr;
   }
-  const TopKV2T *AsTopKV2() const {
+  const MNN::TopKV2T *AsTopKV2() const {
     return type == OpParameter_TopKV2 ?
-      reinterpret_cast<const TopKV2T *>(value) : nullptr;
+      reinterpret_cast<const MNN::TopKV2T *>(value) : nullptr;
   }
-  TransposeT *AsTranspose() {
+  MNN::TransposeT *AsTranspose() {
     return type == OpParameter_Transpose ?
-      reinterpret_cast<TransposeT *>(value) : nullptr;
+      reinterpret_cast<MNN::TransposeT *>(value) : nullptr;
   }
-  const TransposeT *AsTranspose() const {
+  const MNN::TransposeT *AsTranspose() const {
     return type == OpParameter_Transpose ?
-      reinterpret_cast<const TransposeT *>(value) : nullptr;
+      reinterpret_cast<const MNN::TransposeT *>(value) : nullptr;
   }
-  UnaryOpT *AsUnaryOp() {
+  MNN::UnaryOpT *AsUnaryOp() {
     return type == OpParameter_UnaryOp ?
-      reinterpret_cast<UnaryOpT *>(value) : nullptr;
+      reinterpret_cast<MNN::UnaryOpT *>(value) : nullptr;
   }
-  const UnaryOpT *AsUnaryOp() const {
+  const MNN::UnaryOpT *AsUnaryOp() const {
     return type == OpParameter_UnaryOp ?
-      reinterpret_cast<const UnaryOpT *>(value) : nullptr;
+      reinterpret_cast<const MNN::UnaryOpT *>(value) : nullptr;
   }
-  MomentsParamT *AsMomentsParam() {
+  MNN::MomentsParamT *AsMomentsParam() {
     return type == OpParameter_MomentsParam ?
-      reinterpret_cast<MomentsParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::MomentsParamT *>(value) : nullptr;
   }
-  const MomentsParamT *AsMomentsParam() const {
+  const MNN::MomentsParamT *AsMomentsParam() const {
     return type == OpParameter_MomentsParam ?
-      reinterpret_cast<const MomentsParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::MomentsParamT *>(value) : nullptr;
   }
-  RNNParamT *AsRNNParam() {
+  MNN::RNNParamT *AsRNNParam() {
     return type == OpParameter_RNNParam ?
-      reinterpret_cast<RNNParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::RNNParamT *>(value) : nullptr;
   }
-  const RNNParamT *AsRNNParam() const {
+  const MNN::RNNParamT *AsRNNParam() const {
     return type == OpParameter_RNNParam ?
-      reinterpret_cast<const RNNParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::RNNParamT *>(value) : nullptr;
   }
-  BatchMatMulParamT *AsBatchMatMulParam() {
+  MNN::BatchMatMulParamT *AsBatchMatMulParam() {
     return type == OpParameter_BatchMatMulParam ?
-      reinterpret_cast<BatchMatMulParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::BatchMatMulParamT *>(value) : nullptr;
   }
-  const BatchMatMulParamT *AsBatchMatMulParam() const {
+  const MNN::BatchMatMulParamT *AsBatchMatMulParam() const {
     return type == OpParameter_BatchMatMulParam ?
-      reinterpret_cast<const BatchMatMulParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::BatchMatMulParamT *>(value) : nullptr;
   }
-  QuantizedFloatParamT *AsQuantizedFloatParam() {
+  MNN::QuantizedFloatParamT *AsQuantizedFloatParam() {
     return type == OpParameter_QuantizedFloatParam ?
-      reinterpret_cast<QuantizedFloatParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::QuantizedFloatParamT *>(value) : nullptr;
   }
-  const QuantizedFloatParamT *AsQuantizedFloatParam() const {
+  const MNN::QuantizedFloatParamT *AsQuantizedFloatParam() const {
     return type == OpParameter_QuantizedFloatParam ?
-      reinterpret_cast<const QuantizedFloatParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::QuantizedFloatParamT *>(value) : nullptr;
   }
-  DepthSpaceParamT *AsDepthSpaceParam() {
+  MNN::DepthSpaceParamT *AsDepthSpaceParam() {
     return type == OpParameter_DepthSpaceParam ?
-      reinterpret_cast<DepthSpaceParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::DepthSpaceParamT *>(value) : nullptr;
   }
-  const DepthSpaceParamT *AsDepthSpaceParam() const {
+  const MNN::DepthSpaceParamT *AsDepthSpaceParam() const {
     return type == OpParameter_DepthSpaceParam ?
-      reinterpret_cast<const DepthSpaceParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::DepthSpaceParamT *>(value) : nullptr;
   }
-  EltwiseInt8T *AsEltwiseInt8() {
+  MNN::EltwiseInt8T *AsEltwiseInt8() {
     return type == OpParameter_EltwiseInt8 ?
-      reinterpret_cast<EltwiseInt8T *>(value) : nullptr;
+      reinterpret_cast<MNN::EltwiseInt8T *>(value) : nullptr;
   }
-  const EltwiseInt8T *AsEltwiseInt8() const {
+  const MNN::EltwiseInt8T *AsEltwiseInt8() const {
     return type == OpParameter_EltwiseInt8 ?
-      reinterpret_cast<const EltwiseInt8T *>(value) : nullptr;
+      reinterpret_cast<const MNN::EltwiseInt8T *>(value) : nullptr;
   }
-  ReverseSequenceParamT *AsReverseSequenceParam() {
+  MNN::ReverseSequenceParamT *AsReverseSequenceParam() {
     return type == OpParameter_ReverseSequenceParam ?
-      reinterpret_cast<ReverseSequenceParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::ReverseSequenceParamT *>(value) : nullptr;
   }
-  const ReverseSequenceParamT *AsReverseSequenceParam() const {
+  const MNN::ReverseSequenceParamT *AsReverseSequenceParam() const {
     return type == OpParameter_ReverseSequenceParam ?
-      reinterpret_cast<const ReverseSequenceParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ReverseSequenceParamT *>(value) : nullptr;
   }
-  ExtraT *AsExtra() {
+  MNN::ExtraT *AsExtra() {
     return type == OpParameter_Extra ?
-      reinterpret_cast<ExtraT *>(value) : nullptr;
+      reinterpret_cast<MNN::ExtraT *>(value) : nullptr;
   }
-  const ExtraT *AsExtra() const {
+  const MNN::ExtraT *AsExtra() const {
     return type == OpParameter_Extra ?
-      reinterpret_cast<const ExtraT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ExtraT *>(value) : nullptr;
   }
-  Pool3DT *AsPool3D() {
+  MNN::Pool3DT *AsPool3D() {
     return type == OpParameter_Pool3D ?
-      reinterpret_cast<Pool3DT *>(value) : nullptr;
+      reinterpret_cast<MNN::Pool3DT *>(value) : nullptr;
   }
-  const Pool3DT *AsPool3D() const {
+  const MNN::Pool3DT *AsPool3D() const {
     return type == OpParameter_Pool3D ?
-      reinterpret_cast<const Pool3DT *>(value) : nullptr;
+      reinterpret_cast<const MNN::Pool3DT *>(value) : nullptr;
   }
-  Convolution3DT *AsConvolution3D() {
+  MNN::Convolution3DT *AsConvolution3D() {
     return type == OpParameter_Convolution3D ?
-      reinterpret_cast<Convolution3DT *>(value) : nullptr;
+      reinterpret_cast<MNN::Convolution3DT *>(value) : nullptr;
   }
-  const Convolution3DT *AsConvolution3D() const {
+  const MNN::Convolution3DT *AsConvolution3D() const {
     return type == OpParameter_Convolution3D ?
-      reinterpret_cast<const Convolution3DT *>(value) : nullptr;
+      reinterpret_cast<const MNN::Convolution3DT *>(value) : nullptr;
   }
-  ELUT *AsELU() {
+  MNN::ELUT *AsELU() {
     return type == OpParameter_ELU ?
-      reinterpret_cast<ELUT *>(value) : nullptr;
+      reinterpret_cast<MNN::ELUT *>(value) : nullptr;
   }
-  const ELUT *AsELU() const {
+  const MNN::ELUT *AsELU() const {
     return type == OpParameter_ELU ?
-      reinterpret_cast<const ELUT *>(value) : nullptr;
+      reinterpret_cast<const MNN::ELUT *>(value) : nullptr;
   }
-  DetectionPostProcessParamT *AsDetectionPostProcessParam() {
+  MNN::DetectionPostProcessParamT *AsDetectionPostProcessParam() {
     return type == OpParameter_DetectionPostProcessParam ?
-      reinterpret_cast<DetectionPostProcessParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::DetectionPostProcessParamT *>(value) : nullptr;
   }
-  const DetectionPostProcessParamT *AsDetectionPostProcessParam() const {
+  const MNN::DetectionPostProcessParamT *AsDetectionPostProcessParam() const {
     return type == OpParameter_DetectionPostProcessParam ?
-      reinterpret_cast<const DetectionPostProcessParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::DetectionPostProcessParamT *>(value) : nullptr;
   }
-  OneHotParamT *AsOneHotParam() {
+  MNN::OneHotParamT *AsOneHotParam() {
     return type == OpParameter_OneHotParam ?
-      reinterpret_cast<OneHotParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::OneHotParamT *>(value) : nullptr;
   }
-  const OneHotParamT *AsOneHotParam() const {
+  const MNN::OneHotParamT *AsOneHotParam() const {
     return type == OpParameter_OneHotParam ?
-      reinterpret_cast<const OneHotParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::OneHotParamT *>(value) : nullptr;
   }
-  PadParamT *AsPadParam() {
+  MNN::PadParamT *AsPadParam() {
     return type == OpParameter_PadParam ?
-      reinterpret_cast<PadParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::PadParamT *>(value) : nullptr;
   }
-  const PadParamT *AsPadParam() const {
+  const MNN::PadParamT *AsPadParam() const {
     return type == OpParameter_PadParam ?
-      reinterpret_cast<const PadParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::PadParamT *>(value) : nullptr;
   }
-  WhileParamT *AsWhileParam() {
+  MNN::WhileParamT *AsWhileParam() {
     return type == OpParameter_WhileParam ?
-      reinterpret_cast<WhileParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::WhileParamT *>(value) : nullptr;
   }
-  const WhileParamT *AsWhileParam() const {
+  const MNN::WhileParamT *AsWhileParam() const {
     return type == OpParameter_WhileParam ?
-      reinterpret_cast<const WhileParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::WhileParamT *>(value) : nullptr;
   }
-  IfParamT *AsIfParam() {
+  MNN::IfParamT *AsIfParam() {
     return type == OpParameter_IfParam ?
-      reinterpret_cast<IfParamT *>(value) : nullptr;
+      reinterpret_cast<MNN::IfParamT *>(value) : nullptr;
   }
-  const IfParamT *AsIfParam() const {
+  const MNN::IfParamT *AsIfParam() const {
     return type == OpParameter_IfParam ?
-      reinterpret_cast<const IfParamT *>(value) : nullptr;
+      reinterpret_cast<const MNN::IfParamT *>(value) : nullptr;
   }
-  RandomUniformT *AsRandomUniform() {
+  MNN::RandomUniformT *AsRandomUniform() {
     return type == OpParameter_RandomUniform ?
-      reinterpret_cast<RandomUniformT *>(value) : nullptr;
+      reinterpret_cast<MNN::RandomUniformT *>(value) : nullptr;
   }
-  const RandomUniformT *AsRandomUniform() const {
+  const MNN::RandomUniformT *AsRandomUniform() const {
     return type == OpParameter_RandomUniform ?
-      reinterpret_cast<const RandomUniformT *>(value) : nullptr;
+      reinterpret_cast<const MNN::RandomUniformT *>(value) : nullptr;
   }
-  LayerNormT *AsLayerNorm() {
+  MNN::LayerNormT *AsLayerNorm() {
     return type == OpParameter_LayerNorm ?
-      reinterpret_cast<LayerNormT *>(value) : nullptr;
+      reinterpret_cast<MNN::LayerNormT *>(value) : nullptr;
   }
-  const LayerNormT *AsLayerNorm() const {
+  const MNN::LayerNormT *AsLayerNorm() const {
     return type == OpParameter_LayerNorm ?
-      reinterpret_cast<const LayerNormT *>(value) : nullptr;
+      reinterpret_cast<const MNN::LayerNormT *>(value) : nullptr;
   }
-  TensorArrayT *AsTensorArray() {
+  MNN::TensorArrayT *AsTensorArray() {
     return type == OpParameter_TensorArray ?
-      reinterpret_cast<TensorArrayT *>(value) : nullptr;
+      reinterpret_cast<MNN::TensorArrayT *>(value) : nullptr;
   }
-  const TensorArrayT *AsTensorArray() const {
+  const MNN::TensorArrayT *AsTensorArray() const {
     return type == OpParameter_TensorArray ?
-      reinterpret_cast<const TensorArrayT *>(value) : nullptr;
+      reinterpret_cast<const MNN::TensorArrayT *>(value) : nullptr;
   }
-  LSTMBlockCellT *AsLSTMBlockCell() {
+  MNN::LSTMBlockCellT *AsLSTMBlockCell() {
     return type == OpParameter_LSTMBlockCell ?
-      reinterpret_cast<LSTMBlockCellT *>(value) : nullptr;
+      reinterpret_cast<MNN::LSTMBlockCellT *>(value) : nullptr;
   }
-  const LSTMBlockCellT *AsLSTMBlockCell() const {
+  const MNN::LSTMBlockCellT *AsLSTMBlockCell() const {
     return type == OpParameter_LSTMBlockCell ?
-      reinterpret_cast<const LSTMBlockCellT *>(value) : nullptr;
+      reinterpret_cast<const MNN::LSTMBlockCellT *>(value) : nullptr;
   }
-  GridSampleT *AsGridSample() {
+  MNN::GridSampleT *AsGridSample() {
     return type == OpParameter_GridSample ?
-      reinterpret_cast<GridSampleT *>(value) : nullptr;
+      reinterpret_cast<MNN::GridSampleT *>(value) : nullptr;
   }
-  const GridSampleT *AsGridSample() const {
+  const MNN::GridSampleT *AsGridSample() const {
     return type == OpParameter_GridSample ?
-      reinterpret_cast<const GridSampleT *>(value) : nullptr;
+      reinterpret_cast<const MNN::GridSampleT *>(value) : nullptr;
   }
 };
 
@@ -2480,7 +2494,7 @@ inline const ForwardType (&EnumValuesForwardType())[5] {
 }
 
 inline const char * const *EnumNamesForwardType() {
-  static const char * const names[] = {
+  static const char * const names[6] = {
     "CPU",
     "METAL",
     "OPENCL",
@@ -2492,8 +2506,8 @@ inline const char * const *EnumNamesForwardType() {
 }
 
 inline const char *EnumNameForwardType(ForwardType e) {
-  if (e < ForwardType_CPU || e > ForwardType_VULKAN) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, ForwardType_CPU, ForwardType_VULKAN)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesForwardType()[index];
 }
 
@@ -2515,7 +2529,7 @@ inline const Usage (&EnumValuesUsage())[3] {
 }
 
 inline const char * const *EnumNamesUsage() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "INFERENCE",
     "TRAIN",
     "INFERENCE_STATIC",
@@ -2525,21 +2539,22 @@ inline const char * const *EnumNamesUsage() {
 }
 
 inline const char *EnumNameUsage(Usage e) {
-  if (e < Usage_INFERENCE || e > Usage_INFERENCE_STATIC) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, Usage_INFERENCE, Usage_INFERENCE_STATIC)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesUsage()[index];
 }
 
 struct PluginT : public flatbuffers::NativeTable {
   typedef Plugin TableType;
   std::string type;
-  std::vector<std::unique_ptr<AttributeT>> attr;
+  std::vector<std::unique_ptr<MNN::AttributeT>> attr;
   PluginT() {
   }
 };
 
 struct Plugin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef PluginT NativeTableType;
+  typedef PluginBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return PluginTypeTable();
   }
@@ -2550,8 +2565,8 @@ struct Plugin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::String *type() const {
     return GetPointer<const flatbuffers::String *>(VT_TYPE);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<Attribute>> *attr() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<Attribute>> *>(VT_ATTR);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>> *attr() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>> *>(VT_ATTR);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2568,12 +2583,13 @@ struct Plugin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct PluginBuilder {
+  typedef Plugin Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_type(flatbuffers::Offset<flatbuffers::String> type) {
     fbb_.AddOffset(Plugin::VT_TYPE, type);
   }
-  void add_attr(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Attribute>>> attr) {
+  void add_attr(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>>> attr) {
     fbb_.AddOffset(Plugin::VT_ATTR, attr);
   }
   explicit PluginBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2591,7 +2607,7 @@ struct PluginBuilder {
 inline flatbuffers::Offset<Plugin> CreatePlugin(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::String> type = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Attribute>>> attr = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>>> attr = 0) {
   PluginBuilder builder_(_fbb);
   builder_.add_attr(attr);
   builder_.add_type(type);
@@ -2601,9 +2617,9 @@ inline flatbuffers::Offset<Plugin> CreatePlugin(
 inline flatbuffers::Offset<Plugin> CreatePluginDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const char *type = nullptr,
-    const std::vector<flatbuffers::Offset<Attribute>> *attr = nullptr) {
+    const std::vector<flatbuffers::Offset<MNN::Attribute>> *attr = nullptr) {
   auto type__ = type ? _fbb.CreateString(type) : 0;
-  auto attr__ = attr ? _fbb.CreateVector<flatbuffers::Offset<Attribute>>(*attr) : 0;
+  auto attr__ = attr ? _fbb.CreateVector<flatbuffers::Offset<MNN::Attribute>>(*attr) : 0;
   return MNN::CreatePlugin(
       _fbb,
       type__,
@@ -2617,13 +2633,14 @@ struct ExtraT : public flatbuffers::NativeTable {
   std::string type;
   std::string engine;
   std::vector<int8_t> info;
-  std::vector<std::unique_ptr<AttributeT>> attr;
+  std::vector<std::unique_ptr<MNN::AttributeT>> attr;
   ExtraT() {
   }
 };
 
 struct Extra FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ExtraT NativeTableType;
+  typedef ExtraBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ExtraTypeTable();
   }
@@ -2642,8 +2659,8 @@ struct Extra FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int8_t> *info() const {
     return GetPointer<const flatbuffers::Vector<int8_t> *>(VT_INFO);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<Attribute>> *attr() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<Attribute>> *>(VT_ATTR);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>> *attr() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>> *>(VT_ATTR);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2664,6 +2681,7 @@ struct Extra FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ExtraBuilder {
+  typedef Extra Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_type(flatbuffers::Offset<flatbuffers::String> type) {
@@ -2675,7 +2693,7 @@ struct ExtraBuilder {
   void add_info(flatbuffers::Offset<flatbuffers::Vector<int8_t>> info) {
     fbb_.AddOffset(Extra::VT_INFO, info);
   }
-  void add_attr(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Attribute>>> attr) {
+  void add_attr(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>>> attr) {
     fbb_.AddOffset(Extra::VT_ATTR, attr);
   }
   explicit ExtraBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2695,7 +2713,7 @@ inline flatbuffers::Offset<Extra> CreateExtra(
     flatbuffers::Offset<flatbuffers::String> type = 0,
     flatbuffers::Offset<flatbuffers::String> engine = 0,
     flatbuffers::Offset<flatbuffers::Vector<int8_t>> info = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Attribute>>> attr = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>>> attr = 0) {
   ExtraBuilder builder_(_fbb);
   builder_.add_attr(attr);
   builder_.add_info(info);
@@ -2709,11 +2727,11 @@ inline flatbuffers::Offset<Extra> CreateExtraDirect(
     const char *type = nullptr,
     const char *engine = nullptr,
     const std::vector<int8_t> *info = nullptr,
-    const std::vector<flatbuffers::Offset<Attribute>> *attr = nullptr) {
+    const std::vector<flatbuffers::Offset<MNN::Attribute>> *attr = nullptr) {
   auto type__ = type ? _fbb.CreateString(type) : 0;
   auto engine__ = engine ? _fbb.CreateString(engine) : 0;
   auto info__ = info ? _fbb.CreateVector<int8_t>(*info) : 0;
-  auto attr__ = attr ? _fbb.CreateVector<flatbuffers::Offset<Attribute>>(*attr) : 0;
+  auto attr__ = attr ? _fbb.CreateVector<flatbuffers::Offset<MNN::Attribute>>(*attr) : 0;
   return MNN::CreateExtra(
       _fbb,
       type__,
@@ -2733,6 +2751,7 @@ struct StringVecT : public flatbuffers::NativeTable {
 
 struct StringVec FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef StringVecT NativeTableType;
+  typedef StringVecBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return StringVecTypeTable();
   }
@@ -2755,6 +2774,7 @@ struct StringVec FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct StringVecBuilder {
+  typedef StringVec Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_data(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> data) {
@@ -2795,15 +2815,16 @@ struct WhileParamT : public flatbuffers::NativeTable {
   typedef WhileParam TableType;
   std::string cond_graph;
   std::string body_graph;
-  std::vector<std::unique_ptr<StringVecT>> aliases_inputs;
+  std::vector<std::unique_ptr<MNN::StringVecT>> aliases_inputs;
   std::vector<std::string> aliases_outputs;
-  std::vector<std::unique_ptr<StringVecT>> aliases_updates;
+  std::vector<std::unique_ptr<MNN::StringVecT>> aliases_updates;
   WhileParamT() {
   }
 };
 
 struct WhileParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef WhileParamT NativeTableType;
+  typedef WhileParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return WhileParamTypeTable();
   }
@@ -2820,14 +2841,14 @@ struct WhileParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::String *body_graph() const {
     return GetPointer<const flatbuffers::String *>(VT_BODY_GRAPH);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<StringVec>> *aliases_inputs() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<StringVec>> *>(VT_ALIASES_INPUTS);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>> *aliases_inputs() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>> *>(VT_ALIASES_INPUTS);
   }
   const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *aliases_outputs() const {
     return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *>(VT_ALIASES_OUTPUTS);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<StringVec>> *aliases_updates() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<StringVec>> *>(VT_ALIASES_UPDATES);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>> *aliases_updates() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>> *>(VT_ALIASES_UPDATES);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2852,6 +2873,7 @@ struct WhileParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct WhileParamBuilder {
+  typedef WhileParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_cond_graph(flatbuffers::Offset<flatbuffers::String> cond_graph) {
@@ -2860,13 +2882,13 @@ struct WhileParamBuilder {
   void add_body_graph(flatbuffers::Offset<flatbuffers::String> body_graph) {
     fbb_.AddOffset(WhileParam::VT_BODY_GRAPH, body_graph);
   }
-  void add_aliases_inputs(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<StringVec>>> aliases_inputs) {
+  void add_aliases_inputs(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>>> aliases_inputs) {
     fbb_.AddOffset(WhileParam::VT_ALIASES_INPUTS, aliases_inputs);
   }
   void add_aliases_outputs(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> aliases_outputs) {
     fbb_.AddOffset(WhileParam::VT_ALIASES_OUTPUTS, aliases_outputs);
   }
-  void add_aliases_updates(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<StringVec>>> aliases_updates) {
+  void add_aliases_updates(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>>> aliases_updates) {
     fbb_.AddOffset(WhileParam::VT_ALIASES_UPDATES, aliases_updates);
   }
   explicit WhileParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2885,9 +2907,9 @@ inline flatbuffers::Offset<WhileParam> CreateWhileParam(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::String> cond_graph = 0,
     flatbuffers::Offset<flatbuffers::String> body_graph = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<StringVec>>> aliases_inputs = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>>> aliases_inputs = 0,
     flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> aliases_outputs = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<StringVec>>> aliases_updates = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>>> aliases_updates = 0) {
   WhileParamBuilder builder_(_fbb);
   builder_.add_aliases_updates(aliases_updates);
   builder_.add_aliases_outputs(aliases_outputs);
@@ -2901,14 +2923,14 @@ inline flatbuffers::Offset<WhileParam> CreateWhileParamDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const char *cond_graph = nullptr,
     const char *body_graph = nullptr,
-    const std::vector<flatbuffers::Offset<StringVec>> *aliases_inputs = nullptr,
+    const std::vector<flatbuffers::Offset<MNN::StringVec>> *aliases_inputs = nullptr,
     const std::vector<flatbuffers::Offset<flatbuffers::String>> *aliases_outputs = nullptr,
-    const std::vector<flatbuffers::Offset<StringVec>> *aliases_updates = nullptr) {
+    const std::vector<flatbuffers::Offset<MNN::StringVec>> *aliases_updates = nullptr) {
   auto cond_graph__ = cond_graph ? _fbb.CreateString(cond_graph) : 0;
   auto body_graph__ = body_graph ? _fbb.CreateString(body_graph) : 0;
-  auto aliases_inputs__ = aliases_inputs ? _fbb.CreateVector<flatbuffers::Offset<StringVec>>(*aliases_inputs) : 0;
+  auto aliases_inputs__ = aliases_inputs ? _fbb.CreateVector<flatbuffers::Offset<MNN::StringVec>>(*aliases_inputs) : 0;
   auto aliases_outputs__ = aliases_outputs ? _fbb.CreateVector<flatbuffers::Offset<flatbuffers::String>>(*aliases_outputs) : 0;
-  auto aliases_updates__ = aliases_updates ? _fbb.CreateVector<flatbuffers::Offset<StringVec>>(*aliases_updates) : 0;
+  auto aliases_updates__ = aliases_updates ? _fbb.CreateVector<flatbuffers::Offset<MNN::StringVec>>(*aliases_updates) : 0;
   return MNN::CreateWhileParam(
       _fbb,
       cond_graph__,
@@ -2924,14 +2946,15 @@ struct IfParamT : public flatbuffers::NativeTable {
   typedef IfParam TableType;
   std::string then_graph;
   std::string else_graph;
-  std::vector<std::unique_ptr<StringVecT>> aliases_inputs;
-  std::vector<std::unique_ptr<StringVecT>> aliases_outputs;
+  std::vector<std::unique_ptr<MNN::StringVecT>> aliases_inputs;
+  std::vector<std::unique_ptr<MNN::StringVecT>> aliases_outputs;
   IfParamT() {
   }
 };
 
 struct IfParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef IfParamT NativeTableType;
+  typedef IfParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return IfParamTypeTable();
   }
@@ -2947,11 +2970,11 @@ struct IfParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::String *else_graph() const {
     return GetPointer<const flatbuffers::String *>(VT_ELSE_GRAPH);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<StringVec>> *aliases_inputs() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<StringVec>> *>(VT_ALIASES_INPUTS);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>> *aliases_inputs() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>> *>(VT_ALIASES_INPUTS);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<StringVec>> *aliases_outputs() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<StringVec>> *>(VT_ALIASES_OUTPUTS);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>> *aliases_outputs() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>> *>(VT_ALIASES_OUTPUTS);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2973,6 +2996,7 @@ struct IfParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct IfParamBuilder {
+  typedef IfParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_then_graph(flatbuffers::Offset<flatbuffers::String> then_graph) {
@@ -2981,10 +3005,10 @@ struct IfParamBuilder {
   void add_else_graph(flatbuffers::Offset<flatbuffers::String> else_graph) {
     fbb_.AddOffset(IfParam::VT_ELSE_GRAPH, else_graph);
   }
-  void add_aliases_inputs(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<StringVec>>> aliases_inputs) {
+  void add_aliases_inputs(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>>> aliases_inputs) {
     fbb_.AddOffset(IfParam::VT_ALIASES_INPUTS, aliases_inputs);
   }
-  void add_aliases_outputs(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<StringVec>>> aliases_outputs) {
+  void add_aliases_outputs(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>>> aliases_outputs) {
     fbb_.AddOffset(IfParam::VT_ALIASES_OUTPUTS, aliases_outputs);
   }
   explicit IfParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -3003,8 +3027,8 @@ inline flatbuffers::Offset<IfParam> CreateIfParam(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::String> then_graph = 0,
     flatbuffers::Offset<flatbuffers::String> else_graph = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<StringVec>>> aliases_inputs = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<StringVec>>> aliases_outputs = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>>> aliases_inputs = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::StringVec>>> aliases_outputs = 0) {
   IfParamBuilder builder_(_fbb);
   builder_.add_aliases_outputs(aliases_outputs);
   builder_.add_aliases_inputs(aliases_inputs);
@@ -3017,12 +3041,12 @@ inline flatbuffers::Offset<IfParam> CreateIfParamDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const char *then_graph = nullptr,
     const char *else_graph = nullptr,
-    const std::vector<flatbuffers::Offset<StringVec>> *aliases_inputs = nullptr,
-    const std::vector<flatbuffers::Offset<StringVec>> *aliases_outputs = nullptr) {
+    const std::vector<flatbuffers::Offset<MNN::StringVec>> *aliases_inputs = nullptr,
+    const std::vector<flatbuffers::Offset<MNN::StringVec>> *aliases_outputs = nullptr) {
   auto then_graph__ = then_graph ? _fbb.CreateString(then_graph) : 0;
   auto else_graph__ = else_graph ? _fbb.CreateString(else_graph) : 0;
-  auto aliases_inputs__ = aliases_inputs ? _fbb.CreateVector<flatbuffers::Offset<StringVec>>(*aliases_inputs) : 0;
-  auto aliases_outputs__ = aliases_outputs ? _fbb.CreateVector<flatbuffers::Offset<StringVec>>(*aliases_outputs) : 0;
+  auto aliases_inputs__ = aliases_inputs ? _fbb.CreateVector<flatbuffers::Offset<MNN::StringVec>>(*aliases_inputs) : 0;
+  auto aliases_outputs__ = aliases_outputs ? _fbb.CreateVector<flatbuffers::Offset<MNN::StringVec>>(*aliases_outputs) : 0;
   return MNN::CreateIfParam(
       _fbb,
       then_graph__,
@@ -3036,19 +3060,20 @@ flatbuffers::Offset<IfParam> CreateIfParam(flatbuffers::FlatBufferBuilder &_fbb,
 struct OpT : public flatbuffers::NativeTable {
   typedef Op TableType;
   std::vector<int32_t> inputIndexes;
-  OpParameterUnion main;
+  MNN::OpParameterUnion main;
   std::string name;
   std::vector<int32_t> outputIndexes;
-  OpType type;
-  MNN_DATA_FORMAT defaultDimentionFormat;
+  MNN::OpType type;
+  MNN::MNN_DATA_FORMAT defaultDimentionFormat;
   OpT()
-      : type(OpType_AbsVal),
-        defaultDimentionFormat(MNN_DATA_FORMAT_NHWC) {
+      : type(MNN::OpType_AbsVal),
+        defaultDimentionFormat(MNN::MNN_DATA_FORMAT_NHWC) {
   }
 };
 
 struct Op FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef OpT NativeTableType;
+  typedef OpBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return OpTypeTable();
   }
@@ -3064,285 +3089,285 @@ struct Op FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *inputIndexes() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_INPUTINDEXES);
   }
-  OpParameter main_type() const {
-    return static_cast<OpParameter>(GetField<uint8_t>(VT_MAIN_TYPE, 0));
+  MNN::OpParameter main_type() const {
+    return static_cast<MNN::OpParameter>(GetField<uint8_t>(VT_MAIN_TYPE, 0));
   }
   const void *main() const {
     return GetPointer<const void *>(VT_MAIN);
   }
   template<typename T> const T *main_as() const;
-  const QuantizedAdd *main_as_QuantizedAdd() const {
-    return main_type() == OpParameter_QuantizedAdd ? static_cast<const QuantizedAdd *>(main()) : nullptr;
+  const MNN::QuantizedAdd *main_as_QuantizedAdd() const {
+    return main_type() == MNN::OpParameter_QuantizedAdd ? static_cast<const MNN::QuantizedAdd *>(main()) : nullptr;
   }
-  const ArgMax *main_as_ArgMax() const {
-    return main_type() == OpParameter_ArgMax ? static_cast<const ArgMax *>(main()) : nullptr;
+  const MNN::ArgMax *main_as_ArgMax() const {
+    return main_type() == MNN::OpParameter_ArgMax ? static_cast<const MNN::ArgMax *>(main()) : nullptr;
   }
-  const AsString *main_as_AsString() const {
-    return main_type() == OpParameter_AsString ? static_cast<const AsString *>(main()) : nullptr;
+  const MNN::AsString *main_as_AsString() const {
+    return main_type() == MNN::OpParameter_AsString ? static_cast<const MNN::AsString *>(main()) : nullptr;
   }
-  const Axis *main_as_Axis() const {
-    return main_type() == OpParameter_Axis ? static_cast<const Axis *>(main()) : nullptr;
+  const MNN::Axis *main_as_Axis() const {
+    return main_type() == MNN::OpParameter_Axis ? static_cast<const MNN::Axis *>(main()) : nullptr;
   }
-  const BatchNorm *main_as_BatchNorm() const {
-    return main_type() == OpParameter_BatchNorm ? static_cast<const BatchNorm *>(main()) : nullptr;
+  const MNN::BatchNorm *main_as_BatchNorm() const {
+    return main_type() == MNN::OpParameter_BatchNorm ? static_cast<const MNN::BatchNorm *>(main()) : nullptr;
   }
-  const BinaryOp *main_as_BinaryOp() const {
-    return main_type() == OpParameter_BinaryOp ? static_cast<const BinaryOp *>(main()) : nullptr;
+  const MNN::BinaryOp *main_as_BinaryOp() const {
+    return main_type() == MNN::OpParameter_BinaryOp ? static_cast<const MNN::BinaryOp *>(main()) : nullptr;
   }
-  const Blob *main_as_Blob() const {
-    return main_type() == OpParameter_Blob ? static_cast<const Blob *>(main()) : nullptr;
+  const MNN::Blob *main_as_Blob() const {
+    return main_type() == MNN::OpParameter_Blob ? static_cast<const MNN::Blob *>(main()) : nullptr;
   }
-  const CastParam *main_as_CastParam() const {
-    return main_type() == OpParameter_CastParam ? static_cast<const CastParam *>(main()) : nullptr;
+  const MNN::CastParam *main_as_CastParam() const {
+    return main_type() == MNN::OpParameter_CastParam ? static_cast<const MNN::CastParam *>(main()) : nullptr;
   }
-  const Convolution2D *main_as_Convolution2D() const {
-    return main_type() == OpParameter_Convolution2D ? static_cast<const Convolution2D *>(main()) : nullptr;
+  const MNN::Convolution2D *main_as_Convolution2D() const {
+    return main_type() == MNN::OpParameter_Convolution2D ? static_cast<const MNN::Convolution2D *>(main()) : nullptr;
   }
-  const Crop *main_as_Crop() const {
-    return main_type() == OpParameter_Crop ? static_cast<const Crop *>(main()) : nullptr;
+  const MNN::Crop *main_as_Crop() const {
+    return main_type() == MNN::OpParameter_Crop ? static_cast<const MNN::Crop *>(main()) : nullptr;
   }
-  const CropAndResize *main_as_CropAndResize() const {
-    return main_type() == OpParameter_CropAndResize ? static_cast<const CropAndResize *>(main()) : nullptr;
+  const MNN::CropAndResize *main_as_CropAndResize() const {
+    return main_type() == MNN::OpParameter_CropAndResize ? static_cast<const MNN::CropAndResize *>(main()) : nullptr;
   }
-  const Dequantize *main_as_Dequantize() const {
-    return main_type() == OpParameter_Dequantize ? static_cast<const Dequantize *>(main()) : nullptr;
+  const MNN::Dequantize *main_as_Dequantize() const {
+    return main_type() == MNN::OpParameter_Dequantize ? static_cast<const MNN::Dequantize *>(main()) : nullptr;
   }
-  const DetectionOutput *main_as_DetectionOutput() const {
-    return main_type() == OpParameter_DetectionOutput ? static_cast<const DetectionOutput *>(main()) : nullptr;
+  const MNN::DetectionOutput *main_as_DetectionOutput() const {
+    return main_type() == MNN::OpParameter_DetectionOutput ? static_cast<const MNN::DetectionOutput *>(main()) : nullptr;
   }
-  const Eltwise *main_as_Eltwise() const {
-    return main_type() == OpParameter_Eltwise ? static_cast<const Eltwise *>(main()) : nullptr;
+  const MNN::Eltwise *main_as_Eltwise() const {
+    return main_type() == MNN::OpParameter_Eltwise ? static_cast<const MNN::Eltwise *>(main()) : nullptr;
   }
-  const ExpandDims *main_as_ExpandDims() const {
-    return main_type() == OpParameter_ExpandDims ? static_cast<const ExpandDims *>(main()) : nullptr;
+  const MNN::ExpandDims *main_as_ExpandDims() const {
+    return main_type() == MNN::OpParameter_ExpandDims ? static_cast<const MNN::ExpandDims *>(main()) : nullptr;
   }
-  const Fill *main_as_Fill() const {
-    return main_type() == OpParameter_Fill ? static_cast<const Fill *>(main()) : nullptr;
+  const MNN::Fill *main_as_Fill() const {
+    return main_type() == MNN::OpParameter_Fill ? static_cast<const MNN::Fill *>(main()) : nullptr;
   }
-  const Flatten *main_as_Flatten() const {
-    return main_type() == OpParameter_Flatten ? static_cast<const Flatten *>(main()) : nullptr;
+  const MNN::Flatten *main_as_Flatten() const {
+    return main_type() == MNN::OpParameter_Flatten ? static_cast<const MNN::Flatten *>(main()) : nullptr;
   }
-  const Gather *main_as_Gather() const {
-    return main_type() == OpParameter_Gather ? static_cast<const Gather *>(main()) : nullptr;
+  const MNN::Gather *main_as_Gather() const {
+    return main_type() == MNN::OpParameter_Gather ? static_cast<const MNN::Gather *>(main()) : nullptr;
   }
-  const GatherV2 *main_as_GatherV2() const {
-    return main_type() == OpParameter_GatherV2 ? static_cast<const GatherV2 *>(main()) : nullptr;
+  const MNN::GatherV2 *main_as_GatherV2() const {
+    return main_type() == MNN::OpParameter_GatherV2 ? static_cast<const MNN::GatherV2 *>(main()) : nullptr;
   }
-  const InnerProduct *main_as_InnerProduct() const {
-    return main_type() == OpParameter_InnerProduct ? static_cast<const InnerProduct *>(main()) : nullptr;
+  const MNN::InnerProduct *main_as_InnerProduct() const {
+    return main_type() == MNN::OpParameter_InnerProduct ? static_cast<const MNN::InnerProduct *>(main()) : nullptr;
   }
-  const Input *main_as_Input() const {
-    return main_type() == OpParameter_Input ? static_cast<const Input *>(main()) : nullptr;
+  const MNN::Input *main_as_Input() const {
+    return main_type() == MNN::OpParameter_Input ? static_cast<const MNN::Input *>(main()) : nullptr;
   }
-  const Interp *main_as_Interp() const {
-    return main_type() == OpParameter_Interp ? static_cast<const Interp *>(main()) : nullptr;
+  const MNN::Interp *main_as_Interp() const {
+    return main_type() == MNN::OpParameter_Interp ? static_cast<const MNN::Interp *>(main()) : nullptr;
   }
-  const LRN *main_as_LRN() const {
-    return main_type() == OpParameter_LRN ? static_cast<const LRN *>(main()) : nullptr;
+  const MNN::LRN *main_as_LRN() const {
+    return main_type() == MNN::OpParameter_LRN ? static_cast<const MNN::LRN *>(main()) : nullptr;
   }
-  const LSTM *main_as_LSTM() const {
-    return main_type() == OpParameter_LSTM ? static_cast<const LSTM *>(main()) : nullptr;
+  const MNN::LSTM *main_as_LSTM() const {
+    return main_type() == MNN::OpParameter_LSTM ? static_cast<const MNN::LSTM *>(main()) : nullptr;
   }
-  const MatMul *main_as_MatMul() const {
-    return main_type() == OpParameter_MatMul ? static_cast<const MatMul *>(main()) : nullptr;
+  const MNN::MatMul *main_as_MatMul() const {
+    return main_type() == MNN::OpParameter_MatMul ? static_cast<const MNN::MatMul *>(main()) : nullptr;
   }
-  const NonMaxSuppressionV2 *main_as_NonMaxSuppressionV2() const {
-    return main_type() == OpParameter_NonMaxSuppressionV2 ? static_cast<const NonMaxSuppressionV2 *>(main()) : nullptr;
+  const MNN::NonMaxSuppressionV2 *main_as_NonMaxSuppressionV2() const {
+    return main_type() == MNN::OpParameter_NonMaxSuppressionV2 ? static_cast<const MNN::NonMaxSuppressionV2 *>(main()) : nullptr;
   }
-  const Normalize *main_as_Normalize() const {
-    return main_type() == OpParameter_Normalize ? static_cast<const Normalize *>(main()) : nullptr;
+  const MNN::Normalize *main_as_Normalize() const {
+    return main_type() == MNN::OpParameter_Normalize ? static_cast<const MNN::Normalize *>(main()) : nullptr;
   }
-  const PackParam *main_as_PackParam() const {
-    return main_type() == OpParameter_PackParam ? static_cast<const PackParam *>(main()) : nullptr;
+  const MNN::PackParam *main_as_PackParam() const {
+    return main_type() == MNN::OpParameter_PackParam ? static_cast<const MNN::PackParam *>(main()) : nullptr;
   }
-  const Permute *main_as_Permute() const {
-    return main_type() == OpParameter_Permute ? static_cast<const Permute *>(main()) : nullptr;
+  const MNN::Permute *main_as_Permute() const {
+    return main_type() == MNN::OpParameter_Permute ? static_cast<const MNN::Permute *>(main()) : nullptr;
   }
-  const Plugin *main_as_Plugin() const {
-    return main_type() == OpParameter_Plugin ? static_cast<const Plugin *>(main()) : nullptr;
+  const MNN::Plugin *main_as_Plugin() const {
+    return main_type() == MNN::OpParameter_Plugin ? static_cast<const MNN::Plugin *>(main()) : nullptr;
   }
-  const Pool *main_as_Pool() const {
-    return main_type() == OpParameter_Pool ? static_cast<const Pool *>(main()) : nullptr;
+  const MNN::Pool *main_as_Pool() const {
+    return main_type() == MNN::OpParameter_Pool ? static_cast<const MNN::Pool *>(main()) : nullptr;
   }
-  const PRelu *main_as_PRelu() const {
-    return main_type() == OpParameter_PRelu ? static_cast<const PRelu *>(main()) : nullptr;
+  const MNN::PRelu *main_as_PRelu() const {
+    return main_type() == MNN::OpParameter_PRelu ? static_cast<const MNN::PRelu *>(main()) : nullptr;
   }
-  const PriorBox *main_as_PriorBox() const {
-    return main_type() == OpParameter_PriorBox ? static_cast<const PriorBox *>(main()) : nullptr;
+  const MNN::PriorBox *main_as_PriorBox() const {
+    return main_type() == MNN::OpParameter_PriorBox ? static_cast<const MNN::PriorBox *>(main()) : nullptr;
   }
-  const Proposal *main_as_Proposal() const {
-    return main_type() == OpParameter_Proposal ? static_cast<const Proposal *>(main()) : nullptr;
+  const MNN::Proposal *main_as_Proposal() const {
+    return main_type() == MNN::OpParameter_Proposal ? static_cast<const MNN::Proposal *>(main()) : nullptr;
   }
-  const QuantizedAvgPool *main_as_QuantizedAvgPool() const {
-    return main_type() == OpParameter_QuantizedAvgPool ? static_cast<const QuantizedAvgPool *>(main()) : nullptr;
+  const MNN::QuantizedAvgPool *main_as_QuantizedAvgPool() const {
+    return main_type() == MNN::OpParameter_QuantizedAvgPool ? static_cast<const MNN::QuantizedAvgPool *>(main()) : nullptr;
   }
-  const QuantizedBiasAdd *main_as_QuantizedBiasAdd() const {
-    return main_type() == OpParameter_QuantizedBiasAdd ? static_cast<const QuantizedBiasAdd *>(main()) : nullptr;
+  const MNN::QuantizedBiasAdd *main_as_QuantizedBiasAdd() const {
+    return main_type() == MNN::OpParameter_QuantizedBiasAdd ? static_cast<const MNN::QuantizedBiasAdd *>(main()) : nullptr;
   }
-  const QuantizedConcat *main_as_QuantizedConcat() const {
-    return main_type() == OpParameter_QuantizedConcat ? static_cast<const QuantizedConcat *>(main()) : nullptr;
+  const MNN::QuantizedConcat *main_as_QuantizedConcat() const {
+    return main_type() == MNN::OpParameter_QuantizedConcat ? static_cast<const MNN::QuantizedConcat *>(main()) : nullptr;
   }
-  const QuantizedLogistic *main_as_QuantizedLogistic() const {
-    return main_type() == OpParameter_QuantizedLogistic ? static_cast<const QuantizedLogistic *>(main()) : nullptr;
+  const MNN::QuantizedLogistic *main_as_QuantizedLogistic() const {
+    return main_type() == MNN::OpParameter_QuantizedLogistic ? static_cast<const MNN::QuantizedLogistic *>(main()) : nullptr;
   }
-  const QuantizedMatMul *main_as_QuantizedMatMul() const {
-    return main_type() == OpParameter_QuantizedMatMul ? static_cast<const QuantizedMatMul *>(main()) : nullptr;
+  const MNN::QuantizedMatMul *main_as_QuantizedMatMul() const {
+    return main_type() == MNN::OpParameter_QuantizedMatMul ? static_cast<const MNN::QuantizedMatMul *>(main()) : nullptr;
   }
-  const QuantizedMaxPool *main_as_QuantizedMaxPool() const {
-    return main_type() == OpParameter_QuantizedMaxPool ? static_cast<const QuantizedMaxPool *>(main()) : nullptr;
+  const MNN::QuantizedMaxPool *main_as_QuantizedMaxPool() const {
+    return main_type() == MNN::OpParameter_QuantizedMaxPool ? static_cast<const MNN::QuantizedMaxPool *>(main()) : nullptr;
   }
-  const QuantizedRelu *main_as_QuantizedRelu() const {
-    return main_type() == OpParameter_QuantizedRelu ? static_cast<const QuantizedRelu *>(main()) : nullptr;
+  const MNN::QuantizedRelu *main_as_QuantizedRelu() const {
+    return main_type() == MNN::OpParameter_QuantizedRelu ? static_cast<const MNN::QuantizedRelu *>(main()) : nullptr;
   }
-  const QuantizedRelu6 *main_as_QuantizedRelu6() const {
-    return main_type() == OpParameter_QuantizedRelu6 ? static_cast<const QuantizedRelu6 *>(main()) : nullptr;
+  const MNN::QuantizedRelu6 *main_as_QuantizedRelu6() const {
+    return main_type() == MNN::OpParameter_QuantizedRelu6 ? static_cast<const MNN::QuantizedRelu6 *>(main()) : nullptr;
   }
-  const QuantizedReshape *main_as_QuantizedReshape() const {
-    return main_type() == OpParameter_QuantizedReshape ? static_cast<const QuantizedReshape *>(main()) : nullptr;
+  const MNN::QuantizedReshape *main_as_QuantizedReshape() const {
+    return main_type() == MNN::OpParameter_QuantizedReshape ? static_cast<const MNN::QuantizedReshape *>(main()) : nullptr;
   }
-  const QuantizedSoftmax *main_as_QuantizedSoftmax() const {
-    return main_type() == OpParameter_QuantizedSoftmax ? static_cast<const QuantizedSoftmax *>(main()) : nullptr;
+  const MNN::QuantizedSoftmax *main_as_QuantizedSoftmax() const {
+    return main_type() == MNN::OpParameter_QuantizedSoftmax ? static_cast<const MNN::QuantizedSoftmax *>(main()) : nullptr;
   }
-  const QuantizeMaxMin *main_as_QuantizeMaxMin() const {
-    return main_type() == OpParameter_QuantizeMaxMin ? static_cast<const QuantizeMaxMin *>(main()) : nullptr;
+  const MNN::QuantizeMaxMin *main_as_QuantizeMaxMin() const {
+    return main_type() == MNN::OpParameter_QuantizeMaxMin ? static_cast<const MNN::QuantizeMaxMin *>(main()) : nullptr;
   }
-  const QuantizeV2 *main_as_QuantizeV2() const {
-    return main_type() == OpParameter_QuantizeV2 ? static_cast<const QuantizeV2 *>(main()) : nullptr;
+  const MNN::QuantizeV2 *main_as_QuantizeV2() const {
+    return main_type() == MNN::OpParameter_QuantizeV2 ? static_cast<const MNN::QuantizeV2 *>(main()) : nullptr;
   }
-  const Range *main_as_Range() const {
-    return main_type() == OpParameter_Range ? static_cast<const Range *>(main()) : nullptr;
+  const MNN::Range *main_as_Range() const {
+    return main_type() == MNN::OpParameter_Range ? static_cast<const MNN::Range *>(main()) : nullptr;
   }
-  const Rank *main_as_Rank() const {
-    return main_type() == OpParameter_Rank ? static_cast<const Rank *>(main()) : nullptr;
+  const MNN::Rank *main_as_Rank() const {
+    return main_type() == MNN::OpParameter_Rank ? static_cast<const MNN::Rank *>(main()) : nullptr;
   }
-  const ReduceJoin *main_as_ReduceJoin() const {
-    return main_type() == OpParameter_ReduceJoin ? static_cast<const ReduceJoin *>(main()) : nullptr;
+  const MNN::ReduceJoin *main_as_ReduceJoin() const {
+    return main_type() == MNN::OpParameter_ReduceJoin ? static_cast<const MNN::ReduceJoin *>(main()) : nullptr;
   }
-  const ReductionParam *main_as_ReductionParam() const {
-    return main_type() == OpParameter_ReductionParam ? static_cast<const ReductionParam *>(main()) : nullptr;
+  const MNN::ReductionParam *main_as_ReductionParam() const {
+    return main_type() == MNN::OpParameter_ReductionParam ? static_cast<const MNN::ReductionParam *>(main()) : nullptr;
   }
-  const Relu *main_as_Relu() const {
-    return main_type() == OpParameter_Relu ? static_cast<const Relu *>(main()) : nullptr;
+  const MNN::Relu *main_as_Relu() const {
+    return main_type() == MNN::OpParameter_Relu ? static_cast<const MNN::Relu *>(main()) : nullptr;
   }
-  const Relu6 *main_as_Relu6() const {
-    return main_type() == OpParameter_Relu6 ? static_cast<const Relu6 *>(main()) : nullptr;
+  const MNN::Relu6 *main_as_Relu6() const {
+    return main_type() == MNN::OpParameter_Relu6 ? static_cast<const MNN::Relu6 *>(main()) : nullptr;
   }
-  const RequantizationRange *main_as_RequantizationRange() const {
-    return main_type() == OpParameter_RequantizationRange ? static_cast<const RequantizationRange *>(main()) : nullptr;
+  const MNN::RequantizationRange *main_as_RequantizationRange() const {
+    return main_type() == MNN::OpParameter_RequantizationRange ? static_cast<const MNN::RequantizationRange *>(main()) : nullptr;
   }
-  const Requantize *main_as_Requantize() const {
-    return main_type() == OpParameter_Requantize ? static_cast<const Requantize *>(main()) : nullptr;
+  const MNN::Requantize *main_as_Requantize() const {
+    return main_type() == MNN::OpParameter_Requantize ? static_cast<const MNN::Requantize *>(main()) : nullptr;
   }
-  const Reshape *main_as_Reshape() const {
-    return main_type() == OpParameter_Reshape ? static_cast<const Reshape *>(main()) : nullptr;
+  const MNN::Reshape *main_as_Reshape() const {
+    return main_type() == MNN::OpParameter_Reshape ? static_cast<const MNN::Reshape *>(main()) : nullptr;
   }
-  const Resize *main_as_Resize() const {
-    return main_type() == OpParameter_Resize ? static_cast<const Resize *>(main()) : nullptr;
+  const MNN::Resize *main_as_Resize() const {
+    return main_type() == MNN::OpParameter_Resize ? static_cast<const MNN::Resize *>(main()) : nullptr;
   }
-  const RoiPooling *main_as_RoiPooling() const {
-    return main_type() == OpParameter_RoiPooling ? static_cast<const RoiPooling *>(main()) : nullptr;
+  const MNN::RoiPooling *main_as_RoiPooling() const {
+    return main_type() == MNN::OpParameter_RoiPooling ? static_cast<const MNN::RoiPooling *>(main()) : nullptr;
   }
-  const Scale *main_as_Scale() const {
-    return main_type() == OpParameter_Scale ? static_cast<const Scale *>(main()) : nullptr;
+  const MNN::Scale *main_as_Scale() const {
+    return main_type() == MNN::OpParameter_Scale ? static_cast<const MNN::Scale *>(main()) : nullptr;
   }
-  const Selu *main_as_Selu() const {
-    return main_type() == OpParameter_Selu ? static_cast<const Selu *>(main()) : nullptr;
+  const MNN::Selu *main_as_Selu() const {
+    return main_type() == MNN::OpParameter_Selu ? static_cast<const MNN::Selu *>(main()) : nullptr;
   }
-  const Size *main_as_Size() const {
-    return main_type() == OpParameter_Size ? static_cast<const Size *>(main()) : nullptr;
+  const MNN::Size *main_as_Size() const {
+    return main_type() == MNN::OpParameter_Size ? static_cast<const MNN::Size *>(main()) : nullptr;
   }
-  const Slice *main_as_Slice() const {
-    return main_type() == OpParameter_Slice ? static_cast<const Slice *>(main()) : nullptr;
+  const MNN::Slice *main_as_Slice() const {
+    return main_type() == MNN::OpParameter_Slice ? static_cast<const MNN::Slice *>(main()) : nullptr;
   }
-  const SliceTf *main_as_SliceTf() const {
-    return main_type() == OpParameter_SliceTf ? static_cast<const SliceTf *>(main()) : nullptr;
+  const MNN::SliceTf *main_as_SliceTf() const {
+    return main_type() == MNN::OpParameter_SliceTf ? static_cast<const MNN::SliceTf *>(main()) : nullptr;
   }
-  const SpaceBatch *main_as_SpaceBatch() const {
-    return main_type() == OpParameter_SpaceBatch ? static_cast<const SpaceBatch *>(main()) : nullptr;
+  const MNN::SpaceBatch *main_as_SpaceBatch() const {
+    return main_type() == MNN::OpParameter_SpaceBatch ? static_cast<const MNN::SpaceBatch *>(main()) : nullptr;
   }
-  const SqueezeParam *main_as_SqueezeParam() const {
-    return main_type() == OpParameter_SqueezeParam ? static_cast<const SqueezeParam *>(main()) : nullptr;
+  const MNN::SqueezeParam *main_as_SqueezeParam() const {
+    return main_type() == MNN::OpParameter_SqueezeParam ? static_cast<const MNN::SqueezeParam *>(main()) : nullptr;
   }
-  const StridedSliceParam *main_as_StridedSliceParam() const {
-    return main_type() == OpParameter_StridedSliceParam ? static_cast<const StridedSliceParam *>(main()) : nullptr;
+  const MNN::StridedSliceParam *main_as_StridedSliceParam() const {
+    return main_type() == MNN::OpParameter_StridedSliceParam ? static_cast<const MNN::StridedSliceParam *>(main()) : nullptr;
   }
-  const TensorConvertInfo *main_as_TensorConvertInfo() const {
-    return main_type() == OpParameter_TensorConvertInfo ? static_cast<const TensorConvertInfo *>(main()) : nullptr;
+  const MNN::TensorConvertInfo *main_as_TensorConvertInfo() const {
+    return main_type() == MNN::OpParameter_TensorConvertInfo ? static_cast<const MNN::TensorConvertInfo *>(main()) : nullptr;
   }
-  const TfQuantizedConv2D *main_as_TfQuantizedConv2D() const {
-    return main_type() == OpParameter_TfQuantizedConv2D ? static_cast<const TfQuantizedConv2D *>(main()) : nullptr;
+  const MNN::TfQuantizedConv2D *main_as_TfQuantizedConv2D() const {
+    return main_type() == MNN::OpParameter_TfQuantizedConv2D ? static_cast<const MNN::TfQuantizedConv2D *>(main()) : nullptr;
   }
-  const TopKV2 *main_as_TopKV2() const {
-    return main_type() == OpParameter_TopKV2 ? static_cast<const TopKV2 *>(main()) : nullptr;
+  const MNN::TopKV2 *main_as_TopKV2() const {
+    return main_type() == MNN::OpParameter_TopKV2 ? static_cast<const MNN::TopKV2 *>(main()) : nullptr;
   }
-  const Transpose *main_as_Transpose() const {
-    return main_type() == OpParameter_Transpose ? static_cast<const Transpose *>(main()) : nullptr;
+  const MNN::Transpose *main_as_Transpose() const {
+    return main_type() == MNN::OpParameter_Transpose ? static_cast<const MNN::Transpose *>(main()) : nullptr;
   }
-  const UnaryOp *main_as_UnaryOp() const {
-    return main_type() == OpParameter_UnaryOp ? static_cast<const UnaryOp *>(main()) : nullptr;
+  const MNN::UnaryOp *main_as_UnaryOp() const {
+    return main_type() == MNN::OpParameter_UnaryOp ? static_cast<const MNN::UnaryOp *>(main()) : nullptr;
   }
-  const MomentsParam *main_as_MomentsParam() const {
-    return main_type() == OpParameter_MomentsParam ? static_cast<const MomentsParam *>(main()) : nullptr;
+  const MNN::MomentsParam *main_as_MomentsParam() const {
+    return main_type() == MNN::OpParameter_MomentsParam ? static_cast<const MNN::MomentsParam *>(main()) : nullptr;
   }
-  const RNNParam *main_as_RNNParam() const {
-    return main_type() == OpParameter_RNNParam ? static_cast<const RNNParam *>(main()) : nullptr;
+  const MNN::RNNParam *main_as_RNNParam() const {
+    return main_type() == MNN::OpParameter_RNNParam ? static_cast<const MNN::RNNParam *>(main()) : nullptr;
   }
-  const BatchMatMulParam *main_as_BatchMatMulParam() const {
-    return main_type() == OpParameter_BatchMatMulParam ? static_cast<const BatchMatMulParam *>(main()) : nullptr;
+  const MNN::BatchMatMulParam *main_as_BatchMatMulParam() const {
+    return main_type() == MNN::OpParameter_BatchMatMulParam ? static_cast<const MNN::BatchMatMulParam *>(main()) : nullptr;
   }
-  const QuantizedFloatParam *main_as_QuantizedFloatParam() const {
-    return main_type() == OpParameter_QuantizedFloatParam ? static_cast<const QuantizedFloatParam *>(main()) : nullptr;
+  const MNN::QuantizedFloatParam *main_as_QuantizedFloatParam() const {
+    return main_type() == MNN::OpParameter_QuantizedFloatParam ? static_cast<const MNN::QuantizedFloatParam *>(main()) : nullptr;
   }
-  const DepthSpaceParam *main_as_DepthSpaceParam() const {
-    return main_type() == OpParameter_DepthSpaceParam ? static_cast<const DepthSpaceParam *>(main()) : nullptr;
+  const MNN::DepthSpaceParam *main_as_DepthSpaceParam() const {
+    return main_type() == MNN::OpParameter_DepthSpaceParam ? static_cast<const MNN::DepthSpaceParam *>(main()) : nullptr;
   }
-  const EltwiseInt8 *main_as_EltwiseInt8() const {
-    return main_type() == OpParameter_EltwiseInt8 ? static_cast<const EltwiseInt8 *>(main()) : nullptr;
+  const MNN::EltwiseInt8 *main_as_EltwiseInt8() const {
+    return main_type() == MNN::OpParameter_EltwiseInt8 ? static_cast<const MNN::EltwiseInt8 *>(main()) : nullptr;
   }
-  const ReverseSequenceParam *main_as_ReverseSequenceParam() const {
-    return main_type() == OpParameter_ReverseSequenceParam ? static_cast<const ReverseSequenceParam *>(main()) : nullptr;
+  const MNN::ReverseSequenceParam *main_as_ReverseSequenceParam() const {
+    return main_type() == MNN::OpParameter_ReverseSequenceParam ? static_cast<const MNN::ReverseSequenceParam *>(main()) : nullptr;
   }
-  const Extra *main_as_Extra() const {
-    return main_type() == OpParameter_Extra ? static_cast<const Extra *>(main()) : nullptr;
+  const MNN::Extra *main_as_Extra() const {
+    return main_type() == MNN::OpParameter_Extra ? static_cast<const MNN::Extra *>(main()) : nullptr;
   }
-  const Pool3D *main_as_Pool3D() const {
-    return main_type() == OpParameter_Pool3D ? static_cast<const Pool3D *>(main()) : nullptr;
+  const MNN::Pool3D *main_as_Pool3D() const {
+    return main_type() == MNN::OpParameter_Pool3D ? static_cast<const MNN::Pool3D *>(main()) : nullptr;
   }
-  const Convolution3D *main_as_Convolution3D() const {
-    return main_type() == OpParameter_Convolution3D ? static_cast<const Convolution3D *>(main()) : nullptr;
+  const MNN::Convolution3D *main_as_Convolution3D() const {
+    return main_type() == MNN::OpParameter_Convolution3D ? static_cast<const MNN::Convolution3D *>(main()) : nullptr;
   }
-  const ELU *main_as_ELU() const {
-    return main_type() == OpParameter_ELU ? static_cast<const ELU *>(main()) : nullptr;
+  const MNN::ELU *main_as_ELU() const {
+    return main_type() == MNN::OpParameter_ELU ? static_cast<const MNN::ELU *>(main()) : nullptr;
   }
-  const DetectionPostProcessParam *main_as_DetectionPostProcessParam() const {
-    return main_type() == OpParameter_DetectionPostProcessParam ? static_cast<const DetectionPostProcessParam *>(main()) : nullptr;
+  const MNN::DetectionPostProcessParam *main_as_DetectionPostProcessParam() const {
+    return main_type() == MNN::OpParameter_DetectionPostProcessParam ? static_cast<const MNN::DetectionPostProcessParam *>(main()) : nullptr;
   }
-  const OneHotParam *main_as_OneHotParam() const {
-    return main_type() == OpParameter_OneHotParam ? static_cast<const OneHotParam *>(main()) : nullptr;
+  const MNN::OneHotParam *main_as_OneHotParam() const {
+    return main_type() == MNN::OpParameter_OneHotParam ? static_cast<const MNN::OneHotParam *>(main()) : nullptr;
   }
-  const PadParam *main_as_PadParam() const {
-    return main_type() == OpParameter_PadParam ? static_cast<const PadParam *>(main()) : nullptr;
+  const MNN::PadParam *main_as_PadParam() const {
+    return main_type() == MNN::OpParameter_PadParam ? static_cast<const MNN::PadParam *>(main()) : nullptr;
   }
-  const WhileParam *main_as_WhileParam() const {
-    return main_type() == OpParameter_WhileParam ? static_cast<const WhileParam *>(main()) : nullptr;
+  const MNN::WhileParam *main_as_WhileParam() const {
+    return main_type() == MNN::OpParameter_WhileParam ? static_cast<const MNN::WhileParam *>(main()) : nullptr;
   }
-  const IfParam *main_as_IfParam() const {
-    return main_type() == OpParameter_IfParam ? static_cast<const IfParam *>(main()) : nullptr;
+  const MNN::IfParam *main_as_IfParam() const {
+    return main_type() == MNN::OpParameter_IfParam ? static_cast<const MNN::IfParam *>(main()) : nullptr;
   }
-  const RandomUniform *main_as_RandomUniform() const {
-    return main_type() == OpParameter_RandomUniform ? static_cast<const RandomUniform *>(main()) : nullptr;
+  const MNN::RandomUniform *main_as_RandomUniform() const {
+    return main_type() == MNN::OpParameter_RandomUniform ? static_cast<const MNN::RandomUniform *>(main()) : nullptr;
   }
-  const LayerNorm *main_as_LayerNorm() const {
-    return main_type() == OpParameter_LayerNorm ? static_cast<const LayerNorm *>(main()) : nullptr;
+  const MNN::LayerNorm *main_as_LayerNorm() const {
+    return main_type() == MNN::OpParameter_LayerNorm ? static_cast<const MNN::LayerNorm *>(main()) : nullptr;
   }
-  const TensorArray *main_as_TensorArray() const {
-    return main_type() == OpParameter_TensorArray ? static_cast<const TensorArray *>(main()) : nullptr;
+  const MNN::TensorArray *main_as_TensorArray() const {
+    return main_type() == MNN::OpParameter_TensorArray ? static_cast<const MNN::TensorArray *>(main()) : nullptr;
   }
-  const LSTMBlockCell *main_as_LSTMBlockCell() const {
-    return main_type() == OpParameter_LSTMBlockCell ? static_cast<const LSTMBlockCell *>(main()) : nullptr;
+  const MNN::LSTMBlockCell *main_as_LSTMBlockCell() const {
+    return main_type() == MNN::OpParameter_LSTMBlockCell ? static_cast<const MNN::LSTMBlockCell *>(main()) : nullptr;
   }
-  const GridSample *main_as_GridSample() const {
-    return main_type() == OpParameter_GridSample ? static_cast<const GridSample *>(main()) : nullptr;
+  const MNN::GridSample *main_as_GridSample() const {
+    return main_type() == MNN::OpParameter_GridSample ? static_cast<const MNN::GridSample *>(main()) : nullptr;
   }
   const flatbuffers::String *name() const {
     return GetPointer<const flatbuffers::String *>(VT_NAME);
@@ -3350,11 +3375,11 @@ struct Op FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *outputIndexes() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_OUTPUTINDEXES);
   }
-  OpType type() const {
-    return static_cast<OpType>(GetField<int32_t>(VT_TYPE, 0));
+  MNN::OpType type() const {
+    return static_cast<MNN::OpType>(GetField<int32_t>(VT_TYPE, 0));
   }
-  MNN_DATA_FORMAT defaultDimentionFormat() const {
-    return static_cast<MNN_DATA_FORMAT>(GetField<int8_t>(VT_DEFAULTDIMENTIONFORMAT, 1));
+  MNN::MNN_DATA_FORMAT defaultDimentionFormat() const {
+    return static_cast<MNN::MNN_DATA_FORMAT>(GetField<int8_t>(VT_DEFAULTDIMENTIONFORMAT, 1));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -3376,377 +3401,378 @@ struct Op FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   static flatbuffers::Offset<Op> Pack(flatbuffers::FlatBufferBuilder &_fbb, const OpT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
-template<> inline const QuantizedAdd *Op::main_as<QuantizedAdd>() const {
+template<> inline const MNN::QuantizedAdd *Op::main_as<MNN::QuantizedAdd>() const {
   return main_as_QuantizedAdd();
 }
 
-template<> inline const ArgMax *Op::main_as<ArgMax>() const {
+template<> inline const MNN::ArgMax *Op::main_as<MNN::ArgMax>() const {
   return main_as_ArgMax();
 }
 
-template<> inline const AsString *Op::main_as<AsString>() const {
+template<> inline const MNN::AsString *Op::main_as<MNN::AsString>() const {
   return main_as_AsString();
 }
 
-template<> inline const Axis *Op::main_as<Axis>() const {
+template<> inline const MNN::Axis *Op::main_as<MNN::Axis>() const {
   return main_as_Axis();
 }
 
-template<> inline const BatchNorm *Op::main_as<BatchNorm>() const {
+template<> inline const MNN::BatchNorm *Op::main_as<MNN::BatchNorm>() const {
   return main_as_BatchNorm();
 }
 
-template<> inline const BinaryOp *Op::main_as<BinaryOp>() const {
+template<> inline const MNN::BinaryOp *Op::main_as<MNN::BinaryOp>() const {
   return main_as_BinaryOp();
 }
 
-template<> inline const Blob *Op::main_as<Blob>() const {
+template<> inline const MNN::Blob *Op::main_as<MNN::Blob>() const {
   return main_as_Blob();
 }
 
-template<> inline const CastParam *Op::main_as<CastParam>() const {
+template<> inline const MNN::CastParam *Op::main_as<MNN::CastParam>() const {
   return main_as_CastParam();
 }
 
-template<> inline const Convolution2D *Op::main_as<Convolution2D>() const {
+template<> inline const MNN::Convolution2D *Op::main_as<MNN::Convolution2D>() const {
   return main_as_Convolution2D();
 }
 
-template<> inline const Crop *Op::main_as<Crop>() const {
+template<> inline const MNN::Crop *Op::main_as<MNN::Crop>() const {
   return main_as_Crop();
 }
 
-template<> inline const CropAndResize *Op::main_as<CropAndResize>() const {
+template<> inline const MNN::CropAndResize *Op::main_as<MNN::CropAndResize>() const {
   return main_as_CropAndResize();
 }
 
-template<> inline const Dequantize *Op::main_as<Dequantize>() const {
+template<> inline const MNN::Dequantize *Op::main_as<MNN::Dequantize>() const {
   return main_as_Dequantize();
 }
 
-template<> inline const DetectionOutput *Op::main_as<DetectionOutput>() const {
+template<> inline const MNN::DetectionOutput *Op::main_as<MNN::DetectionOutput>() const {
   return main_as_DetectionOutput();
 }
 
-template<> inline const Eltwise *Op::main_as<Eltwise>() const {
+template<> inline const MNN::Eltwise *Op::main_as<MNN::Eltwise>() const {
   return main_as_Eltwise();
 }
 
-template<> inline const ExpandDims *Op::main_as<ExpandDims>() const {
+template<> inline const MNN::ExpandDims *Op::main_as<MNN::ExpandDims>() const {
   return main_as_ExpandDims();
 }
 
-template<> inline const Fill *Op::main_as<Fill>() const {
+template<> inline const MNN::Fill *Op::main_as<MNN::Fill>() const {
   return main_as_Fill();
 }
 
-template<> inline const Flatten *Op::main_as<Flatten>() const {
+template<> inline const MNN::Flatten *Op::main_as<MNN::Flatten>() const {
   return main_as_Flatten();
 }
 
-template<> inline const Gather *Op::main_as<Gather>() const {
+template<> inline const MNN::Gather *Op::main_as<MNN::Gather>() const {
   return main_as_Gather();
 }
 
-template<> inline const GatherV2 *Op::main_as<GatherV2>() const {
+template<> inline const MNN::GatherV2 *Op::main_as<MNN::GatherV2>() const {
   return main_as_GatherV2();
 }
 
-template<> inline const InnerProduct *Op::main_as<InnerProduct>() const {
+template<> inline const MNN::InnerProduct *Op::main_as<MNN::InnerProduct>() const {
   return main_as_InnerProduct();
 }
 
-template<> inline const Input *Op::main_as<Input>() const {
+template<> inline const MNN::Input *Op::main_as<MNN::Input>() const {
   return main_as_Input();
 }
 
-template<> inline const Interp *Op::main_as<Interp>() const {
+template<> inline const MNN::Interp *Op::main_as<MNN::Interp>() const {
   return main_as_Interp();
 }
 
-template<> inline const LRN *Op::main_as<LRN>() const {
+template<> inline const MNN::LRN *Op::main_as<MNN::LRN>() const {
   return main_as_LRN();
 }
 
-template<> inline const LSTM *Op::main_as<LSTM>() const {
+template<> inline const MNN::LSTM *Op::main_as<MNN::LSTM>() const {
   return main_as_LSTM();
 }
 
-template<> inline const MatMul *Op::main_as<MatMul>() const {
+template<> inline const MNN::MatMul *Op::main_as<MNN::MatMul>() const {
   return main_as_MatMul();
 }
 
-template<> inline const NonMaxSuppressionV2 *Op::main_as<NonMaxSuppressionV2>() const {
+template<> inline const MNN::NonMaxSuppressionV2 *Op::main_as<MNN::NonMaxSuppressionV2>() const {
   return main_as_NonMaxSuppressionV2();
 }
 
-template<> inline const Normalize *Op::main_as<Normalize>() const {
+template<> inline const MNN::Normalize *Op::main_as<MNN::Normalize>() const {
   return main_as_Normalize();
 }
 
-template<> inline const PackParam *Op::main_as<PackParam>() const {
+template<> inline const MNN::PackParam *Op::main_as<MNN::PackParam>() const {
   return main_as_PackParam();
 }
 
-template<> inline const Permute *Op::main_as<Permute>() const {
+template<> inline const MNN::Permute *Op::main_as<MNN::Permute>() const {
   return main_as_Permute();
 }
 
-template<> inline const Plugin *Op::main_as<Plugin>() const {
+template<> inline const MNN::Plugin *Op::main_as<MNN::Plugin>() const {
   return main_as_Plugin();
 }
 
-template<> inline const Pool *Op::main_as<Pool>() const {
+template<> inline const MNN::Pool *Op::main_as<MNN::Pool>() const {
   return main_as_Pool();
 }
 
-template<> inline const PRelu *Op::main_as<PRelu>() const {
+template<> inline const MNN::PRelu *Op::main_as<MNN::PRelu>() const {
   return main_as_PRelu();
 }
 
-template<> inline const PriorBox *Op::main_as<PriorBox>() const {
+template<> inline const MNN::PriorBox *Op::main_as<MNN::PriorBox>() const {
   return main_as_PriorBox();
 }
 
-template<> inline const Proposal *Op::main_as<Proposal>() const {
+template<> inline const MNN::Proposal *Op::main_as<MNN::Proposal>() const {
   return main_as_Proposal();
 }
 
-template<> inline const QuantizedAvgPool *Op::main_as<QuantizedAvgPool>() const {
+template<> inline const MNN::QuantizedAvgPool *Op::main_as<MNN::QuantizedAvgPool>() const {
   return main_as_QuantizedAvgPool();
 }
 
-template<> inline const QuantizedBiasAdd *Op::main_as<QuantizedBiasAdd>() const {
+template<> inline const MNN::QuantizedBiasAdd *Op::main_as<MNN::QuantizedBiasAdd>() const {
   return main_as_QuantizedBiasAdd();
 }
 
-template<> inline const QuantizedConcat *Op::main_as<QuantizedConcat>() const {
+template<> inline const MNN::QuantizedConcat *Op::main_as<MNN::QuantizedConcat>() const {
   return main_as_QuantizedConcat();
 }
 
-template<> inline const QuantizedLogistic *Op::main_as<QuantizedLogistic>() const {
+template<> inline const MNN::QuantizedLogistic *Op::main_as<MNN::QuantizedLogistic>() const {
   return main_as_QuantizedLogistic();
 }
 
-template<> inline const QuantizedMatMul *Op::main_as<QuantizedMatMul>() const {
+template<> inline const MNN::QuantizedMatMul *Op::main_as<MNN::QuantizedMatMul>() const {
   return main_as_QuantizedMatMul();
 }
 
-template<> inline const QuantizedMaxPool *Op::main_as<QuantizedMaxPool>() const {
+template<> inline const MNN::QuantizedMaxPool *Op::main_as<MNN::QuantizedMaxPool>() const {
   return main_as_QuantizedMaxPool();
 }
 
-template<> inline const QuantizedRelu *Op::main_as<QuantizedRelu>() const {
+template<> inline const MNN::QuantizedRelu *Op::main_as<MNN::QuantizedRelu>() const {
   return main_as_QuantizedRelu();
 }
 
-template<> inline const QuantizedRelu6 *Op::main_as<QuantizedRelu6>() const {
+template<> inline const MNN::QuantizedRelu6 *Op::main_as<MNN::QuantizedRelu6>() const {
   return main_as_QuantizedRelu6();
 }
 
-template<> inline const QuantizedReshape *Op::main_as<QuantizedReshape>() const {
+template<> inline const MNN::QuantizedReshape *Op::main_as<MNN::QuantizedReshape>() const {
   return main_as_QuantizedReshape();
 }
 
-template<> inline const QuantizedSoftmax *Op::main_as<QuantizedSoftmax>() const {
+template<> inline const MNN::QuantizedSoftmax *Op::main_as<MNN::QuantizedSoftmax>() const {
   return main_as_QuantizedSoftmax();
 }
 
-template<> inline const QuantizeMaxMin *Op::main_as<QuantizeMaxMin>() const {
+template<> inline const MNN::QuantizeMaxMin *Op::main_as<MNN::QuantizeMaxMin>() const {
   return main_as_QuantizeMaxMin();
 }
 
-template<> inline const QuantizeV2 *Op::main_as<QuantizeV2>() const {
+template<> inline const MNN::QuantizeV2 *Op::main_as<MNN::QuantizeV2>() const {
   return main_as_QuantizeV2();
 }
 
-template<> inline const Range *Op::main_as<Range>() const {
+template<> inline const MNN::Range *Op::main_as<MNN::Range>() const {
   return main_as_Range();
 }
 
-template<> inline const Rank *Op::main_as<Rank>() const {
+template<> inline const MNN::Rank *Op::main_as<MNN::Rank>() const {
   return main_as_Rank();
 }
 
-template<> inline const ReduceJoin *Op::main_as<ReduceJoin>() const {
+template<> inline const MNN::ReduceJoin *Op::main_as<MNN::ReduceJoin>() const {
   return main_as_ReduceJoin();
 }
 
-template<> inline const ReductionParam *Op::main_as<ReductionParam>() const {
+template<> inline const MNN::ReductionParam *Op::main_as<MNN::ReductionParam>() const {
   return main_as_ReductionParam();
 }
 
-template<> inline const Relu *Op::main_as<Relu>() const {
+template<> inline const MNN::Relu *Op::main_as<MNN::Relu>() const {
   return main_as_Relu();
 }
 
-template<> inline const Relu6 *Op::main_as<Relu6>() const {
+template<> inline const MNN::Relu6 *Op::main_as<MNN::Relu6>() const {
   return main_as_Relu6();
 }
 
-template<> inline const RequantizationRange *Op::main_as<RequantizationRange>() const {
+template<> inline const MNN::RequantizationRange *Op::main_as<MNN::RequantizationRange>() const {
   return main_as_RequantizationRange();
 }
 
-template<> inline const Requantize *Op::main_as<Requantize>() const {
+template<> inline const MNN::Requantize *Op::main_as<MNN::Requantize>() const {
   return main_as_Requantize();
 }
 
-template<> inline const Reshape *Op::main_as<Reshape>() const {
+template<> inline const MNN::Reshape *Op::main_as<MNN::Reshape>() const {
   return main_as_Reshape();
 }
 
-template<> inline const Resize *Op::main_as<Resize>() const {
+template<> inline const MNN::Resize *Op::main_as<MNN::Resize>() const {
   return main_as_Resize();
 }
 
-template<> inline const RoiPooling *Op::main_as<RoiPooling>() const {
+template<> inline const MNN::RoiPooling *Op::main_as<MNN::RoiPooling>() const {
   return main_as_RoiPooling();
 }
 
-template<> inline const Scale *Op::main_as<Scale>() const {
+template<> inline const MNN::Scale *Op::main_as<MNN::Scale>() const {
   return main_as_Scale();
 }
 
-template<> inline const Selu *Op::main_as<Selu>() const {
+template<> inline const MNN::Selu *Op::main_as<MNN::Selu>() const {
   return main_as_Selu();
 }
 
-template<> inline const Size *Op::main_as<Size>() const {
+template<> inline const MNN::Size *Op::main_as<MNN::Size>() const {
   return main_as_Size();
 }
 
-template<> inline const Slice *Op::main_as<Slice>() const {
+template<> inline const MNN::Slice *Op::main_as<MNN::Slice>() const {
   return main_as_Slice();
 }
 
-template<> inline const SliceTf *Op::main_as<SliceTf>() const {
+template<> inline const MNN::SliceTf *Op::main_as<MNN::SliceTf>() const {
   return main_as_SliceTf();
 }
 
-template<> inline const SpaceBatch *Op::main_as<SpaceBatch>() const {
+template<> inline const MNN::SpaceBatch *Op::main_as<MNN::SpaceBatch>() const {
   return main_as_SpaceBatch();
 }
 
-template<> inline const SqueezeParam *Op::main_as<SqueezeParam>() const {
+template<> inline const MNN::SqueezeParam *Op::main_as<MNN::SqueezeParam>() const {
   return main_as_SqueezeParam();
 }
 
-template<> inline const StridedSliceParam *Op::main_as<StridedSliceParam>() const {
+template<> inline const MNN::StridedSliceParam *Op::main_as<MNN::StridedSliceParam>() const {
   return main_as_StridedSliceParam();
 }
 
-template<> inline const TensorConvertInfo *Op::main_as<TensorConvertInfo>() const {
+template<> inline const MNN::TensorConvertInfo *Op::main_as<MNN::TensorConvertInfo>() const {
   return main_as_TensorConvertInfo();
 }
 
-template<> inline const TfQuantizedConv2D *Op::main_as<TfQuantizedConv2D>() const {
+template<> inline const MNN::TfQuantizedConv2D *Op::main_as<MNN::TfQuantizedConv2D>() const {
   return main_as_TfQuantizedConv2D();
 }
 
-template<> inline const TopKV2 *Op::main_as<TopKV2>() const {
+template<> inline const MNN::TopKV2 *Op::main_as<MNN::TopKV2>() const {
   return main_as_TopKV2();
 }
 
-template<> inline const Transpose *Op::main_as<Transpose>() const {
+template<> inline const MNN::Transpose *Op::main_as<MNN::Transpose>() const {
   return main_as_Transpose();
 }
 
-template<> inline const UnaryOp *Op::main_as<UnaryOp>() const {
+template<> inline const MNN::UnaryOp *Op::main_as<MNN::UnaryOp>() const {
   return main_as_UnaryOp();
 }
 
-template<> inline const MomentsParam *Op::main_as<MomentsParam>() const {
+template<> inline const MNN::MomentsParam *Op::main_as<MNN::MomentsParam>() const {
   return main_as_MomentsParam();
 }
 
-template<> inline const RNNParam *Op::main_as<RNNParam>() const {
+template<> inline const MNN::RNNParam *Op::main_as<MNN::RNNParam>() const {
   return main_as_RNNParam();
 }
 
-template<> inline const BatchMatMulParam *Op::main_as<BatchMatMulParam>() const {
+template<> inline const MNN::BatchMatMulParam *Op::main_as<MNN::BatchMatMulParam>() const {
   return main_as_BatchMatMulParam();
 }
 
-template<> inline const QuantizedFloatParam *Op::main_as<QuantizedFloatParam>() const {
+template<> inline const MNN::QuantizedFloatParam *Op::main_as<MNN::QuantizedFloatParam>() const {
   return main_as_QuantizedFloatParam();
 }
 
-template<> inline const DepthSpaceParam *Op::main_as<DepthSpaceParam>() const {
+template<> inline const MNN::DepthSpaceParam *Op::main_as<MNN::DepthSpaceParam>() const {
   return main_as_DepthSpaceParam();
 }
 
-template<> inline const EltwiseInt8 *Op::main_as<EltwiseInt8>() const {
+template<> inline const MNN::EltwiseInt8 *Op::main_as<MNN::EltwiseInt8>() const {
   return main_as_EltwiseInt8();
 }
 
-template<> inline const ReverseSequenceParam *Op::main_as<ReverseSequenceParam>() const {
+template<> inline const MNN::ReverseSequenceParam *Op::main_as<MNN::ReverseSequenceParam>() const {
   return main_as_ReverseSequenceParam();
 }
 
-template<> inline const Extra *Op::main_as<Extra>() const {
+template<> inline const MNN::Extra *Op::main_as<MNN::Extra>() const {
   return main_as_Extra();
 }
 
-template<> inline const Pool3D *Op::main_as<Pool3D>() const {
+template<> inline const MNN::Pool3D *Op::main_as<MNN::Pool3D>() const {
   return main_as_Pool3D();
 }
 
-template<> inline const Convolution3D *Op::main_as<Convolution3D>() const {
+template<> inline const MNN::Convolution3D *Op::main_as<MNN::Convolution3D>() const {
   return main_as_Convolution3D();
 }
 
-template<> inline const ELU *Op::main_as<ELU>() const {
+template<> inline const MNN::ELU *Op::main_as<MNN::ELU>() const {
   return main_as_ELU();
 }
 
-template<> inline const DetectionPostProcessParam *Op::main_as<DetectionPostProcessParam>() const {
+template<> inline const MNN::DetectionPostProcessParam *Op::main_as<MNN::DetectionPostProcessParam>() const {
   return main_as_DetectionPostProcessParam();
 }
 
-template<> inline const OneHotParam *Op::main_as<OneHotParam>() const {
+template<> inline const MNN::OneHotParam *Op::main_as<MNN::OneHotParam>() const {
   return main_as_OneHotParam();
 }
 
-template<> inline const PadParam *Op::main_as<PadParam>() const {
+template<> inline const MNN::PadParam *Op::main_as<MNN::PadParam>() const {
   return main_as_PadParam();
 }
 
-template<> inline const WhileParam *Op::main_as<WhileParam>() const {
+template<> inline const MNN::WhileParam *Op::main_as<MNN::WhileParam>() const {
   return main_as_WhileParam();
 }
 
-template<> inline const IfParam *Op::main_as<IfParam>() const {
+template<> inline const MNN::IfParam *Op::main_as<MNN::IfParam>() const {
   return main_as_IfParam();
 }
 
-template<> inline const RandomUniform *Op::main_as<RandomUniform>() const {
+template<> inline const MNN::RandomUniform *Op::main_as<MNN::RandomUniform>() const {
   return main_as_RandomUniform();
 }
 
-template<> inline const LayerNorm *Op::main_as<LayerNorm>() const {
+template<> inline const MNN::LayerNorm *Op::main_as<MNN::LayerNorm>() const {
   return main_as_LayerNorm();
 }
 
-template<> inline const TensorArray *Op::main_as<TensorArray>() const {
+template<> inline const MNN::TensorArray *Op::main_as<MNN::TensorArray>() const {
   return main_as_TensorArray();
 }
 
-template<> inline const LSTMBlockCell *Op::main_as<LSTMBlockCell>() const {
+template<> inline const MNN::LSTMBlockCell *Op::main_as<MNN::LSTMBlockCell>() const {
   return main_as_LSTMBlockCell();
 }
 
-template<> inline const GridSample *Op::main_as<GridSample>() const {
+template<> inline const MNN::GridSample *Op::main_as<MNN::GridSample>() const {
   return main_as_GridSample();
 }
 
 struct OpBuilder {
+  typedef Op Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_inputIndexes(flatbuffers::Offset<flatbuffers::Vector<int32_t>> inputIndexes) {
     fbb_.AddOffset(Op::VT_INPUTINDEXES, inputIndexes);
   }
-  void add_main_type(OpParameter main_type) {
+  void add_main_type(MNN::OpParameter main_type) {
     fbb_.AddElement<uint8_t>(Op::VT_MAIN_TYPE, static_cast<uint8_t>(main_type), 0);
   }
   void add_main(flatbuffers::Offset<void> main) {
@@ -3758,10 +3784,10 @@ struct OpBuilder {
   void add_outputIndexes(flatbuffers::Offset<flatbuffers::Vector<int32_t>> outputIndexes) {
     fbb_.AddOffset(Op::VT_OUTPUTINDEXES, outputIndexes);
   }
-  void add_type(OpType type) {
+  void add_type(MNN::OpType type) {
     fbb_.AddElement<int32_t>(Op::VT_TYPE, static_cast<int32_t>(type), 0);
   }
-  void add_defaultDimentionFormat(MNN_DATA_FORMAT defaultDimentionFormat) {
+  void add_defaultDimentionFormat(MNN::MNN_DATA_FORMAT defaultDimentionFormat) {
     fbb_.AddElement<int8_t>(Op::VT_DEFAULTDIMENTIONFORMAT, static_cast<int8_t>(defaultDimentionFormat), 1);
   }
   explicit OpBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -3779,12 +3805,12 @@ struct OpBuilder {
 inline flatbuffers::Offset<Op> CreateOp(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> inputIndexes = 0,
-    OpParameter main_type = OpParameter_NONE,
+    MNN::OpParameter main_type = MNN::OpParameter_NONE,
     flatbuffers::Offset<void> main = 0,
     flatbuffers::Offset<flatbuffers::String> name = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> outputIndexes = 0,
-    OpType type = OpType_AbsVal,
-    MNN_DATA_FORMAT defaultDimentionFormat = MNN_DATA_FORMAT_NHWC) {
+    MNN::OpType type = MNN::OpType_AbsVal,
+    MNN::MNN_DATA_FORMAT defaultDimentionFormat = MNN::MNN_DATA_FORMAT_NHWC) {
   OpBuilder builder_(_fbb);
   builder_.add_type(type);
   builder_.add_outputIndexes(outputIndexes);
@@ -3799,12 +3825,12 @@ inline flatbuffers::Offset<Op> CreateOp(
 inline flatbuffers::Offset<Op> CreateOpDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<int32_t> *inputIndexes = nullptr,
-    OpParameter main_type = OpParameter_NONE,
+    MNN::OpParameter main_type = MNN::OpParameter_NONE,
     flatbuffers::Offset<void> main = 0,
     const char *name = nullptr,
     const std::vector<int32_t> *outputIndexes = nullptr,
-    OpType type = OpType_AbsVal,
-    MNN_DATA_FORMAT defaultDimentionFormat = MNN_DATA_FORMAT_NHWC) {
+    MNN::OpType type = MNN::OpType_AbsVal,
+    MNN::MNN_DATA_FORMAT defaultDimentionFormat = MNN::MNN_DATA_FORMAT_NHWC) {
   auto inputIndexes__ = inputIndexes ? _fbb.CreateVector<int32_t>(*inputIndexes) : 0;
   auto name__ = name ? _fbb.CreateString(name) : 0;
   auto outputIndexes__ = outputIndexes ? _fbb.CreateVector<int32_t>(*outputIndexes) : 0;
@@ -3832,6 +3858,7 @@ struct ViewT : public flatbuffers::NativeTable {
 
 struct View FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ViewT NativeTableType;
+  typedef ViewBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ViewTypeTable();
   }
@@ -3858,6 +3885,7 @@ struct View FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ViewBuilder {
+  typedef View Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_offset(int32_t offset) {
@@ -3903,8 +3931,8 @@ flatbuffers::Offset<View> CreateView(flatbuffers::FlatBufferBuilder &_fbb, const
 
 struct RegionT : public flatbuffers::NativeTable {
   typedef Region TableType;
-  std::unique_ptr<ViewT> src;
-  std::unique_ptr<ViewT> dst;
+  std::unique_ptr<MNN::ViewT> src;
+  std::unique_ptr<MNN::ViewT> dst;
   std::vector<int32_t> size;
   int32_t origin;
   RegionT()
@@ -3914,6 +3942,7 @@ struct RegionT : public flatbuffers::NativeTable {
 
 struct Region FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef RegionT NativeTableType;
+  typedef RegionBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return RegionTypeTable();
   }
@@ -3923,11 +3952,11 @@ struct Region FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_SIZE = 8,
     VT_ORIGIN = 10
   };
-  const View *src() const {
-    return GetPointer<const View *>(VT_SRC);
+  const MNN::View *src() const {
+    return GetPointer<const MNN::View *>(VT_SRC);
   }
-  const View *dst() const {
-    return GetPointer<const View *>(VT_DST);
+  const MNN::View *dst() const {
+    return GetPointer<const MNN::View *>(VT_DST);
   }
   const flatbuffers::Vector<int32_t> *size() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_SIZE);
@@ -3952,12 +3981,13 @@ struct Region FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct RegionBuilder {
+  typedef Region Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_src(flatbuffers::Offset<View> src) {
+  void add_src(flatbuffers::Offset<MNN::View> src) {
     fbb_.AddOffset(Region::VT_SRC, src);
   }
-  void add_dst(flatbuffers::Offset<View> dst) {
+  void add_dst(flatbuffers::Offset<MNN::View> dst) {
     fbb_.AddOffset(Region::VT_DST, dst);
   }
   void add_size(flatbuffers::Offset<flatbuffers::Vector<int32_t>> size) {
@@ -3980,8 +4010,8 @@ struct RegionBuilder {
 
 inline flatbuffers::Offset<Region> CreateRegion(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<View> src = 0,
-    flatbuffers::Offset<View> dst = 0,
+    flatbuffers::Offset<MNN::View> src = 0,
+    flatbuffers::Offset<MNN::View> dst = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> size = 0,
     int32_t origin = 0) {
   RegionBuilder builder_(_fbb);
@@ -3994,8 +4024,8 @@ inline flatbuffers::Offset<Region> CreateRegion(
 
 inline flatbuffers::Offset<Region> CreateRegionDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<View> src = 0,
-    flatbuffers::Offset<View> dst = 0,
+    flatbuffers::Offset<MNN::View> src = 0,
+    flatbuffers::Offset<MNN::View> dst = 0,
     const std::vector<int32_t> *size = nullptr,
     int32_t origin = 0) {
   auto size__ = size ? _fbb.CreateVector<int32_t>(*size) : 0;
@@ -4011,11 +4041,11 @@ flatbuffers::Offset<Region> CreateRegion(flatbuffers::FlatBufferBuilder &_fbb, c
 
 struct TensorDescribeT : public flatbuffers::NativeTable {
   typedef TensorDescribe TableType;
-  std::unique_ptr<BlobT> blob;
+  std::unique_ptr<MNN::BlobT> blob;
   int32_t index;
   std::string name;
-  std::vector<std::unique_ptr<RegionT>> regions;
-  std::unique_ptr<TensorQuantInfoT> quantInfo;
+  std::vector<std::unique_ptr<MNN::RegionT>> regions;
+  std::unique_ptr<MNN::TensorQuantInfoT> quantInfo;
   TensorDescribeT()
       : index(0) {
   }
@@ -4023,6 +4053,7 @@ struct TensorDescribeT : public flatbuffers::NativeTable {
 
 struct TensorDescribe FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef TensorDescribeT NativeTableType;
+  typedef TensorDescribeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return TensorDescribeTypeTable();
   }
@@ -4033,8 +4064,8 @@ struct TensorDescribe FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_REGIONS = 10,
     VT_QUANTINFO = 12
   };
-  const Blob *blob() const {
-    return GetPointer<const Blob *>(VT_BLOB);
+  const MNN::Blob *blob() const {
+    return GetPointer<const MNN::Blob *>(VT_BLOB);
   }
   int32_t index() const {
     return GetField<int32_t>(VT_INDEX, 0);
@@ -4042,11 +4073,11 @@ struct TensorDescribe FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::String *name() const {
     return GetPointer<const flatbuffers::String *>(VT_NAME);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<Region>> *regions() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<Region>> *>(VT_REGIONS);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::Region>> *regions() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::Region>> *>(VT_REGIONS);
   }
-  const TensorQuantInfo *quantInfo() const {
-    return GetPointer<const TensorQuantInfo *>(VT_QUANTINFO);
+  const MNN::TensorQuantInfo *quantInfo() const {
+    return GetPointer<const MNN::TensorQuantInfo *>(VT_QUANTINFO);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -4068,9 +4099,10 @@ struct TensorDescribe FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct TensorDescribeBuilder {
+  typedef TensorDescribe Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_blob(flatbuffers::Offset<Blob> blob) {
+  void add_blob(flatbuffers::Offset<MNN::Blob> blob) {
     fbb_.AddOffset(TensorDescribe::VT_BLOB, blob);
   }
   void add_index(int32_t index) {
@@ -4079,10 +4111,10 @@ struct TensorDescribeBuilder {
   void add_name(flatbuffers::Offset<flatbuffers::String> name) {
     fbb_.AddOffset(TensorDescribe::VT_NAME, name);
   }
-  void add_regions(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Region>>> regions) {
+  void add_regions(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Region>>> regions) {
     fbb_.AddOffset(TensorDescribe::VT_REGIONS, regions);
   }
-  void add_quantInfo(flatbuffers::Offset<TensorQuantInfo> quantInfo) {
+  void add_quantInfo(flatbuffers::Offset<MNN::TensorQuantInfo> quantInfo) {
     fbb_.AddOffset(TensorDescribe::VT_QUANTINFO, quantInfo);
   }
   explicit TensorDescribeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -4099,11 +4131,11 @@ struct TensorDescribeBuilder {
 
 inline flatbuffers::Offset<TensorDescribe> CreateTensorDescribe(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<Blob> blob = 0,
+    flatbuffers::Offset<MNN::Blob> blob = 0,
     int32_t index = 0,
     flatbuffers::Offset<flatbuffers::String> name = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Region>>> regions = 0,
-    flatbuffers::Offset<TensorQuantInfo> quantInfo = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Region>>> regions = 0,
+    flatbuffers::Offset<MNN::TensorQuantInfo> quantInfo = 0) {
   TensorDescribeBuilder builder_(_fbb);
   builder_.add_quantInfo(quantInfo);
   builder_.add_regions(regions);
@@ -4115,13 +4147,13 @@ inline flatbuffers::Offset<TensorDescribe> CreateTensorDescribe(
 
 inline flatbuffers::Offset<TensorDescribe> CreateTensorDescribeDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<Blob> blob = 0,
+    flatbuffers::Offset<MNN::Blob> blob = 0,
     int32_t index = 0,
     const char *name = nullptr,
-    const std::vector<flatbuffers::Offset<Region>> *regions = nullptr,
-    flatbuffers::Offset<TensorQuantInfo> quantInfo = 0) {
+    const std::vector<flatbuffers::Offset<MNN::Region>> *regions = nullptr,
+    flatbuffers::Offset<MNN::TensorQuantInfo> quantInfo = 0) {
   auto name__ = name ? _fbb.CreateString(name) : 0;
-  auto regions__ = regions ? _fbb.CreateVector<flatbuffers::Offset<Region>>(*regions) : 0;
+  auto regions__ = regions ? _fbb.CreateVector<flatbuffers::Offset<MNN::Region>>(*regions) : 0;
   return MNN::CreateTensorDescribe(
       _fbb,
       blob,
@@ -4139,14 +4171,15 @@ struct SubGraphProtoT : public flatbuffers::NativeTable {
   std::vector<int32_t> inputs;
   std::vector<int32_t> outputs;
   std::vector<std::string> tensors;
-  std::vector<std::unique_ptr<OpT>> nodes;
-  std::vector<std::unique_ptr<TensorDescribeT>> extraTensorDescribe;
+  std::vector<std::unique_ptr<MNN::OpT>> nodes;
+  std::vector<std::unique_ptr<MNN::TensorDescribeT>> extraTensorDescribe;
   SubGraphProtoT() {
   }
 };
 
 struct SubGraphProto FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef SubGraphProtoT NativeTableType;
+  typedef SubGraphProtoBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return SubGraphProtoTypeTable();
   }
@@ -4170,11 +4203,11 @@ struct SubGraphProto FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *tensors() const {
     return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *>(VT_TENSORS);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<Op>> *nodes() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<Op>> *>(VT_NODES);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::Op>> *nodes() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::Op>> *>(VT_NODES);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<TensorDescribe>> *extraTensorDescribe() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<TensorDescribe>> *>(VT_EXTRATENSORDESCRIBE);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::TensorDescribe>> *extraTensorDescribe() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::TensorDescribe>> *>(VT_EXTRATENSORDESCRIBE);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -4201,6 +4234,7 @@ struct SubGraphProto FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct SubGraphProtoBuilder {
+  typedef SubGraphProto Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_name(flatbuffers::Offset<flatbuffers::String> name) {
@@ -4215,10 +4249,10 @@ struct SubGraphProtoBuilder {
   void add_tensors(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> tensors) {
     fbb_.AddOffset(SubGraphProto::VT_TENSORS, tensors);
   }
-  void add_nodes(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Op>>> nodes) {
+  void add_nodes(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Op>>> nodes) {
     fbb_.AddOffset(SubGraphProto::VT_NODES, nodes);
   }
-  void add_extraTensorDescribe(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<TensorDescribe>>> extraTensorDescribe) {
+  void add_extraTensorDescribe(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::TensorDescribe>>> extraTensorDescribe) {
     fbb_.AddOffset(SubGraphProto::VT_EXTRATENSORDESCRIBE, extraTensorDescribe);
   }
   explicit SubGraphProtoBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -4239,8 +4273,8 @@ inline flatbuffers::Offset<SubGraphProto> CreateSubGraphProto(
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> inputs = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> outputs = 0,
     flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> tensors = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Op>>> nodes = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<TensorDescribe>>> extraTensorDescribe = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Op>>> nodes = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::TensorDescribe>>> extraTensorDescribe = 0) {
   SubGraphProtoBuilder builder_(_fbb);
   builder_.add_extraTensorDescribe(extraTensorDescribe);
   builder_.add_nodes(nodes);
@@ -4257,14 +4291,14 @@ inline flatbuffers::Offset<SubGraphProto> CreateSubGraphProtoDirect(
     const std::vector<int32_t> *inputs = nullptr,
     const std::vector<int32_t> *outputs = nullptr,
     const std::vector<flatbuffers::Offset<flatbuffers::String>> *tensors = nullptr,
-    const std::vector<flatbuffers::Offset<Op>> *nodes = nullptr,
-    const std::vector<flatbuffers::Offset<TensorDescribe>> *extraTensorDescribe = nullptr) {
+    const std::vector<flatbuffers::Offset<MNN::Op>> *nodes = nullptr,
+    const std::vector<flatbuffers::Offset<MNN::TensorDescribe>> *extraTensorDescribe = nullptr) {
   auto name__ = name ? _fbb.CreateString(name) : 0;
   auto inputs__ = inputs ? _fbb.CreateVector<int32_t>(*inputs) : 0;
   auto outputs__ = outputs ? _fbb.CreateVector<int32_t>(*outputs) : 0;
   auto tensors__ = tensors ? _fbb.CreateVector<flatbuffers::Offset<flatbuffers::String>>(*tensors) : 0;
-  auto nodes__ = nodes ? _fbb.CreateVector<flatbuffers::Offset<Op>>(*nodes) : 0;
-  auto extraTensorDescribe__ = extraTensorDescribe ? _fbb.CreateVector<flatbuffers::Offset<TensorDescribe>>(*extraTensorDescribe) : 0;
+  auto nodes__ = nodes ? _fbb.CreateVector<flatbuffers::Offset<MNN::Op>>(*nodes) : 0;
+  auto extraTensorDescribe__ = extraTensorDescribe ? _fbb.CreateVector<flatbuffers::Offset<MNN::TensorDescribe>>(*extraTensorDescribe) : 0;
   return MNN::CreateSubGraphProto(
       _fbb,
       name__,
@@ -4283,18 +4317,19 @@ struct TensorQuantInfoT : public flatbuffers::NativeTable {
   float zero;
   float min;
   float max;
-  DataType type;
+  MNN::DataType type;
   TensorQuantInfoT()
       : scale(0.0f),
         zero(0.0f),
         min(-128.0f),
         max(127.0f),
-        type(DataType_DT_INVALID) {
+        type(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct TensorQuantInfo FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef TensorQuantInfoT NativeTableType;
+  typedef TensorQuantInfoBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return TensorQuantInfoTypeTable();
   }
@@ -4317,8 +4352,8 @@ struct TensorQuantInfo FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   float max() const {
     return GetField<float>(VT_MAX, 127.0f);
   }
-  DataType type() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TYPE, 0));
+  MNN::DataType type() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -4335,6 +4370,7 @@ struct TensorQuantInfo FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct TensorQuantInfoBuilder {
+  typedef TensorQuantInfo Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_scale(float scale) {
@@ -4349,7 +4385,7 @@ struct TensorQuantInfoBuilder {
   void add_max(float max) {
     fbb_.AddElement<float>(TensorQuantInfo::VT_MAX, max, 127.0f);
   }
-  void add_type(DataType type) {
+  void add_type(MNN::DataType type) {
     fbb_.AddElement<int32_t>(TensorQuantInfo::VT_TYPE, static_cast<int32_t>(type), 0);
   }
   explicit TensorQuantInfoBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -4370,7 +4406,7 @@ inline flatbuffers::Offset<TensorQuantInfo> CreateTensorQuantInfo(
     float zero = 0.0f,
     float min = -128.0f,
     float max = 127.0f,
-    DataType type = DataType_DT_INVALID) {
+    MNN::DataType type = MNN::DataType_DT_INVALID) {
   TensorQuantInfoBuilder builder_(_fbb);
   builder_.add_type(type);
   builder_.add_max(max);
@@ -4385,26 +4421,27 @@ flatbuffers::Offset<TensorQuantInfo> CreateTensorQuantInfo(flatbuffers::FlatBuff
 struct NetT : public flatbuffers::NativeTable {
   typedef Net TableType;
   std::string bizCode;
-  std::vector<std::unique_ptr<TensorDescribeT>> extraTensorDescribe;
-  std::unique_ptr<GpuLibraryT> gpulibrary;
-  std::vector<std::unique_ptr<OpT>> oplists;
+  std::vector<std::unique_ptr<MNN::TensorDescribeT>> extraTensorDescribe;
+  std::unique_ptr<MNN::GpuLibraryT> gpulibrary;
+  std::vector<std::unique_ptr<MNN::OpT>> oplists;
   std::vector<std::string> outputName;
-  ForwardType preferForwardType;
-  NetSource sourceType;
+  MNN::ForwardType preferForwardType;
+  MNN::NetSource sourceType;
   std::vector<std::string> tensorName;
   int32_t tensorNumber;
-  Usage usage;
-  std::vector<std::unique_ptr<SubGraphProtoT>> subgraphs;
+  MNN::Usage usage;
+  std::vector<std::unique_ptr<MNN::SubGraphProtoT>> subgraphs;
   NetT()
-      : preferForwardType(ForwardType_CPU),
-        sourceType(NetSource_CAFFE),
+      : preferForwardType(MNN::ForwardType_CPU),
+        sourceType(MNN::NetSource_CAFFE),
         tensorNumber(0),
-        usage(Usage_INFERENCE) {
+        usage(MNN::Usage_INFERENCE) {
   }
 };
 
 struct Net FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef NetT NativeTableType;
+  typedef NetBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return NetTypeTable();
   }
@@ -4424,23 +4461,23 @@ struct Net FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::String *bizCode() const {
     return GetPointer<const flatbuffers::String *>(VT_BIZCODE);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<TensorDescribe>> *extraTensorDescribe() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<TensorDescribe>> *>(VT_EXTRATENSORDESCRIBE);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::TensorDescribe>> *extraTensorDescribe() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::TensorDescribe>> *>(VT_EXTRATENSORDESCRIBE);
   }
-  const GpuLibrary *gpulibrary() const {
-    return GetPointer<const GpuLibrary *>(VT_GPULIBRARY);
+  const MNN::GpuLibrary *gpulibrary() const {
+    return GetPointer<const MNN::GpuLibrary *>(VT_GPULIBRARY);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<Op>> *oplists() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<Op>> *>(VT_OPLISTS);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::Op>> *oplists() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::Op>> *>(VT_OPLISTS);
   }
   const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *outputName() const {
     return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *>(VT_OUTPUTNAME);
   }
-  ForwardType preferForwardType() const {
-    return static_cast<ForwardType>(GetField<int8_t>(VT_PREFERFORWARDTYPE, 0));
+  MNN::ForwardType preferForwardType() const {
+    return static_cast<MNN::ForwardType>(GetField<int8_t>(VT_PREFERFORWARDTYPE, 0));
   }
-  NetSource sourceType() const {
-    return static_cast<NetSource>(GetField<int8_t>(VT_SOURCETYPE, 0));
+  MNN::NetSource sourceType() const {
+    return static_cast<MNN::NetSource>(GetField<int8_t>(VT_SOURCETYPE, 0));
   }
   const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *tensorName() const {
     return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *>(VT_TENSORNAME);
@@ -4448,11 +4485,11 @@ struct Net FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t tensorNumber() const {
     return GetField<int32_t>(VT_TENSORNUMBER, 0);
   }
-  Usage usage() const {
-    return static_cast<Usage>(GetField<int8_t>(VT_USAGE, 0));
+  MNN::Usage usage() const {
+    return static_cast<MNN::Usage>(GetField<int8_t>(VT_USAGE, 0));
   }
-  const flatbuffers::Vector<flatbuffers::Offset<SubGraphProto>> *subgraphs() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<SubGraphProto>> *>(VT_SUBGRAPHS);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::SubGraphProto>> *subgraphs() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::SubGraphProto>> *>(VT_SUBGRAPHS);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -4487,27 +4524,28 @@ struct Net FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct NetBuilder {
+  typedef Net Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_bizCode(flatbuffers::Offset<flatbuffers::String> bizCode) {
     fbb_.AddOffset(Net::VT_BIZCODE, bizCode);
   }
-  void add_extraTensorDescribe(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<TensorDescribe>>> extraTensorDescribe) {
+  void add_extraTensorDescribe(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::TensorDescribe>>> extraTensorDescribe) {
     fbb_.AddOffset(Net::VT_EXTRATENSORDESCRIBE, extraTensorDescribe);
   }
-  void add_gpulibrary(flatbuffers::Offset<GpuLibrary> gpulibrary) {
+  void add_gpulibrary(flatbuffers::Offset<MNN::GpuLibrary> gpulibrary) {
     fbb_.AddOffset(Net::VT_GPULIBRARY, gpulibrary);
   }
-  void add_oplists(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Op>>> oplists) {
+  void add_oplists(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Op>>> oplists) {
     fbb_.AddOffset(Net::VT_OPLISTS, oplists);
   }
   void add_outputName(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> outputName) {
     fbb_.AddOffset(Net::VT_OUTPUTNAME, outputName);
   }
-  void add_preferForwardType(ForwardType preferForwardType) {
+  void add_preferForwardType(MNN::ForwardType preferForwardType) {
     fbb_.AddElement<int8_t>(Net::VT_PREFERFORWARDTYPE, static_cast<int8_t>(preferForwardType), 0);
   }
-  void add_sourceType(NetSource sourceType) {
+  void add_sourceType(MNN::NetSource sourceType) {
     fbb_.AddElement<int8_t>(Net::VT_SOURCETYPE, static_cast<int8_t>(sourceType), 0);
   }
   void add_tensorName(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> tensorName) {
@@ -4516,10 +4554,10 @@ struct NetBuilder {
   void add_tensorNumber(int32_t tensorNumber) {
     fbb_.AddElement<int32_t>(Net::VT_TENSORNUMBER, tensorNumber, 0);
   }
-  void add_usage(Usage usage) {
+  void add_usage(MNN::Usage usage) {
     fbb_.AddElement<int8_t>(Net::VT_USAGE, static_cast<int8_t>(usage), 0);
   }
-  void add_subgraphs(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<SubGraphProto>>> subgraphs) {
+  void add_subgraphs(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::SubGraphProto>>> subgraphs) {
     fbb_.AddOffset(Net::VT_SUBGRAPHS, subgraphs);
   }
   explicit NetBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -4537,16 +4575,16 @@ struct NetBuilder {
 inline flatbuffers::Offset<Net> CreateNet(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::String> bizCode = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<TensorDescribe>>> extraTensorDescribe = 0,
-    flatbuffers::Offset<GpuLibrary> gpulibrary = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Op>>> oplists = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::TensorDescribe>>> extraTensorDescribe = 0,
+    flatbuffers::Offset<MNN::GpuLibrary> gpulibrary = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Op>>> oplists = 0,
     flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> outputName = 0,
-    ForwardType preferForwardType = ForwardType_CPU,
-    NetSource sourceType = NetSource_CAFFE,
+    MNN::ForwardType preferForwardType = MNN::ForwardType_CPU,
+    MNN::NetSource sourceType = MNN::NetSource_CAFFE,
     flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> tensorName = 0,
     int32_t tensorNumber = 0,
-    Usage usage = Usage_INFERENCE,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<SubGraphProto>>> subgraphs = 0) {
+    MNN::Usage usage = MNN::Usage_INFERENCE,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::SubGraphProto>>> subgraphs = 0) {
   NetBuilder builder_(_fbb);
   builder_.add_subgraphs(subgraphs);
   builder_.add_tensorNumber(tensorNumber);
@@ -4565,22 +4603,22 @@ inline flatbuffers::Offset<Net> CreateNet(
 inline flatbuffers::Offset<Net> CreateNetDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const char *bizCode = nullptr,
-    const std::vector<flatbuffers::Offset<TensorDescribe>> *extraTensorDescribe = nullptr,
-    flatbuffers::Offset<GpuLibrary> gpulibrary = 0,
-    const std::vector<flatbuffers::Offset<Op>> *oplists = nullptr,
+    const std::vector<flatbuffers::Offset<MNN::TensorDescribe>> *extraTensorDescribe = nullptr,
+    flatbuffers::Offset<MNN::GpuLibrary> gpulibrary = 0,
+    const std::vector<flatbuffers::Offset<MNN::Op>> *oplists = nullptr,
     const std::vector<flatbuffers::Offset<flatbuffers::String>> *outputName = nullptr,
-    ForwardType preferForwardType = ForwardType_CPU,
-    NetSource sourceType = NetSource_CAFFE,
+    MNN::ForwardType preferForwardType = MNN::ForwardType_CPU,
+    MNN::NetSource sourceType = MNN::NetSource_CAFFE,
     const std::vector<flatbuffers::Offset<flatbuffers::String>> *tensorName = nullptr,
     int32_t tensorNumber = 0,
-    Usage usage = Usage_INFERENCE,
-    const std::vector<flatbuffers::Offset<SubGraphProto>> *subgraphs = nullptr) {
+    MNN::Usage usage = MNN::Usage_INFERENCE,
+    const std::vector<flatbuffers::Offset<MNN::SubGraphProto>> *subgraphs = nullptr) {
   auto bizCode__ = bizCode ? _fbb.CreateString(bizCode) : 0;
-  auto extraTensorDescribe__ = extraTensorDescribe ? _fbb.CreateVector<flatbuffers::Offset<TensorDescribe>>(*extraTensorDescribe) : 0;
-  auto oplists__ = oplists ? _fbb.CreateVector<flatbuffers::Offset<Op>>(*oplists) : 0;
+  auto extraTensorDescribe__ = extraTensorDescribe ? _fbb.CreateVector<flatbuffers::Offset<MNN::TensorDescribe>>(*extraTensorDescribe) : 0;
+  auto oplists__ = oplists ? _fbb.CreateVector<flatbuffers::Offset<MNN::Op>>(*oplists) : 0;
   auto outputName__ = outputName ? _fbb.CreateVector<flatbuffers::Offset<flatbuffers::String>>(*outputName) : 0;
   auto tensorName__ = tensorName ? _fbb.CreateVector<flatbuffers::Offset<flatbuffers::String>>(*tensorName) : 0;
-  auto subgraphs__ = subgraphs ? _fbb.CreateVector<flatbuffers::Offset<SubGraphProto>>(*subgraphs) : 0;
+  auto subgraphs__ = subgraphs ? _fbb.CreateVector<flatbuffers::Offset<MNN::SubGraphProto>>(*subgraphs) : 0;
   return MNN::CreateNet(
       _fbb,
       bizCode__,
@@ -4599,16 +4637,16 @@ inline flatbuffers::Offset<Net> CreateNetDirect(
 flatbuffers::Offset<Net> CreateNet(flatbuffers::FlatBufferBuilder &_fbb, const NetT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline PluginT *Plugin::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new PluginT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::PluginT> _o = std::unique_ptr<MNN::PluginT>(new PluginT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Plugin::UnPackTo(PluginT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = type(); if (_e) _o->type = _e->str(); };
-  { auto _e = attr(); if (_e) { _o->attr.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->attr[_i] = std::unique_ptr<AttributeT>(_e->Get(_i)->UnPack(_resolver)); } } };
+  { auto _e = type(); if (_e) _o->type = _e->str(); }
+  { auto _e = attr(); if (_e) { _o->attr.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->attr[_i] = std::unique_ptr<MNN::AttributeT>(_e->Get(_i)->UnPack(_resolver)); } } }
 }
 
 inline flatbuffers::Offset<Plugin> Plugin::Pack(flatbuffers::FlatBufferBuilder &_fbb, const PluginT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4620,7 +4658,7 @@ inline flatbuffers::Offset<Plugin> CreatePlugin(flatbuffers::FlatBufferBuilder &
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const PluginT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _type = _o->type.empty() ? 0 : _fbb.CreateString(_o->type);
-  auto _attr = _o->attr.size() ? _fbb.CreateVector<flatbuffers::Offset<Attribute>> (_o->attr.size(), [](size_t i, _VectorArgs *__va) { return CreateAttribute(*__va->__fbb, __va->__o->attr[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _attr = _o->attr.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::Attribute>> (_o->attr.size(), [](size_t i, _VectorArgs *__va) { return CreateAttribute(*__va->__fbb, __va->__o->attr[i].get(), __va->__rehasher); }, &_va ) : 0;
   return MNN::CreatePlugin(
       _fbb,
       _type,
@@ -4628,18 +4666,18 @@ inline flatbuffers::Offset<Plugin> CreatePlugin(flatbuffers::FlatBufferBuilder &
 }
 
 inline ExtraT *Extra::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ExtraT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ExtraT> _o = std::unique_ptr<MNN::ExtraT>(new ExtraT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Extra::UnPackTo(ExtraT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = type(); if (_e) _o->type = _e->str(); };
-  { auto _e = engine(); if (_e) _o->engine = _e->str(); };
-  { auto _e = info(); if (_e) { _o->info.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->info[_i] = _e->Get(_i); } } };
-  { auto _e = attr(); if (_e) { _o->attr.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->attr[_i] = std::unique_ptr<AttributeT>(_e->Get(_i)->UnPack(_resolver)); } } };
+  { auto _e = type(); if (_e) _o->type = _e->str(); }
+  { auto _e = engine(); if (_e) _o->engine = _e->str(); }
+  { auto _e = info(); if (_e) { _o->info.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->info[_i] = _e->Get(_i); } } }
+  { auto _e = attr(); if (_e) { _o->attr.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->attr[_i] = std::unique_ptr<MNN::AttributeT>(_e->Get(_i)->UnPack(_resolver)); } } }
 }
 
 inline flatbuffers::Offset<Extra> Extra::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ExtraT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4653,7 +4691,7 @@ inline flatbuffers::Offset<Extra> CreateExtra(flatbuffers::FlatBufferBuilder &_f
   auto _type = _o->type.empty() ? 0 : _fbb.CreateString(_o->type);
   auto _engine = _o->engine.empty() ? 0 : _fbb.CreateString(_o->engine);
   auto _info = _o->info.size() ? _fbb.CreateVector(_o->info) : 0;
-  auto _attr = _o->attr.size() ? _fbb.CreateVector<flatbuffers::Offset<Attribute>> (_o->attr.size(), [](size_t i, _VectorArgs *__va) { return CreateAttribute(*__va->__fbb, __va->__o->attr[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _attr = _o->attr.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::Attribute>> (_o->attr.size(), [](size_t i, _VectorArgs *__va) { return CreateAttribute(*__va->__fbb, __va->__o->attr[i].get(), __va->__rehasher); }, &_va ) : 0;
   return MNN::CreateExtra(
       _fbb,
       _type,
@@ -4663,15 +4701,15 @@ inline flatbuffers::Offset<Extra> CreateExtra(flatbuffers::FlatBufferBuilder &_f
 }
 
 inline StringVecT *StringVec::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new StringVecT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::StringVecT> _o = std::unique_ptr<MNN::StringVecT>(new StringVecT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void StringVec::UnPackTo(StringVecT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = data(); if (_e) { _o->data.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->data[_i] = _e->Get(_i)->str(); } } };
+  { auto _e = data(); if (_e) { _o->data.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->data[_i] = _e->Get(_i)->str(); } } }
 }
 
 inline flatbuffers::Offset<StringVec> StringVec::Pack(flatbuffers::FlatBufferBuilder &_fbb, const StringVecT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4689,19 +4727,19 @@ inline flatbuffers::Offset<StringVec> CreateStringVec(flatbuffers::FlatBufferBui
 }
 
 inline WhileParamT *WhileParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new WhileParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::WhileParamT> _o = std::unique_ptr<MNN::WhileParamT>(new WhileParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void WhileParam::UnPackTo(WhileParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = cond_graph(); if (_e) _o->cond_graph = _e->str(); };
-  { auto _e = body_graph(); if (_e) _o->body_graph = _e->str(); };
-  { auto _e = aliases_inputs(); if (_e) { _o->aliases_inputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_inputs[_i] = std::unique_ptr<StringVecT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = aliases_outputs(); if (_e) { _o->aliases_outputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_outputs[_i] = _e->Get(_i)->str(); } } };
-  { auto _e = aliases_updates(); if (_e) { _o->aliases_updates.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_updates[_i] = std::unique_ptr<StringVecT>(_e->Get(_i)->UnPack(_resolver)); } } };
+  { auto _e = cond_graph(); if (_e) _o->cond_graph = _e->str(); }
+  { auto _e = body_graph(); if (_e) _o->body_graph = _e->str(); }
+  { auto _e = aliases_inputs(); if (_e) { _o->aliases_inputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_inputs[_i] = std::unique_ptr<MNN::StringVecT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = aliases_outputs(); if (_e) { _o->aliases_outputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_outputs[_i] = _e->Get(_i)->str(); } } }
+  { auto _e = aliases_updates(); if (_e) { _o->aliases_updates.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_updates[_i] = std::unique_ptr<MNN::StringVecT>(_e->Get(_i)->UnPack(_resolver)); } } }
 }
 
 inline flatbuffers::Offset<WhileParam> WhileParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const WhileParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4714,9 +4752,9 @@ inline flatbuffers::Offset<WhileParam> CreateWhileParam(flatbuffers::FlatBufferB
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const WhileParamT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _cond_graph = _o->cond_graph.empty() ? 0 : _fbb.CreateString(_o->cond_graph);
   auto _body_graph = _o->body_graph.empty() ? 0 : _fbb.CreateString(_o->body_graph);
-  auto _aliases_inputs = _o->aliases_inputs.size() ? _fbb.CreateVector<flatbuffers::Offset<StringVec>> (_o->aliases_inputs.size(), [](size_t i, _VectorArgs *__va) { return CreateStringVec(*__va->__fbb, __va->__o->aliases_inputs[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _aliases_inputs = _o->aliases_inputs.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::StringVec>> (_o->aliases_inputs.size(), [](size_t i, _VectorArgs *__va) { return CreateStringVec(*__va->__fbb, __va->__o->aliases_inputs[i].get(), __va->__rehasher); }, &_va ) : 0;
   auto _aliases_outputs = _o->aliases_outputs.size() ? _fbb.CreateVectorOfStrings(_o->aliases_outputs) : 0;
-  auto _aliases_updates = _o->aliases_updates.size() ? _fbb.CreateVector<flatbuffers::Offset<StringVec>> (_o->aliases_updates.size(), [](size_t i, _VectorArgs *__va) { return CreateStringVec(*__va->__fbb, __va->__o->aliases_updates[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _aliases_updates = _o->aliases_updates.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::StringVec>> (_o->aliases_updates.size(), [](size_t i, _VectorArgs *__va) { return CreateStringVec(*__va->__fbb, __va->__o->aliases_updates[i].get(), __va->__rehasher); }, &_va ) : 0;
   return MNN::CreateWhileParam(
       _fbb,
       _cond_graph,
@@ -4727,18 +4765,18 @@ inline flatbuffers::Offset<WhileParam> CreateWhileParam(flatbuffers::FlatBufferB
 }
 
 inline IfParamT *IfParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new IfParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::IfParamT> _o = std::unique_ptr<MNN::IfParamT>(new IfParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void IfParam::UnPackTo(IfParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = then_graph(); if (_e) _o->then_graph = _e->str(); };
-  { auto _e = else_graph(); if (_e) _o->else_graph = _e->str(); };
-  { auto _e = aliases_inputs(); if (_e) { _o->aliases_inputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_inputs[_i] = std::unique_ptr<StringVecT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = aliases_outputs(); if (_e) { _o->aliases_outputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_outputs[_i] = std::unique_ptr<StringVecT>(_e->Get(_i)->UnPack(_resolver)); } } };
+  { auto _e = then_graph(); if (_e) _o->then_graph = _e->str(); }
+  { auto _e = else_graph(); if (_e) _o->else_graph = _e->str(); }
+  { auto _e = aliases_inputs(); if (_e) { _o->aliases_inputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_inputs[_i] = std::unique_ptr<MNN::StringVecT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = aliases_outputs(); if (_e) { _o->aliases_outputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aliases_outputs[_i] = std::unique_ptr<MNN::StringVecT>(_e->Get(_i)->UnPack(_resolver)); } } }
 }
 
 inline flatbuffers::Offset<IfParam> IfParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const IfParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4751,8 +4789,8 @@ inline flatbuffers::Offset<IfParam> CreateIfParam(flatbuffers::FlatBufferBuilder
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const IfParamT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _then_graph = _o->then_graph.empty() ? 0 : _fbb.CreateString(_o->then_graph);
   auto _else_graph = _o->else_graph.empty() ? 0 : _fbb.CreateString(_o->else_graph);
-  auto _aliases_inputs = _o->aliases_inputs.size() ? _fbb.CreateVector<flatbuffers::Offset<StringVec>> (_o->aliases_inputs.size(), [](size_t i, _VectorArgs *__va) { return CreateStringVec(*__va->__fbb, __va->__o->aliases_inputs[i].get(), __va->__rehasher); }, &_va ) : 0;
-  auto _aliases_outputs = _o->aliases_outputs.size() ? _fbb.CreateVector<flatbuffers::Offset<StringVec>> (_o->aliases_outputs.size(), [](size_t i, _VectorArgs *__va) { return CreateStringVec(*__va->__fbb, __va->__o->aliases_outputs[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _aliases_inputs = _o->aliases_inputs.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::StringVec>> (_o->aliases_inputs.size(), [](size_t i, _VectorArgs *__va) { return CreateStringVec(*__va->__fbb, __va->__o->aliases_inputs[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _aliases_outputs = _o->aliases_outputs.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::StringVec>> (_o->aliases_outputs.size(), [](size_t i, _VectorArgs *__va) { return CreateStringVec(*__va->__fbb, __va->__o->aliases_outputs[i].get(), __va->__rehasher); }, &_va ) : 0;
   return MNN::CreateIfParam(
       _fbb,
       _then_graph,
@@ -4762,21 +4800,21 @@ inline flatbuffers::Offset<IfParam> CreateIfParam(flatbuffers::FlatBufferBuilder
 }
 
 inline OpT *Op::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new OpT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::OpT> _o = std::unique_ptr<MNN::OpT>(new OpT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Op::UnPackTo(OpT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = inputIndexes(); if (_e) { _o->inputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputIndexes[_i] = _e->Get(_i); } } };
-  { auto _e = main_type(); _o->main.type = _e; };
-  { auto _e = main(); if (_e) _o->main.value = OpParameterUnion::UnPack(_e, main_type(), _resolver); };
-  { auto _e = name(); if (_e) _o->name = _e->str(); };
-  { auto _e = outputIndexes(); if (_e) { _o->outputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputIndexes[_i] = _e->Get(_i); } } };
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = defaultDimentionFormat(); _o->defaultDimentionFormat = _e; };
+  { auto _e = inputIndexes(); if (_e) { _o->inputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputIndexes[_i] = _e->Get(_i); } } }
+  { auto _e = main_type(); _o->main.type = _e; }
+  { auto _e = main(); if (_e) _o->main.value = MNN::OpParameterUnion::UnPack(_e, main_type(), _resolver); }
+  { auto _e = name(); if (_e) _o->name = _e->str(); }
+  { auto _e = outputIndexes(); if (_e) { _o->outputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputIndexes[_i] = _e->Get(_i); } } }
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = defaultDimentionFormat(); _o->defaultDimentionFormat = _e; }
 }
 
 inline flatbuffers::Offset<Op> Op::Pack(flatbuffers::FlatBufferBuilder &_fbb, const OpT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4806,16 +4844,16 @@ inline flatbuffers::Offset<Op> CreateOp(flatbuffers::FlatBufferBuilder &_fbb, co
 }
 
 inline ViewT *View::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ViewT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ViewT> _o = std::unique_ptr<MNN::ViewT>(new ViewT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void View::UnPackTo(ViewT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = offset(); _o->offset = _e; };
-  { auto _e = stride(); if (_e) { _o->stride.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->stride[_i] = _e->Get(_i); } } };
+  { auto _e = offset(); _o->offset = _e; }
+  { auto _e = stride(); if (_e) { _o->stride.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->stride[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<View> View::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ViewT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4835,18 +4873,18 @@ inline flatbuffers::Offset<View> CreateView(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline RegionT *Region::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new RegionT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::RegionT> _o = std::unique_ptr<MNN::RegionT>(new RegionT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Region::UnPackTo(RegionT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = src(); if (_e) _o->src = std::unique_ptr<ViewT>(_e->UnPack(_resolver)); };
-  { auto _e = dst(); if (_e) _o->dst = std::unique_ptr<ViewT>(_e->UnPack(_resolver)); };
-  { auto _e = size(); if (_e) { _o->size.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->size[_i] = _e->Get(_i); } } };
-  { auto _e = origin(); _o->origin = _e; };
+  { auto _e = src(); if (_e) _o->src = std::unique_ptr<MNN::ViewT>(_e->UnPack(_resolver)); }
+  { auto _e = dst(); if (_e) _o->dst = std::unique_ptr<MNN::ViewT>(_e->UnPack(_resolver)); }
+  { auto _e = size(); if (_e) { _o->size.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->size[_i] = _e->Get(_i); } } }
+  { auto _e = origin(); _o->origin = _e; }
 }
 
 inline flatbuffers::Offset<Region> Region::Pack(flatbuffers::FlatBufferBuilder &_fbb, const RegionT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4870,19 +4908,19 @@ inline flatbuffers::Offset<Region> CreateRegion(flatbuffers::FlatBufferBuilder &
 }
 
 inline TensorDescribeT *TensorDescribe::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new TensorDescribeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::TensorDescribeT> _o = std::unique_ptr<MNN::TensorDescribeT>(new TensorDescribeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void TensorDescribe::UnPackTo(TensorDescribeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = blob(); if (_e) _o->blob = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = index(); _o->index = _e; };
-  { auto _e = name(); if (_e) _o->name = _e->str(); };
-  { auto _e = regions(); if (_e) { _o->regions.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->regions[_i] = std::unique_ptr<RegionT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = quantInfo(); if (_e) _o->quantInfo = std::unique_ptr<TensorQuantInfoT>(_e->UnPack(_resolver)); };
+  { auto _e = blob(); if (_e) _o->blob = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = index(); _o->index = _e; }
+  { auto _e = name(); if (_e) _o->name = _e->str(); }
+  { auto _e = regions(); if (_e) { _o->regions.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->regions[_i] = std::unique_ptr<MNN::RegionT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = quantInfo(); if (_e) _o->quantInfo = std::unique_ptr<MNN::TensorQuantInfoT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<TensorDescribe> TensorDescribe::Pack(flatbuffers::FlatBufferBuilder &_fbb, const TensorDescribeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4896,7 +4934,7 @@ inline flatbuffers::Offset<TensorDescribe> CreateTensorDescribe(flatbuffers::Fla
   auto _blob = _o->blob ? CreateBlob(_fbb, _o->blob.get(), _rehasher) : 0;
   auto _index = _o->index;
   auto _name = _o->name.empty() ? 0 : _fbb.CreateString(_o->name);
-  auto _regions = _o->regions.size() ? _fbb.CreateVector<flatbuffers::Offset<Region>> (_o->regions.size(), [](size_t i, _VectorArgs *__va) { return CreateRegion(*__va->__fbb, __va->__o->regions[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _regions = _o->regions.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::Region>> (_o->regions.size(), [](size_t i, _VectorArgs *__va) { return CreateRegion(*__va->__fbb, __va->__o->regions[i].get(), __va->__rehasher); }, &_va ) : 0;
   auto _quantInfo = _o->quantInfo ? CreateTensorQuantInfo(_fbb, _o->quantInfo.get(), _rehasher) : 0;
   return MNN::CreateTensorDescribe(
       _fbb,
@@ -4908,20 +4946,20 @@ inline flatbuffers::Offset<TensorDescribe> CreateTensorDescribe(flatbuffers::Fla
 }
 
 inline SubGraphProtoT *SubGraphProto::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new SubGraphProtoT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::SubGraphProtoT> _o = std::unique_ptr<MNN::SubGraphProtoT>(new SubGraphProtoT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void SubGraphProto::UnPackTo(SubGraphProtoT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = name(); if (_e) _o->name = _e->str(); };
-  { auto _e = inputs(); if (_e) { _o->inputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputs[_i] = _e->Get(_i); } } };
-  { auto _e = outputs(); if (_e) { _o->outputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputs[_i] = _e->Get(_i); } } };
-  { auto _e = tensors(); if (_e) { _o->tensors.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->tensors[_i] = _e->Get(_i)->str(); } } };
-  { auto _e = nodes(); if (_e) { _o->nodes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->nodes[_i] = std::unique_ptr<OpT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = extraTensorDescribe(); if (_e) { _o->extraTensorDescribe.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->extraTensorDescribe[_i] = std::unique_ptr<TensorDescribeT>(_e->Get(_i)->UnPack(_resolver)); } } };
+  { auto _e = name(); if (_e) _o->name = _e->str(); }
+  { auto _e = inputs(); if (_e) { _o->inputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputs[_i] = _e->Get(_i); } } }
+  { auto _e = outputs(); if (_e) { _o->outputs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputs[_i] = _e->Get(_i); } } }
+  { auto _e = tensors(); if (_e) { _o->tensors.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->tensors[_i] = _e->Get(_i)->str(); } } }
+  { auto _e = nodes(); if (_e) { _o->nodes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->nodes[_i] = std::unique_ptr<MNN::OpT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = extraTensorDescribe(); if (_e) { _o->extraTensorDescribe.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->extraTensorDescribe[_i] = std::unique_ptr<MNN::TensorDescribeT>(_e->Get(_i)->UnPack(_resolver)); } } }
 }
 
 inline flatbuffers::Offset<SubGraphProto> SubGraphProto::Pack(flatbuffers::FlatBufferBuilder &_fbb, const SubGraphProtoT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4936,8 +4974,8 @@ inline flatbuffers::Offset<SubGraphProto> CreateSubGraphProto(flatbuffers::FlatB
   auto _inputs = _o->inputs.size() ? _fbb.CreateVector(_o->inputs) : 0;
   auto _outputs = _o->outputs.size() ? _fbb.CreateVector(_o->outputs) : 0;
   auto _tensors = _o->tensors.size() ? _fbb.CreateVectorOfStrings(_o->tensors) : 0;
-  auto _nodes = _o->nodes.size() ? _fbb.CreateVector<flatbuffers::Offset<Op>> (_o->nodes.size(), [](size_t i, _VectorArgs *__va) { return CreateOp(*__va->__fbb, __va->__o->nodes[i].get(), __va->__rehasher); }, &_va ) : 0;
-  auto _extraTensorDescribe = _o->extraTensorDescribe.size() ? _fbb.CreateVector<flatbuffers::Offset<TensorDescribe>> (_o->extraTensorDescribe.size(), [](size_t i, _VectorArgs *__va) { return CreateTensorDescribe(*__va->__fbb, __va->__o->extraTensorDescribe[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _nodes = _o->nodes.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::Op>> (_o->nodes.size(), [](size_t i, _VectorArgs *__va) { return CreateOp(*__va->__fbb, __va->__o->nodes[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _extraTensorDescribe = _o->extraTensorDescribe.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::TensorDescribe>> (_o->extraTensorDescribe.size(), [](size_t i, _VectorArgs *__va) { return CreateTensorDescribe(*__va->__fbb, __va->__o->extraTensorDescribe[i].get(), __va->__rehasher); }, &_va ) : 0;
   return MNN::CreateSubGraphProto(
       _fbb,
       _name,
@@ -4949,19 +4987,19 @@ inline flatbuffers::Offset<SubGraphProto> CreateSubGraphProto(flatbuffers::FlatB
 }
 
 inline TensorQuantInfoT *TensorQuantInfo::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new TensorQuantInfoT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::TensorQuantInfoT> _o = std::unique_ptr<MNN::TensorQuantInfoT>(new TensorQuantInfoT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void TensorQuantInfo::UnPackTo(TensorQuantInfoT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = scale(); _o->scale = _e; };
-  { auto _e = zero(); _o->zero = _e; };
-  { auto _e = min(); _o->min = _e; };
-  { auto _e = max(); _o->max = _e; };
-  { auto _e = type(); _o->type = _e; };
+  { auto _e = scale(); _o->scale = _e; }
+  { auto _e = zero(); _o->zero = _e; }
+  { auto _e = min(); _o->min = _e; }
+  { auto _e = max(); _o->max = _e; }
+  { auto _e = type(); _o->type = _e; }
 }
 
 inline flatbuffers::Offset<TensorQuantInfo> TensorQuantInfo::Pack(flatbuffers::FlatBufferBuilder &_fbb, const TensorQuantInfoT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4987,25 +5025,25 @@ inline flatbuffers::Offset<TensorQuantInfo> CreateTensorQuantInfo(flatbuffers::F
 }
 
 inline NetT *Net::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new NetT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::NetT> _o = std::unique_ptr<MNN::NetT>(new NetT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Net::UnPackTo(NetT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = bizCode(); if (_e) _o->bizCode = _e->str(); };
-  { auto _e = extraTensorDescribe(); if (_e) { _o->extraTensorDescribe.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->extraTensorDescribe[_i] = std::unique_ptr<TensorDescribeT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = gpulibrary(); if (_e) _o->gpulibrary = std::unique_ptr<GpuLibraryT>(_e->UnPack(_resolver)); };
-  { auto _e = oplists(); if (_e) { _o->oplists.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->oplists[_i] = std::unique_ptr<OpT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = outputName(); if (_e) { _o->outputName.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputName[_i] = _e->Get(_i)->str(); } } };
-  { auto _e = preferForwardType(); _o->preferForwardType = _e; };
-  { auto _e = sourceType(); _o->sourceType = _e; };
-  { auto _e = tensorName(); if (_e) { _o->tensorName.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->tensorName[_i] = _e->Get(_i)->str(); } } };
-  { auto _e = tensorNumber(); _o->tensorNumber = _e; };
-  { auto _e = usage(); _o->usage = _e; };
-  { auto _e = subgraphs(); if (_e) { _o->subgraphs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->subgraphs[_i] = std::unique_ptr<SubGraphProtoT>(_e->Get(_i)->UnPack(_resolver)); } } };
+  { auto _e = bizCode(); if (_e) _o->bizCode = _e->str(); }
+  { auto _e = extraTensorDescribe(); if (_e) { _o->extraTensorDescribe.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->extraTensorDescribe[_i] = std::unique_ptr<MNN::TensorDescribeT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = gpulibrary(); if (_e) _o->gpulibrary = std::unique_ptr<MNN::GpuLibraryT>(_e->UnPack(_resolver)); }
+  { auto _e = oplists(); if (_e) { _o->oplists.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->oplists[_i] = std::unique_ptr<MNN::OpT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = outputName(); if (_e) { _o->outputName.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputName[_i] = _e->Get(_i)->str(); } } }
+  { auto _e = preferForwardType(); _o->preferForwardType = _e; }
+  { auto _e = sourceType(); _o->sourceType = _e; }
+  { auto _e = tensorName(); if (_e) { _o->tensorName.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->tensorName[_i] = _e->Get(_i)->str(); } } }
+  { auto _e = tensorNumber(); _o->tensorNumber = _e; }
+  { auto _e = usage(); _o->usage = _e; }
+  { auto _e = subgraphs(); if (_e) { _o->subgraphs.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->subgraphs[_i] = std::unique_ptr<MNN::SubGraphProtoT>(_e->Get(_i)->UnPack(_resolver)); } } }
 }
 
 inline flatbuffers::Offset<Net> Net::Pack(flatbuffers::FlatBufferBuilder &_fbb, const NetT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5017,16 +5055,16 @@ inline flatbuffers::Offset<Net> CreateNet(flatbuffers::FlatBufferBuilder &_fbb, 
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const NetT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _bizCode = _o->bizCode.empty() ? 0 : _fbb.CreateString(_o->bizCode);
-  auto _extraTensorDescribe = _o->extraTensorDescribe.size() ? _fbb.CreateVector<flatbuffers::Offset<TensorDescribe>> (_o->extraTensorDescribe.size(), [](size_t i, _VectorArgs *__va) { return CreateTensorDescribe(*__va->__fbb, __va->__o->extraTensorDescribe[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _extraTensorDescribe = _o->extraTensorDescribe.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::TensorDescribe>> (_o->extraTensorDescribe.size(), [](size_t i, _VectorArgs *__va) { return CreateTensorDescribe(*__va->__fbb, __va->__o->extraTensorDescribe[i].get(), __va->__rehasher); }, &_va ) : 0;
   auto _gpulibrary = _o->gpulibrary ? CreateGpuLibrary(_fbb, _o->gpulibrary.get(), _rehasher) : 0;
-  auto _oplists = _o->oplists.size() ? _fbb.CreateVector<flatbuffers::Offset<Op>> (_o->oplists.size(), [](size_t i, _VectorArgs *__va) { return CreateOp(*__va->__fbb, __va->__o->oplists[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _oplists = _o->oplists.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::Op>> (_o->oplists.size(), [](size_t i, _VectorArgs *__va) { return CreateOp(*__va->__fbb, __va->__o->oplists[i].get(), __va->__rehasher); }, &_va ) : 0;
   auto _outputName = _o->outputName.size() ? _fbb.CreateVectorOfStrings(_o->outputName) : 0;
   auto _preferForwardType = _o->preferForwardType;
   auto _sourceType = _o->sourceType;
   auto _tensorName = _o->tensorName.size() ? _fbb.CreateVectorOfStrings(_o->tensorName) : 0;
   auto _tensorNumber = _o->tensorNumber;
   auto _usage = _o->usage;
-  auto _subgraphs = _o->subgraphs.size() ? _fbb.CreateVector<flatbuffers::Offset<SubGraphProto>> (_o->subgraphs.size(), [](size_t i, _VectorArgs *__va) { return CreateSubGraphProto(*__va->__fbb, __va->__o->subgraphs[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _subgraphs = _o->subgraphs.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::SubGraphProto>> (_o->subgraphs.size(), [](size_t i, _VectorArgs *__va) { return CreateSubGraphProto(*__va->__fbb, __va->__o->subgraphs[i].get(), __va->__rehasher); }, &_va ) : 0;
   return MNN::CreateNet(
       _fbb,
       _bizCode,
@@ -5048,370 +5086,370 @@ inline bool VerifyOpParameter(flatbuffers::Verifier &verifier, const void *obj, 
       return true;
     }
     case OpParameter_QuantizedAdd: {
-      auto ptr = reinterpret_cast<const QuantizedAdd *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedAdd *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_ArgMax: {
-      auto ptr = reinterpret_cast<const ArgMax *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ArgMax *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_AsString: {
-      auto ptr = reinterpret_cast<const AsString *>(obj);
+      auto ptr = reinterpret_cast<const MNN::AsString *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Axis: {
-      auto ptr = reinterpret_cast<const Axis *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Axis *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_BatchNorm: {
-      auto ptr = reinterpret_cast<const BatchNorm *>(obj);
+      auto ptr = reinterpret_cast<const MNN::BatchNorm *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_BinaryOp: {
-      auto ptr = reinterpret_cast<const BinaryOp *>(obj);
+      auto ptr = reinterpret_cast<const MNN::BinaryOp *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Blob: {
-      auto ptr = reinterpret_cast<const Blob *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Blob *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_CastParam: {
-      auto ptr = reinterpret_cast<const CastParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::CastParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Convolution2D: {
-      auto ptr = reinterpret_cast<const Convolution2D *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Convolution2D *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Crop: {
-      auto ptr = reinterpret_cast<const Crop *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Crop *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_CropAndResize: {
-      auto ptr = reinterpret_cast<const CropAndResize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::CropAndResize *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Dequantize: {
-      auto ptr = reinterpret_cast<const Dequantize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Dequantize *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_DetectionOutput: {
-      auto ptr = reinterpret_cast<const DetectionOutput *>(obj);
+      auto ptr = reinterpret_cast<const MNN::DetectionOutput *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Eltwise: {
-      auto ptr = reinterpret_cast<const Eltwise *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Eltwise *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_ExpandDims: {
-      auto ptr = reinterpret_cast<const ExpandDims *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ExpandDims *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Fill: {
-      auto ptr = reinterpret_cast<const Fill *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Fill *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Flatten: {
-      auto ptr = reinterpret_cast<const Flatten *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Flatten *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Gather: {
-      auto ptr = reinterpret_cast<const Gather *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Gather *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_GatherV2: {
-      auto ptr = reinterpret_cast<const GatherV2 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::GatherV2 *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_InnerProduct: {
-      auto ptr = reinterpret_cast<const InnerProduct *>(obj);
+      auto ptr = reinterpret_cast<const MNN::InnerProduct *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Input: {
-      auto ptr = reinterpret_cast<const Input *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Input *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Interp: {
-      auto ptr = reinterpret_cast<const Interp *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Interp *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_LRN: {
-      auto ptr = reinterpret_cast<const LRN *>(obj);
+      auto ptr = reinterpret_cast<const MNN::LRN *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_LSTM: {
-      auto ptr = reinterpret_cast<const LSTM *>(obj);
+      auto ptr = reinterpret_cast<const MNN::LSTM *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_MatMul: {
-      auto ptr = reinterpret_cast<const MatMul *>(obj);
+      auto ptr = reinterpret_cast<const MNN::MatMul *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_NonMaxSuppressionV2: {
-      auto ptr = reinterpret_cast<const NonMaxSuppressionV2 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::NonMaxSuppressionV2 *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Normalize: {
-      auto ptr = reinterpret_cast<const Normalize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Normalize *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_PackParam: {
-      auto ptr = reinterpret_cast<const PackParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::PackParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Permute: {
-      auto ptr = reinterpret_cast<const Permute *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Permute *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Plugin: {
-      auto ptr = reinterpret_cast<const Plugin *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Plugin *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Pool: {
-      auto ptr = reinterpret_cast<const Pool *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Pool *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_PRelu: {
-      auto ptr = reinterpret_cast<const PRelu *>(obj);
+      auto ptr = reinterpret_cast<const MNN::PRelu *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_PriorBox: {
-      auto ptr = reinterpret_cast<const PriorBox *>(obj);
+      auto ptr = reinterpret_cast<const MNN::PriorBox *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Proposal: {
-      auto ptr = reinterpret_cast<const Proposal *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Proposal *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedAvgPool: {
-      auto ptr = reinterpret_cast<const QuantizedAvgPool *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedAvgPool *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedBiasAdd: {
-      auto ptr = reinterpret_cast<const QuantizedBiasAdd *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedBiasAdd *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedConcat: {
-      auto ptr = reinterpret_cast<const QuantizedConcat *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedConcat *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedLogistic: {
-      auto ptr = reinterpret_cast<const QuantizedLogistic *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedLogistic *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedMatMul: {
-      auto ptr = reinterpret_cast<const QuantizedMatMul *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedMatMul *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedMaxPool: {
-      auto ptr = reinterpret_cast<const QuantizedMaxPool *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedMaxPool *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedRelu: {
-      auto ptr = reinterpret_cast<const QuantizedRelu *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedRelu *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedRelu6: {
-      auto ptr = reinterpret_cast<const QuantizedRelu6 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedRelu6 *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedReshape: {
-      auto ptr = reinterpret_cast<const QuantizedReshape *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedReshape *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedSoftmax: {
-      auto ptr = reinterpret_cast<const QuantizedSoftmax *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedSoftmax *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizeMaxMin: {
-      auto ptr = reinterpret_cast<const QuantizeMaxMin *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizeMaxMin *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizeV2: {
-      auto ptr = reinterpret_cast<const QuantizeV2 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizeV2 *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Range: {
-      auto ptr = reinterpret_cast<const Range *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Range *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Rank: {
-      auto ptr = reinterpret_cast<const Rank *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Rank *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_ReduceJoin: {
-      auto ptr = reinterpret_cast<const ReduceJoin *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ReduceJoin *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_ReductionParam: {
-      auto ptr = reinterpret_cast<const ReductionParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ReductionParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Relu: {
-      auto ptr = reinterpret_cast<const Relu *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Relu *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Relu6: {
-      auto ptr = reinterpret_cast<const Relu6 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Relu6 *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_RequantizationRange: {
-      auto ptr = reinterpret_cast<const RequantizationRange *>(obj);
+      auto ptr = reinterpret_cast<const MNN::RequantizationRange *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Requantize: {
-      auto ptr = reinterpret_cast<const Requantize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Requantize *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Reshape: {
-      auto ptr = reinterpret_cast<const Reshape *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Reshape *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Resize: {
-      auto ptr = reinterpret_cast<const Resize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Resize *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_RoiPooling: {
-      auto ptr = reinterpret_cast<const RoiPooling *>(obj);
+      auto ptr = reinterpret_cast<const MNN::RoiPooling *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Scale: {
-      auto ptr = reinterpret_cast<const Scale *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Scale *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Selu: {
-      auto ptr = reinterpret_cast<const Selu *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Selu *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Size: {
-      auto ptr = reinterpret_cast<const Size *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Size *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Slice: {
-      auto ptr = reinterpret_cast<const Slice *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Slice *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_SliceTf: {
-      auto ptr = reinterpret_cast<const SliceTf *>(obj);
+      auto ptr = reinterpret_cast<const MNN::SliceTf *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_SpaceBatch: {
-      auto ptr = reinterpret_cast<const SpaceBatch *>(obj);
+      auto ptr = reinterpret_cast<const MNN::SpaceBatch *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_SqueezeParam: {
-      auto ptr = reinterpret_cast<const SqueezeParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::SqueezeParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_StridedSliceParam: {
-      auto ptr = reinterpret_cast<const StridedSliceParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::StridedSliceParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_TensorConvertInfo: {
-      auto ptr = reinterpret_cast<const TensorConvertInfo *>(obj);
+      auto ptr = reinterpret_cast<const MNN::TensorConvertInfo *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_TfQuantizedConv2D: {
-      auto ptr = reinterpret_cast<const TfQuantizedConv2D *>(obj);
+      auto ptr = reinterpret_cast<const MNN::TfQuantizedConv2D *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_TopKV2: {
-      auto ptr = reinterpret_cast<const TopKV2 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::TopKV2 *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Transpose: {
-      auto ptr = reinterpret_cast<const Transpose *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Transpose *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_UnaryOp: {
-      auto ptr = reinterpret_cast<const UnaryOp *>(obj);
+      auto ptr = reinterpret_cast<const MNN::UnaryOp *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_MomentsParam: {
-      auto ptr = reinterpret_cast<const MomentsParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::MomentsParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_RNNParam: {
-      auto ptr = reinterpret_cast<const RNNParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::RNNParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_BatchMatMulParam: {
-      auto ptr = reinterpret_cast<const BatchMatMulParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::BatchMatMulParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_QuantizedFloatParam: {
-      auto ptr = reinterpret_cast<const QuantizedFloatParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedFloatParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_DepthSpaceParam: {
-      auto ptr = reinterpret_cast<const DepthSpaceParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::DepthSpaceParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_EltwiseInt8: {
-      auto ptr = reinterpret_cast<const EltwiseInt8 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::EltwiseInt8 *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_ReverseSequenceParam: {
-      auto ptr = reinterpret_cast<const ReverseSequenceParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ReverseSequenceParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Extra: {
-      auto ptr = reinterpret_cast<const Extra *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Extra *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Pool3D: {
-      auto ptr = reinterpret_cast<const Pool3D *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Pool3D *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_Convolution3D: {
-      auto ptr = reinterpret_cast<const Convolution3D *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Convolution3D *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_ELU: {
-      auto ptr = reinterpret_cast<const ELU *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ELU *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_DetectionPostProcessParam: {
-      auto ptr = reinterpret_cast<const DetectionPostProcessParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::DetectionPostProcessParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_OneHotParam: {
-      auto ptr = reinterpret_cast<const OneHotParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::OneHotParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_PadParam: {
-      auto ptr = reinterpret_cast<const PadParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::PadParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_WhileParam: {
-      auto ptr = reinterpret_cast<const WhileParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::WhileParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_IfParam: {
-      auto ptr = reinterpret_cast<const IfParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::IfParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_RandomUniform: {
-      auto ptr = reinterpret_cast<const RandomUniform *>(obj);
+      auto ptr = reinterpret_cast<const MNN::RandomUniform *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_LayerNorm: {
-      auto ptr = reinterpret_cast<const LayerNorm *>(obj);
+      auto ptr = reinterpret_cast<const MNN::LayerNorm *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_TensorArray: {
-      auto ptr = reinterpret_cast<const TensorArray *>(obj);
+      auto ptr = reinterpret_cast<const MNN::TensorArray *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_LSTMBlockCell: {
-      auto ptr = reinterpret_cast<const LSTMBlockCell *>(obj);
+      auto ptr = reinterpret_cast<const MNN::LSTMBlockCell *>(obj);
       return verifier.VerifyTable(ptr);
     }
     case OpParameter_GridSample: {
-      auto ptr = reinterpret_cast<const GridSample *>(obj);
+      auto ptr = reinterpret_cast<const MNN::GridSample *>(obj);
       return verifier.VerifyTable(ptr);
     }
-    default: return false;
+    default: return true;
   }
 }
 
@@ -5430,367 +5468,367 @@ inline bool VerifyOpParameterVector(flatbuffers::Verifier &verifier, const flatb
 inline void *OpParameterUnion::UnPack(const void *obj, OpParameter type, const flatbuffers::resolver_function_t *resolver) {
   switch (type) {
     case OpParameter_QuantizedAdd: {
-      auto ptr = reinterpret_cast<const QuantizedAdd *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedAdd *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_ArgMax: {
-      auto ptr = reinterpret_cast<const ArgMax *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ArgMax *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_AsString: {
-      auto ptr = reinterpret_cast<const AsString *>(obj);
+      auto ptr = reinterpret_cast<const MNN::AsString *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Axis: {
-      auto ptr = reinterpret_cast<const Axis *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Axis *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_BatchNorm: {
-      auto ptr = reinterpret_cast<const BatchNorm *>(obj);
+      auto ptr = reinterpret_cast<const MNN::BatchNorm *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_BinaryOp: {
-      auto ptr = reinterpret_cast<const BinaryOp *>(obj);
+      auto ptr = reinterpret_cast<const MNN::BinaryOp *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Blob: {
-      auto ptr = reinterpret_cast<const Blob *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Blob *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_CastParam: {
-      auto ptr = reinterpret_cast<const CastParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::CastParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Convolution2D: {
-      auto ptr = reinterpret_cast<const Convolution2D *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Convolution2D *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Crop: {
-      auto ptr = reinterpret_cast<const Crop *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Crop *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_CropAndResize: {
-      auto ptr = reinterpret_cast<const CropAndResize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::CropAndResize *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Dequantize: {
-      auto ptr = reinterpret_cast<const Dequantize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Dequantize *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_DetectionOutput: {
-      auto ptr = reinterpret_cast<const DetectionOutput *>(obj);
+      auto ptr = reinterpret_cast<const MNN::DetectionOutput *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Eltwise: {
-      auto ptr = reinterpret_cast<const Eltwise *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Eltwise *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_ExpandDims: {
-      auto ptr = reinterpret_cast<const ExpandDims *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ExpandDims *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Fill: {
-      auto ptr = reinterpret_cast<const Fill *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Fill *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Flatten: {
-      auto ptr = reinterpret_cast<const Flatten *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Flatten *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Gather: {
-      auto ptr = reinterpret_cast<const Gather *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Gather *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_GatherV2: {
-      auto ptr = reinterpret_cast<const GatherV2 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::GatherV2 *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_InnerProduct: {
-      auto ptr = reinterpret_cast<const InnerProduct *>(obj);
+      auto ptr = reinterpret_cast<const MNN::InnerProduct *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Input: {
-      auto ptr = reinterpret_cast<const Input *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Input *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Interp: {
-      auto ptr = reinterpret_cast<const Interp *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Interp *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_LRN: {
-      auto ptr = reinterpret_cast<const LRN *>(obj);
+      auto ptr = reinterpret_cast<const MNN::LRN *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_LSTM: {
-      auto ptr = reinterpret_cast<const LSTM *>(obj);
+      auto ptr = reinterpret_cast<const MNN::LSTM *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_MatMul: {
-      auto ptr = reinterpret_cast<const MatMul *>(obj);
+      auto ptr = reinterpret_cast<const MNN::MatMul *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_NonMaxSuppressionV2: {
-      auto ptr = reinterpret_cast<const NonMaxSuppressionV2 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::NonMaxSuppressionV2 *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Normalize: {
-      auto ptr = reinterpret_cast<const Normalize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Normalize *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_PackParam: {
-      auto ptr = reinterpret_cast<const PackParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::PackParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Permute: {
-      auto ptr = reinterpret_cast<const Permute *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Permute *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Plugin: {
-      auto ptr = reinterpret_cast<const Plugin *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Plugin *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Pool: {
-      auto ptr = reinterpret_cast<const Pool *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Pool *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_PRelu: {
-      auto ptr = reinterpret_cast<const PRelu *>(obj);
+      auto ptr = reinterpret_cast<const MNN::PRelu *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_PriorBox: {
-      auto ptr = reinterpret_cast<const PriorBox *>(obj);
+      auto ptr = reinterpret_cast<const MNN::PriorBox *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Proposal: {
-      auto ptr = reinterpret_cast<const Proposal *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Proposal *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedAvgPool: {
-      auto ptr = reinterpret_cast<const QuantizedAvgPool *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedAvgPool *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedBiasAdd: {
-      auto ptr = reinterpret_cast<const QuantizedBiasAdd *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedBiasAdd *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedConcat: {
-      auto ptr = reinterpret_cast<const QuantizedConcat *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedConcat *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedLogistic: {
-      auto ptr = reinterpret_cast<const QuantizedLogistic *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedLogistic *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedMatMul: {
-      auto ptr = reinterpret_cast<const QuantizedMatMul *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedMatMul *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedMaxPool: {
-      auto ptr = reinterpret_cast<const QuantizedMaxPool *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedMaxPool *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedRelu: {
-      auto ptr = reinterpret_cast<const QuantizedRelu *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedRelu *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedRelu6: {
-      auto ptr = reinterpret_cast<const QuantizedRelu6 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedRelu6 *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedReshape: {
-      auto ptr = reinterpret_cast<const QuantizedReshape *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedReshape *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedSoftmax: {
-      auto ptr = reinterpret_cast<const QuantizedSoftmax *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedSoftmax *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizeMaxMin: {
-      auto ptr = reinterpret_cast<const QuantizeMaxMin *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizeMaxMin *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizeV2: {
-      auto ptr = reinterpret_cast<const QuantizeV2 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizeV2 *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Range: {
-      auto ptr = reinterpret_cast<const Range *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Range *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Rank: {
-      auto ptr = reinterpret_cast<const Rank *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Rank *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_ReduceJoin: {
-      auto ptr = reinterpret_cast<const ReduceJoin *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ReduceJoin *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_ReductionParam: {
-      auto ptr = reinterpret_cast<const ReductionParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ReductionParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Relu: {
-      auto ptr = reinterpret_cast<const Relu *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Relu *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Relu6: {
-      auto ptr = reinterpret_cast<const Relu6 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Relu6 *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_RequantizationRange: {
-      auto ptr = reinterpret_cast<const RequantizationRange *>(obj);
+      auto ptr = reinterpret_cast<const MNN::RequantizationRange *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Requantize: {
-      auto ptr = reinterpret_cast<const Requantize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Requantize *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Reshape: {
-      auto ptr = reinterpret_cast<const Reshape *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Reshape *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Resize: {
-      auto ptr = reinterpret_cast<const Resize *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Resize *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_RoiPooling: {
-      auto ptr = reinterpret_cast<const RoiPooling *>(obj);
+      auto ptr = reinterpret_cast<const MNN::RoiPooling *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Scale: {
-      auto ptr = reinterpret_cast<const Scale *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Scale *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Selu: {
-      auto ptr = reinterpret_cast<const Selu *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Selu *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Size: {
-      auto ptr = reinterpret_cast<const Size *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Size *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Slice: {
-      auto ptr = reinterpret_cast<const Slice *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Slice *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_SliceTf: {
-      auto ptr = reinterpret_cast<const SliceTf *>(obj);
+      auto ptr = reinterpret_cast<const MNN::SliceTf *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_SpaceBatch: {
-      auto ptr = reinterpret_cast<const SpaceBatch *>(obj);
+      auto ptr = reinterpret_cast<const MNN::SpaceBatch *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_SqueezeParam: {
-      auto ptr = reinterpret_cast<const SqueezeParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::SqueezeParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_StridedSliceParam: {
-      auto ptr = reinterpret_cast<const StridedSliceParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::StridedSliceParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_TensorConvertInfo: {
-      auto ptr = reinterpret_cast<const TensorConvertInfo *>(obj);
+      auto ptr = reinterpret_cast<const MNN::TensorConvertInfo *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_TfQuantizedConv2D: {
-      auto ptr = reinterpret_cast<const TfQuantizedConv2D *>(obj);
+      auto ptr = reinterpret_cast<const MNN::TfQuantizedConv2D *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_TopKV2: {
-      auto ptr = reinterpret_cast<const TopKV2 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::TopKV2 *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Transpose: {
-      auto ptr = reinterpret_cast<const Transpose *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Transpose *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_UnaryOp: {
-      auto ptr = reinterpret_cast<const UnaryOp *>(obj);
+      auto ptr = reinterpret_cast<const MNN::UnaryOp *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_MomentsParam: {
-      auto ptr = reinterpret_cast<const MomentsParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::MomentsParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_RNNParam: {
-      auto ptr = reinterpret_cast<const RNNParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::RNNParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_BatchMatMulParam: {
-      auto ptr = reinterpret_cast<const BatchMatMulParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::BatchMatMulParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_QuantizedFloatParam: {
-      auto ptr = reinterpret_cast<const QuantizedFloatParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::QuantizedFloatParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_DepthSpaceParam: {
-      auto ptr = reinterpret_cast<const DepthSpaceParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::DepthSpaceParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_EltwiseInt8: {
-      auto ptr = reinterpret_cast<const EltwiseInt8 *>(obj);
+      auto ptr = reinterpret_cast<const MNN::EltwiseInt8 *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_ReverseSequenceParam: {
-      auto ptr = reinterpret_cast<const ReverseSequenceParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ReverseSequenceParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Extra: {
-      auto ptr = reinterpret_cast<const Extra *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Extra *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Pool3D: {
-      auto ptr = reinterpret_cast<const Pool3D *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Pool3D *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_Convolution3D: {
-      auto ptr = reinterpret_cast<const Convolution3D *>(obj);
+      auto ptr = reinterpret_cast<const MNN::Convolution3D *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_ELU: {
-      auto ptr = reinterpret_cast<const ELU *>(obj);
+      auto ptr = reinterpret_cast<const MNN::ELU *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_DetectionPostProcessParam: {
-      auto ptr = reinterpret_cast<const DetectionPostProcessParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::DetectionPostProcessParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_OneHotParam: {
-      auto ptr = reinterpret_cast<const OneHotParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::OneHotParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_PadParam: {
-      auto ptr = reinterpret_cast<const PadParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::PadParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_WhileParam: {
-      auto ptr = reinterpret_cast<const WhileParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::WhileParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_IfParam: {
-      auto ptr = reinterpret_cast<const IfParam *>(obj);
+      auto ptr = reinterpret_cast<const MNN::IfParam *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_RandomUniform: {
-      auto ptr = reinterpret_cast<const RandomUniform *>(obj);
+      auto ptr = reinterpret_cast<const MNN::RandomUniform *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_LayerNorm: {
-      auto ptr = reinterpret_cast<const LayerNorm *>(obj);
+      auto ptr = reinterpret_cast<const MNN::LayerNorm *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_TensorArray: {
-      auto ptr = reinterpret_cast<const TensorArray *>(obj);
+      auto ptr = reinterpret_cast<const MNN::TensorArray *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_LSTMBlockCell: {
-      auto ptr = reinterpret_cast<const LSTMBlockCell *>(obj);
+      auto ptr = reinterpret_cast<const MNN::LSTMBlockCell *>(obj);
       return ptr->UnPack(resolver);
     }
     case OpParameter_GridSample: {
-      auto ptr = reinterpret_cast<const GridSample *>(obj);
+      auto ptr = reinterpret_cast<const MNN::GridSample *>(obj);
       return ptr->UnPack(resolver);
     }
     default: return nullptr;
@@ -5800,737 +5838,737 @@ inline void *OpParameterUnion::UnPack(const void *obj, OpParameter type, const f
 inline flatbuffers::Offset<void> OpParameterUnion::Pack(flatbuffers::FlatBufferBuilder &_fbb, const flatbuffers::rehasher_function_t *_rehasher) const {
   switch (type) {
     case OpParameter_QuantizedAdd: {
-      auto ptr = reinterpret_cast<const QuantizedAddT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedAddT *>(value);
       return CreateQuantizedAdd(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_ArgMax: {
-      auto ptr = reinterpret_cast<const ArgMaxT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ArgMaxT *>(value);
       return CreateArgMax(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_AsString: {
-      auto ptr = reinterpret_cast<const AsStringT *>(value);
+      auto ptr = reinterpret_cast<const MNN::AsStringT *>(value);
       return CreateAsString(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Axis: {
-      auto ptr = reinterpret_cast<const AxisT *>(value);
+      auto ptr = reinterpret_cast<const MNN::AxisT *>(value);
       return CreateAxis(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_BatchNorm: {
-      auto ptr = reinterpret_cast<const BatchNormT *>(value);
+      auto ptr = reinterpret_cast<const MNN::BatchNormT *>(value);
       return CreateBatchNorm(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_BinaryOp: {
-      auto ptr = reinterpret_cast<const BinaryOpT *>(value);
+      auto ptr = reinterpret_cast<const MNN::BinaryOpT *>(value);
       return CreateBinaryOp(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Blob: {
-      auto ptr = reinterpret_cast<const BlobT *>(value);
+      auto ptr = reinterpret_cast<const MNN::BlobT *>(value);
       return CreateBlob(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_CastParam: {
-      auto ptr = reinterpret_cast<const CastParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::CastParamT *>(value);
       return CreateCastParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Convolution2D: {
-      auto ptr = reinterpret_cast<const Convolution2DT *>(value);
+      auto ptr = reinterpret_cast<const MNN::Convolution2DT *>(value);
       return CreateConvolution2D(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Crop: {
-      auto ptr = reinterpret_cast<const CropT *>(value);
+      auto ptr = reinterpret_cast<const MNN::CropT *>(value);
       return CreateCrop(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_CropAndResize: {
-      auto ptr = reinterpret_cast<const CropAndResizeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::CropAndResizeT *>(value);
       return CreateCropAndResize(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Dequantize: {
-      auto ptr = reinterpret_cast<const DequantizeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::DequantizeT *>(value);
       return CreateDequantize(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_DetectionOutput: {
-      auto ptr = reinterpret_cast<const DetectionOutputT *>(value);
+      auto ptr = reinterpret_cast<const MNN::DetectionOutputT *>(value);
       return CreateDetectionOutput(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Eltwise: {
-      auto ptr = reinterpret_cast<const EltwiseT *>(value);
+      auto ptr = reinterpret_cast<const MNN::EltwiseT *>(value);
       return CreateEltwise(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_ExpandDims: {
-      auto ptr = reinterpret_cast<const ExpandDimsT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ExpandDimsT *>(value);
       return CreateExpandDims(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Fill: {
-      auto ptr = reinterpret_cast<const FillT *>(value);
+      auto ptr = reinterpret_cast<const MNN::FillT *>(value);
       return CreateFill(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Flatten: {
-      auto ptr = reinterpret_cast<const FlattenT *>(value);
+      auto ptr = reinterpret_cast<const MNN::FlattenT *>(value);
       return CreateFlatten(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Gather: {
-      auto ptr = reinterpret_cast<const GatherT *>(value);
+      auto ptr = reinterpret_cast<const MNN::GatherT *>(value);
       return CreateGather(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_GatherV2: {
-      auto ptr = reinterpret_cast<const GatherV2T *>(value);
+      auto ptr = reinterpret_cast<const MNN::GatherV2T *>(value);
       return CreateGatherV2(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_InnerProduct: {
-      auto ptr = reinterpret_cast<const InnerProductT *>(value);
+      auto ptr = reinterpret_cast<const MNN::InnerProductT *>(value);
       return CreateInnerProduct(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Input: {
-      auto ptr = reinterpret_cast<const InputT *>(value);
+      auto ptr = reinterpret_cast<const MNN::InputT *>(value);
       return CreateInput(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Interp: {
-      auto ptr = reinterpret_cast<const InterpT *>(value);
+      auto ptr = reinterpret_cast<const MNN::InterpT *>(value);
       return CreateInterp(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_LRN: {
-      auto ptr = reinterpret_cast<const LRNT *>(value);
+      auto ptr = reinterpret_cast<const MNN::LRNT *>(value);
       return CreateLRN(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_LSTM: {
-      auto ptr = reinterpret_cast<const LSTMT *>(value);
+      auto ptr = reinterpret_cast<const MNN::LSTMT *>(value);
       return CreateLSTM(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_MatMul: {
-      auto ptr = reinterpret_cast<const MatMulT *>(value);
+      auto ptr = reinterpret_cast<const MNN::MatMulT *>(value);
       return CreateMatMul(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_NonMaxSuppressionV2: {
-      auto ptr = reinterpret_cast<const NonMaxSuppressionV2T *>(value);
+      auto ptr = reinterpret_cast<const MNN::NonMaxSuppressionV2T *>(value);
       return CreateNonMaxSuppressionV2(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Normalize: {
-      auto ptr = reinterpret_cast<const NormalizeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::NormalizeT *>(value);
       return CreateNormalize(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_PackParam: {
-      auto ptr = reinterpret_cast<const PackParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::PackParamT *>(value);
       return CreatePackParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Permute: {
-      auto ptr = reinterpret_cast<const PermuteT *>(value);
+      auto ptr = reinterpret_cast<const MNN::PermuteT *>(value);
       return CreatePermute(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Plugin: {
-      auto ptr = reinterpret_cast<const PluginT *>(value);
+      auto ptr = reinterpret_cast<const MNN::PluginT *>(value);
       return CreatePlugin(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Pool: {
-      auto ptr = reinterpret_cast<const PoolT *>(value);
+      auto ptr = reinterpret_cast<const MNN::PoolT *>(value);
       return CreatePool(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_PRelu: {
-      auto ptr = reinterpret_cast<const PReluT *>(value);
+      auto ptr = reinterpret_cast<const MNN::PReluT *>(value);
       return CreatePRelu(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_PriorBox: {
-      auto ptr = reinterpret_cast<const PriorBoxT *>(value);
+      auto ptr = reinterpret_cast<const MNN::PriorBoxT *>(value);
       return CreatePriorBox(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Proposal: {
-      auto ptr = reinterpret_cast<const ProposalT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ProposalT *>(value);
       return CreateProposal(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedAvgPool: {
-      auto ptr = reinterpret_cast<const QuantizedAvgPoolT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedAvgPoolT *>(value);
       return CreateQuantizedAvgPool(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedBiasAdd: {
-      auto ptr = reinterpret_cast<const QuantizedBiasAddT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedBiasAddT *>(value);
       return CreateQuantizedBiasAdd(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedConcat: {
-      auto ptr = reinterpret_cast<const QuantizedConcatT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedConcatT *>(value);
       return CreateQuantizedConcat(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedLogistic: {
-      auto ptr = reinterpret_cast<const QuantizedLogisticT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedLogisticT *>(value);
       return CreateQuantizedLogistic(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedMatMul: {
-      auto ptr = reinterpret_cast<const QuantizedMatMulT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedMatMulT *>(value);
       return CreateQuantizedMatMul(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedMaxPool: {
-      auto ptr = reinterpret_cast<const QuantizedMaxPoolT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedMaxPoolT *>(value);
       return CreateQuantizedMaxPool(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedRelu: {
-      auto ptr = reinterpret_cast<const QuantizedReluT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedReluT *>(value);
       return CreateQuantizedRelu(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedRelu6: {
-      auto ptr = reinterpret_cast<const QuantizedRelu6T *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedRelu6T *>(value);
       return CreateQuantizedRelu6(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedReshape: {
-      auto ptr = reinterpret_cast<const QuantizedReshapeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedReshapeT *>(value);
       return CreateQuantizedReshape(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedSoftmax: {
-      auto ptr = reinterpret_cast<const QuantizedSoftmaxT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedSoftmaxT *>(value);
       return CreateQuantizedSoftmax(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizeMaxMin: {
-      auto ptr = reinterpret_cast<const QuantizeMaxMinT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizeMaxMinT *>(value);
       return CreateQuantizeMaxMin(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizeV2: {
-      auto ptr = reinterpret_cast<const QuantizeV2T *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizeV2T *>(value);
       return CreateQuantizeV2(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Range: {
-      auto ptr = reinterpret_cast<const RangeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::RangeT *>(value);
       return CreateRange(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Rank: {
-      auto ptr = reinterpret_cast<const RankT *>(value);
+      auto ptr = reinterpret_cast<const MNN::RankT *>(value);
       return CreateRank(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_ReduceJoin: {
-      auto ptr = reinterpret_cast<const ReduceJoinT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ReduceJoinT *>(value);
       return CreateReduceJoin(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_ReductionParam: {
-      auto ptr = reinterpret_cast<const ReductionParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ReductionParamT *>(value);
       return CreateReductionParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Relu: {
-      auto ptr = reinterpret_cast<const ReluT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ReluT *>(value);
       return CreateRelu(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Relu6: {
-      auto ptr = reinterpret_cast<const Relu6T *>(value);
+      auto ptr = reinterpret_cast<const MNN::Relu6T *>(value);
       return CreateRelu6(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_RequantizationRange: {
-      auto ptr = reinterpret_cast<const RequantizationRangeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::RequantizationRangeT *>(value);
       return CreateRequantizationRange(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Requantize: {
-      auto ptr = reinterpret_cast<const RequantizeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::RequantizeT *>(value);
       return CreateRequantize(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Reshape: {
-      auto ptr = reinterpret_cast<const ReshapeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ReshapeT *>(value);
       return CreateReshape(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Resize: {
-      auto ptr = reinterpret_cast<const ResizeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ResizeT *>(value);
       return CreateResize(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_RoiPooling: {
-      auto ptr = reinterpret_cast<const RoiPoolingT *>(value);
+      auto ptr = reinterpret_cast<const MNN::RoiPoolingT *>(value);
       return CreateRoiPooling(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Scale: {
-      auto ptr = reinterpret_cast<const ScaleT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ScaleT *>(value);
       return CreateScale(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Selu: {
-      auto ptr = reinterpret_cast<const SeluT *>(value);
+      auto ptr = reinterpret_cast<const MNN::SeluT *>(value);
       return CreateSelu(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Size: {
-      auto ptr = reinterpret_cast<const SizeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::SizeT *>(value);
       return CreateSize(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Slice: {
-      auto ptr = reinterpret_cast<const SliceT *>(value);
+      auto ptr = reinterpret_cast<const MNN::SliceT *>(value);
       return CreateSlice(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_SliceTf: {
-      auto ptr = reinterpret_cast<const SliceTfT *>(value);
+      auto ptr = reinterpret_cast<const MNN::SliceTfT *>(value);
       return CreateSliceTf(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_SpaceBatch: {
-      auto ptr = reinterpret_cast<const SpaceBatchT *>(value);
+      auto ptr = reinterpret_cast<const MNN::SpaceBatchT *>(value);
       return CreateSpaceBatch(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_SqueezeParam: {
-      auto ptr = reinterpret_cast<const SqueezeParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::SqueezeParamT *>(value);
       return CreateSqueezeParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_StridedSliceParam: {
-      auto ptr = reinterpret_cast<const StridedSliceParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::StridedSliceParamT *>(value);
       return CreateStridedSliceParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_TensorConvertInfo: {
-      auto ptr = reinterpret_cast<const TensorConvertInfoT *>(value);
+      auto ptr = reinterpret_cast<const MNN::TensorConvertInfoT *>(value);
       return CreateTensorConvertInfo(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_TfQuantizedConv2D: {
-      auto ptr = reinterpret_cast<const TfQuantizedConv2DT *>(value);
+      auto ptr = reinterpret_cast<const MNN::TfQuantizedConv2DT *>(value);
       return CreateTfQuantizedConv2D(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_TopKV2: {
-      auto ptr = reinterpret_cast<const TopKV2T *>(value);
+      auto ptr = reinterpret_cast<const MNN::TopKV2T *>(value);
       return CreateTopKV2(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Transpose: {
-      auto ptr = reinterpret_cast<const TransposeT *>(value);
+      auto ptr = reinterpret_cast<const MNN::TransposeT *>(value);
       return CreateTranspose(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_UnaryOp: {
-      auto ptr = reinterpret_cast<const UnaryOpT *>(value);
+      auto ptr = reinterpret_cast<const MNN::UnaryOpT *>(value);
       return CreateUnaryOp(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_MomentsParam: {
-      auto ptr = reinterpret_cast<const MomentsParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::MomentsParamT *>(value);
       return CreateMomentsParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_RNNParam: {
-      auto ptr = reinterpret_cast<const RNNParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::RNNParamT *>(value);
       return CreateRNNParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_BatchMatMulParam: {
-      auto ptr = reinterpret_cast<const BatchMatMulParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::BatchMatMulParamT *>(value);
       return CreateBatchMatMulParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_QuantizedFloatParam: {
-      auto ptr = reinterpret_cast<const QuantizedFloatParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::QuantizedFloatParamT *>(value);
       return CreateQuantizedFloatParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_DepthSpaceParam: {
-      auto ptr = reinterpret_cast<const DepthSpaceParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::DepthSpaceParamT *>(value);
       return CreateDepthSpaceParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_EltwiseInt8: {
-      auto ptr = reinterpret_cast<const EltwiseInt8T *>(value);
+      auto ptr = reinterpret_cast<const MNN::EltwiseInt8T *>(value);
       return CreateEltwiseInt8(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_ReverseSequenceParam: {
-      auto ptr = reinterpret_cast<const ReverseSequenceParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ReverseSequenceParamT *>(value);
       return CreateReverseSequenceParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Extra: {
-      auto ptr = reinterpret_cast<const ExtraT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ExtraT *>(value);
       return CreateExtra(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Pool3D: {
-      auto ptr = reinterpret_cast<const Pool3DT *>(value);
+      auto ptr = reinterpret_cast<const MNN::Pool3DT *>(value);
       return CreatePool3D(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_Convolution3D: {
-      auto ptr = reinterpret_cast<const Convolution3DT *>(value);
+      auto ptr = reinterpret_cast<const MNN::Convolution3DT *>(value);
       return CreateConvolution3D(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_ELU: {
-      auto ptr = reinterpret_cast<const ELUT *>(value);
+      auto ptr = reinterpret_cast<const MNN::ELUT *>(value);
       return CreateELU(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_DetectionPostProcessParam: {
-      auto ptr = reinterpret_cast<const DetectionPostProcessParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::DetectionPostProcessParamT *>(value);
       return CreateDetectionPostProcessParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_OneHotParam: {
-      auto ptr = reinterpret_cast<const OneHotParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::OneHotParamT *>(value);
       return CreateOneHotParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_PadParam: {
-      auto ptr = reinterpret_cast<const PadParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::PadParamT *>(value);
       return CreatePadParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_WhileParam: {
-      auto ptr = reinterpret_cast<const WhileParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::WhileParamT *>(value);
       return CreateWhileParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_IfParam: {
-      auto ptr = reinterpret_cast<const IfParamT *>(value);
+      auto ptr = reinterpret_cast<const MNN::IfParamT *>(value);
       return CreateIfParam(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_RandomUniform: {
-      auto ptr = reinterpret_cast<const RandomUniformT *>(value);
+      auto ptr = reinterpret_cast<const MNN::RandomUniformT *>(value);
       return CreateRandomUniform(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_LayerNorm: {
-      auto ptr = reinterpret_cast<const LayerNormT *>(value);
+      auto ptr = reinterpret_cast<const MNN::LayerNormT *>(value);
       return CreateLayerNorm(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_TensorArray: {
-      auto ptr = reinterpret_cast<const TensorArrayT *>(value);
+      auto ptr = reinterpret_cast<const MNN::TensorArrayT *>(value);
       return CreateTensorArray(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_LSTMBlockCell: {
-      auto ptr = reinterpret_cast<const LSTMBlockCellT *>(value);
+      auto ptr = reinterpret_cast<const MNN::LSTMBlockCellT *>(value);
       return CreateLSTMBlockCell(_fbb, ptr, _rehasher).Union();
     }
     case OpParameter_GridSample: {
-      auto ptr = reinterpret_cast<const GridSampleT *>(value);
+      auto ptr = reinterpret_cast<const MNN::GridSampleT *>(value);
       return CreateGridSample(_fbb, ptr, _rehasher).Union();
     }
     default: return 0;
   }
 }
 
-inline OpParameterUnion::OpParameterUnion(const OpParameterUnion &u) FLATBUFFERS_NOEXCEPT : type(u.type), value(nullptr) {
+inline OpParameterUnion::OpParameterUnion(const OpParameterUnion &u) : type(u.type), value(nullptr) {
   switch (type) {
     case OpParameter_QuantizedAdd: {
-      FLATBUFFERS_ASSERT(false);  // QuantizedAddT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::QuantizedAddT not copyable.
       break;
     }
     case OpParameter_ArgMax: {
-      value = new ArgMaxT(*reinterpret_cast<ArgMaxT *>(u.value));
+      value = new MNN::ArgMaxT(*reinterpret_cast<MNN::ArgMaxT *>(u.value));
       break;
     }
     case OpParameter_AsString: {
-      value = new AsStringT(*reinterpret_cast<AsStringT *>(u.value));
+      value = new MNN::AsStringT(*reinterpret_cast<MNN::AsStringT *>(u.value));
       break;
     }
     case OpParameter_Axis: {
-      value = new AxisT(*reinterpret_cast<AxisT *>(u.value));
+      value = new MNN::AxisT(*reinterpret_cast<MNN::AxisT *>(u.value));
       break;
     }
     case OpParameter_BatchNorm: {
-      value = new BatchNormT(*reinterpret_cast<BatchNormT *>(u.value));
+      value = new MNN::BatchNormT(*reinterpret_cast<MNN::BatchNormT *>(u.value));
       break;
     }
     case OpParameter_BinaryOp: {
-      value = new BinaryOpT(*reinterpret_cast<BinaryOpT *>(u.value));
+      value = new MNN::BinaryOpT(*reinterpret_cast<MNN::BinaryOpT *>(u.value));
       break;
     }
     case OpParameter_Blob: {
-      value = new BlobT(*reinterpret_cast<BlobT *>(u.value));
+      value = new MNN::BlobT(*reinterpret_cast<MNN::BlobT *>(u.value));
       break;
     }
     case OpParameter_CastParam: {
-      value = new CastParamT(*reinterpret_cast<CastParamT *>(u.value));
+      value = new MNN::CastParamT(*reinterpret_cast<MNN::CastParamT *>(u.value));
       break;
     }
     case OpParameter_Convolution2D: {
-      FLATBUFFERS_ASSERT(false);  // Convolution2DT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::Convolution2DT not copyable.
       break;
     }
     case OpParameter_Crop: {
-      value = new CropT(*reinterpret_cast<CropT *>(u.value));
+      value = new MNN::CropT(*reinterpret_cast<MNN::CropT *>(u.value));
       break;
     }
     case OpParameter_CropAndResize: {
-      value = new CropAndResizeT(*reinterpret_cast<CropAndResizeT *>(u.value));
+      value = new MNN::CropAndResizeT(*reinterpret_cast<MNN::CropAndResizeT *>(u.value));
       break;
     }
     case OpParameter_Dequantize: {
-      FLATBUFFERS_ASSERT(false);  // DequantizeT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::DequantizeT not copyable.
       break;
     }
     case OpParameter_DetectionOutput: {
-      value = new DetectionOutputT(*reinterpret_cast<DetectionOutputT *>(u.value));
+      value = new MNN::DetectionOutputT(*reinterpret_cast<MNN::DetectionOutputT *>(u.value));
       break;
     }
     case OpParameter_Eltwise: {
-      value = new EltwiseT(*reinterpret_cast<EltwiseT *>(u.value));
+      value = new MNN::EltwiseT(*reinterpret_cast<MNN::EltwiseT *>(u.value));
       break;
     }
     case OpParameter_ExpandDims: {
-      value = new ExpandDimsT(*reinterpret_cast<ExpandDimsT *>(u.value));
+      value = new MNN::ExpandDimsT(*reinterpret_cast<MNN::ExpandDimsT *>(u.value));
       break;
     }
     case OpParameter_Fill: {
-      value = new FillT(*reinterpret_cast<FillT *>(u.value));
+      value = new MNN::FillT(*reinterpret_cast<MNN::FillT *>(u.value));
       break;
     }
     case OpParameter_Flatten: {
-      value = new FlattenT(*reinterpret_cast<FlattenT *>(u.value));
+      value = new MNN::FlattenT(*reinterpret_cast<MNN::FlattenT *>(u.value));
       break;
     }
     case OpParameter_Gather: {
-      value = new GatherT(*reinterpret_cast<GatherT *>(u.value));
+      value = new MNN::GatherT(*reinterpret_cast<MNN::GatherT *>(u.value));
       break;
     }
     case OpParameter_GatherV2: {
-      value = new GatherV2T(*reinterpret_cast<GatherV2T *>(u.value));
+      value = new MNN::GatherV2T(*reinterpret_cast<MNN::GatherV2T *>(u.value));
       break;
     }
     case OpParameter_InnerProduct: {
-      FLATBUFFERS_ASSERT(false);  // InnerProductT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::InnerProductT not copyable.
       break;
     }
     case OpParameter_Input: {
-      value = new InputT(*reinterpret_cast<InputT *>(u.value));
+      value = new MNN::InputT(*reinterpret_cast<MNN::InputT *>(u.value));
       break;
     }
     case OpParameter_Interp: {
-      value = new InterpT(*reinterpret_cast<InterpT *>(u.value));
+      value = new MNN::InterpT(*reinterpret_cast<MNN::InterpT *>(u.value));
       break;
     }
     case OpParameter_LRN: {
-      value = new LRNT(*reinterpret_cast<LRNT *>(u.value));
+      value = new MNN::LRNT(*reinterpret_cast<MNN::LRNT *>(u.value));
       break;
     }
     case OpParameter_LSTM: {
-      FLATBUFFERS_ASSERT(false);  // LSTMT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::LSTMT not copyable.
       break;
     }
     case OpParameter_MatMul: {
-      value = new MatMulT(*reinterpret_cast<MatMulT *>(u.value));
+      value = new MNN::MatMulT(*reinterpret_cast<MNN::MatMulT *>(u.value));
       break;
     }
     case OpParameter_NonMaxSuppressionV2: {
-      value = new NonMaxSuppressionV2T(*reinterpret_cast<NonMaxSuppressionV2T *>(u.value));
+      value = new MNN::NonMaxSuppressionV2T(*reinterpret_cast<MNN::NonMaxSuppressionV2T *>(u.value));
       break;
     }
     case OpParameter_Normalize: {
-      value = new NormalizeT(*reinterpret_cast<NormalizeT *>(u.value));
+      value = new MNN::NormalizeT(*reinterpret_cast<MNN::NormalizeT *>(u.value));
       break;
     }
     case OpParameter_PackParam: {
-      value = new PackParamT(*reinterpret_cast<PackParamT *>(u.value));
+      value = new MNN::PackParamT(*reinterpret_cast<MNN::PackParamT *>(u.value));
       break;
     }
     case OpParameter_Permute: {
-      value = new PermuteT(*reinterpret_cast<PermuteT *>(u.value));
+      value = new MNN::PermuteT(*reinterpret_cast<MNN::PermuteT *>(u.value));
       break;
     }
     case OpParameter_Plugin: {
-      FLATBUFFERS_ASSERT(false);  // PluginT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::PluginT not copyable.
       break;
     }
     case OpParameter_Pool: {
-      value = new PoolT(*reinterpret_cast<PoolT *>(u.value));
+      value = new MNN::PoolT(*reinterpret_cast<MNN::PoolT *>(u.value));
       break;
     }
     case OpParameter_PRelu: {
-      value = new PReluT(*reinterpret_cast<PReluT *>(u.value));
+      value = new MNN::PReluT(*reinterpret_cast<MNN::PReluT *>(u.value));
       break;
     }
     case OpParameter_PriorBox: {
-      value = new PriorBoxT(*reinterpret_cast<PriorBoxT *>(u.value));
+      value = new MNN::PriorBoxT(*reinterpret_cast<MNN::PriorBoxT *>(u.value));
       break;
     }
     case OpParameter_Proposal: {
-      FLATBUFFERS_ASSERT(false);  // ProposalT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::ProposalT not copyable.
       break;
     }
     case OpParameter_QuantizedAvgPool: {
-      value = new QuantizedAvgPoolT(*reinterpret_cast<QuantizedAvgPoolT *>(u.value));
+      value = new MNN::QuantizedAvgPoolT(*reinterpret_cast<MNN::QuantizedAvgPoolT *>(u.value));
       break;
     }
     case OpParameter_QuantizedBiasAdd: {
-      value = new QuantizedBiasAddT(*reinterpret_cast<QuantizedBiasAddT *>(u.value));
+      value = new MNN::QuantizedBiasAddT(*reinterpret_cast<MNN::QuantizedBiasAddT *>(u.value));
       break;
     }
     case OpParameter_QuantizedConcat: {
-      FLATBUFFERS_ASSERT(false);  // QuantizedConcatT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::QuantizedConcatT not copyable.
       break;
     }
     case OpParameter_QuantizedLogistic: {
-      FLATBUFFERS_ASSERT(false);  // QuantizedLogisticT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::QuantizedLogisticT not copyable.
       break;
     }
     case OpParameter_QuantizedMatMul: {
-      value = new QuantizedMatMulT(*reinterpret_cast<QuantizedMatMulT *>(u.value));
+      value = new MNN::QuantizedMatMulT(*reinterpret_cast<MNN::QuantizedMatMulT *>(u.value));
       break;
     }
     case OpParameter_QuantizedMaxPool: {
-      value = new QuantizedMaxPoolT(*reinterpret_cast<QuantizedMaxPoolT *>(u.value));
+      value = new MNN::QuantizedMaxPoolT(*reinterpret_cast<MNN::QuantizedMaxPoolT *>(u.value));
       break;
     }
     case OpParameter_QuantizedRelu: {
-      value = new QuantizedReluT(*reinterpret_cast<QuantizedReluT *>(u.value));
+      value = new MNN::QuantizedReluT(*reinterpret_cast<MNN::QuantizedReluT *>(u.value));
       break;
     }
     case OpParameter_QuantizedRelu6: {
-      value = new QuantizedRelu6T(*reinterpret_cast<QuantizedRelu6T *>(u.value));
+      value = new MNN::QuantizedRelu6T(*reinterpret_cast<MNN::QuantizedRelu6T *>(u.value));
       break;
     }
     case OpParameter_QuantizedReshape: {
-      value = new QuantizedReshapeT(*reinterpret_cast<QuantizedReshapeT *>(u.value));
+      value = new MNN::QuantizedReshapeT(*reinterpret_cast<MNN::QuantizedReshapeT *>(u.value));
       break;
     }
     case OpParameter_QuantizedSoftmax: {
-      value = new QuantizedSoftmaxT(*reinterpret_cast<QuantizedSoftmaxT *>(u.value));
+      value = new MNN::QuantizedSoftmaxT(*reinterpret_cast<MNN::QuantizedSoftmaxT *>(u.value));
       break;
     }
     case OpParameter_QuantizeMaxMin: {
-      value = new QuantizeMaxMinT(*reinterpret_cast<QuantizeMaxMinT *>(u.value));
+      value = new MNN::QuantizeMaxMinT(*reinterpret_cast<MNN::QuantizeMaxMinT *>(u.value));
       break;
     }
     case OpParameter_QuantizeV2: {
-      value = new QuantizeV2T(*reinterpret_cast<QuantizeV2T *>(u.value));
+      value = new MNN::QuantizeV2T(*reinterpret_cast<MNN::QuantizeV2T *>(u.value));
       break;
     }
     case OpParameter_Range: {
-      value = new RangeT(*reinterpret_cast<RangeT *>(u.value));
+      value = new MNN::RangeT(*reinterpret_cast<MNN::RangeT *>(u.value));
       break;
     }
     case OpParameter_Rank: {
-      value = new RankT(*reinterpret_cast<RankT *>(u.value));
+      value = new MNN::RankT(*reinterpret_cast<MNN::RankT *>(u.value));
       break;
     }
     case OpParameter_ReduceJoin: {
-      value = new ReduceJoinT(*reinterpret_cast<ReduceJoinT *>(u.value));
+      value = new MNN::ReduceJoinT(*reinterpret_cast<MNN::ReduceJoinT *>(u.value));
       break;
     }
     case OpParameter_ReductionParam: {
-      value = new ReductionParamT(*reinterpret_cast<ReductionParamT *>(u.value));
+      value = new MNN::ReductionParamT(*reinterpret_cast<MNN::ReductionParamT *>(u.value));
       break;
     }
     case OpParameter_Relu: {
-      value = new ReluT(*reinterpret_cast<ReluT *>(u.value));
+      value = new MNN::ReluT(*reinterpret_cast<MNN::ReluT *>(u.value));
       break;
     }
     case OpParameter_Relu6: {
-      value = new Relu6T(*reinterpret_cast<Relu6T *>(u.value));
+      value = new MNN::Relu6T(*reinterpret_cast<MNN::Relu6T *>(u.value));
       break;
     }
     case OpParameter_RequantizationRange: {
-      value = new RequantizationRangeT(*reinterpret_cast<RequantizationRangeT *>(u.value));
+      value = new MNN::RequantizationRangeT(*reinterpret_cast<MNN::RequantizationRangeT *>(u.value));
       break;
     }
     case OpParameter_Requantize: {
-      value = new RequantizeT(*reinterpret_cast<RequantizeT *>(u.value));
+      value = new MNN::RequantizeT(*reinterpret_cast<MNN::RequantizeT *>(u.value));
       break;
     }
     case OpParameter_Reshape: {
-      value = new ReshapeT(*reinterpret_cast<ReshapeT *>(u.value));
+      value = new MNN::ReshapeT(*reinterpret_cast<MNN::ReshapeT *>(u.value));
       break;
     }
     case OpParameter_Resize: {
-      value = new ResizeT(*reinterpret_cast<ResizeT *>(u.value));
+      value = new MNN::ResizeT(*reinterpret_cast<MNN::ResizeT *>(u.value));
       break;
     }
     case OpParameter_RoiPooling: {
-      value = new RoiPoolingT(*reinterpret_cast<RoiPoolingT *>(u.value));
+      value = new MNN::RoiPoolingT(*reinterpret_cast<MNN::RoiPoolingT *>(u.value));
       break;
     }
     case OpParameter_Scale: {
-      value = new ScaleT(*reinterpret_cast<ScaleT *>(u.value));
+      value = new MNN::ScaleT(*reinterpret_cast<MNN::ScaleT *>(u.value));
       break;
     }
     case OpParameter_Selu: {
-      value = new SeluT(*reinterpret_cast<SeluT *>(u.value));
+      value = new MNN::SeluT(*reinterpret_cast<MNN::SeluT *>(u.value));
       break;
     }
     case OpParameter_Size: {
-      value = new SizeT(*reinterpret_cast<SizeT *>(u.value));
+      value = new MNN::SizeT(*reinterpret_cast<MNN::SizeT *>(u.value));
       break;
     }
     case OpParameter_Slice: {
-      value = new SliceT(*reinterpret_cast<SliceT *>(u.value));
+      value = new MNN::SliceT(*reinterpret_cast<MNN::SliceT *>(u.value));
       break;
     }
     case OpParameter_SliceTf: {
-      value = new SliceTfT(*reinterpret_cast<SliceTfT *>(u.value));
+      value = new MNN::SliceTfT(*reinterpret_cast<MNN::SliceTfT *>(u.value));
       break;
     }
     case OpParameter_SpaceBatch: {
-      FLATBUFFERS_ASSERT(false);  // SpaceBatchT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::SpaceBatchT not copyable.
       break;
     }
     case OpParameter_SqueezeParam: {
-      value = new SqueezeParamT(*reinterpret_cast<SqueezeParamT *>(u.value));
+      value = new MNN::SqueezeParamT(*reinterpret_cast<MNN::SqueezeParamT *>(u.value));
       break;
     }
     case OpParameter_StridedSliceParam: {
-      value = new StridedSliceParamT(*reinterpret_cast<StridedSliceParamT *>(u.value));
+      value = new MNN::StridedSliceParamT(*reinterpret_cast<MNN::StridedSliceParamT *>(u.value));
       break;
     }
     case OpParameter_TensorConvertInfo: {
-      value = new TensorConvertInfoT(*reinterpret_cast<TensorConvertInfoT *>(u.value));
+      value = new MNN::TensorConvertInfoT(*reinterpret_cast<MNN::TensorConvertInfoT *>(u.value));
       break;
     }
     case OpParameter_TfQuantizedConv2D: {
-      FLATBUFFERS_ASSERT(false);  // TfQuantizedConv2DT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::TfQuantizedConv2DT not copyable.
       break;
     }
     case OpParameter_TopKV2: {
-      value = new TopKV2T(*reinterpret_cast<TopKV2T *>(u.value));
+      value = new MNN::TopKV2T(*reinterpret_cast<MNN::TopKV2T *>(u.value));
       break;
     }
     case OpParameter_Transpose: {
-      value = new TransposeT(*reinterpret_cast<TransposeT *>(u.value));
+      value = new MNN::TransposeT(*reinterpret_cast<MNN::TransposeT *>(u.value));
       break;
     }
     case OpParameter_UnaryOp: {
-      value = new UnaryOpT(*reinterpret_cast<UnaryOpT *>(u.value));
+      value = new MNN::UnaryOpT(*reinterpret_cast<MNN::UnaryOpT *>(u.value));
       break;
     }
     case OpParameter_MomentsParam: {
-      value = new MomentsParamT(*reinterpret_cast<MomentsParamT *>(u.value));
+      value = new MNN::MomentsParamT(*reinterpret_cast<MNN::MomentsParamT *>(u.value));
       break;
     }
     case OpParameter_RNNParam: {
-      FLATBUFFERS_ASSERT(false);  // RNNParamT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::RNNParamT not copyable.
       break;
     }
     case OpParameter_BatchMatMulParam: {
-      value = new BatchMatMulParamT(*reinterpret_cast<BatchMatMulParamT *>(u.value));
+      value = new MNN::BatchMatMulParamT(*reinterpret_cast<MNN::BatchMatMulParamT *>(u.value));
       break;
     }
     case OpParameter_QuantizedFloatParam: {
-      value = new QuantizedFloatParamT(*reinterpret_cast<QuantizedFloatParamT *>(u.value));
+      value = new MNN::QuantizedFloatParamT(*reinterpret_cast<MNN::QuantizedFloatParamT *>(u.value));
       break;
     }
     case OpParameter_DepthSpaceParam: {
-      value = new DepthSpaceParamT(*reinterpret_cast<DepthSpaceParamT *>(u.value));
+      value = new MNN::DepthSpaceParamT(*reinterpret_cast<MNN::DepthSpaceParamT *>(u.value));
       break;
     }
     case OpParameter_EltwiseInt8: {
-      FLATBUFFERS_ASSERT(false);  // EltwiseInt8T not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::EltwiseInt8T not copyable.
       break;
     }
     case OpParameter_ReverseSequenceParam: {
-      value = new ReverseSequenceParamT(*reinterpret_cast<ReverseSequenceParamT *>(u.value));
+      value = new MNN::ReverseSequenceParamT(*reinterpret_cast<MNN::ReverseSequenceParamT *>(u.value));
       break;
     }
     case OpParameter_Extra: {
-      FLATBUFFERS_ASSERT(false);  // ExtraT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::ExtraT not copyable.
       break;
     }
     case OpParameter_Pool3D: {
-      value = new Pool3DT(*reinterpret_cast<Pool3DT *>(u.value));
+      value = new MNN::Pool3DT(*reinterpret_cast<MNN::Pool3DT *>(u.value));
       break;
     }
     case OpParameter_Convolution3D: {
-      FLATBUFFERS_ASSERT(false);  // Convolution3DT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::Convolution3DT not copyable.
       break;
     }
     case OpParameter_ELU: {
-      value = new ELUT(*reinterpret_cast<ELUT *>(u.value));
+      value = new MNN::ELUT(*reinterpret_cast<MNN::ELUT *>(u.value));
       break;
     }
     case OpParameter_DetectionPostProcessParam: {
-      value = new DetectionPostProcessParamT(*reinterpret_cast<DetectionPostProcessParamT *>(u.value));
+      value = new MNN::DetectionPostProcessParamT(*reinterpret_cast<MNN::DetectionPostProcessParamT *>(u.value));
       break;
     }
     case OpParameter_OneHotParam: {
-      value = new OneHotParamT(*reinterpret_cast<OneHotParamT *>(u.value));
+      value = new MNN::OneHotParamT(*reinterpret_cast<MNN::OneHotParamT *>(u.value));
       break;
     }
     case OpParameter_PadParam: {
-      value = new PadParamT(*reinterpret_cast<PadParamT *>(u.value));
+      value = new MNN::PadParamT(*reinterpret_cast<MNN::PadParamT *>(u.value));
       break;
     }
     case OpParameter_WhileParam: {
-      FLATBUFFERS_ASSERT(false);  // WhileParamT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::WhileParamT not copyable.
       break;
     }
     case OpParameter_IfParam: {
-      FLATBUFFERS_ASSERT(false);  // IfParamT not copyable.
+      FLATBUFFERS_ASSERT(false);  // MNN::IfParamT not copyable.
       break;
     }
     case OpParameter_RandomUniform: {
-      value = new RandomUniformT(*reinterpret_cast<RandomUniformT *>(u.value));
+      value = new MNN::RandomUniformT(*reinterpret_cast<MNN::RandomUniformT *>(u.value));
       break;
     }
     case OpParameter_LayerNorm: {
-      value = new LayerNormT(*reinterpret_cast<LayerNormT *>(u.value));
+      value = new MNN::LayerNormT(*reinterpret_cast<MNN::LayerNormT *>(u.value));
       break;
     }
     case OpParameter_TensorArray: {
-      value = new TensorArrayT(*reinterpret_cast<TensorArrayT *>(u.value));
+      value = new MNN::TensorArrayT(*reinterpret_cast<MNN::TensorArrayT *>(u.value));
       break;
     }
     case OpParameter_LSTMBlockCell: {
-      value = new LSTMBlockCellT(*reinterpret_cast<LSTMBlockCellT *>(u.value));
+      value = new MNN::LSTMBlockCellT(*reinterpret_cast<MNN::LSTMBlockCellT *>(u.value));
       break;
     }
     case OpParameter_GridSample: {
-      value = new GridSampleT(*reinterpret_cast<GridSampleT *>(u.value));
+      value = new MNN::GridSampleT(*reinterpret_cast<MNN::GridSampleT *>(u.value));
       break;
     }
     default:
@@ -6541,457 +6579,457 @@ inline OpParameterUnion::OpParameterUnion(const OpParameterUnion &u) FLATBUFFERS
 inline void OpParameterUnion::Reset() {
   switch (type) {
     case OpParameter_QuantizedAdd: {
-      auto ptr = reinterpret_cast<QuantizedAddT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedAddT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_ArgMax: {
-      auto ptr = reinterpret_cast<ArgMaxT *>(value);
+      auto ptr = reinterpret_cast<MNN::ArgMaxT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_AsString: {
-      auto ptr = reinterpret_cast<AsStringT *>(value);
+      auto ptr = reinterpret_cast<MNN::AsStringT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Axis: {
-      auto ptr = reinterpret_cast<AxisT *>(value);
+      auto ptr = reinterpret_cast<MNN::AxisT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_BatchNorm: {
-      auto ptr = reinterpret_cast<BatchNormT *>(value);
+      auto ptr = reinterpret_cast<MNN::BatchNormT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_BinaryOp: {
-      auto ptr = reinterpret_cast<BinaryOpT *>(value);
+      auto ptr = reinterpret_cast<MNN::BinaryOpT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Blob: {
-      auto ptr = reinterpret_cast<BlobT *>(value);
+      auto ptr = reinterpret_cast<MNN::BlobT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_CastParam: {
-      auto ptr = reinterpret_cast<CastParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::CastParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Convolution2D: {
-      auto ptr = reinterpret_cast<Convolution2DT *>(value);
+      auto ptr = reinterpret_cast<MNN::Convolution2DT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Crop: {
-      auto ptr = reinterpret_cast<CropT *>(value);
+      auto ptr = reinterpret_cast<MNN::CropT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_CropAndResize: {
-      auto ptr = reinterpret_cast<CropAndResizeT *>(value);
+      auto ptr = reinterpret_cast<MNN::CropAndResizeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Dequantize: {
-      auto ptr = reinterpret_cast<DequantizeT *>(value);
+      auto ptr = reinterpret_cast<MNN::DequantizeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_DetectionOutput: {
-      auto ptr = reinterpret_cast<DetectionOutputT *>(value);
+      auto ptr = reinterpret_cast<MNN::DetectionOutputT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Eltwise: {
-      auto ptr = reinterpret_cast<EltwiseT *>(value);
+      auto ptr = reinterpret_cast<MNN::EltwiseT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_ExpandDims: {
-      auto ptr = reinterpret_cast<ExpandDimsT *>(value);
+      auto ptr = reinterpret_cast<MNN::ExpandDimsT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Fill: {
-      auto ptr = reinterpret_cast<FillT *>(value);
+      auto ptr = reinterpret_cast<MNN::FillT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Flatten: {
-      auto ptr = reinterpret_cast<FlattenT *>(value);
+      auto ptr = reinterpret_cast<MNN::FlattenT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Gather: {
-      auto ptr = reinterpret_cast<GatherT *>(value);
+      auto ptr = reinterpret_cast<MNN::GatherT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_GatherV2: {
-      auto ptr = reinterpret_cast<GatherV2T *>(value);
+      auto ptr = reinterpret_cast<MNN::GatherV2T *>(value);
       delete ptr;
       break;
     }
     case OpParameter_InnerProduct: {
-      auto ptr = reinterpret_cast<InnerProductT *>(value);
+      auto ptr = reinterpret_cast<MNN::InnerProductT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Input: {
-      auto ptr = reinterpret_cast<InputT *>(value);
+      auto ptr = reinterpret_cast<MNN::InputT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Interp: {
-      auto ptr = reinterpret_cast<InterpT *>(value);
+      auto ptr = reinterpret_cast<MNN::InterpT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_LRN: {
-      auto ptr = reinterpret_cast<LRNT *>(value);
+      auto ptr = reinterpret_cast<MNN::LRNT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_LSTM: {
-      auto ptr = reinterpret_cast<LSTMT *>(value);
+      auto ptr = reinterpret_cast<MNN::LSTMT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_MatMul: {
-      auto ptr = reinterpret_cast<MatMulT *>(value);
+      auto ptr = reinterpret_cast<MNN::MatMulT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_NonMaxSuppressionV2: {
-      auto ptr = reinterpret_cast<NonMaxSuppressionV2T *>(value);
+      auto ptr = reinterpret_cast<MNN::NonMaxSuppressionV2T *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Normalize: {
-      auto ptr = reinterpret_cast<NormalizeT *>(value);
+      auto ptr = reinterpret_cast<MNN::NormalizeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_PackParam: {
-      auto ptr = reinterpret_cast<PackParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::PackParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Permute: {
-      auto ptr = reinterpret_cast<PermuteT *>(value);
+      auto ptr = reinterpret_cast<MNN::PermuteT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Plugin: {
-      auto ptr = reinterpret_cast<PluginT *>(value);
+      auto ptr = reinterpret_cast<MNN::PluginT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Pool: {
-      auto ptr = reinterpret_cast<PoolT *>(value);
+      auto ptr = reinterpret_cast<MNN::PoolT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_PRelu: {
-      auto ptr = reinterpret_cast<PReluT *>(value);
+      auto ptr = reinterpret_cast<MNN::PReluT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_PriorBox: {
-      auto ptr = reinterpret_cast<PriorBoxT *>(value);
+      auto ptr = reinterpret_cast<MNN::PriorBoxT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Proposal: {
-      auto ptr = reinterpret_cast<ProposalT *>(value);
+      auto ptr = reinterpret_cast<MNN::ProposalT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedAvgPool: {
-      auto ptr = reinterpret_cast<QuantizedAvgPoolT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedAvgPoolT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedBiasAdd: {
-      auto ptr = reinterpret_cast<QuantizedBiasAddT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedBiasAddT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedConcat: {
-      auto ptr = reinterpret_cast<QuantizedConcatT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedConcatT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedLogistic: {
-      auto ptr = reinterpret_cast<QuantizedLogisticT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedLogisticT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedMatMul: {
-      auto ptr = reinterpret_cast<QuantizedMatMulT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedMatMulT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedMaxPool: {
-      auto ptr = reinterpret_cast<QuantizedMaxPoolT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedMaxPoolT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedRelu: {
-      auto ptr = reinterpret_cast<QuantizedReluT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedReluT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedRelu6: {
-      auto ptr = reinterpret_cast<QuantizedRelu6T *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedRelu6T *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedReshape: {
-      auto ptr = reinterpret_cast<QuantizedReshapeT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedReshapeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedSoftmax: {
-      auto ptr = reinterpret_cast<QuantizedSoftmaxT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedSoftmaxT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizeMaxMin: {
-      auto ptr = reinterpret_cast<QuantizeMaxMinT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizeMaxMinT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizeV2: {
-      auto ptr = reinterpret_cast<QuantizeV2T *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizeV2T *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Range: {
-      auto ptr = reinterpret_cast<RangeT *>(value);
+      auto ptr = reinterpret_cast<MNN::RangeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Rank: {
-      auto ptr = reinterpret_cast<RankT *>(value);
+      auto ptr = reinterpret_cast<MNN::RankT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_ReduceJoin: {
-      auto ptr = reinterpret_cast<ReduceJoinT *>(value);
+      auto ptr = reinterpret_cast<MNN::ReduceJoinT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_ReductionParam: {
-      auto ptr = reinterpret_cast<ReductionParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::ReductionParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Relu: {
-      auto ptr = reinterpret_cast<ReluT *>(value);
+      auto ptr = reinterpret_cast<MNN::ReluT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Relu6: {
-      auto ptr = reinterpret_cast<Relu6T *>(value);
+      auto ptr = reinterpret_cast<MNN::Relu6T *>(value);
       delete ptr;
       break;
     }
     case OpParameter_RequantizationRange: {
-      auto ptr = reinterpret_cast<RequantizationRangeT *>(value);
+      auto ptr = reinterpret_cast<MNN::RequantizationRangeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Requantize: {
-      auto ptr = reinterpret_cast<RequantizeT *>(value);
+      auto ptr = reinterpret_cast<MNN::RequantizeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Reshape: {
-      auto ptr = reinterpret_cast<ReshapeT *>(value);
+      auto ptr = reinterpret_cast<MNN::ReshapeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Resize: {
-      auto ptr = reinterpret_cast<ResizeT *>(value);
+      auto ptr = reinterpret_cast<MNN::ResizeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_RoiPooling: {
-      auto ptr = reinterpret_cast<RoiPoolingT *>(value);
+      auto ptr = reinterpret_cast<MNN::RoiPoolingT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Scale: {
-      auto ptr = reinterpret_cast<ScaleT *>(value);
+      auto ptr = reinterpret_cast<MNN::ScaleT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Selu: {
-      auto ptr = reinterpret_cast<SeluT *>(value);
+      auto ptr = reinterpret_cast<MNN::SeluT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Size: {
-      auto ptr = reinterpret_cast<SizeT *>(value);
+      auto ptr = reinterpret_cast<MNN::SizeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Slice: {
-      auto ptr = reinterpret_cast<SliceT *>(value);
+      auto ptr = reinterpret_cast<MNN::SliceT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_SliceTf: {
-      auto ptr = reinterpret_cast<SliceTfT *>(value);
+      auto ptr = reinterpret_cast<MNN::SliceTfT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_SpaceBatch: {
-      auto ptr = reinterpret_cast<SpaceBatchT *>(value);
+      auto ptr = reinterpret_cast<MNN::SpaceBatchT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_SqueezeParam: {
-      auto ptr = reinterpret_cast<SqueezeParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::SqueezeParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_StridedSliceParam: {
-      auto ptr = reinterpret_cast<StridedSliceParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::StridedSliceParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_TensorConvertInfo: {
-      auto ptr = reinterpret_cast<TensorConvertInfoT *>(value);
+      auto ptr = reinterpret_cast<MNN::TensorConvertInfoT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_TfQuantizedConv2D: {
-      auto ptr = reinterpret_cast<TfQuantizedConv2DT *>(value);
+      auto ptr = reinterpret_cast<MNN::TfQuantizedConv2DT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_TopKV2: {
-      auto ptr = reinterpret_cast<TopKV2T *>(value);
+      auto ptr = reinterpret_cast<MNN::TopKV2T *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Transpose: {
-      auto ptr = reinterpret_cast<TransposeT *>(value);
+      auto ptr = reinterpret_cast<MNN::TransposeT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_UnaryOp: {
-      auto ptr = reinterpret_cast<UnaryOpT *>(value);
+      auto ptr = reinterpret_cast<MNN::UnaryOpT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_MomentsParam: {
-      auto ptr = reinterpret_cast<MomentsParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::MomentsParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_RNNParam: {
-      auto ptr = reinterpret_cast<RNNParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::RNNParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_BatchMatMulParam: {
-      auto ptr = reinterpret_cast<BatchMatMulParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::BatchMatMulParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_QuantizedFloatParam: {
-      auto ptr = reinterpret_cast<QuantizedFloatParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::QuantizedFloatParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_DepthSpaceParam: {
-      auto ptr = reinterpret_cast<DepthSpaceParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::DepthSpaceParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_EltwiseInt8: {
-      auto ptr = reinterpret_cast<EltwiseInt8T *>(value);
+      auto ptr = reinterpret_cast<MNN::EltwiseInt8T *>(value);
       delete ptr;
       break;
     }
     case OpParameter_ReverseSequenceParam: {
-      auto ptr = reinterpret_cast<ReverseSequenceParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::ReverseSequenceParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Extra: {
-      auto ptr = reinterpret_cast<ExtraT *>(value);
+      auto ptr = reinterpret_cast<MNN::ExtraT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Pool3D: {
-      auto ptr = reinterpret_cast<Pool3DT *>(value);
+      auto ptr = reinterpret_cast<MNN::Pool3DT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_Convolution3D: {
-      auto ptr = reinterpret_cast<Convolution3DT *>(value);
+      auto ptr = reinterpret_cast<MNN::Convolution3DT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_ELU: {
-      auto ptr = reinterpret_cast<ELUT *>(value);
+      auto ptr = reinterpret_cast<MNN::ELUT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_DetectionPostProcessParam: {
-      auto ptr = reinterpret_cast<DetectionPostProcessParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::DetectionPostProcessParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_OneHotParam: {
-      auto ptr = reinterpret_cast<OneHotParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::OneHotParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_PadParam: {
-      auto ptr = reinterpret_cast<PadParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::PadParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_WhileParam: {
-      auto ptr = reinterpret_cast<WhileParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::WhileParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_IfParam: {
-      auto ptr = reinterpret_cast<IfParamT *>(value);
+      auto ptr = reinterpret_cast<MNN::IfParamT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_RandomUniform: {
-      auto ptr = reinterpret_cast<RandomUniformT *>(value);
+      auto ptr = reinterpret_cast<MNN::RandomUniformT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_LayerNorm: {
-      auto ptr = reinterpret_cast<LayerNormT *>(value);
+      auto ptr = reinterpret_cast<MNN::LayerNormT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_TensorArray: {
-      auto ptr = reinterpret_cast<TensorArrayT *>(value);
+      auto ptr = reinterpret_cast<MNN::TensorArrayT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_LSTMBlockCell: {
-      auto ptr = reinterpret_cast<LSTMBlockCellT *>(value);
+      auto ptr = reinterpret_cast<MNN::LSTMBlockCellT *>(value);
       delete ptr;
       break;
     }
     case OpParameter_GridSample: {
-      auto ptr = reinterpret_cast<GridSampleT *>(value);
+      auto ptr = reinterpret_cast<MNN::GridSampleT *>(value);
       delete ptr;
       break;
     }
@@ -7166,7 +7204,7 @@ inline const flatbuffers::TypeTable *OpTypeTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    OpTypeTypeTable
+    MNN::OpTypeTypeTable
   };
   static const int64_t values[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 512, 513, 514, 515, 516, 517, 518, 600, 601, 603, 604 };
   static const char * const names[] = {
@@ -7434,97 +7472,97 @@ inline const flatbuffers::TypeTable *OpParameterTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 90 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    QuantizedAddTypeTable,
-    ArgMaxTypeTable,
-    AsStringTypeTable,
-    AxisTypeTable,
-    BatchNormTypeTable,
-    BinaryOpTypeTable,
-    BlobTypeTable,
-    CastParamTypeTable,
-    Convolution2DTypeTable,
-    CropTypeTable,
-    CropAndResizeTypeTable,
-    DequantizeTypeTable,
-    DetectionOutputTypeTable,
-    EltwiseTypeTable,
-    ExpandDimsTypeTable,
-    FillTypeTable,
-    FlattenTypeTable,
-    GatherTypeTable,
-    GatherV2TypeTable,
-    InnerProductTypeTable,
-    InputTypeTable,
-    InterpTypeTable,
-    LRNTypeTable,
-    LSTMTypeTable,
-    MatMulTypeTable,
-    NonMaxSuppressionV2TypeTable,
-    NormalizeTypeTable,
-    PackParamTypeTable,
-    PermuteTypeTable,
-    PluginTypeTable,
-    PoolTypeTable,
-    PReluTypeTable,
-    PriorBoxTypeTable,
-    ProposalTypeTable,
-    QuantizedAvgPoolTypeTable,
-    QuantizedBiasAddTypeTable,
-    QuantizedConcatTypeTable,
-    QuantizedLogisticTypeTable,
-    QuantizedMatMulTypeTable,
-    QuantizedMaxPoolTypeTable,
-    QuantizedReluTypeTable,
-    QuantizedRelu6TypeTable,
-    QuantizedReshapeTypeTable,
-    QuantizedSoftmaxTypeTable,
-    QuantizeMaxMinTypeTable,
-    QuantizeV2TypeTable,
-    RangeTypeTable,
-    RankTypeTable,
-    ReduceJoinTypeTable,
-    ReductionParamTypeTable,
-    ReluTypeTable,
-    Relu6TypeTable,
-    RequantizationRangeTypeTable,
-    RequantizeTypeTable,
-    ReshapeTypeTable,
-    ResizeTypeTable,
-    RoiPoolingTypeTable,
-    ScaleTypeTable,
-    SeluTypeTable,
-    SizeTypeTable,
-    SliceTypeTable,
-    SliceTfTypeTable,
-    SpaceBatchTypeTable,
-    SqueezeParamTypeTable,
-    StridedSliceParamTypeTable,
-    TensorConvertInfoTypeTable,
-    TfQuantizedConv2DTypeTable,
-    TopKV2TypeTable,
-    TransposeTypeTable,
-    UnaryOpTypeTable,
-    MomentsParamTypeTable,
-    RNNParamTypeTable,
-    BatchMatMulParamTypeTable,
-    QuantizedFloatParamTypeTable,
-    DepthSpaceParamTypeTable,
-    EltwiseInt8TypeTable,
-    ReverseSequenceParamTypeTable,
-    ExtraTypeTable,
-    Pool3DTypeTable,
-    Convolution3DTypeTable,
-    ELUTypeTable,
-    DetectionPostProcessParamTypeTable,
-    OneHotParamTypeTable,
-    PadParamTypeTable,
-    WhileParamTypeTable,
-    IfParamTypeTable,
-    RandomUniformTypeTable,
-    LayerNormTypeTable,
-    TensorArrayTypeTable,
-    LSTMBlockCellTypeTable,
-    GridSampleTypeTable
+    MNN::QuantizedAddTypeTable,
+    MNN::ArgMaxTypeTable,
+    MNN::AsStringTypeTable,
+    MNN::AxisTypeTable,
+    MNN::BatchNormTypeTable,
+    MNN::BinaryOpTypeTable,
+    MNN::BlobTypeTable,
+    MNN::CastParamTypeTable,
+    MNN::Convolution2DTypeTable,
+    MNN::CropTypeTable,
+    MNN::CropAndResizeTypeTable,
+    MNN::DequantizeTypeTable,
+    MNN::DetectionOutputTypeTable,
+    MNN::EltwiseTypeTable,
+    MNN::ExpandDimsTypeTable,
+    MNN::FillTypeTable,
+    MNN::FlattenTypeTable,
+    MNN::GatherTypeTable,
+    MNN::GatherV2TypeTable,
+    MNN::InnerProductTypeTable,
+    MNN::InputTypeTable,
+    MNN::InterpTypeTable,
+    MNN::LRNTypeTable,
+    MNN::LSTMTypeTable,
+    MNN::MatMulTypeTable,
+    MNN::NonMaxSuppressionV2TypeTable,
+    MNN::NormalizeTypeTable,
+    MNN::PackParamTypeTable,
+    MNN::PermuteTypeTable,
+    MNN::PluginTypeTable,
+    MNN::PoolTypeTable,
+    MNN::PReluTypeTable,
+    MNN::PriorBoxTypeTable,
+    MNN::ProposalTypeTable,
+    MNN::QuantizedAvgPoolTypeTable,
+    MNN::QuantizedBiasAddTypeTable,
+    MNN::QuantizedConcatTypeTable,
+    MNN::QuantizedLogisticTypeTable,
+    MNN::QuantizedMatMulTypeTable,
+    MNN::QuantizedMaxPoolTypeTable,
+    MNN::QuantizedReluTypeTable,
+    MNN::QuantizedRelu6TypeTable,
+    MNN::QuantizedReshapeTypeTable,
+    MNN::QuantizedSoftmaxTypeTable,
+    MNN::QuantizeMaxMinTypeTable,
+    MNN::QuantizeV2TypeTable,
+    MNN::RangeTypeTable,
+    MNN::RankTypeTable,
+    MNN::ReduceJoinTypeTable,
+    MNN::ReductionParamTypeTable,
+    MNN::ReluTypeTable,
+    MNN::Relu6TypeTable,
+    MNN::RequantizationRangeTypeTable,
+    MNN::RequantizeTypeTable,
+    MNN::ReshapeTypeTable,
+    MNN::ResizeTypeTable,
+    MNN::RoiPoolingTypeTable,
+    MNN::ScaleTypeTable,
+    MNN::SeluTypeTable,
+    MNN::SizeTypeTable,
+    MNN::SliceTypeTable,
+    MNN::SliceTfTypeTable,
+    MNN::SpaceBatchTypeTable,
+    MNN::SqueezeParamTypeTable,
+    MNN::StridedSliceParamTypeTable,
+    MNN::TensorConvertInfoTypeTable,
+    MNN::TfQuantizedConv2DTypeTable,
+    MNN::TopKV2TypeTable,
+    MNN::TransposeTypeTable,
+    MNN::UnaryOpTypeTable,
+    MNN::MomentsParamTypeTable,
+    MNN::RNNParamTypeTable,
+    MNN::BatchMatMulParamTypeTable,
+    MNN::QuantizedFloatParamTypeTable,
+    MNN::DepthSpaceParamTypeTable,
+    MNN::EltwiseInt8TypeTable,
+    MNN::ReverseSequenceParamTypeTable,
+    MNN::ExtraTypeTable,
+    MNN::Pool3DTypeTable,
+    MNN::Convolution3DTypeTable,
+    MNN::ELUTypeTable,
+    MNN::DetectionPostProcessParamTypeTable,
+    MNN::OneHotParamTypeTable,
+    MNN::PadParamTypeTable,
+    MNN::WhileParamTypeTable,
+    MNN::IfParamTypeTable,
+    MNN::RandomUniformTypeTable,
+    MNN::LayerNormTypeTable,
+    MNN::TensorArrayTypeTable,
+    MNN::LSTMBlockCellTypeTable,
+    MNN::GridSampleTypeTable
   };
   static const char * const names[] = {
     "NONE",
@@ -7635,7 +7673,7 @@ inline const flatbuffers::TypeTable *ForwardTypeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ForwardTypeTypeTable
+    MNN::ForwardTypeTypeTable
   };
   static const char * const names[] = {
     "CPU",
@@ -7657,7 +7695,7 @@ inline const flatbuffers::TypeTable *UsageTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    UsageTypeTable
+    MNN::UsageTypeTable
   };
   static const char * const names[] = {
     "INFERENCE",
@@ -7676,7 +7714,7 @@ inline const flatbuffers::TypeTable *PluginTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    AttributeTypeTable
+    MNN::AttributeTypeTable
   };
   static const char * const names[] = {
     "type",
@@ -7696,7 +7734,7 @@ inline const flatbuffers::TypeTable *ExtraTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    AttributeTypeTable
+    MNN::AttributeTypeTable
   };
   static const char * const names[] = {
     "type",
@@ -7732,7 +7770,7 @@ inline const flatbuffers::TypeTable *WhileParamTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    StringVecTypeTable
+    MNN::StringVecTypeTable
   };
   static const char * const names[] = {
     "cond_graph",
@@ -7755,7 +7793,7 @@ inline const flatbuffers::TypeTable *IfParamTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    StringVecTypeTable
+    MNN::StringVecTypeTable
   };
   static const char * const names[] = {
     "then_graph",
@@ -7780,9 +7818,9 @@ inline const flatbuffers::TypeTable *OpTypeTable() {
     { flatbuffers::ET_CHAR, 0, 2 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    OpParameterTypeTable,
-    OpTypeTypeTable,
-    MNN_DATA_FORMATTypeTable
+    MNN::OpParameterTypeTable,
+    MNN::OpTypeTypeTable,
+    MNN::MNN_DATA_FORMATTypeTable
   };
   static const char * const names[] = {
     "inputIndexes",
@@ -7822,7 +7860,7 @@ inline const flatbuffers::TypeTable *RegionTypeTable() {
     { flatbuffers::ET_INT, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ViewTypeTable
+    MNN::ViewTypeTable
   };
   static const char * const names[] = {
     "src",
@@ -7845,9 +7883,9 @@ inline const flatbuffers::TypeTable *TensorDescribeTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 2 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    BlobTypeTable,
-    RegionTypeTable,
-    TensorQuantInfoTypeTable
+    MNN::BlobTypeTable,
+    MNN::RegionTypeTable,
+    MNN::TensorQuantInfoTypeTable
   };
   static const char * const names[] = {
     "blob",
@@ -7872,8 +7910,8 @@ inline const flatbuffers::TypeTable *SubGraphProtoTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    OpTypeTable,
-    TensorDescribeTypeTable
+    MNN::OpTypeTable,
+    MNN::TensorDescribeTypeTable
   };
   static const char * const names[] = {
     "name",
@@ -7898,7 +7936,7 @@ inline const flatbuffers::TypeTable *TensorQuantInfoTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "scale",
@@ -7928,13 +7966,13 @@ inline const flatbuffers::TypeTable *NetTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 6 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    TensorDescribeTypeTable,
-    GpuLibraryTypeTable,
-    OpTypeTable,
-    ForwardTypeTypeTable,
-    NetSourceTypeTable,
-    UsageTypeTable,
-    SubGraphProtoTypeTable
+    MNN::TensorDescribeTypeTable,
+    MNN::GpuLibraryTypeTable,
+    MNN::OpTypeTable,
+    MNN::ForwardTypeTypeTable,
+    MNN::NetSourceTypeTable,
+    MNN::UsageTypeTable,
+    MNN::SubGraphProtoTypeTable
   };
   static const char * const names[] = {
     "bizCode",
@@ -7985,10 +8023,16 @@ inline void FinishSizePrefixedNetBuffer(
   fbb.FinishSizePrefixed(root);
 }
 
-inline std::unique_ptr<NetT> UnPackNet(
+inline std::unique_ptr<MNN::NetT> UnPackNet(
     const void *buf,
     const flatbuffers::resolver_function_t *res = nullptr) {
-  return std::unique_ptr<NetT>(GetNet(buf)->UnPack(res));
+  return std::unique_ptr<MNN::NetT>(GetNet(buf)->UnPack(res));
+}
+
+inline std::unique_ptr<MNN::NetT> UnPackSizePrefixedNet(
+    const void *buf,
+    const flatbuffers::resolver_function_t *res = nullptr) {
+  return std::unique_ptr<MNN::NetT>(GetSizePrefixedNet(buf)->UnPack(res));
 }
 
 }  // namespace MNN

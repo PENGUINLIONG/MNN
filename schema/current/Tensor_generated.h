@@ -4,21 +4,26 @@
 #ifndef FLATBUFFERS_GENERATED_TENSOR_MNN_H_
 #define FLATBUFFERS_GENERATED_TENSOR_MNN_H_
 
+#include "flatbuffers/flatbuffers.h"
 
 #include "Type_generated.h"
 
 namespace MNN {
 
 struct Blob;
+struct BlobBuilder;
 struct BlobT;
 
 struct ListValue;
+struct ListValueBuilder;
 struct ListValueT;
 
 struct Attribute;
+struct AttributeBuilder;
 struct AttributeT;
 
 struct NamedAttrList;
+struct NamedAttrListBuilder;
 struct NamedAttrListT;
 
 inline const flatbuffers::TypeTable *BlobTypeTable();
@@ -51,7 +56,7 @@ inline const MNN_DATA_FORMAT (&EnumValuesMNN_DATA_FORMAT())[5] {
 }
 
 inline const char * const *EnumNamesMNN_DATA_FORMAT() {
-  static const char * const names[] = {
+  static const char * const names[6] = {
     "NCHW",
     "NHWC",
     "NC4HW4",
@@ -63,16 +68,16 @@ inline const char * const *EnumNamesMNN_DATA_FORMAT() {
 }
 
 inline const char *EnumNameMNN_DATA_FORMAT(MNN_DATA_FORMAT e) {
-  if (e < MNN_DATA_FORMAT_NCHW || e > MNN_DATA_FORMAT_UNKNOWN) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, MNN_DATA_FORMAT_NCHW, MNN_DATA_FORMAT_UNKNOWN)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesMNN_DATA_FORMAT()[index];
 }
 
 struct BlobT : public flatbuffers::NativeTable {
   typedef Blob TableType;
   std::vector<int32_t> dims;
-  MNN_DATA_FORMAT dataFormat;
-  DataType dataType;
+  MNN::MNN_DATA_FORMAT dataFormat;
+  MNN::DataType dataType;
   std::vector<uint8_t> uint8s;
   std::vector<int8_t> int8s;
   std::vector<int32_t> int32s;
@@ -80,13 +85,14 @@ struct BlobT : public flatbuffers::NativeTable {
   std::vector<float> float32s;
   std::vector<std::string> strings;
   BlobT()
-      : dataFormat(MNN_DATA_FORMAT_NCHW),
-        dataType(DataType_DT_FLOAT) {
+      : dataFormat(MNN::MNN_DATA_FORMAT_NCHW),
+        dataType(MNN::DataType_DT_FLOAT) {
   }
 };
 
 struct Blob FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef BlobT NativeTableType;
+  typedef BlobBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return BlobTypeTable();
   }
@@ -104,11 +110,11 @@ struct Blob FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *dims() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_DIMS);
   }
-  MNN_DATA_FORMAT dataFormat() const {
-    return static_cast<MNN_DATA_FORMAT>(GetField<int8_t>(VT_DATAFORMAT, 0));
+  MNN::MNN_DATA_FORMAT dataFormat() const {
+    return static_cast<MNN::MNN_DATA_FORMAT>(GetField<int8_t>(VT_DATAFORMAT, 0));
   }
-  DataType dataType() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_DATATYPE, 1));
+  MNN::DataType dataType() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_DATATYPE, 1));
   }
   const flatbuffers::Vector<uint8_t> *uint8s() const {
     return GetPointer<const flatbuffers::Vector<uint8_t> *>(VT_UINT8S);
@@ -155,15 +161,16 @@ struct Blob FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct BlobBuilder {
+  typedef Blob Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_dims(flatbuffers::Offset<flatbuffers::Vector<int32_t>> dims) {
     fbb_.AddOffset(Blob::VT_DIMS, dims);
   }
-  void add_dataFormat(MNN_DATA_FORMAT dataFormat) {
+  void add_dataFormat(MNN::MNN_DATA_FORMAT dataFormat) {
     fbb_.AddElement<int8_t>(Blob::VT_DATAFORMAT, static_cast<int8_t>(dataFormat), 0);
   }
-  void add_dataType(DataType dataType) {
+  void add_dataType(MNN::DataType dataType) {
     fbb_.AddElement<int32_t>(Blob::VT_DATATYPE, static_cast<int32_t>(dataType), 1);
   }
   void add_uint8s(flatbuffers::Offset<flatbuffers::Vector<uint8_t>> uint8s) {
@@ -199,8 +206,8 @@ struct BlobBuilder {
 inline flatbuffers::Offset<Blob> CreateBlob(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> dims = 0,
-    MNN_DATA_FORMAT dataFormat = MNN_DATA_FORMAT_NCHW,
-    DataType dataType = DataType_DT_FLOAT,
+    MNN::MNN_DATA_FORMAT dataFormat = MNN::MNN_DATA_FORMAT_NCHW,
+    MNN::DataType dataType = MNN::DataType_DT_FLOAT,
     flatbuffers::Offset<flatbuffers::Vector<uint8_t>> uint8s = 0,
     flatbuffers::Offset<flatbuffers::Vector<int8_t>> int8s = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> int32s = 0,
@@ -223,8 +230,8 @@ inline flatbuffers::Offset<Blob> CreateBlob(
 inline flatbuffers::Offset<Blob> CreateBlobDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<int32_t> *dims = nullptr,
-    MNN_DATA_FORMAT dataFormat = MNN_DATA_FORMAT_NCHW,
-    DataType dataType = DataType_DT_FLOAT,
+    MNN::MNN_DATA_FORMAT dataFormat = MNN::MNN_DATA_FORMAT_NCHW,
+    MNN::DataType dataType = MNN::DataType_DT_FLOAT,
     const std::vector<uint8_t> *uint8s = nullptr,
     const std::vector<int8_t> *int8s = nullptr,
     const std::vector<int32_t> *int32s = nullptr,
@@ -259,13 +266,14 @@ struct ListValueT : public flatbuffers::NativeTable {
   std::vector<int32_t> i;
   std::vector<float> f;
   std::vector<bool> b;
-  std::vector<DataType> type;
+  std::vector<MNN::DataType> type;
   ListValueT() {
   }
 };
 
 struct ListValue FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ListValueT NativeTableType;
+  typedef ListValueBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ListValueTypeTable();
   }
@@ -312,6 +320,7 @@ struct ListValue FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ListValueBuilder {
+  typedef ListValue Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_s(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> s) {
@@ -386,21 +395,22 @@ struct AttributeT : public flatbuffers::NativeTable {
   int32_t i;
   bool b;
   std::string key;
-  DataType type;
+  MNN::DataType type;
   float f;
-  std::unique_ptr<BlobT> tensor;
-  std::unique_ptr<ListValueT> list;
-  std::unique_ptr<NamedAttrListT> func;
+  std::unique_ptr<MNN::BlobT> tensor;
+  std::unique_ptr<MNN::ListValueT> list;
+  std::unique_ptr<MNN::NamedAttrListT> func;
   AttributeT()
       : i(0),
         b(false),
-        type(DataType_DT_INVALID),
+        type(MNN::DataType_DT_INVALID),
         f(0.0f) {
   }
 };
 
 struct Attribute FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef AttributeT NativeTableType;
+  typedef AttributeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return AttributeTypeTable();
   }
@@ -427,20 +437,20 @@ struct Attribute FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::String *key() const {
     return GetPointer<const flatbuffers::String *>(VT_KEY);
   }
-  DataType type() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TYPE, 0));
+  MNN::DataType type() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TYPE, 0));
   }
   float f() const {
     return GetField<float>(VT_F, 0.0f);
   }
-  const Blob *tensor() const {
-    return GetPointer<const Blob *>(VT_TENSOR);
+  const MNN::Blob *tensor() const {
+    return GetPointer<const MNN::Blob *>(VT_TENSOR);
   }
-  const ListValue *list() const {
-    return GetPointer<const ListValue *>(VT_LIST);
+  const MNN::ListValue *list() const {
+    return GetPointer<const MNN::ListValue *>(VT_LIST);
   }
-  const NamedAttrList *func() const {
-    return GetPointer<const NamedAttrList *>(VT_FUNC);
+  const MNN::NamedAttrList *func() const {
+    return GetPointer<const MNN::NamedAttrList *>(VT_FUNC);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -466,6 +476,7 @@ struct Attribute FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct AttributeBuilder {
+  typedef Attribute Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_s(flatbuffers::Offset<flatbuffers::String> s) {
@@ -480,19 +491,19 @@ struct AttributeBuilder {
   void add_key(flatbuffers::Offset<flatbuffers::String> key) {
     fbb_.AddOffset(Attribute::VT_KEY, key);
   }
-  void add_type(DataType type) {
+  void add_type(MNN::DataType type) {
     fbb_.AddElement<int32_t>(Attribute::VT_TYPE, static_cast<int32_t>(type), 0);
   }
   void add_f(float f) {
     fbb_.AddElement<float>(Attribute::VT_F, f, 0.0f);
   }
-  void add_tensor(flatbuffers::Offset<Blob> tensor) {
+  void add_tensor(flatbuffers::Offset<MNN::Blob> tensor) {
     fbb_.AddOffset(Attribute::VT_TENSOR, tensor);
   }
-  void add_list(flatbuffers::Offset<ListValue> list) {
+  void add_list(flatbuffers::Offset<MNN::ListValue> list) {
     fbb_.AddOffset(Attribute::VT_LIST, list);
   }
-  void add_func(flatbuffers::Offset<NamedAttrList> func) {
+  void add_func(flatbuffers::Offset<MNN::NamedAttrList> func) {
     fbb_.AddOffset(Attribute::VT_FUNC, func);
   }
   explicit AttributeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -513,11 +524,11 @@ inline flatbuffers::Offset<Attribute> CreateAttribute(
     int32_t i = 0,
     bool b = false,
     flatbuffers::Offset<flatbuffers::String> key = 0,
-    DataType type = DataType_DT_INVALID,
+    MNN::DataType type = MNN::DataType_DT_INVALID,
     float f = 0.0f,
-    flatbuffers::Offset<Blob> tensor = 0,
-    flatbuffers::Offset<ListValue> list = 0,
-    flatbuffers::Offset<NamedAttrList> func = 0) {
+    flatbuffers::Offset<MNN::Blob> tensor = 0,
+    flatbuffers::Offset<MNN::ListValue> list = 0,
+    flatbuffers::Offset<MNN::NamedAttrList> func = 0) {
   AttributeBuilder builder_(_fbb);
   builder_.add_func(func);
   builder_.add_list(list);
@@ -537,11 +548,11 @@ inline flatbuffers::Offset<Attribute> CreateAttributeDirect(
     int32_t i = 0,
     bool b = false,
     const char *key = nullptr,
-    DataType type = DataType_DT_INVALID,
+    MNN::DataType type = MNN::DataType_DT_INVALID,
     float f = 0.0f,
-    flatbuffers::Offset<Blob> tensor = 0,
-    flatbuffers::Offset<ListValue> list = 0,
-    flatbuffers::Offset<NamedAttrList> func = 0) {
+    flatbuffers::Offset<MNN::Blob> tensor = 0,
+    flatbuffers::Offset<MNN::ListValue> list = 0,
+    flatbuffers::Offset<MNN::NamedAttrList> func = 0) {
   auto s__ = s ? _fbb.CreateString(s) : 0;
   auto key__ = key ? _fbb.CreateString(key) : 0;
   return MNN::CreateAttribute(
@@ -562,13 +573,14 @@ flatbuffers::Offset<Attribute> CreateAttribute(flatbuffers::FlatBufferBuilder &_
 struct NamedAttrListT : public flatbuffers::NativeTable {
   typedef NamedAttrList TableType;
   std::string name;
-  std::vector<std::unique_ptr<AttributeT>> attr;
+  std::vector<std::unique_ptr<MNN::AttributeT>> attr;
   NamedAttrListT() {
   }
 };
 
 struct NamedAttrList FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef NamedAttrListT NativeTableType;
+  typedef NamedAttrListBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return NamedAttrListTypeTable();
   }
@@ -579,8 +591,8 @@ struct NamedAttrList FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::String *name() const {
     return GetPointer<const flatbuffers::String *>(VT_NAME);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<Attribute>> *attr() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<Attribute>> *>(VT_ATTR);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>> *attr() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>> *>(VT_ATTR);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -597,12 +609,13 @@ struct NamedAttrList FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct NamedAttrListBuilder {
+  typedef NamedAttrList Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_name(flatbuffers::Offset<flatbuffers::String> name) {
     fbb_.AddOffset(NamedAttrList::VT_NAME, name);
   }
-  void add_attr(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Attribute>>> attr) {
+  void add_attr(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>>> attr) {
     fbb_.AddOffset(NamedAttrList::VT_ATTR, attr);
   }
   explicit NamedAttrListBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -620,7 +633,7 @@ struct NamedAttrListBuilder {
 inline flatbuffers::Offset<NamedAttrList> CreateNamedAttrList(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::String> name = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<Attribute>>> attr = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Attribute>>> attr = 0) {
   NamedAttrListBuilder builder_(_fbb);
   builder_.add_attr(attr);
   builder_.add_name(name);
@@ -630,9 +643,9 @@ inline flatbuffers::Offset<NamedAttrList> CreateNamedAttrList(
 inline flatbuffers::Offset<NamedAttrList> CreateNamedAttrListDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const char *name = nullptr,
-    const std::vector<flatbuffers::Offset<Attribute>> *attr = nullptr) {
+    const std::vector<flatbuffers::Offset<MNN::Attribute>> *attr = nullptr) {
   auto name__ = name ? _fbb.CreateString(name) : 0;
-  auto attr__ = attr ? _fbb.CreateVector<flatbuffers::Offset<Attribute>>(*attr) : 0;
+  auto attr__ = attr ? _fbb.CreateVector<flatbuffers::Offset<MNN::Attribute>>(*attr) : 0;
   return MNN::CreateNamedAttrList(
       _fbb,
       name__,
@@ -642,23 +655,23 @@ inline flatbuffers::Offset<NamedAttrList> CreateNamedAttrListDirect(
 flatbuffers::Offset<NamedAttrList> CreateNamedAttrList(flatbuffers::FlatBufferBuilder &_fbb, const NamedAttrListT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline BlobT *Blob::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new BlobT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::BlobT> _o = std::unique_ptr<MNN::BlobT>(new BlobT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Blob::UnPackTo(BlobT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } };
-  { auto _e = dataFormat(); _o->dataFormat = _e; };
-  { auto _e = dataType(); _o->dataType = _e; };
-  { auto _e = uint8s(); if (_e) { _o->uint8s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->uint8s[_i] = _e->Get(_i); } } };
-  { auto _e = int8s(); if (_e) { _o->int8s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->int8s[_i] = _e->Get(_i); } } };
-  { auto _e = int32s(); if (_e) { _o->int32s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->int32s[_i] = _e->Get(_i); } } };
-  { auto _e = int64s(); if (_e) { _o->int64s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->int64s[_i] = _e->Get(_i); } } };
-  { auto _e = float32s(); if (_e) { _o->float32s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->float32s[_i] = _e->Get(_i); } } };
-  { auto _e = strings(); if (_e) { _o->strings.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->strings[_i] = _e->Get(_i)->str(); } } };
+  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } }
+  { auto _e = dataFormat(); _o->dataFormat = _e; }
+  { auto _e = dataType(); _o->dataType = _e; }
+  { auto _e = uint8s(); if (_e) { _o->uint8s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->uint8s[_i] = _e->Get(_i); } } }
+  { auto _e = int8s(); if (_e) { _o->int8s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->int8s[_i] = _e->Get(_i); } } }
+  { auto _e = int32s(); if (_e) { _o->int32s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->int32s[_i] = _e->Get(_i); } } }
+  { auto _e = int64s(); if (_e) { _o->int64s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->int64s[_i] = _e->Get(_i); } } }
+  { auto _e = float32s(); if (_e) { _o->float32s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->float32s[_i] = _e->Get(_i); } } }
+  { auto _e = strings(); if (_e) { _o->strings.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->strings[_i] = _e->Get(_i)->str(); } } }
 }
 
 inline flatbuffers::Offset<Blob> Blob::Pack(flatbuffers::FlatBufferBuilder &_fbb, const BlobT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -692,19 +705,19 @@ inline flatbuffers::Offset<Blob> CreateBlob(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline ListValueT *ListValue::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ListValueT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ListValueT> _o = std::unique_ptr<MNN::ListValueT>(new ListValueT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void ListValue::UnPackTo(ListValueT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = s(); if (_e) { _o->s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->s[_i] = _e->Get(_i)->str(); } } };
-  { auto _e = i(); if (_e) { _o->i.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->i[_i] = _e->Get(_i); } } };
-  { auto _e = f(); if (_e) { _o->f.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->f[_i] = _e->Get(_i); } } };
-  { auto _e = b(); if (_e) { _o->b.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->b[_i] = _e->Get(_i) != 0; } } };
-  { auto _e = type(); if (_e) { _o->type.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->type[_i] = static_cast<DataType>(_e->Get(_i)); } } };
+  { auto _e = s(); if (_e) { _o->s.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->s[_i] = _e->Get(_i)->str(); } } }
+  { auto _e = i(); if (_e) { _o->i.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->i[_i] = _e->Get(_i); } } }
+  { auto _e = f(); if (_e) { _o->f.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->f[_i] = _e->Get(_i); } } }
+  { auto _e = b(); if (_e) { _o->b.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->b[_i] = _e->Get(_i) != 0; } } }
+  { auto _e = type(); if (_e) { _o->type.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->type[_i] = static_cast<MNN::DataType>(_e->Get(_i)); } } }
 }
 
 inline flatbuffers::Offset<ListValue> ListValue::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ListValueT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -730,23 +743,23 @@ inline flatbuffers::Offset<ListValue> CreateListValue(flatbuffers::FlatBufferBui
 }
 
 inline AttributeT *Attribute::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new AttributeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::AttributeT> _o = std::unique_ptr<MNN::AttributeT>(new AttributeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Attribute::UnPackTo(AttributeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = s(); if (_e) _o->s = _e->str(); };
-  { auto _e = i(); _o->i = _e; };
-  { auto _e = b(); _o->b = _e; };
-  { auto _e = key(); if (_e) _o->key = _e->str(); };
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = f(); _o->f = _e; };
-  { auto _e = tensor(); if (_e) _o->tensor = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = list(); if (_e) _o->list = std::unique_ptr<ListValueT>(_e->UnPack(_resolver)); };
-  { auto _e = func(); if (_e) _o->func = std::unique_ptr<NamedAttrListT>(_e->UnPack(_resolver)); };
+  { auto _e = s(); if (_e) _o->s = _e->str(); }
+  { auto _e = i(); _o->i = _e; }
+  { auto _e = b(); _o->b = _e; }
+  { auto _e = key(); if (_e) _o->key = _e->str(); }
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = f(); _o->f = _e; }
+  { auto _e = tensor(); if (_e) _o->tensor = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = list(); if (_e) _o->list = std::unique_ptr<MNN::ListValueT>(_e->UnPack(_resolver)); }
+  { auto _e = func(); if (_e) _o->func = std::unique_ptr<MNN::NamedAttrListT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<Attribute> Attribute::Pack(flatbuffers::FlatBufferBuilder &_fbb, const AttributeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -780,16 +793,16 @@ inline flatbuffers::Offset<Attribute> CreateAttribute(flatbuffers::FlatBufferBui
 }
 
 inline NamedAttrListT *NamedAttrList::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new NamedAttrListT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::NamedAttrListT> _o = std::unique_ptr<MNN::NamedAttrListT>(new NamedAttrListT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void NamedAttrList::UnPackTo(NamedAttrListT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = name(); if (_e) _o->name = _e->str(); };
-  { auto _e = attr(); if (_e) { _o->attr.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->attr[_i] = std::unique_ptr<AttributeT>(_e->Get(_i)->UnPack(_resolver)); } } };
+  { auto _e = name(); if (_e) _o->name = _e->str(); }
+  { auto _e = attr(); if (_e) { _o->attr.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->attr[_i] = std::unique_ptr<MNN::AttributeT>(_e->Get(_i)->UnPack(_resolver)); } } }
 }
 
 inline flatbuffers::Offset<NamedAttrList> NamedAttrList::Pack(flatbuffers::FlatBufferBuilder &_fbb, const NamedAttrListT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -801,7 +814,7 @@ inline flatbuffers::Offset<NamedAttrList> CreateNamedAttrList(flatbuffers::FlatB
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const NamedAttrListT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _name = _o->name.empty() ? 0 : _fbb.CreateString(_o->name);
-  auto _attr = _o->attr.size() ? _fbb.CreateVector<flatbuffers::Offset<Attribute>> (_o->attr.size(), [](size_t i, _VectorArgs *__va) { return CreateAttribute(*__va->__fbb, __va->__o->attr[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _attr = _o->attr.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::Attribute>> (_o->attr.size(), [](size_t i, _VectorArgs *__va) { return CreateAttribute(*__va->__fbb, __va->__o->attr[i].get(), __va->__rehasher); }, &_va ) : 0;
   return MNN::CreateNamedAttrList(
       _fbb,
       _name,
@@ -817,7 +830,7 @@ inline const flatbuffers::TypeTable *MNN_DATA_FORMATTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    MNN_DATA_FORMATTypeTable
+    MNN::MNN_DATA_FORMATTypeTable
   };
   static const char * const names[] = {
     "NCHW",
@@ -845,8 +858,8 @@ inline const flatbuffers::TypeTable *BlobTypeTable() {
     { flatbuffers::ET_STRING, 1, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    MNN_DATA_FORMATTypeTable,
-    DataTypeTypeTable
+    MNN::MNN_DATA_FORMATTypeTable,
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "dims",
@@ -874,7 +887,7 @@ inline const flatbuffers::TypeTable *ListValueTypeTable() {
     { flatbuffers::ET_INT, 1, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "s",
@@ -902,10 +915,10 @@ inline const flatbuffers::TypeTable *AttributeTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 3 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable,
-    BlobTypeTable,
-    ListValueTypeTable,
-    NamedAttrListTypeTable
+    MNN::DataTypeTypeTable,
+    MNN::BlobTypeTable,
+    MNN::ListValueTypeTable,
+    MNN::NamedAttrListTypeTable
   };
   static const char * const names[] = {
     "s",
@@ -930,7 +943,7 @@ inline const flatbuffers::TypeTable *NamedAttrListTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    AttributeTypeTable
+    MNN::AttributeTypeTable
   };
   static const char * const names[] = {
     "name",

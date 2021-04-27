@@ -4,6 +4,7 @@
 #ifndef FLATBUFFERS_GENERATED_GPULIBRARY_MNN_H_
 #define FLATBUFFERS_GENERATED_GPULIBRARY_MNN_H_
 
+#include "flatbuffers/flatbuffers.h"
 
 #include "Tensor_generated.h"
 #include "Type_generated.h"
@@ -11,18 +12,23 @@
 namespace MNN {
 
 struct GpuBuffer;
+struct GpuBufferBuilder;
 struct GpuBufferT;
 
 struct GpuPipeline;
+struct GpuPipelineBuilder;
 struct GpuPipelineT;
 
 struct GpuStage;
+struct GpuStageBuilder;
 struct GpuStageT;
 
 struct GpuFunction;
+struct GpuFunctionBuilder;
 struct GpuFunctionT;
 
 struct GpuLibrary;
+struct GpuLibraryBuilder;
 struct GpuLibraryT;
 
 inline const flatbuffers::TypeTable *GpuBufferTypeTable();
@@ -53,7 +59,7 @@ inline const STORAGE_TYPE (&EnumValuesSTORAGE_TYPE())[3] {
 }
 
 inline const char * const *EnumNamesSTORAGE_TYPE() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "BUFFER",
     "UNIFORM",
     "IMAGE",
@@ -63,8 +69,8 @@ inline const char * const *EnumNamesSTORAGE_TYPE() {
 }
 
 inline const char *EnumNameSTORAGE_TYPE(STORAGE_TYPE e) {
-  if (e < STORAGE_TYPE_BUFFER || e > STORAGE_TYPE_IMAGE) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, STORAGE_TYPE_BUFFER, STORAGE_TYPE_IMAGE)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesSTORAGE_TYPE()[index];
 }
 
@@ -86,7 +92,7 @@ inline const ACCESS_TYPE (&EnumValuesACCESS_TYPE())[3] {
 }
 
 inline const char * const *EnumNamesACCESS_TYPE() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "READ_ONLY",
     "WRITE_ONLY",
     "READ_WRITE",
@@ -96,24 +102,25 @@ inline const char * const *EnumNamesACCESS_TYPE() {
 }
 
 inline const char *EnumNameACCESS_TYPE(ACCESS_TYPE e) {
-  if (e < ACCESS_TYPE_READ_ONLY || e > ACCESS_TYPE_READ_WRITE) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, ACCESS_TYPE_READ_ONLY, ACCESS_TYPE_READ_WRITE)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesACCESS_TYPE()[index];
 }
 
 struct GpuBufferT : public flatbuffers::NativeTable {
   typedef GpuBuffer TableType;
-  ACCESS_TYPE access;
-  STORAGE_TYPE storage;
-  std::unique_ptr<BlobT> content;
+  MNN::ACCESS_TYPE access;
+  MNN::STORAGE_TYPE storage;
+  std::unique_ptr<MNN::BlobT> content;
   GpuBufferT()
-      : access(ACCESS_TYPE_READ_ONLY),
-        storage(STORAGE_TYPE_BUFFER) {
+      : access(MNN::ACCESS_TYPE_READ_ONLY),
+        storage(MNN::STORAGE_TYPE_BUFFER) {
   }
 };
 
 struct GpuBuffer FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef GpuBufferT NativeTableType;
+  typedef GpuBufferBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GpuBufferTypeTable();
   }
@@ -122,14 +129,14 @@ struct GpuBuffer FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_STORAGE = 6,
     VT_CONTENT = 8
   };
-  ACCESS_TYPE access() const {
-    return static_cast<ACCESS_TYPE>(GetField<int8_t>(VT_ACCESS, 0));
+  MNN::ACCESS_TYPE access() const {
+    return static_cast<MNN::ACCESS_TYPE>(GetField<int8_t>(VT_ACCESS, 0));
   }
-  STORAGE_TYPE storage() const {
-    return static_cast<STORAGE_TYPE>(GetField<int8_t>(VT_STORAGE, 0));
+  MNN::STORAGE_TYPE storage() const {
+    return static_cast<MNN::STORAGE_TYPE>(GetField<int8_t>(VT_STORAGE, 0));
   }
-  const Blob *content() const {
-    return GetPointer<const Blob *>(VT_CONTENT);
+  const MNN::Blob *content() const {
+    return GetPointer<const MNN::Blob *>(VT_CONTENT);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -145,15 +152,16 @@ struct GpuBuffer FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct GpuBufferBuilder {
+  typedef GpuBuffer Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_access(ACCESS_TYPE access) {
+  void add_access(MNN::ACCESS_TYPE access) {
     fbb_.AddElement<int8_t>(GpuBuffer::VT_ACCESS, static_cast<int8_t>(access), 0);
   }
-  void add_storage(STORAGE_TYPE storage) {
+  void add_storage(MNN::STORAGE_TYPE storage) {
     fbb_.AddElement<int8_t>(GpuBuffer::VT_STORAGE, static_cast<int8_t>(storage), 0);
   }
-  void add_content(flatbuffers::Offset<Blob> content) {
+  void add_content(flatbuffers::Offset<MNN::Blob> content) {
     fbb_.AddOffset(GpuBuffer::VT_CONTENT, content);
   }
   explicit GpuBufferBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -170,9 +178,9 @@ struct GpuBufferBuilder {
 
 inline flatbuffers::Offset<GpuBuffer> CreateGpuBuffer(
     flatbuffers::FlatBufferBuilder &_fbb,
-    ACCESS_TYPE access = ACCESS_TYPE_READ_ONLY,
-    STORAGE_TYPE storage = STORAGE_TYPE_BUFFER,
-    flatbuffers::Offset<Blob> content = 0) {
+    MNN::ACCESS_TYPE access = MNN::ACCESS_TYPE_READ_ONLY,
+    MNN::STORAGE_TYPE storage = MNN::STORAGE_TYPE_BUFFER,
+    flatbuffers::Offset<MNN::Blob> content = 0) {
   GpuBufferBuilder builder_(_fbb);
   builder_.add_content(content);
   builder_.add_storage(storage);
@@ -196,6 +204,7 @@ struct GpuPipelineT : public flatbuffers::NativeTable {
 
 struct GpuPipeline FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef GpuPipelineT NativeTableType;
+  typedef GpuPipelineBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GpuPipelineTypeTable();
   }
@@ -247,6 +256,7 @@ struct GpuPipeline FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct GpuPipelineBuilder {
+  typedef GpuPipeline Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_localSize(flatbuffers::Offset<flatbuffers::Vector<int32_t>> localSize) {
@@ -329,8 +339,8 @@ struct GpuStageT : public flatbuffers::NativeTable {
   std::vector<int32_t> groupSize;
   std::vector<int32_t> inputIndexes;
   std::vector<int32_t> outputIndexes;
-  std::vector<std::unique_ptr<GpuBufferT>> middleBuffer;
-  std::vector<std::unique_ptr<GpuBufferT>> constBuffer;
+  std::vector<std::unique_ptr<MNN::GpuBufferT>> middleBuffer;
+  std::vector<std::unique_ptr<MNN::GpuBufferT>> constBuffer;
   int32_t globalSizeIndex;
   std::vector<int32_t> globalSizeDivide;
   bool requireSize;
@@ -342,6 +352,7 @@ struct GpuStageT : public flatbuffers::NativeTable {
 
 struct GpuStage FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef GpuStageT NativeTableType;
+  typedef GpuStageBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GpuStageTypeTable();
   }
@@ -368,11 +379,11 @@ struct GpuStage FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *outputIndexes() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_OUTPUTINDEXES);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<GpuBuffer>> *middleBuffer() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<GpuBuffer>> *>(VT_MIDDLEBUFFER);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuBuffer>> *middleBuffer() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuBuffer>> *>(VT_MIDDLEBUFFER);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<GpuBuffer>> *constBuffer() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<GpuBuffer>> *>(VT_CONSTBUFFER);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuBuffer>> *constBuffer() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuBuffer>> *>(VT_CONSTBUFFER);
   }
   int32_t globalSizeIndex() const {
     return GetField<int32_t>(VT_GLOBALSIZEINDEX, 0);
@@ -411,6 +422,7 @@ struct GpuStage FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct GpuStageBuilder {
+  typedef GpuStage Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_pipeline(flatbuffers::Offset<flatbuffers::String> pipeline) {
@@ -425,10 +437,10 @@ struct GpuStageBuilder {
   void add_outputIndexes(flatbuffers::Offset<flatbuffers::Vector<int32_t>> outputIndexes) {
     fbb_.AddOffset(GpuStage::VT_OUTPUTINDEXES, outputIndexes);
   }
-  void add_middleBuffer(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuBuffer>>> middleBuffer) {
+  void add_middleBuffer(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuBuffer>>> middleBuffer) {
     fbb_.AddOffset(GpuStage::VT_MIDDLEBUFFER, middleBuffer);
   }
-  void add_constBuffer(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuBuffer>>> constBuffer) {
+  void add_constBuffer(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuBuffer>>> constBuffer) {
     fbb_.AddOffset(GpuStage::VT_CONSTBUFFER, constBuffer);
   }
   void add_globalSizeIndex(int32_t globalSizeIndex) {
@@ -458,8 +470,8 @@ inline flatbuffers::Offset<GpuStage> CreateGpuStage(
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> groupSize = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> inputIndexes = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> outputIndexes = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuBuffer>>> middleBuffer = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuBuffer>>> constBuffer = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuBuffer>>> middleBuffer = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuBuffer>>> constBuffer = 0,
     int32_t globalSizeIndex = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> globalSizeDivide = 0,
     bool requireSize = false) {
@@ -482,8 +494,8 @@ inline flatbuffers::Offset<GpuStage> CreateGpuStageDirect(
     const std::vector<int32_t> *groupSize = nullptr,
     const std::vector<int32_t> *inputIndexes = nullptr,
     const std::vector<int32_t> *outputIndexes = nullptr,
-    const std::vector<flatbuffers::Offset<GpuBuffer>> *middleBuffer = nullptr,
-    const std::vector<flatbuffers::Offset<GpuBuffer>> *constBuffer = nullptr,
+    const std::vector<flatbuffers::Offset<MNN::GpuBuffer>> *middleBuffer = nullptr,
+    const std::vector<flatbuffers::Offset<MNN::GpuBuffer>> *constBuffer = nullptr,
     int32_t globalSizeIndex = 0,
     const std::vector<int32_t> *globalSizeDivide = nullptr,
     bool requireSize = false) {
@@ -491,8 +503,8 @@ inline flatbuffers::Offset<GpuStage> CreateGpuStageDirect(
   auto groupSize__ = groupSize ? _fbb.CreateVector<int32_t>(*groupSize) : 0;
   auto inputIndexes__ = inputIndexes ? _fbb.CreateVector<int32_t>(*inputIndexes) : 0;
   auto outputIndexes__ = outputIndexes ? _fbb.CreateVector<int32_t>(*outputIndexes) : 0;
-  auto middleBuffer__ = middleBuffer ? _fbb.CreateVector<flatbuffers::Offset<GpuBuffer>>(*middleBuffer) : 0;
-  auto constBuffer__ = constBuffer ? _fbb.CreateVector<flatbuffers::Offset<GpuBuffer>>(*constBuffer) : 0;
+  auto middleBuffer__ = middleBuffer ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuBuffer>>(*middleBuffer) : 0;
+  auto constBuffer__ = constBuffer ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuBuffer>>(*constBuffer) : 0;
   auto globalSizeDivide__ = globalSizeDivide ? _fbb.CreateVector<int32_t>(*globalSizeDivide) : 0;
   return MNN::CreateGpuStage(
       _fbb,
@@ -511,7 +523,7 @@ flatbuffers::Offset<GpuStage> CreateGpuStage(flatbuffers::FlatBufferBuilder &_fb
 
 struct GpuFunctionT : public flatbuffers::NativeTable {
   typedef GpuFunction TableType;
-  std::vector<std::unique_ptr<GpuStageT>> stags;
+  std::vector<std::unique_ptr<MNN::GpuStageT>> stags;
   std::string name;
   GpuFunctionT() {
   }
@@ -519,6 +531,7 @@ struct GpuFunctionT : public flatbuffers::NativeTable {
 
 struct GpuFunction FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef GpuFunctionT NativeTableType;
+  typedef GpuFunctionBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GpuFunctionTypeTable();
   }
@@ -526,8 +539,8 @@ struct GpuFunction FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_STAGS = 4,
     VT_NAME = 6
   };
-  const flatbuffers::Vector<flatbuffers::Offset<GpuStage>> *stags() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<GpuStage>> *>(VT_STAGS);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuStage>> *stags() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuStage>> *>(VT_STAGS);
   }
   const flatbuffers::String *name() const {
     return GetPointer<const flatbuffers::String *>(VT_NAME);
@@ -547,9 +560,10 @@ struct GpuFunction FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct GpuFunctionBuilder {
+  typedef GpuFunction Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_stags(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuStage>>> stags) {
+  void add_stags(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuStage>>> stags) {
     fbb_.AddOffset(GpuFunction::VT_STAGS, stags);
   }
   void add_name(flatbuffers::Offset<flatbuffers::String> name) {
@@ -569,7 +583,7 @@ struct GpuFunctionBuilder {
 
 inline flatbuffers::Offset<GpuFunction> CreateGpuFunction(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuStage>>> stags = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuStage>>> stags = 0,
     flatbuffers::Offset<flatbuffers::String> name = 0) {
   GpuFunctionBuilder builder_(_fbb);
   builder_.add_name(name);
@@ -579,9 +593,9 @@ inline flatbuffers::Offset<GpuFunction> CreateGpuFunction(
 
 inline flatbuffers::Offset<GpuFunction> CreateGpuFunctionDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    const std::vector<flatbuffers::Offset<GpuStage>> *stags = nullptr,
+    const std::vector<flatbuffers::Offset<MNN::GpuStage>> *stags = nullptr,
     const char *name = nullptr) {
-  auto stags__ = stags ? _fbb.CreateVector<flatbuffers::Offset<GpuStage>>(*stags) : 0;
+  auto stags__ = stags ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuStage>>(*stags) : 0;
   auto name__ = name ? _fbb.CreateString(name) : 0;
   return MNN::CreateGpuFunction(
       _fbb,
@@ -593,8 +607,8 @@ flatbuffers::Offset<GpuFunction> CreateGpuFunction(flatbuffers::FlatBufferBuilde
 
 struct GpuLibraryT : public flatbuffers::NativeTable {
   typedef GpuLibrary TableType;
-  std::vector<std::unique_ptr<GpuFunctionT>> functions;
-  std::vector<std::unique_ptr<GpuPipelineT>> pipeline;
+  std::vector<std::unique_ptr<MNN::GpuFunctionT>> functions;
+  std::vector<std::unique_ptr<MNN::GpuPipelineT>> pipeline;
   std::string name;
   GpuLibraryT() {
   }
@@ -602,6 +616,7 @@ struct GpuLibraryT : public flatbuffers::NativeTable {
 
 struct GpuLibrary FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef GpuLibraryT NativeTableType;
+  typedef GpuLibraryBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GpuLibraryTypeTable();
   }
@@ -610,11 +625,11 @@ struct GpuLibrary FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_PIPELINE = 6,
     VT_NAME = 8
   };
-  const flatbuffers::Vector<flatbuffers::Offset<GpuFunction>> *functions() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<GpuFunction>> *>(VT_FUNCTIONS);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuFunction>> *functions() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuFunction>> *>(VT_FUNCTIONS);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<GpuPipeline>> *pipeline() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<GpuPipeline>> *>(VT_PIPELINE);
+  const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuPipeline>> *pipeline() const {
+    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::GpuPipeline>> *>(VT_PIPELINE);
   }
   const flatbuffers::String *name() const {
     return GetPointer<const flatbuffers::String *>(VT_NAME);
@@ -637,12 +652,13 @@ struct GpuLibrary FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct GpuLibraryBuilder {
+  typedef GpuLibrary Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_functions(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuFunction>>> functions) {
+  void add_functions(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuFunction>>> functions) {
     fbb_.AddOffset(GpuLibrary::VT_FUNCTIONS, functions);
   }
-  void add_pipeline(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuPipeline>>> pipeline) {
+  void add_pipeline(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuPipeline>>> pipeline) {
     fbb_.AddOffset(GpuLibrary::VT_PIPELINE, pipeline);
   }
   void add_name(flatbuffers::Offset<flatbuffers::String> name) {
@@ -662,8 +678,8 @@ struct GpuLibraryBuilder {
 
 inline flatbuffers::Offset<GpuLibrary> CreateGpuLibrary(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuFunction>>> functions = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<GpuPipeline>>> pipeline = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuFunction>>> functions = 0,
+    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::GpuPipeline>>> pipeline = 0,
     flatbuffers::Offset<flatbuffers::String> name = 0) {
   GpuLibraryBuilder builder_(_fbb);
   builder_.add_name(name);
@@ -674,11 +690,11 @@ inline flatbuffers::Offset<GpuLibrary> CreateGpuLibrary(
 
 inline flatbuffers::Offset<GpuLibrary> CreateGpuLibraryDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    const std::vector<flatbuffers::Offset<GpuFunction>> *functions = nullptr,
-    const std::vector<flatbuffers::Offset<GpuPipeline>> *pipeline = nullptr,
+    const std::vector<flatbuffers::Offset<MNN::GpuFunction>> *functions = nullptr,
+    const std::vector<flatbuffers::Offset<MNN::GpuPipeline>> *pipeline = nullptr,
     const char *name = nullptr) {
-  auto functions__ = functions ? _fbb.CreateVector<flatbuffers::Offset<GpuFunction>>(*functions) : 0;
-  auto pipeline__ = pipeline ? _fbb.CreateVector<flatbuffers::Offset<GpuPipeline>>(*pipeline) : 0;
+  auto functions__ = functions ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuFunction>>(*functions) : 0;
+  auto pipeline__ = pipeline ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuPipeline>>(*pipeline) : 0;
   auto name__ = name ? _fbb.CreateString(name) : 0;
   return MNN::CreateGpuLibrary(
       _fbb,
@@ -690,17 +706,17 @@ inline flatbuffers::Offset<GpuLibrary> CreateGpuLibraryDirect(
 flatbuffers::Offset<GpuLibrary> CreateGpuLibrary(flatbuffers::FlatBufferBuilder &_fbb, const GpuLibraryT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline GpuBufferT *GpuBuffer::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new GpuBufferT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::GpuBufferT> _o = std::unique_ptr<MNN::GpuBufferT>(new GpuBufferT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void GpuBuffer::UnPackTo(GpuBufferT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = access(); _o->access = _e; };
-  { auto _e = storage(); _o->storage = _e; };
-  { auto _e = content(); if (_e) _o->content = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
+  { auto _e = access(); _o->access = _e; }
+  { auto _e = storage(); _o->storage = _e; }
+  { auto _e = content(); if (_e) _o->content = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<GpuBuffer> GpuBuffer::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GpuBufferT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -722,20 +738,20 @@ inline flatbuffers::Offset<GpuBuffer> CreateGpuBuffer(flatbuffers::FlatBufferBui
 }
 
 inline GpuPipelineT *GpuPipeline::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new GpuPipelineT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::GpuPipelineT> _o = std::unique_ptr<MNN::GpuPipelineT>(new GpuPipelineT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void GpuPipeline::UnPackTo(GpuPipelineT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = localSize(); if (_e) { _o->localSize.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->localSize[_i] = _e->Get(_i); } } };
-  { auto _e = key(); if (_e) _o->key = _e->str(); };
-  { auto _e = metal(); if (_e) { _o->metal.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->metal[_i] = _e->Get(_i); } } };
-  { auto _e = vulkan(); if (_e) { _o->vulkan.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->vulkan[_i] = _e->Get(_i); } } };
-  { auto _e = openglComputeShader(); if (_e) _o->openglComputeShader = _e->str(); };
-  { auto _e = openclKernel(); if (_e) _o->openclKernel = _e->str(); };
+  { auto _e = localSize(); if (_e) { _o->localSize.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->localSize[_i] = _e->Get(_i); } } }
+  { auto _e = key(); if (_e) _o->key = _e->str(); }
+  { auto _e = metal(); if (_e) { _o->metal.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->metal[_i] = _e->Get(_i); } } }
+  { auto _e = vulkan(); if (_e) { _o->vulkan.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->vulkan[_i] = _e->Get(_i); } } }
+  { auto _e = openglComputeShader(); if (_e) _o->openglComputeShader = _e->str(); }
+  { auto _e = openclKernel(); if (_e) _o->openclKernel = _e->str(); }
 }
 
 inline flatbuffers::Offset<GpuPipeline> GpuPipeline::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GpuPipelineT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -763,23 +779,23 @@ inline flatbuffers::Offset<GpuPipeline> CreateGpuPipeline(flatbuffers::FlatBuffe
 }
 
 inline GpuStageT *GpuStage::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new GpuStageT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::GpuStageT> _o = std::unique_ptr<MNN::GpuStageT>(new GpuStageT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void GpuStage::UnPackTo(GpuStageT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = pipeline(); if (_e) _o->pipeline = _e->str(); };
-  { auto _e = groupSize(); if (_e) { _o->groupSize.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->groupSize[_i] = _e->Get(_i); } } };
-  { auto _e = inputIndexes(); if (_e) { _o->inputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputIndexes[_i] = _e->Get(_i); } } };
-  { auto _e = outputIndexes(); if (_e) { _o->outputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputIndexes[_i] = _e->Get(_i); } } };
-  { auto _e = middleBuffer(); if (_e) { _o->middleBuffer.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->middleBuffer[_i] = std::unique_ptr<GpuBufferT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = constBuffer(); if (_e) { _o->constBuffer.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->constBuffer[_i] = std::unique_ptr<GpuBufferT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = globalSizeIndex(); _o->globalSizeIndex = _e; };
-  { auto _e = globalSizeDivide(); if (_e) { _o->globalSizeDivide.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->globalSizeDivide[_i] = _e->Get(_i); } } };
-  { auto _e = requireSize(); _o->requireSize = _e; };
+  { auto _e = pipeline(); if (_e) _o->pipeline = _e->str(); }
+  { auto _e = groupSize(); if (_e) { _o->groupSize.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->groupSize[_i] = _e->Get(_i); } } }
+  { auto _e = inputIndexes(); if (_e) { _o->inputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputIndexes[_i] = _e->Get(_i); } } }
+  { auto _e = outputIndexes(); if (_e) { _o->outputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputIndexes[_i] = _e->Get(_i); } } }
+  { auto _e = middleBuffer(); if (_e) { _o->middleBuffer.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->middleBuffer[_i] = std::unique_ptr<MNN::GpuBufferT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = constBuffer(); if (_e) { _o->constBuffer.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->constBuffer[_i] = std::unique_ptr<MNN::GpuBufferT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = globalSizeIndex(); _o->globalSizeIndex = _e; }
+  { auto _e = globalSizeDivide(); if (_e) { _o->globalSizeDivide.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->globalSizeDivide[_i] = _e->Get(_i); } } }
+  { auto _e = requireSize(); _o->requireSize = _e; }
 }
 
 inline flatbuffers::Offset<GpuStage> GpuStage::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GpuStageT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -794,8 +810,8 @@ inline flatbuffers::Offset<GpuStage> CreateGpuStage(flatbuffers::FlatBufferBuild
   auto _groupSize = _o->groupSize.size() ? _fbb.CreateVector(_o->groupSize) : 0;
   auto _inputIndexes = _o->inputIndexes.size() ? _fbb.CreateVector(_o->inputIndexes) : 0;
   auto _outputIndexes = _o->outputIndexes.size() ? _fbb.CreateVector(_o->outputIndexes) : 0;
-  auto _middleBuffer = _o->middleBuffer.size() ? _fbb.CreateVector<flatbuffers::Offset<GpuBuffer>> (_o->middleBuffer.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuBuffer(*__va->__fbb, __va->__o->middleBuffer[i].get(), __va->__rehasher); }, &_va ) : 0;
-  auto _constBuffer = _o->constBuffer.size() ? _fbb.CreateVector<flatbuffers::Offset<GpuBuffer>> (_o->constBuffer.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuBuffer(*__va->__fbb, __va->__o->constBuffer[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _middleBuffer = _o->middleBuffer.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuBuffer>> (_o->middleBuffer.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuBuffer(*__va->__fbb, __va->__o->middleBuffer[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _constBuffer = _o->constBuffer.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuBuffer>> (_o->constBuffer.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuBuffer(*__va->__fbb, __va->__o->constBuffer[i].get(), __va->__rehasher); }, &_va ) : 0;
   auto _globalSizeIndex = _o->globalSizeIndex;
   auto _globalSizeDivide = _o->globalSizeDivide.size() ? _fbb.CreateVector(_o->globalSizeDivide) : 0;
   auto _requireSize = _o->requireSize;
@@ -813,16 +829,16 @@ inline flatbuffers::Offset<GpuStage> CreateGpuStage(flatbuffers::FlatBufferBuild
 }
 
 inline GpuFunctionT *GpuFunction::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new GpuFunctionT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::GpuFunctionT> _o = std::unique_ptr<MNN::GpuFunctionT>(new GpuFunctionT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void GpuFunction::UnPackTo(GpuFunctionT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = stags(); if (_e) { _o->stags.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->stags[_i] = std::unique_ptr<GpuStageT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = name(); if (_e) _o->name = _e->str(); };
+  { auto _e = stags(); if (_e) { _o->stags.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->stags[_i] = std::unique_ptr<MNN::GpuStageT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = name(); if (_e) _o->name = _e->str(); }
 }
 
 inline flatbuffers::Offset<GpuFunction> GpuFunction::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GpuFunctionT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -833,7 +849,7 @@ inline flatbuffers::Offset<GpuFunction> CreateGpuFunction(flatbuffers::FlatBuffe
   (void)_rehasher;
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const GpuFunctionT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
-  auto _stags = _o->stags.size() ? _fbb.CreateVector<flatbuffers::Offset<GpuStage>> (_o->stags.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuStage(*__va->__fbb, __va->__o->stags[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _stags = _o->stags.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuStage>> (_o->stags.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuStage(*__va->__fbb, __va->__o->stags[i].get(), __va->__rehasher); }, &_va ) : 0;
   auto _name = _o->name.empty() ? 0 : _fbb.CreateString(_o->name);
   return MNN::CreateGpuFunction(
       _fbb,
@@ -842,17 +858,17 @@ inline flatbuffers::Offset<GpuFunction> CreateGpuFunction(flatbuffers::FlatBuffe
 }
 
 inline GpuLibraryT *GpuLibrary::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new GpuLibraryT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::GpuLibraryT> _o = std::unique_ptr<MNN::GpuLibraryT>(new GpuLibraryT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void GpuLibrary::UnPackTo(GpuLibraryT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = functions(); if (_e) { _o->functions.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->functions[_i] = std::unique_ptr<GpuFunctionT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = pipeline(); if (_e) { _o->pipeline.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pipeline[_i] = std::unique_ptr<GpuPipelineT>(_e->Get(_i)->UnPack(_resolver)); } } };
-  { auto _e = name(); if (_e) _o->name = _e->str(); };
+  { auto _e = functions(); if (_e) { _o->functions.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->functions[_i] = std::unique_ptr<MNN::GpuFunctionT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = pipeline(); if (_e) { _o->pipeline.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pipeline[_i] = std::unique_ptr<MNN::GpuPipelineT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = name(); if (_e) _o->name = _e->str(); }
 }
 
 inline flatbuffers::Offset<GpuLibrary> GpuLibrary::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GpuLibraryT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -863,8 +879,8 @@ inline flatbuffers::Offset<GpuLibrary> CreateGpuLibrary(flatbuffers::FlatBufferB
   (void)_rehasher;
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const GpuLibraryT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
-  auto _functions = _o->functions.size() ? _fbb.CreateVector<flatbuffers::Offset<GpuFunction>> (_o->functions.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuFunction(*__va->__fbb, __va->__o->functions[i].get(), __va->__rehasher); }, &_va ) : 0;
-  auto _pipeline = _o->pipeline.size() ? _fbb.CreateVector<flatbuffers::Offset<GpuPipeline>> (_o->pipeline.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuPipeline(*__va->__fbb, __va->__o->pipeline[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _functions = _o->functions.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuFunction>> (_o->functions.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuFunction(*__va->__fbb, __va->__o->functions[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _pipeline = _o->pipeline.size() ? _fbb.CreateVector<flatbuffers::Offset<MNN::GpuPipeline>> (_o->pipeline.size(), [](size_t i, _VectorArgs *__va) { return CreateGpuPipeline(*__va->__fbb, __va->__o->pipeline[i].get(), __va->__rehasher); }, &_va ) : 0;
   auto _name = _o->name.empty() ? 0 : _fbb.CreateString(_o->name);
   return MNN::CreateGpuLibrary(
       _fbb,
@@ -880,7 +896,7 @@ inline const flatbuffers::TypeTable *STORAGE_TYPETypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    STORAGE_TYPETypeTable
+    MNN::STORAGE_TYPETypeTable
   };
   static const char * const names[] = {
     "BUFFER",
@@ -900,7 +916,7 @@ inline const flatbuffers::TypeTable *ACCESS_TYPETypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ACCESS_TYPETypeTable
+    MNN::ACCESS_TYPETypeTable
   };
   static const char * const names[] = {
     "READ_ONLY",
@@ -920,9 +936,9 @@ inline const flatbuffers::TypeTable *GpuBufferTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 2 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ACCESS_TYPETypeTable,
-    STORAGE_TYPETypeTable,
-    BlobTypeTable
+    MNN::ACCESS_TYPETypeTable,
+    MNN::STORAGE_TYPETypeTable,
+    MNN::BlobTypeTable
   };
   static const char * const names[] = {
     "access",
@@ -971,7 +987,7 @@ inline const flatbuffers::TypeTable *GpuStageTypeTable() {
     { flatbuffers::ET_BOOL, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    GpuBufferTypeTable
+    MNN::GpuBufferTypeTable
   };
   static const char * const names[] = {
     "pipeline",
@@ -996,7 +1012,7 @@ inline const flatbuffers::TypeTable *GpuFunctionTypeTable() {
     { flatbuffers::ET_STRING, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    GpuStageTypeTable
+    MNN::GpuStageTypeTable
   };
   static const char * const names[] = {
     "stags",
@@ -1015,8 +1031,8 @@ inline const flatbuffers::TypeTable *GpuLibraryTypeTable() {
     { flatbuffers::ET_STRING, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    GpuFunctionTypeTable,
-    GpuPipelineTypeTable
+    MNN::GpuFunctionTypeTable,
+    MNN::GpuPipelineTypeTable
   };
   static const char * const names[] = {
     "functions",

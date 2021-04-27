@@ -4,6 +4,7 @@
 #ifndef FLATBUFFERS_GENERATED_CAFFEOP_MNN_H_
 #define FLATBUFFERS_GENERATED_CAFFEOP_MNN_H_
 
+#include "flatbuffers/flatbuffers.h"
 
 #include "Tensor_generated.h"
 #include "Type_generated.h"
@@ -11,102 +12,135 @@
 namespace MNN {
 
 struct Convolution2DCommon;
+struct Convolution2DCommonBuilder;
 struct Convolution2DCommonT;
 
 struct Convolution3DCommon;
+struct Convolution3DCommonBuilder;
 struct Convolution3DCommonT;
 
 struct IDSTQuan;
+struct IDSTQuanBuilder;
 struct IDSTQuanT;
 
 struct QuantizedFloatParam;
+struct QuantizedFloatParamBuilder;
 struct QuantizedFloatParamT;
 
 struct Convolution2D;
+struct Convolution2DBuilder;
 struct Convolution2DT;
 
 struct Convolution3D;
+struct Convolution3DBuilder;
 struct Convolution3DT;
 
 struct InnerProduct;
+struct InnerProductBuilder;
 struct InnerProductT;
 
 struct Pool;
+struct PoolBuilder;
 struct PoolT;
 
 struct Pool3D;
+struct Pool3DBuilder;
 struct Pool3DT;
 
 struct Relu;
+struct ReluBuilder;
 struct ReluT;
 
 struct Relu6;
+struct Relu6Builder;
 struct Relu6T;
 
 struct PRelu;
+struct PReluBuilder;
 struct PReluT;
 
 struct ELU;
+struct ELUBuilder;
 struct ELUT;
 
 struct LRN;
+struct LRNBuilder;
 struct LRNT;
 
 struct ArgMax;
+struct ArgMaxBuilder;
 struct ArgMaxT;
 
 struct Axis;
+struct AxisBuilder;
 struct AxisT;
 
 struct Input;
+struct InputBuilder;
 struct InputT;
 
 struct LSTM;
+struct LSTMBuilder;
 struct LSTMT;
 
 struct Slice;
+struct SliceBuilder;
 struct SliceT;
 
 struct BatchNorm;
+struct BatchNormBuilder;
 struct BatchNormT;
 
 struct Scale;
+struct ScaleBuilder;
 struct ScaleT;
 
 struct Eltwise;
+struct EltwiseBuilder;
 struct EltwiseT;
 
 struct Flatten;
+struct FlattenBuilder;
 struct FlattenT;
 
 struct Permute;
+struct PermuteBuilder;
 struct PermuteT;
 
 struct Reshape;
+struct ReshapeBuilder;
 struct ReshapeT;
 
 struct DetectionOutput;
+struct DetectionOutputBuilder;
 struct DetectionOutputT;
 
 struct RoiPooling;
+struct RoiPoolingBuilder;
 struct RoiPoolingT;
 
 struct Proposal;
+struct ProposalBuilder;
 struct ProposalT;
 
 struct Interp;
+struct InterpBuilder;
 struct InterpT;
 
 struct Resize;
+struct ResizeBuilder;
 struct ResizeT;
 
 struct PriorBox;
+struct PriorBoxBuilder;
 struct PriorBoxT;
 
 struct Normalize;
+struct NormalizeBuilder;
 struct NormalizeT;
 
 struct EltwiseInt8;
+struct EltwiseInt8Builder;
 struct EltwiseInt8T;
 
 inline const flatbuffers::TypeTable *Convolution2DCommonTypeTable();
@@ -193,7 +227,7 @@ inline const PadMode (&EnumValuesPadMode())[3] {
 }
 
 inline const char * const *EnumNamesPadMode() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "CAFFE",
     "VALID",
     "SAME",
@@ -203,8 +237,8 @@ inline const char * const *EnumNamesPadMode() {
 }
 
 inline const char *EnumNamePadMode(PadMode e) {
-  if (e < PadMode_CAFFE || e > PadMode_SAME) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, PadMode_CAFFE, PadMode_SAME)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesPadMode()[index];
 }
 
@@ -226,7 +260,7 @@ inline const QuantizeAlgo (&EnumValuesQuantizeAlgo())[3] {
 }
 
 inline const char * const *EnumNamesQuantizeAlgo() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "DEFAULT",
     "OVERFLOW_AWARE",
     "WINOGRAD_AWARE",
@@ -236,8 +270,8 @@ inline const char * const *EnumNamesQuantizeAlgo() {
 }
 
 inline const char *EnumNameQuantizeAlgo(QuantizeAlgo e) {
-  if (e < QuantizeAlgo_DEFAULT || e > QuantizeAlgo_WINOGRAD_AWARE) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, QuantizeAlgo_DEFAULT, QuantizeAlgo_WINOGRAD_AWARE)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesQuantizeAlgo()[index];
 }
 
@@ -257,7 +291,7 @@ inline const PoolType (&EnumValuesPoolType())[2] {
 }
 
 inline const char * const *EnumNamesPoolType() {
-  static const char * const names[] = {
+  static const char * const names[3] = {
     "MAXPOOL",
     "AVEPOOL",
     nullptr
@@ -266,8 +300,8 @@ inline const char * const *EnumNamesPoolType() {
 }
 
 inline const char *EnumNamePoolType(PoolType e) {
-  if (e < PoolType_MAXPOOL || e > PoolType_AVEPOOL) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, PoolType_MAXPOOL, PoolType_AVEPOOL)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesPoolType()[index];
 }
 
@@ -289,7 +323,7 @@ inline const PoolPadType (&EnumValuesPoolPadType())[3] {
 }
 
 inline const char * const *EnumNamesPoolPadType() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "CAFFE",
     "VALID",
     "SAME",
@@ -299,8 +333,8 @@ inline const char * const *EnumNamesPoolPadType() {
 }
 
 inline const char *EnumNamePoolPadType(PoolPadType e) {
-  if (e < PoolPadType_CAFFE || e > PoolPadType_SAME) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, PoolPadType_CAFFE, PoolPadType_SAME)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesPoolPadType()[index];
 }
 
@@ -322,7 +356,7 @@ inline const AvgPoolCountType (&EnumValuesAvgPoolCountType())[3] {
 }
 
 inline const char * const *EnumNamesAvgPoolCountType() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "DEFAULT",
     "INCLUDE_PADDING",
     "EXCLUDE_PADDING",
@@ -332,8 +366,8 @@ inline const char * const *EnumNamesAvgPoolCountType() {
 }
 
 inline const char *EnumNameAvgPoolCountType(AvgPoolCountType e) {
-  if (e < AvgPoolCountType_DEFAULT || e > AvgPoolCountType_EXCLUDE_PADDING) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, AvgPoolCountType_DEFAULT, AvgPoolCountType_EXCLUDE_PADDING)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesAvgPoolCountType()[index];
 }
 
@@ -357,7 +391,7 @@ inline const EltwiseType (&EnumValuesEltwiseType())[4] {
 }
 
 inline const char * const *EnumNamesEltwiseType() {
-  static const char * const names[] = {
+  static const char * const names[5] = {
     "PROD",
     "SUM",
     "MAXIMUM",
@@ -368,8 +402,8 @@ inline const char * const *EnumNamesEltwiseType() {
 }
 
 inline const char *EnumNameEltwiseType(EltwiseType e) {
-  if (e < EltwiseType_PROD || e > EltwiseType_SUB) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, EltwiseType_PROD, EltwiseType_SUB)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesEltwiseType()[index];
 }
 
@@ -399,7 +433,7 @@ inline const CoordinateTransformationMode (&EnumValuesCoordinateTransformationMo
 }
 
 inline const char * const *EnumNamesCoordinateTransformationMode() {
-  static const char * const names[] = {
+  static const char * const names[8] = {
     "NotSet",
     "AlignCorners",
     "HalfPixels",
@@ -413,8 +447,8 @@ inline const char * const *EnumNamesCoordinateTransformationMode() {
 }
 
 inline const char *EnumNameCoordinateTransformationMode(CoordinateTransformationMode e) {
-  if (e < CoordinateTransformationMode_NotSet || e > CoordinateTransformationMode_TensorflowCropAndResize) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, CoordinateTransformationMode_NotSet, CoordinateTransformationMode_TensorflowCropAndResize)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesCoordinateTransformationMode()[index];
 }
 
@@ -428,7 +462,7 @@ struct Convolution2DCommonT : public flatbuffers::NativeTable {
   int32_t strideY;
   int32_t dilateX;
   int32_t dilateY;
-  PadMode padMode;
+  MNN::PadMode padMode;
   int32_t group;
   int32_t outputCount;
   int32_t inputCount;
@@ -446,7 +480,7 @@ struct Convolution2DCommonT : public flatbuffers::NativeTable {
         strideY(1),
         dilateX(1),
         dilateY(1),
-        padMode(PadMode_CAFFE),
+        padMode(MNN::PadMode_CAFFE),
         group(1),
         outputCount(0),
         inputCount(0),
@@ -458,6 +492,7 @@ struct Convolution2DCommonT : public flatbuffers::NativeTable {
 
 struct Convolution2DCommon FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef Convolution2DCommonT NativeTableType;
+  typedef Convolution2DCommonBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return Convolution2DCommonTypeTable();
   }
@@ -504,8 +539,8 @@ struct Convolution2DCommon FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
   int32_t dilateY() const {
     return GetField<int32_t>(VT_DILATEY, 1);
   }
-  PadMode padMode() const {
-    return static_cast<PadMode>(GetField<int8_t>(VT_PADMODE, 0));
+  MNN::PadMode padMode() const {
+    return static_cast<MNN::PadMode>(GetField<int8_t>(VT_PADMODE, 0));
   }
   int32_t group() const {
     return GetField<int32_t>(VT_GROUP, 1);
@@ -560,6 +595,7 @@ struct Convolution2DCommon FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
 };
 
 struct Convolution2DCommonBuilder {
+  typedef Convolution2DCommon Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_padX(int32_t padX) {
@@ -586,7 +622,7 @@ struct Convolution2DCommonBuilder {
   void add_dilateY(int32_t dilateY) {
     fbb_.AddElement<int32_t>(Convolution2DCommon::VT_DILATEY, dilateY, 1);
   }
-  void add_padMode(PadMode padMode) {
+  void add_padMode(MNN::PadMode padMode) {
     fbb_.AddElement<int8_t>(Convolution2DCommon::VT_PADMODE, static_cast<int8_t>(padMode), 0);
   }
   void add_group(int32_t group) {
@@ -635,7 +671,7 @@ inline flatbuffers::Offset<Convolution2DCommon> CreateConvolution2DCommon(
     int32_t strideY = 1,
     int32_t dilateX = 1,
     int32_t dilateY = 1,
-    PadMode padMode = PadMode_CAFFE,
+    MNN::PadMode padMode = MNN::PadMode_CAFFE,
     int32_t group = 1,
     int32_t outputCount = 0,
     int32_t inputCount = 0,
@@ -675,7 +711,7 @@ inline flatbuffers::Offset<Convolution2DCommon> CreateConvolution2DCommonDirect(
     int32_t strideY = 1,
     int32_t dilateX = 1,
     int32_t dilateY = 1,
-    PadMode padMode = PadMode_CAFFE,
+    MNN::PadMode padMode = MNN::PadMode_CAFFE,
     int32_t group = 1,
     int32_t outputCount = 0,
     int32_t inputCount = 0,
@@ -715,13 +751,13 @@ struct Convolution3DCommonT : public flatbuffers::NativeTable {
   std::vector<int32_t> strides;
   std::vector<int32_t> kernels;
   std::vector<int32_t> pads;
-  PadMode padMode;
+  MNN::PadMode padMode;
   int32_t inputCount;
   int32_t outputCount;
   bool relu;
   bool relu6;
   Convolution3DCommonT()
-      : padMode(PadMode_CAFFE),
+      : padMode(MNN::PadMode_CAFFE),
         inputCount(0),
         outputCount(0),
         relu(false),
@@ -731,6 +767,7 @@ struct Convolution3DCommonT : public flatbuffers::NativeTable {
 
 struct Convolution3DCommon FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef Convolution3DCommonT NativeTableType;
+  typedef Convolution3DCommonBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return Convolution3DCommonTypeTable();
   }
@@ -757,8 +794,8 @@ struct Convolution3DCommon FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
   const flatbuffers::Vector<int32_t> *pads() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_PADS);
   }
-  PadMode padMode() const {
-    return static_cast<PadMode>(GetField<int8_t>(VT_PADMODE, 0));
+  MNN::PadMode padMode() const {
+    return static_cast<MNN::PadMode>(GetField<int8_t>(VT_PADMODE, 0));
   }
   int32_t inputCount() const {
     return GetField<int32_t>(VT_INPUTCOUNT, 0);
@@ -795,6 +832,7 @@ struct Convolution3DCommon FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
 };
 
 struct Convolution3DCommonBuilder {
+  typedef Convolution3DCommon Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_dilates(flatbuffers::Offset<flatbuffers::Vector<int32_t>> dilates) {
@@ -809,7 +847,7 @@ struct Convolution3DCommonBuilder {
   void add_pads(flatbuffers::Offset<flatbuffers::Vector<int32_t>> pads) {
     fbb_.AddOffset(Convolution3DCommon::VT_PADS, pads);
   }
-  void add_padMode(PadMode padMode) {
+  void add_padMode(MNN::PadMode padMode) {
     fbb_.AddElement<int8_t>(Convolution3DCommon::VT_PADMODE, static_cast<int8_t>(padMode), 0);
   }
   void add_inputCount(int32_t inputCount) {
@@ -842,7 +880,7 @@ inline flatbuffers::Offset<Convolution3DCommon> CreateConvolution3DCommon(
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> strides = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> kernels = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> pads = 0,
-    PadMode padMode = PadMode_CAFFE,
+    MNN::PadMode padMode = MNN::PadMode_CAFFE,
     int32_t inputCount = 0,
     int32_t outputCount = 0,
     bool relu = false,
@@ -866,7 +904,7 @@ inline flatbuffers::Offset<Convolution3DCommon> CreateConvolution3DCommonDirect(
     const std::vector<int32_t> *strides = nullptr,
     const std::vector<int32_t> *kernels = nullptr,
     const std::vector<int32_t> *pads = nullptr,
-    PadMode padMode = PadMode_CAFFE,
+    MNN::PadMode padMode = MNN::PadMode_CAFFE,
     int32_t inputCount = 0,
     int32_t outputCount = 0,
     bool relu = false,
@@ -918,6 +956,7 @@ struct IDSTQuanT : public flatbuffers::NativeTable {
 
 struct IDSTQuan FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef IDSTQuanT NativeTableType;
+  typedef IDSTQuanBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return IDSTQuanTypeTable();
   }
@@ -990,6 +1029,7 @@ struct IDSTQuan FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct IDSTQuanBuilder {
+  typedef IDSTQuan Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_buffer(flatbuffers::Offset<flatbuffers::Vector<int8_t>> buffer) {
@@ -1103,14 +1143,14 @@ struct QuantizedFloatParamT : public flatbuffers::NativeTable {
   std::vector<int32_t> bias;
   std::vector<float> scale;
   std::vector<float> tensorScale;
-  QuantizeAlgo method;
+  MNN::QuantizeAlgo method;
   int32_t nbits;
   int8_t zeroPoint;
   int8_t outputZeroPoint;
   int8_t clampMin;
   int8_t clampMax;
   QuantizedFloatParamT()
-      : method(QuantizeAlgo_DEFAULT),
+      : method(MNN::QuantizeAlgo_DEFAULT),
         nbits(8),
         zeroPoint(0),
         outputZeroPoint(0),
@@ -1121,6 +1161,7 @@ struct QuantizedFloatParamT : public flatbuffers::NativeTable {
 
 struct QuantizedFloatParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedFloatParamT NativeTableType;
+  typedef QuantizedFloatParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedFloatParamTypeTable();
   }
@@ -1148,8 +1189,8 @@ struct QuantizedFloatParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
   const flatbuffers::Vector<float> *tensorScale() const {
     return GetPointer<const flatbuffers::Vector<float> *>(VT_TENSORSCALE);
   }
-  QuantizeAlgo method() const {
-    return static_cast<QuantizeAlgo>(GetField<int8_t>(VT_METHOD, 0));
+  MNN::QuantizeAlgo method() const {
+    return static_cast<MNN::QuantizeAlgo>(GetField<int8_t>(VT_METHOD, 0));
   }
   int32_t nbits() const {
     return GetField<int32_t>(VT_NBITS, 8);
@@ -1190,6 +1231,7 @@ struct QuantizedFloatParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
 };
 
 struct QuantizedFloatParamBuilder {
+  typedef QuantizedFloatParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_weight(flatbuffers::Offset<flatbuffers::Vector<int8_t>> weight) {
@@ -1204,7 +1246,7 @@ struct QuantizedFloatParamBuilder {
   void add_tensorScale(flatbuffers::Offset<flatbuffers::Vector<float>> tensorScale) {
     fbb_.AddOffset(QuantizedFloatParam::VT_TENSORSCALE, tensorScale);
   }
-  void add_method(QuantizeAlgo method) {
+  void add_method(MNN::QuantizeAlgo method) {
     fbb_.AddElement<int8_t>(QuantizedFloatParam::VT_METHOD, static_cast<int8_t>(method), 0);
   }
   void add_nbits(int32_t nbits) {
@@ -1240,7 +1282,7 @@ inline flatbuffers::Offset<QuantizedFloatParam> CreateQuantizedFloatParam(
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> bias = 0,
     flatbuffers::Offset<flatbuffers::Vector<float>> scale = 0,
     flatbuffers::Offset<flatbuffers::Vector<float>> tensorScale = 0,
-    QuantizeAlgo method = QuantizeAlgo_DEFAULT,
+    MNN::QuantizeAlgo method = MNN::QuantizeAlgo_DEFAULT,
     int32_t nbits = 8,
     int8_t zeroPoint = 0,
     int8_t outputZeroPoint = 0,
@@ -1266,7 +1308,7 @@ inline flatbuffers::Offset<QuantizedFloatParam> CreateQuantizedFloatParamDirect(
     const std::vector<int32_t> *bias = nullptr,
     const std::vector<float> *scale = nullptr,
     const std::vector<float> *tensorScale = nullptr,
-    QuantizeAlgo method = QuantizeAlgo_DEFAULT,
+    MNN::QuantizeAlgo method = MNN::QuantizeAlgo_DEFAULT,
     int32_t nbits = 8,
     int8_t zeroPoint = 0,
     int8_t outputZeroPoint = 0,
@@ -1294,17 +1336,18 @@ flatbuffers::Offset<QuantizedFloatParam> CreateQuantizedFloatParam(flatbuffers::
 
 struct Convolution2DT : public flatbuffers::NativeTable {
   typedef Convolution2D TableType;
-  std::unique_ptr<Convolution2DCommonT> common;
+  std::unique_ptr<MNN::Convolution2DCommonT> common;
   std::vector<float> weight;
   std::vector<float> bias;
-  std::unique_ptr<IDSTQuanT> quanParameter;
-  std::unique_ptr<QuantizedFloatParamT> symmetricQuan;
+  std::unique_ptr<MNN::IDSTQuanT> quanParameter;
+  std::unique_ptr<MNN::QuantizedFloatParamT> symmetricQuan;
   Convolution2DT() {
   }
 };
 
 struct Convolution2D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef Convolution2DT NativeTableType;
+  typedef Convolution2DBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return Convolution2DTypeTable();
   }
@@ -1315,8 +1358,8 @@ struct Convolution2D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_QUANPARAMETER = 10,
     VT_SYMMETRICQUAN = 12
   };
-  const Convolution2DCommon *common() const {
-    return GetPointer<const Convolution2DCommon *>(VT_COMMON);
+  const MNN::Convolution2DCommon *common() const {
+    return GetPointer<const MNN::Convolution2DCommon *>(VT_COMMON);
   }
   const flatbuffers::Vector<float> *weight() const {
     return GetPointer<const flatbuffers::Vector<float> *>(VT_WEIGHT);
@@ -1324,11 +1367,11 @@ struct Convolution2D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<float> *bias() const {
     return GetPointer<const flatbuffers::Vector<float> *>(VT_BIAS);
   }
-  const IDSTQuan *quanParameter() const {
-    return GetPointer<const IDSTQuan *>(VT_QUANPARAMETER);
+  const MNN::IDSTQuan *quanParameter() const {
+    return GetPointer<const MNN::IDSTQuan *>(VT_QUANPARAMETER);
   }
-  const QuantizedFloatParam *symmetricQuan() const {
-    return GetPointer<const QuantizedFloatParam *>(VT_SYMMETRICQUAN);
+  const MNN::QuantizedFloatParam *symmetricQuan() const {
+    return GetPointer<const MNN::QuantizedFloatParam *>(VT_SYMMETRICQUAN);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1350,9 +1393,10 @@ struct Convolution2D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct Convolution2DBuilder {
+  typedef Convolution2D Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_common(flatbuffers::Offset<Convolution2DCommon> common) {
+  void add_common(flatbuffers::Offset<MNN::Convolution2DCommon> common) {
     fbb_.AddOffset(Convolution2D::VT_COMMON, common);
   }
   void add_weight(flatbuffers::Offset<flatbuffers::Vector<float>> weight) {
@@ -1361,10 +1405,10 @@ struct Convolution2DBuilder {
   void add_bias(flatbuffers::Offset<flatbuffers::Vector<float>> bias) {
     fbb_.AddOffset(Convolution2D::VT_BIAS, bias);
   }
-  void add_quanParameter(flatbuffers::Offset<IDSTQuan> quanParameter) {
+  void add_quanParameter(flatbuffers::Offset<MNN::IDSTQuan> quanParameter) {
     fbb_.AddOffset(Convolution2D::VT_QUANPARAMETER, quanParameter);
   }
-  void add_symmetricQuan(flatbuffers::Offset<QuantizedFloatParam> symmetricQuan) {
+  void add_symmetricQuan(flatbuffers::Offset<MNN::QuantizedFloatParam> symmetricQuan) {
     fbb_.AddOffset(Convolution2D::VT_SYMMETRICQUAN, symmetricQuan);
   }
   explicit Convolution2DBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1381,11 +1425,11 @@ struct Convolution2DBuilder {
 
 inline flatbuffers::Offset<Convolution2D> CreateConvolution2D(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<Convolution2DCommon> common = 0,
+    flatbuffers::Offset<MNN::Convolution2DCommon> common = 0,
     flatbuffers::Offset<flatbuffers::Vector<float>> weight = 0,
     flatbuffers::Offset<flatbuffers::Vector<float>> bias = 0,
-    flatbuffers::Offset<IDSTQuan> quanParameter = 0,
-    flatbuffers::Offset<QuantizedFloatParam> symmetricQuan = 0) {
+    flatbuffers::Offset<MNN::IDSTQuan> quanParameter = 0,
+    flatbuffers::Offset<MNN::QuantizedFloatParam> symmetricQuan = 0) {
   Convolution2DBuilder builder_(_fbb);
   builder_.add_symmetricQuan(symmetricQuan);
   builder_.add_quanParameter(quanParameter);
@@ -1397,11 +1441,11 @@ inline flatbuffers::Offset<Convolution2D> CreateConvolution2D(
 
 inline flatbuffers::Offset<Convolution2D> CreateConvolution2DDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<Convolution2DCommon> common = 0,
+    flatbuffers::Offset<MNN::Convolution2DCommon> common = 0,
     const std::vector<float> *weight = nullptr,
     const std::vector<float> *bias = nullptr,
-    flatbuffers::Offset<IDSTQuan> quanParameter = 0,
-    flatbuffers::Offset<QuantizedFloatParam> symmetricQuan = 0) {
+    flatbuffers::Offset<MNN::IDSTQuan> quanParameter = 0,
+    flatbuffers::Offset<MNN::QuantizedFloatParam> symmetricQuan = 0) {
   auto weight__ = weight ? _fbb.CreateVector<float>(*weight) : 0;
   auto bias__ = bias ? _fbb.CreateVector<float>(*bias) : 0;
   return MNN::CreateConvolution2D(
@@ -1417,7 +1461,7 @@ flatbuffers::Offset<Convolution2D> CreateConvolution2D(flatbuffers::FlatBufferBu
 
 struct Convolution3DT : public flatbuffers::NativeTable {
   typedef Convolution3D TableType;
-  std::unique_ptr<Convolution3DCommonT> common;
+  std::unique_ptr<MNN::Convolution3DCommonT> common;
   std::vector<float> weight;
   std::vector<float> bias;
   Convolution3DT() {
@@ -1426,6 +1470,7 @@ struct Convolution3DT : public flatbuffers::NativeTable {
 
 struct Convolution3D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef Convolution3DT NativeTableType;
+  typedef Convolution3DBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return Convolution3DTypeTable();
   }
@@ -1434,8 +1479,8 @@ struct Convolution3D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_WEIGHT = 6,
     VT_BIAS = 8
   };
-  const Convolution3DCommon *common() const {
-    return GetPointer<const Convolution3DCommon *>(VT_COMMON);
+  const MNN::Convolution3DCommon *common() const {
+    return GetPointer<const MNN::Convolution3DCommon *>(VT_COMMON);
   }
   const flatbuffers::Vector<float> *weight() const {
     return GetPointer<const flatbuffers::Vector<float> *>(VT_WEIGHT);
@@ -1459,9 +1504,10 @@ struct Convolution3D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct Convolution3DBuilder {
+  typedef Convolution3D Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_common(flatbuffers::Offset<Convolution3DCommon> common) {
+  void add_common(flatbuffers::Offset<MNN::Convolution3DCommon> common) {
     fbb_.AddOffset(Convolution3D::VT_COMMON, common);
   }
   void add_weight(flatbuffers::Offset<flatbuffers::Vector<float>> weight) {
@@ -1484,7 +1530,7 @@ struct Convolution3DBuilder {
 
 inline flatbuffers::Offset<Convolution3D> CreateConvolution3D(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<Convolution3DCommon> common = 0,
+    flatbuffers::Offset<MNN::Convolution3DCommon> common = 0,
     flatbuffers::Offset<flatbuffers::Vector<float>> weight = 0,
     flatbuffers::Offset<flatbuffers::Vector<float>> bias = 0) {
   Convolution3DBuilder builder_(_fbb);
@@ -1496,7 +1542,7 @@ inline flatbuffers::Offset<Convolution3D> CreateConvolution3D(
 
 inline flatbuffers::Offset<Convolution3D> CreateConvolution3DDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<Convolution3DCommon> common = 0,
+    flatbuffers::Offset<MNN::Convolution3DCommon> common = 0,
     const std::vector<float> *weight = nullptr,
     const std::vector<float> *bias = nullptr) {
   auto weight__ = weight ? _fbb.CreateVector<float>(*weight) : 0;
@@ -1519,7 +1565,7 @@ struct InnerProductT : public flatbuffers::NativeTable {
   std::vector<float> bias;
   int32_t axis;
   bool transpose;
-  std::unique_ptr<IDSTQuanT> quanParameter;
+  std::unique_ptr<MNN::IDSTQuanT> quanParameter;
   InnerProductT()
       : outputCount(0),
         biasTerm(0),
@@ -1531,6 +1577,7 @@ struct InnerProductT : public flatbuffers::NativeTable {
 
 struct InnerProduct FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef InnerProductT NativeTableType;
+  typedef InnerProductBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return InnerProductTypeTable();
   }
@@ -1565,8 +1612,8 @@ struct InnerProduct FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   bool transpose() const {
     return GetField<uint8_t>(VT_TRANSPOSE, 0) != 0;
   }
-  const IDSTQuan *quanParameter() const {
-    return GetPointer<const IDSTQuan *>(VT_QUANPARAMETER);
+  const MNN::IDSTQuan *quanParameter() const {
+    return GetPointer<const MNN::IDSTQuan *>(VT_QUANPARAMETER);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1589,6 +1636,7 @@ struct InnerProduct FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct InnerProductBuilder {
+  typedef InnerProduct Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_outputCount(int32_t outputCount) {
@@ -1612,7 +1660,7 @@ struct InnerProductBuilder {
   void add_transpose(bool transpose) {
     fbb_.AddElement<uint8_t>(InnerProduct::VT_TRANSPOSE, static_cast<uint8_t>(transpose), 0);
   }
-  void add_quanParameter(flatbuffers::Offset<IDSTQuan> quanParameter) {
+  void add_quanParameter(flatbuffers::Offset<MNN::IDSTQuan> quanParameter) {
     fbb_.AddOffset(InnerProduct::VT_QUANPARAMETER, quanParameter);
   }
   explicit InnerProductBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1636,7 +1684,7 @@ inline flatbuffers::Offset<InnerProduct> CreateInnerProduct(
     flatbuffers::Offset<flatbuffers::Vector<float>> bias = 0,
     int32_t axis = 0,
     bool transpose = false,
-    flatbuffers::Offset<IDSTQuan> quanParameter = 0) {
+    flatbuffers::Offset<MNN::IDSTQuan> quanParameter = 0) {
   InnerProductBuilder builder_(_fbb);
   builder_.add_quanParameter(quanParameter);
   builder_.add_axis(axis);
@@ -1658,7 +1706,7 @@ inline flatbuffers::Offset<InnerProduct> CreateInnerProductDirect(
     const std::vector<float> *bias = nullptr,
     int32_t axis = 0,
     bool transpose = false,
-    flatbuffers::Offset<IDSTQuan> quanParameter = 0) {
+    flatbuffers::Offset<MNN::IDSTQuan> quanParameter = 0) {
   auto weight__ = weight ? _fbb.CreateVector<float>(*weight) : 0;
   auto bias__ = bias ? _fbb.CreateVector<float>(*bias) : 0;
   return MNN::CreateInnerProduct(
@@ -1684,12 +1732,12 @@ struct PoolT : public flatbuffers::NativeTable {
   int32_t kernelY;
   int32_t strideX;
   int32_t strideY;
-  PoolType type;
-  PoolPadType padType;
-  DataType dataType;
+  MNN::PoolType type;
+  MNN::PoolPadType padType;
+  MNN::DataType dataType;
   bool ceilModel;
   std::vector<int32_t> pads;
-  AvgPoolCountType countType;
+  MNN::AvgPoolCountType countType;
   PoolT()
       : padX(0),
         padY(0),
@@ -1698,16 +1746,17 @@ struct PoolT : public flatbuffers::NativeTable {
         kernelY(0),
         strideX(0),
         strideY(0),
-        type(PoolType_MAXPOOL),
-        padType(PoolPadType_CAFFE),
-        dataType(DataType_DT_FLOAT),
+        type(MNN::PoolType_MAXPOOL),
+        padType(MNN::PoolPadType_CAFFE),
+        dataType(MNN::DataType_DT_FLOAT),
         ceilModel(true),
-        countType(AvgPoolCountType_DEFAULT) {
+        countType(MNN::AvgPoolCountType_DEFAULT) {
   }
 };
 
 struct Pool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef PoolT NativeTableType;
+  typedef PoolBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return PoolTypeTable();
   }
@@ -1747,14 +1796,14 @@ struct Pool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t strideY() const {
     return GetField<int32_t>(VT_STRIDEY, 0);
   }
-  PoolType type() const {
-    return static_cast<PoolType>(GetField<int8_t>(VT_TYPE, 0));
+  MNN::PoolType type() const {
+    return static_cast<MNN::PoolType>(GetField<int8_t>(VT_TYPE, 0));
   }
-  PoolPadType padType() const {
-    return static_cast<PoolPadType>(GetField<int8_t>(VT_PADTYPE, 0));
+  MNN::PoolPadType padType() const {
+    return static_cast<MNN::PoolPadType>(GetField<int8_t>(VT_PADTYPE, 0));
   }
-  DataType dataType() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_DATATYPE, 1));
+  MNN::DataType dataType() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_DATATYPE, 1));
   }
   bool ceilModel() const {
     return GetField<uint8_t>(VT_CEILMODEL, 1) != 0;
@@ -1762,8 +1811,8 @@ struct Pool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *pads() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_PADS);
   }
-  AvgPoolCountType countType() const {
-    return static_cast<AvgPoolCountType>(GetField<int8_t>(VT_COUNTTYPE, 0));
+  MNN::AvgPoolCountType countType() const {
+    return static_cast<MNN::AvgPoolCountType>(GetField<int8_t>(VT_COUNTTYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1789,6 +1838,7 @@ struct Pool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct PoolBuilder {
+  typedef Pool Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_padX(int32_t padX) {
@@ -1812,13 +1862,13 @@ struct PoolBuilder {
   void add_strideY(int32_t strideY) {
     fbb_.AddElement<int32_t>(Pool::VT_STRIDEY, strideY, 0);
   }
-  void add_type(PoolType type) {
+  void add_type(MNN::PoolType type) {
     fbb_.AddElement<int8_t>(Pool::VT_TYPE, static_cast<int8_t>(type), 0);
   }
-  void add_padType(PoolPadType padType) {
+  void add_padType(MNN::PoolPadType padType) {
     fbb_.AddElement<int8_t>(Pool::VT_PADTYPE, static_cast<int8_t>(padType), 0);
   }
-  void add_dataType(DataType dataType) {
+  void add_dataType(MNN::DataType dataType) {
     fbb_.AddElement<int32_t>(Pool::VT_DATATYPE, static_cast<int32_t>(dataType), 1);
   }
   void add_ceilModel(bool ceilModel) {
@@ -1827,7 +1877,7 @@ struct PoolBuilder {
   void add_pads(flatbuffers::Offset<flatbuffers::Vector<int32_t>> pads) {
     fbb_.AddOffset(Pool::VT_PADS, pads);
   }
-  void add_countType(AvgPoolCountType countType) {
+  void add_countType(MNN::AvgPoolCountType countType) {
     fbb_.AddElement<int8_t>(Pool::VT_COUNTTYPE, static_cast<int8_t>(countType), 0);
   }
   explicit PoolBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1851,12 +1901,12 @@ inline flatbuffers::Offset<Pool> CreatePool(
     int32_t kernelY = 0,
     int32_t strideX = 0,
     int32_t strideY = 0,
-    PoolType type = PoolType_MAXPOOL,
-    PoolPadType padType = PoolPadType_CAFFE,
-    DataType dataType = DataType_DT_FLOAT,
+    MNN::PoolType type = MNN::PoolType_MAXPOOL,
+    MNN::PoolPadType padType = MNN::PoolPadType_CAFFE,
+    MNN::DataType dataType = MNN::DataType_DT_FLOAT,
     bool ceilModel = true,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> pads = 0,
-    AvgPoolCountType countType = AvgPoolCountType_DEFAULT) {
+    MNN::AvgPoolCountType countType = MNN::AvgPoolCountType_DEFAULT) {
   PoolBuilder builder_(_fbb);
   builder_.add_pads(pads);
   builder_.add_dataType(dataType);
@@ -1883,12 +1933,12 @@ inline flatbuffers::Offset<Pool> CreatePoolDirect(
     int32_t kernelY = 0,
     int32_t strideX = 0,
     int32_t strideY = 0,
-    PoolType type = PoolType_MAXPOOL,
-    PoolPadType padType = PoolPadType_CAFFE,
-    DataType dataType = DataType_DT_FLOAT,
+    MNN::PoolType type = MNN::PoolType_MAXPOOL,
+    MNN::PoolPadType padType = MNN::PoolPadType_CAFFE,
+    MNN::DataType dataType = MNN::DataType_DT_FLOAT,
     bool ceilModel = true,
     const std::vector<int32_t> *pads = nullptr,
-    AvgPoolCountType countType = AvgPoolCountType_DEFAULT) {
+    MNN::AvgPoolCountType countType = MNN::AvgPoolCountType_DEFAULT) {
   auto pads__ = pads ? _fbb.CreateVector<int32_t>(*pads) : 0;
   return MNN::CreatePool(
       _fbb,
@@ -1914,18 +1964,19 @@ struct Pool3DT : public flatbuffers::NativeTable {
   std::vector<int32_t> strides;
   std::vector<int32_t> kernels;
   std::vector<int32_t> pads;
-  PoolType type;
-  PoolPadType padType;
+  MNN::PoolType type;
+  MNN::PoolPadType padType;
   bool isGlobal;
   Pool3DT()
-      : type(PoolType_MAXPOOL),
-        padType(PoolPadType_CAFFE),
+      : type(MNN::PoolType_MAXPOOL),
+        padType(MNN::PoolPadType_CAFFE),
         isGlobal(false) {
   }
 };
 
 struct Pool3D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef Pool3DT NativeTableType;
+  typedef Pool3DBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return Pool3DTypeTable();
   }
@@ -1946,11 +1997,11 @@ struct Pool3D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *pads() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_PADS);
   }
-  PoolType type() const {
-    return static_cast<PoolType>(GetField<int8_t>(VT_TYPE, 0));
+  MNN::PoolType type() const {
+    return static_cast<MNN::PoolType>(GetField<int8_t>(VT_TYPE, 0));
   }
-  PoolPadType padType() const {
-    return static_cast<PoolPadType>(GetField<int8_t>(VT_PADTYPE, 0));
+  MNN::PoolPadType padType() const {
+    return static_cast<MNN::PoolPadType>(GetField<int8_t>(VT_PADTYPE, 0));
   }
   bool isGlobal() const {
     return GetField<uint8_t>(VT_ISGLOBAL, 0) != 0;
@@ -1974,6 +2025,7 @@ struct Pool3D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct Pool3DBuilder {
+  typedef Pool3D Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_strides(flatbuffers::Offset<flatbuffers::Vector<int32_t>> strides) {
@@ -1985,10 +2037,10 @@ struct Pool3DBuilder {
   void add_pads(flatbuffers::Offset<flatbuffers::Vector<int32_t>> pads) {
     fbb_.AddOffset(Pool3D::VT_PADS, pads);
   }
-  void add_type(PoolType type) {
+  void add_type(MNN::PoolType type) {
     fbb_.AddElement<int8_t>(Pool3D::VT_TYPE, static_cast<int8_t>(type), 0);
   }
-  void add_padType(PoolPadType padType) {
+  void add_padType(MNN::PoolPadType padType) {
     fbb_.AddElement<int8_t>(Pool3D::VT_PADTYPE, static_cast<int8_t>(padType), 0);
   }
   void add_isGlobal(bool isGlobal) {
@@ -2011,8 +2063,8 @@ inline flatbuffers::Offset<Pool3D> CreatePool3D(
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> strides = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> kernels = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> pads = 0,
-    PoolType type = PoolType_MAXPOOL,
-    PoolPadType padType = PoolPadType_CAFFE,
+    MNN::PoolType type = MNN::PoolType_MAXPOOL,
+    MNN::PoolPadType padType = MNN::PoolPadType_CAFFE,
     bool isGlobal = false) {
   Pool3DBuilder builder_(_fbb);
   builder_.add_pads(pads);
@@ -2029,8 +2081,8 @@ inline flatbuffers::Offset<Pool3D> CreatePool3DDirect(
     const std::vector<int32_t> *strides = nullptr,
     const std::vector<int32_t> *kernels = nullptr,
     const std::vector<int32_t> *pads = nullptr,
-    PoolType type = PoolType_MAXPOOL,
-    PoolPadType padType = PoolPadType_CAFFE,
+    MNN::PoolType type = MNN::PoolType_MAXPOOL,
+    MNN::PoolPadType padType = MNN::PoolPadType_CAFFE,
     bool isGlobal = false) {
   auto strides__ = strides ? _fbb.CreateVector<int32_t>(*strides) : 0;
   auto kernels__ = kernels ? _fbb.CreateVector<int32_t>(*kernels) : 0;
@@ -2057,6 +2109,7 @@ struct ReluT : public flatbuffers::NativeTable {
 
 struct Relu FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ReluT NativeTableType;
+  typedef ReluBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ReluTypeTable();
   }
@@ -2077,6 +2130,7 @@ struct Relu FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ReluBuilder {
+  typedef Relu Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_slope(float slope) {
@@ -2116,6 +2170,7 @@ struct Relu6T : public flatbuffers::NativeTable {
 
 struct Relu6 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef Relu6T NativeTableType;
+  typedef Relu6Builder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return Relu6TypeTable();
   }
@@ -2141,6 +2196,7 @@ struct Relu6 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct Relu6Builder {
+  typedef Relu6 Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_minValue(float minValue) {
@@ -2184,6 +2240,7 @@ struct PReluT : public flatbuffers::NativeTable {
 
 struct PRelu FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef PReluT NativeTableType;
+  typedef PReluBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return PReluTypeTable();
   }
@@ -2210,6 +2267,7 @@ struct PRelu FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct PReluBuilder {
+  typedef PRelu Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_slopeCount(int32_t slopeCount) {
@@ -2263,6 +2321,7 @@ struct ELUT : public flatbuffers::NativeTable {
 
 struct ELU FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ELUT NativeTableType;
+  typedef ELUBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ELUTypeTable();
   }
@@ -2283,6 +2342,7 @@ struct ELU FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ELUBuilder {
+  typedef ELU Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_alpha(float alpha) {
@@ -2326,6 +2386,7 @@ struct LRNT : public flatbuffers::NativeTable {
 
 struct LRN FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef LRNT NativeTableType;
+  typedef LRNBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return LRNTypeTable();
   }
@@ -2361,6 +2422,7 @@ struct LRN FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct LRNBuilder {
+  typedef LRN Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_regionType(int32_t regionType) {
@@ -2419,6 +2481,7 @@ struct ArgMaxT : public flatbuffers::NativeTable {
 
 struct ArgMax FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ArgMaxT NativeTableType;
+  typedef ArgMaxBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ArgMaxTypeTable();
   }
@@ -2454,6 +2517,7 @@ struct ArgMax FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ArgMaxBuilder {
+  typedef ArgMax Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_outMaxVal(int32_t outMaxVal) {
@@ -2506,6 +2570,7 @@ struct AxisT : public flatbuffers::NativeTable {
 
 struct Axis FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef AxisT NativeTableType;
+  typedef AxisBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return AxisTypeTable();
   }
@@ -2526,6 +2591,7 @@ struct Axis FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct AxisBuilder {
+  typedef Axis Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_axis(int32_t axis) {
@@ -2556,16 +2622,17 @@ flatbuffers::Offset<Axis> CreateAxis(flatbuffers::FlatBufferBuilder &_fbb, const
 struct InputT : public flatbuffers::NativeTable {
   typedef Input TableType;
   std::vector<int32_t> dims;
-  DataType dtype;
-  MNN_DATA_FORMAT dformat;
+  MNN::DataType dtype;
+  MNN::MNN_DATA_FORMAT dformat;
   InputT()
-      : dtype(DataType_DT_FLOAT),
-        dformat(MNN_DATA_FORMAT_NC4HW4) {
+      : dtype(MNN::DataType_DT_FLOAT),
+        dformat(MNN::MNN_DATA_FORMAT_NC4HW4) {
   }
 };
 
 struct Input FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef InputT NativeTableType;
+  typedef InputBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return InputTypeTable();
   }
@@ -2577,11 +2644,11 @@ struct Input FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *dims() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_DIMS);
   }
-  DataType dtype() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_DTYPE, 1));
+  MNN::DataType dtype() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_DTYPE, 1));
   }
-  MNN_DATA_FORMAT dformat() const {
-    return static_cast<MNN_DATA_FORMAT>(GetField<int8_t>(VT_DFORMAT, 2));
+  MNN::MNN_DATA_FORMAT dformat() const {
+    return static_cast<MNN::MNN_DATA_FORMAT>(GetField<int8_t>(VT_DFORMAT, 2));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2597,15 +2664,16 @@ struct Input FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct InputBuilder {
+  typedef Input Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_dims(flatbuffers::Offset<flatbuffers::Vector<int32_t>> dims) {
     fbb_.AddOffset(Input::VT_DIMS, dims);
   }
-  void add_dtype(DataType dtype) {
+  void add_dtype(MNN::DataType dtype) {
     fbb_.AddElement<int32_t>(Input::VT_DTYPE, static_cast<int32_t>(dtype), 1);
   }
-  void add_dformat(MNN_DATA_FORMAT dformat) {
+  void add_dformat(MNN::MNN_DATA_FORMAT dformat) {
     fbb_.AddElement<int8_t>(Input::VT_DFORMAT, static_cast<int8_t>(dformat), 2);
   }
   explicit InputBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2623,8 +2691,8 @@ struct InputBuilder {
 inline flatbuffers::Offset<Input> CreateInput(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> dims = 0,
-    DataType dtype = DataType_DT_FLOAT,
-    MNN_DATA_FORMAT dformat = MNN_DATA_FORMAT_NC4HW4) {
+    MNN::DataType dtype = MNN::DataType_DT_FLOAT,
+    MNN::MNN_DATA_FORMAT dformat = MNN::MNN_DATA_FORMAT_NC4HW4) {
   InputBuilder builder_(_fbb);
   builder_.add_dtype(dtype);
   builder_.add_dims(dims);
@@ -2635,8 +2703,8 @@ inline flatbuffers::Offset<Input> CreateInput(
 inline flatbuffers::Offset<Input> CreateInputDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<int32_t> *dims = nullptr,
-    DataType dtype = DataType_DT_FLOAT,
-    MNN_DATA_FORMAT dformat = MNN_DATA_FORMAT_NC4HW4) {
+    MNN::DataType dtype = MNN::DataType_DT_FLOAT,
+    MNN::MNN_DATA_FORMAT dformat = MNN::MNN_DATA_FORMAT_NC4HW4) {
   auto dims__ = dims ? _fbb.CreateVector<int32_t>(*dims) : 0;
   return MNN::CreateInput(
       _fbb,
@@ -2652,11 +2720,11 @@ struct LSTMT : public flatbuffers::NativeTable {
   int32_t outputCount;
   int32_t weightSize;
   float clippingThreshold;
-  std::unique_ptr<BlobT> weightI;
-  std::unique_ptr<BlobT> weightH;
-  std::unique_ptr<BlobT> bias;
-  std::unique_ptr<BlobT> weightIQ;
-  std::unique_ptr<BlobT> weightIA;
+  std::unique_ptr<MNN::BlobT> weightI;
+  std::unique_ptr<MNN::BlobT> weightH;
+  std::unique_ptr<MNN::BlobT> bias;
+  std::unique_ptr<MNN::BlobT> weightIQ;
+  std::unique_ptr<MNN::BlobT> weightIA;
   float quantScale;
   LSTMT()
       : outputCount(0),
@@ -2668,6 +2736,7 @@ struct LSTMT : public flatbuffers::NativeTable {
 
 struct LSTM FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef LSTMT NativeTableType;
+  typedef LSTMBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return LSTMTypeTable();
   }
@@ -2691,20 +2760,20 @@ struct LSTM FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   float clippingThreshold() const {
     return GetField<float>(VT_CLIPPINGTHRESHOLD, 0.0f);
   }
-  const Blob *weightI() const {
-    return GetPointer<const Blob *>(VT_WEIGHTI);
+  const MNN::Blob *weightI() const {
+    return GetPointer<const MNN::Blob *>(VT_WEIGHTI);
   }
-  const Blob *weightH() const {
-    return GetPointer<const Blob *>(VT_WEIGHTH);
+  const MNN::Blob *weightH() const {
+    return GetPointer<const MNN::Blob *>(VT_WEIGHTH);
   }
-  const Blob *bias() const {
-    return GetPointer<const Blob *>(VT_BIAS);
+  const MNN::Blob *bias() const {
+    return GetPointer<const MNN::Blob *>(VT_BIAS);
   }
-  const Blob *weightIQ() const {
-    return GetPointer<const Blob *>(VT_WEIGHTIQ);
+  const MNN::Blob *weightIQ() const {
+    return GetPointer<const MNN::Blob *>(VT_WEIGHTIQ);
   }
-  const Blob *weightIA() const {
-    return GetPointer<const Blob *>(VT_WEIGHTIA);
+  const MNN::Blob *weightIA() const {
+    return GetPointer<const MNN::Blob *>(VT_WEIGHTIA);
   }
   float quantScale() const {
     return GetField<float>(VT_QUANTSCALE, 0.0f);
@@ -2733,6 +2802,7 @@ struct LSTM FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct LSTMBuilder {
+  typedef LSTM Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_outputCount(int32_t outputCount) {
@@ -2744,19 +2814,19 @@ struct LSTMBuilder {
   void add_clippingThreshold(float clippingThreshold) {
     fbb_.AddElement<float>(LSTM::VT_CLIPPINGTHRESHOLD, clippingThreshold, 0.0f);
   }
-  void add_weightI(flatbuffers::Offset<Blob> weightI) {
+  void add_weightI(flatbuffers::Offset<MNN::Blob> weightI) {
     fbb_.AddOffset(LSTM::VT_WEIGHTI, weightI);
   }
-  void add_weightH(flatbuffers::Offset<Blob> weightH) {
+  void add_weightH(flatbuffers::Offset<MNN::Blob> weightH) {
     fbb_.AddOffset(LSTM::VT_WEIGHTH, weightH);
   }
-  void add_bias(flatbuffers::Offset<Blob> bias) {
+  void add_bias(flatbuffers::Offset<MNN::Blob> bias) {
     fbb_.AddOffset(LSTM::VT_BIAS, bias);
   }
-  void add_weightIQ(flatbuffers::Offset<Blob> weightIQ) {
+  void add_weightIQ(flatbuffers::Offset<MNN::Blob> weightIQ) {
     fbb_.AddOffset(LSTM::VT_WEIGHTIQ, weightIQ);
   }
-  void add_weightIA(flatbuffers::Offset<Blob> weightIA) {
+  void add_weightIA(flatbuffers::Offset<MNN::Blob> weightIA) {
     fbb_.AddOffset(LSTM::VT_WEIGHTIA, weightIA);
   }
   void add_quantScale(float quantScale) {
@@ -2779,11 +2849,11 @@ inline flatbuffers::Offset<LSTM> CreateLSTM(
     int32_t outputCount = 0,
     int32_t weightSize = 0,
     float clippingThreshold = 0.0f,
-    flatbuffers::Offset<Blob> weightI = 0,
-    flatbuffers::Offset<Blob> weightH = 0,
-    flatbuffers::Offset<Blob> bias = 0,
-    flatbuffers::Offset<Blob> weightIQ = 0,
-    flatbuffers::Offset<Blob> weightIA = 0,
+    flatbuffers::Offset<MNN::Blob> weightI = 0,
+    flatbuffers::Offset<MNN::Blob> weightH = 0,
+    flatbuffers::Offset<MNN::Blob> bias = 0,
+    flatbuffers::Offset<MNN::Blob> weightIQ = 0,
+    flatbuffers::Offset<MNN::Blob> weightIA = 0,
     float quantScale = 0.0f) {
   LSTMBuilder builder_(_fbb);
   builder_.add_quantScale(quantScale);
@@ -2804,15 +2874,16 @@ struct SliceT : public flatbuffers::NativeTable {
   typedef Slice TableType;
   int32_t axis;
   std::vector<int32_t> slicePoints;
-  NetSource sourceType;
+  MNN::NetSource sourceType;
   SliceT()
       : axis(0),
-        sourceType(NetSource_CAFFE) {
+        sourceType(MNN::NetSource_CAFFE) {
   }
 };
 
 struct Slice FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef SliceT NativeTableType;
+  typedef SliceBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return SliceTypeTable();
   }
@@ -2827,8 +2898,8 @@ struct Slice FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *slicePoints() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_SLICEPOINTS);
   }
-  NetSource sourceType() const {
-    return static_cast<NetSource>(GetField<int8_t>(VT_SOURCETYPE, 0));
+  MNN::NetSource sourceType() const {
+    return static_cast<MNN::NetSource>(GetField<int8_t>(VT_SOURCETYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -2844,6 +2915,7 @@ struct Slice FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct SliceBuilder {
+  typedef Slice Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_axis(int32_t axis) {
@@ -2852,7 +2924,7 @@ struct SliceBuilder {
   void add_slicePoints(flatbuffers::Offset<flatbuffers::Vector<int32_t>> slicePoints) {
     fbb_.AddOffset(Slice::VT_SLICEPOINTS, slicePoints);
   }
-  void add_sourceType(NetSource sourceType) {
+  void add_sourceType(MNN::NetSource sourceType) {
     fbb_.AddElement<int8_t>(Slice::VT_SOURCETYPE, static_cast<int8_t>(sourceType), 0);
   }
   explicit SliceBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -2871,7 +2943,7 @@ inline flatbuffers::Offset<Slice> CreateSlice(
     flatbuffers::FlatBufferBuilder &_fbb,
     int32_t axis = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> slicePoints = 0,
-    NetSource sourceType = NetSource_CAFFE) {
+    MNN::NetSource sourceType = MNN::NetSource_CAFFE) {
   SliceBuilder builder_(_fbb);
   builder_.add_slicePoints(slicePoints);
   builder_.add_axis(axis);
@@ -2883,7 +2955,7 @@ inline flatbuffers::Offset<Slice> CreateSliceDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     int32_t axis = 0,
     const std::vector<int32_t> *slicePoints = nullptr,
-    NetSource sourceType = NetSource_CAFFE) {
+    MNN::NetSource sourceType = MNN::NetSource_CAFFE) {
   auto slicePoints__ = slicePoints ? _fbb.CreateVector<int32_t>(*slicePoints) : 0;
   return MNN::CreateSlice(
       _fbb,
@@ -2912,6 +2984,7 @@ struct BatchNormT : public flatbuffers::NativeTable {
 
 struct BatchNorm FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef BatchNormT NativeTableType;
+  typedef BatchNormBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return BatchNormTypeTable();
   }
@@ -2973,6 +3046,7 @@ struct BatchNorm FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct BatchNormBuilder {
+  typedef BatchNorm Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_channels(int32_t channels) {
@@ -3075,6 +3149,7 @@ struct ScaleT : public flatbuffers::NativeTable {
 
 struct Scale FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ScaleT NativeTableType;
+  typedef ScaleBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ScaleTypeTable();
   }
@@ -3107,6 +3182,7 @@ struct Scale FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ScaleBuilder {
+  typedef Scale Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_channels(int32_t channels) {
@@ -3160,15 +3236,16 @@ flatbuffers::Offset<Scale> CreateScale(flatbuffers::FlatBufferBuilder &_fbb, con
 
 struct EltwiseT : public flatbuffers::NativeTable {
   typedef Eltwise TableType;
-  EltwiseType type;
+  MNN::EltwiseType type;
   std::vector<float> coeff;
   EltwiseT()
-      : type(EltwiseType_PROD) {
+      : type(MNN::EltwiseType_PROD) {
   }
 };
 
 struct Eltwise FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef EltwiseT NativeTableType;
+  typedef EltwiseBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return EltwiseTypeTable();
   }
@@ -3176,8 +3253,8 @@ struct Eltwise FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_TYPE = 4,
     VT_COEFF = 6
   };
-  EltwiseType type() const {
-    return static_cast<EltwiseType>(GetField<int8_t>(VT_TYPE, 0));
+  MNN::EltwiseType type() const {
+    return static_cast<MNN::EltwiseType>(GetField<int8_t>(VT_TYPE, 0));
   }
   const flatbuffers::Vector<float> *coeff() const {
     return GetPointer<const flatbuffers::Vector<float> *>(VT_COEFF);
@@ -3195,9 +3272,10 @@ struct Eltwise FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct EltwiseBuilder {
+  typedef Eltwise Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_type(EltwiseType type) {
+  void add_type(MNN::EltwiseType type) {
     fbb_.AddElement<int8_t>(Eltwise::VT_TYPE, static_cast<int8_t>(type), 0);
   }
   void add_coeff(flatbuffers::Offset<flatbuffers::Vector<float>> coeff) {
@@ -3217,7 +3295,7 @@ struct EltwiseBuilder {
 
 inline flatbuffers::Offset<Eltwise> CreateEltwise(
     flatbuffers::FlatBufferBuilder &_fbb,
-    EltwiseType type = EltwiseType_PROD,
+    MNN::EltwiseType type = MNN::EltwiseType_PROD,
     flatbuffers::Offset<flatbuffers::Vector<float>> coeff = 0) {
   EltwiseBuilder builder_(_fbb);
   builder_.add_coeff(coeff);
@@ -3227,7 +3305,7 @@ inline flatbuffers::Offset<Eltwise> CreateEltwise(
 
 inline flatbuffers::Offset<Eltwise> CreateEltwiseDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    EltwiseType type = EltwiseType_PROD,
+    MNN::EltwiseType type = MNN::EltwiseType_PROD,
     const std::vector<float> *coeff = nullptr) {
   auto coeff__ = coeff ? _fbb.CreateVector<float>(*coeff) : 0;
   return MNN::CreateEltwise(
@@ -3250,6 +3328,7 @@ struct FlattenT : public flatbuffers::NativeTable {
 
 struct Flatten FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef FlattenT NativeTableType;
+  typedef FlattenBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return FlattenTypeTable();
   }
@@ -3275,6 +3354,7 @@ struct Flatten FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct FlattenBuilder {
+  typedef Flatten Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_axis(int32_t axis) {
@@ -3316,6 +3396,7 @@ struct PermuteT : public flatbuffers::NativeTable {
 
 struct Permute FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef PermuteT NativeTableType;
+  typedef PermuteBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return PermuteTypeTable();
   }
@@ -3337,6 +3418,7 @@ struct Permute FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct PermuteBuilder {
+  typedef Permute Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_dims(flatbuffers::Offset<flatbuffers::Vector<int32_t>> dims) {
@@ -3376,14 +3458,15 @@ flatbuffers::Offset<Permute> CreatePermute(flatbuffers::FlatBufferBuilder &_fbb,
 struct ReshapeT : public flatbuffers::NativeTable {
   typedef Reshape TableType;
   std::vector<int32_t> dims;
-  MNN_DATA_FORMAT dimType;
+  MNN::MNN_DATA_FORMAT dimType;
   ReshapeT()
-      : dimType(MNN_DATA_FORMAT_NCHW) {
+      : dimType(MNN::MNN_DATA_FORMAT_NCHW) {
   }
 };
 
 struct Reshape FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ReshapeT NativeTableType;
+  typedef ReshapeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ReshapeTypeTable();
   }
@@ -3394,8 +3477,8 @@ struct Reshape FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *dims() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_DIMS);
   }
-  MNN_DATA_FORMAT dimType() const {
-    return static_cast<MNN_DATA_FORMAT>(GetField<int8_t>(VT_DIMTYPE, 0));
+  MNN::MNN_DATA_FORMAT dimType() const {
+    return static_cast<MNN::MNN_DATA_FORMAT>(GetField<int8_t>(VT_DIMTYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -3410,12 +3493,13 @@ struct Reshape FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ReshapeBuilder {
+  typedef Reshape Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_dims(flatbuffers::Offset<flatbuffers::Vector<int32_t>> dims) {
     fbb_.AddOffset(Reshape::VT_DIMS, dims);
   }
-  void add_dimType(MNN_DATA_FORMAT dimType) {
+  void add_dimType(MNN::MNN_DATA_FORMAT dimType) {
     fbb_.AddElement<int8_t>(Reshape::VT_DIMTYPE, static_cast<int8_t>(dimType), 0);
   }
   explicit ReshapeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -3433,7 +3517,7 @@ struct ReshapeBuilder {
 inline flatbuffers::Offset<Reshape> CreateReshape(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> dims = 0,
-    MNN_DATA_FORMAT dimType = MNN_DATA_FORMAT_NCHW) {
+    MNN::MNN_DATA_FORMAT dimType = MNN::MNN_DATA_FORMAT_NCHW) {
   ReshapeBuilder builder_(_fbb);
   builder_.add_dims(dims);
   builder_.add_dimType(dimType);
@@ -3443,7 +3527,7 @@ inline flatbuffers::Offset<Reshape> CreateReshape(
 inline flatbuffers::Offset<Reshape> CreateReshapeDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<int32_t> *dims = nullptr,
-    MNN_DATA_FORMAT dimType = MNN_DATA_FORMAT_NCHW) {
+    MNN::MNN_DATA_FORMAT dimType = MNN::MNN_DATA_FORMAT_NCHW) {
   auto dims__ = dims ? _fbb.CreateVector<int32_t>(*dims) : 0;
   return MNN::CreateReshape(
       _fbb,
@@ -3481,6 +3565,7 @@ struct DetectionOutputT : public flatbuffers::NativeTable {
 
 struct DetectionOutput FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef DetectionOutputT NativeTableType;
+  typedef DetectionOutputBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return DetectionOutputTypeTable();
   }
@@ -3546,6 +3631,7 @@ struct DetectionOutput FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct DetectionOutputBuilder {
+  typedef DetectionOutput Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_classCount(int32_t classCount) {
@@ -3632,6 +3718,7 @@ struct RoiPoolingT : public flatbuffers::NativeTable {
 
 struct RoiPooling FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef RoiPoolingT NativeTableType;
+  typedef RoiPoolingBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return RoiPoolingTypeTable();
   }
@@ -3662,6 +3749,7 @@ struct RoiPooling FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct RoiPoolingBuilder {
+  typedef RoiPooling Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_pooledWidth(int32_t pooledWidth) {
@@ -3707,9 +3795,9 @@ struct ProposalT : public flatbuffers::NativeTable {
   int32_t afterNmsTopN;
   float nmsThreshold;
   int32_t minSize;
-  std::unique_ptr<BlobT> ratios;
-  std::unique_ptr<BlobT> scales;
-  std::unique_ptr<BlobT> anchors;
+  std::unique_ptr<MNN::BlobT> ratios;
+  std::unique_ptr<MNN::BlobT> scales;
+  std::unique_ptr<MNN::BlobT> anchors;
   ProposalT()
       : featStride(0),
         baseSize(0),
@@ -3722,6 +3810,7 @@ struct ProposalT : public flatbuffers::NativeTable {
 
 struct Proposal FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ProposalT NativeTableType;
+  typedef ProposalBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ProposalTypeTable();
   }
@@ -3754,14 +3843,14 @@ struct Proposal FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t minSize() const {
     return GetField<int32_t>(VT_MINSIZE, 0);
   }
-  const Blob *ratios() const {
-    return GetPointer<const Blob *>(VT_RATIOS);
+  const MNN::Blob *ratios() const {
+    return GetPointer<const MNN::Blob *>(VT_RATIOS);
   }
-  const Blob *scales() const {
-    return GetPointer<const Blob *>(VT_SCALES);
+  const MNN::Blob *scales() const {
+    return GetPointer<const MNN::Blob *>(VT_SCALES);
   }
-  const Blob *anchors() const {
-    return GetPointer<const Blob *>(VT_ANCHORS);
+  const MNN::Blob *anchors() const {
+    return GetPointer<const MNN::Blob *>(VT_ANCHORS);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -3785,6 +3874,7 @@ struct Proposal FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ProposalBuilder {
+  typedef Proposal Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_featStride(int32_t featStride) {
@@ -3805,13 +3895,13 @@ struct ProposalBuilder {
   void add_minSize(int32_t minSize) {
     fbb_.AddElement<int32_t>(Proposal::VT_MINSIZE, minSize, 0);
   }
-  void add_ratios(flatbuffers::Offset<Blob> ratios) {
+  void add_ratios(flatbuffers::Offset<MNN::Blob> ratios) {
     fbb_.AddOffset(Proposal::VT_RATIOS, ratios);
   }
-  void add_scales(flatbuffers::Offset<Blob> scales) {
+  void add_scales(flatbuffers::Offset<MNN::Blob> scales) {
     fbb_.AddOffset(Proposal::VT_SCALES, scales);
   }
-  void add_anchors(flatbuffers::Offset<Blob> anchors) {
+  void add_anchors(flatbuffers::Offset<MNN::Blob> anchors) {
     fbb_.AddOffset(Proposal::VT_ANCHORS, anchors);
   }
   explicit ProposalBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -3834,9 +3924,9 @@ inline flatbuffers::Offset<Proposal> CreateProposal(
     int32_t afterNmsTopN = 0,
     float nmsThreshold = 0.0f,
     int32_t minSize = 0,
-    flatbuffers::Offset<Blob> ratios = 0,
-    flatbuffers::Offset<Blob> scales = 0,
-    flatbuffers::Offset<Blob> anchors = 0) {
+    flatbuffers::Offset<MNN::Blob> ratios = 0,
+    flatbuffers::Offset<MNN::Blob> scales = 0,
+    flatbuffers::Offset<MNN::Blob> anchors = 0) {
   ProposalBuilder builder_(_fbb);
   builder_.add_anchors(anchors);
   builder_.add_scales(scales);
@@ -3864,7 +3954,7 @@ struct InterpT : public flatbuffers::NativeTable {
   float widthOffset;
   float heightOffset;
   float cubicCoeffA;
-  CoordinateTransformationMode ctm;
+  MNN::CoordinateTransformationMode ctm;
   InterpT()
       : widthScale(0.0f),
         heightScale(0.0f),
@@ -3876,12 +3966,13 @@ struct InterpT : public flatbuffers::NativeTable {
         widthOffset(0.0f),
         heightOffset(0.0f),
         cubicCoeffA(-0.75f),
-        ctm(CoordinateTransformationMode_NotSet) {
+        ctm(MNN::CoordinateTransformationMode_NotSet) {
   }
 };
 
 struct Interp FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef InterpT NativeTableType;
+  typedef InterpBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return InterpTypeTable();
   }
@@ -3928,8 +4019,8 @@ struct Interp FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   float cubicCoeffA() const {
     return GetField<float>(VT_CUBICCOEFFA, -0.75f);
   }
-  CoordinateTransformationMode ctm() const {
-    return static_cast<CoordinateTransformationMode>(GetField<int8_t>(VT_CTM, 0));
+  MNN::CoordinateTransformationMode ctm() const {
+    return static_cast<MNN::CoordinateTransformationMode>(GetField<int8_t>(VT_CTM, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -3952,6 +4043,7 @@ struct Interp FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct InterpBuilder {
+  typedef Interp Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_widthScale(float widthScale) {
@@ -3984,7 +4076,7 @@ struct InterpBuilder {
   void add_cubicCoeffA(float cubicCoeffA) {
     fbb_.AddElement<float>(Interp::VT_CUBICCOEFFA, cubicCoeffA, -0.75f);
   }
-  void add_ctm(CoordinateTransformationMode ctm) {
+  void add_ctm(MNN::CoordinateTransformationMode ctm) {
     fbb_.AddElement<int8_t>(Interp::VT_CTM, static_cast<int8_t>(ctm), 0);
   }
   explicit InterpBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -4011,7 +4103,7 @@ inline flatbuffers::Offset<Interp> CreateInterp(
     float widthOffset = 0.0f,
     float heightOffset = 0.0f,
     float cubicCoeffA = -0.75f,
-    CoordinateTransformationMode ctm = CoordinateTransformationMode_NotSet) {
+    MNN::CoordinateTransformationMode ctm = MNN::CoordinateTransformationMode_NotSet) {
   InterpBuilder builder_(_fbb);
   builder_.add_cubicCoeffA(cubicCoeffA);
   builder_.add_heightOffset(heightOffset);
@@ -4041,6 +4133,7 @@ struct ResizeT : public flatbuffers::NativeTable {
 
 struct Resize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef ResizeT NativeTableType;
+  typedef ResizeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return ResizeTypeTable();
   }
@@ -4066,6 +4159,7 @@ struct Resize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct ResizeBuilder {
+  typedef Resize Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_xScale(float xScale) {
@@ -4124,6 +4218,7 @@ struct PriorBoxT : public flatbuffers::NativeTable {
 
 struct PriorBox FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef PriorBoxT NativeTableType;
+  typedef PriorBoxBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return PriorBoxTypeTable();
   }
@@ -4198,6 +4293,7 @@ struct PriorBox FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct PriorBoxBuilder {
+  typedef PriorBox Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_minSizes(flatbuffers::Offset<flatbuffers::Vector<float>> minSizes) {
@@ -4322,6 +4418,7 @@ struct NormalizeT : public flatbuffers::NativeTable {
 
 struct Normalize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef NormalizeT NativeTableType;
+  typedef NormalizeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return NormalizeTypeTable();
   }
@@ -4358,6 +4455,7 @@ struct Normalize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct NormalizeBuilder {
+  typedef Normalize Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_acrossSpatial(int32_t acrossSpatial) {
@@ -4417,17 +4515,18 @@ flatbuffers::Offset<Normalize> CreateNormalize(flatbuffers::FlatBufferBuilder &_
 
 struct EltwiseInt8T : public flatbuffers::NativeTable {
   typedef EltwiseInt8 TableType;
-  EltwiseType type;
-  std::unique_ptr<QuantizedFloatParamT> inputQuan0;
-  std::unique_ptr<QuantizedFloatParamT> inputQuan1;
-  std::unique_ptr<QuantizedFloatParamT> outputQuan;
+  MNN::EltwiseType type;
+  std::unique_ptr<MNN::QuantizedFloatParamT> inputQuan0;
+  std::unique_ptr<MNN::QuantizedFloatParamT> inputQuan1;
+  std::unique_ptr<MNN::QuantizedFloatParamT> outputQuan;
   EltwiseInt8T()
-      : type(EltwiseType_PROD) {
+      : type(MNN::EltwiseType_PROD) {
   }
 };
 
 struct EltwiseInt8 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef EltwiseInt8T NativeTableType;
+  typedef EltwiseInt8Builder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return EltwiseInt8TypeTable();
   }
@@ -4437,17 +4536,17 @@ struct EltwiseInt8 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_INPUTQUAN1 = 8,
     VT_OUTPUTQUAN = 10
   };
-  EltwiseType type() const {
-    return static_cast<EltwiseType>(GetField<int8_t>(VT_TYPE, 0));
+  MNN::EltwiseType type() const {
+    return static_cast<MNN::EltwiseType>(GetField<int8_t>(VT_TYPE, 0));
   }
-  const QuantizedFloatParam *inputQuan0() const {
-    return GetPointer<const QuantizedFloatParam *>(VT_INPUTQUAN0);
+  const MNN::QuantizedFloatParam *inputQuan0() const {
+    return GetPointer<const MNN::QuantizedFloatParam *>(VT_INPUTQUAN0);
   }
-  const QuantizedFloatParam *inputQuan1() const {
-    return GetPointer<const QuantizedFloatParam *>(VT_INPUTQUAN1);
+  const MNN::QuantizedFloatParam *inputQuan1() const {
+    return GetPointer<const MNN::QuantizedFloatParam *>(VT_INPUTQUAN1);
   }
-  const QuantizedFloatParam *outputQuan() const {
-    return GetPointer<const QuantizedFloatParam *>(VT_OUTPUTQUAN);
+  const MNN::QuantizedFloatParam *outputQuan() const {
+    return GetPointer<const MNN::QuantizedFloatParam *>(VT_OUTPUTQUAN);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -4466,18 +4565,19 @@ struct EltwiseInt8 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct EltwiseInt8Builder {
+  typedef EltwiseInt8 Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_type(EltwiseType type) {
+  void add_type(MNN::EltwiseType type) {
     fbb_.AddElement<int8_t>(EltwiseInt8::VT_TYPE, static_cast<int8_t>(type), 0);
   }
-  void add_inputQuan0(flatbuffers::Offset<QuantizedFloatParam> inputQuan0) {
+  void add_inputQuan0(flatbuffers::Offset<MNN::QuantizedFloatParam> inputQuan0) {
     fbb_.AddOffset(EltwiseInt8::VT_INPUTQUAN0, inputQuan0);
   }
-  void add_inputQuan1(flatbuffers::Offset<QuantizedFloatParam> inputQuan1) {
+  void add_inputQuan1(flatbuffers::Offset<MNN::QuantizedFloatParam> inputQuan1) {
     fbb_.AddOffset(EltwiseInt8::VT_INPUTQUAN1, inputQuan1);
   }
-  void add_outputQuan(flatbuffers::Offset<QuantizedFloatParam> outputQuan) {
+  void add_outputQuan(flatbuffers::Offset<MNN::QuantizedFloatParam> outputQuan) {
     fbb_.AddOffset(EltwiseInt8::VT_OUTPUTQUAN, outputQuan);
   }
   explicit EltwiseInt8Builder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -4494,10 +4594,10 @@ struct EltwiseInt8Builder {
 
 inline flatbuffers::Offset<EltwiseInt8> CreateEltwiseInt8(
     flatbuffers::FlatBufferBuilder &_fbb,
-    EltwiseType type = EltwiseType_PROD,
-    flatbuffers::Offset<QuantizedFloatParam> inputQuan0 = 0,
-    flatbuffers::Offset<QuantizedFloatParam> inputQuan1 = 0,
-    flatbuffers::Offset<QuantizedFloatParam> outputQuan = 0) {
+    MNN::EltwiseType type = MNN::EltwiseType_PROD,
+    flatbuffers::Offset<MNN::QuantizedFloatParam> inputQuan0 = 0,
+    flatbuffers::Offset<MNN::QuantizedFloatParam> inputQuan1 = 0,
+    flatbuffers::Offset<MNN::QuantizedFloatParam> outputQuan = 0) {
   EltwiseInt8Builder builder_(_fbb);
   builder_.add_outputQuan(outputQuan);
   builder_.add_inputQuan1(inputQuan1);
@@ -4509,31 +4609,31 @@ inline flatbuffers::Offset<EltwiseInt8> CreateEltwiseInt8(
 flatbuffers::Offset<EltwiseInt8> CreateEltwiseInt8(flatbuffers::FlatBufferBuilder &_fbb, const EltwiseInt8T *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline Convolution2DCommonT *Convolution2DCommon::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new Convolution2DCommonT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::Convolution2DCommonT> _o = std::unique_ptr<MNN::Convolution2DCommonT>(new Convolution2DCommonT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Convolution2DCommon::UnPackTo(Convolution2DCommonT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = padX(); _o->padX = _e; };
-  { auto _e = padY(); _o->padY = _e; };
-  { auto _e = kernelX(); _o->kernelX = _e; };
-  { auto _e = kernelY(); _o->kernelY = _e; };
-  { auto _e = strideX(); _o->strideX = _e; };
-  { auto _e = strideY(); _o->strideY = _e; };
-  { auto _e = dilateX(); _o->dilateX = _e; };
-  { auto _e = dilateY(); _o->dilateY = _e; };
-  { auto _e = padMode(); _o->padMode = _e; };
-  { auto _e = group(); _o->group = _e; };
-  { auto _e = outputCount(); _o->outputCount = _e; };
-  { auto _e = inputCount(); _o->inputCount = _e; };
-  { auto _e = relu(); _o->relu = _e; };
-  { auto _e = relu6(); _o->relu6 = _e; };
-  { auto _e = pads(); if (_e) { _o->pads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pads[_i] = _e->Get(_i); } } };
-  { auto _e = outPads(); if (_e) { _o->outPads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outPads[_i] = _e->Get(_i); } } };
-  { auto _e = hasOutputShape(); _o->hasOutputShape = _e; };
+  { auto _e = padX(); _o->padX = _e; }
+  { auto _e = padY(); _o->padY = _e; }
+  { auto _e = kernelX(); _o->kernelX = _e; }
+  { auto _e = kernelY(); _o->kernelY = _e; }
+  { auto _e = strideX(); _o->strideX = _e; }
+  { auto _e = strideY(); _o->strideY = _e; }
+  { auto _e = dilateX(); _o->dilateX = _e; }
+  { auto _e = dilateY(); _o->dilateY = _e; }
+  { auto _e = padMode(); _o->padMode = _e; }
+  { auto _e = group(); _o->group = _e; }
+  { auto _e = outputCount(); _o->outputCount = _e; }
+  { auto _e = inputCount(); _o->inputCount = _e; }
+  { auto _e = relu(); _o->relu = _e; }
+  { auto _e = relu6(); _o->relu6 = _e; }
+  { auto _e = pads(); if (_e) { _o->pads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pads[_i] = _e->Get(_i); } } }
+  { auto _e = outPads(); if (_e) { _o->outPads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outPads[_i] = _e->Get(_i); } } }
+  { auto _e = hasOutputShape(); _o->hasOutputShape = _e; }
 }
 
 inline flatbuffers::Offset<Convolution2DCommon> Convolution2DCommon::Pack(flatbuffers::FlatBufferBuilder &_fbb, const Convolution2DCommonT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4583,23 +4683,23 @@ inline flatbuffers::Offset<Convolution2DCommon> CreateConvolution2DCommon(flatbu
 }
 
 inline Convolution3DCommonT *Convolution3DCommon::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new Convolution3DCommonT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::Convolution3DCommonT> _o = std::unique_ptr<MNN::Convolution3DCommonT>(new Convolution3DCommonT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Convolution3DCommon::UnPackTo(Convolution3DCommonT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dilates(); if (_e) { _o->dilates.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dilates[_i] = _e->Get(_i); } } };
-  { auto _e = strides(); if (_e) { _o->strides.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->strides[_i] = _e->Get(_i); } } };
-  { auto _e = kernels(); if (_e) { _o->kernels.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->kernels[_i] = _e->Get(_i); } } };
-  { auto _e = pads(); if (_e) { _o->pads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pads[_i] = _e->Get(_i); } } };
-  { auto _e = padMode(); _o->padMode = _e; };
-  { auto _e = inputCount(); _o->inputCount = _e; };
-  { auto _e = outputCount(); _o->outputCount = _e; };
-  { auto _e = relu(); _o->relu = _e; };
-  { auto _e = relu6(); _o->relu6 = _e; };
+  { auto _e = dilates(); if (_e) { _o->dilates.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dilates[_i] = _e->Get(_i); } } }
+  { auto _e = strides(); if (_e) { _o->strides.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->strides[_i] = _e->Get(_i); } } }
+  { auto _e = kernels(); if (_e) { _o->kernels.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->kernels[_i] = _e->Get(_i); } } }
+  { auto _e = pads(); if (_e) { _o->pads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pads[_i] = _e->Get(_i); } } }
+  { auto _e = padMode(); _o->padMode = _e; }
+  { auto _e = inputCount(); _o->inputCount = _e; }
+  { auto _e = outputCount(); _o->outputCount = _e; }
+  { auto _e = relu(); _o->relu = _e; }
+  { auto _e = relu6(); _o->relu6 = _e; }
 }
 
 inline flatbuffers::Offset<Convolution3DCommon> Convolution3DCommon::Pack(flatbuffers::FlatBufferBuilder &_fbb, const Convolution3DCommonT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4633,25 +4733,25 @@ inline flatbuffers::Offset<Convolution3DCommon> CreateConvolution3DCommon(flatbu
 }
 
 inline IDSTQuanT *IDSTQuan::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new IDSTQuanT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::IDSTQuanT> _o = std::unique_ptr<MNN::IDSTQuanT>(new IDSTQuanT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void IDSTQuan::UnPackTo(IDSTQuanT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = buffer(); if (_e) { _o->buffer.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->buffer[_i] = _e->Get(_i); } } };
-  { auto _e = alpha(); if (_e) { _o->alpha.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->alpha[_i] = _e->Get(_i); } } };
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = useInt32(); _o->useInt32 = _e; };
-  { auto _e = quantScale(); _o->quantScale = _e; };
-  { auto _e = scaleIn(); _o->scaleIn = _e; };
-  { auto _e = scaleOut(); _o->scaleOut = _e; };
-  { auto _e = aMax(); _o->aMax = _e; };
-  { auto _e = aMin(); _o->aMin = _e; };
-  { auto _e = readType(); _o->readType = _e; };
-  { auto _e = has_scaleInt(); _o->has_scaleInt = _e; };
+  { auto _e = buffer(); if (_e) { _o->buffer.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->buffer[_i] = _e->Get(_i); } } }
+  { auto _e = alpha(); if (_e) { _o->alpha.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->alpha[_i] = _e->Get(_i); } } }
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = useInt32(); _o->useInt32 = _e; }
+  { auto _e = quantScale(); _o->quantScale = _e; }
+  { auto _e = scaleIn(); _o->scaleIn = _e; }
+  { auto _e = scaleOut(); _o->scaleOut = _e; }
+  { auto _e = aMax(); _o->aMax = _e; }
+  { auto _e = aMin(); _o->aMin = _e; }
+  { auto _e = readType(); _o->readType = _e; }
+  { auto _e = has_scaleInt(); _o->has_scaleInt = _e; }
 }
 
 inline flatbuffers::Offset<IDSTQuan> IDSTQuan::Pack(flatbuffers::FlatBufferBuilder &_fbb, const IDSTQuanT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4689,24 +4789,24 @@ inline flatbuffers::Offset<IDSTQuan> CreateIDSTQuan(flatbuffers::FlatBufferBuild
 }
 
 inline QuantizedFloatParamT *QuantizedFloatParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedFloatParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedFloatParamT> _o = std::unique_ptr<MNN::QuantizedFloatParamT>(new QuantizedFloatParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedFloatParam::UnPackTo(QuantizedFloatParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } };
-  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } };
-  { auto _e = scale(); if (_e) { _o->scale.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->scale[_i] = _e->Get(_i); } } };
-  { auto _e = tensorScale(); if (_e) { _o->tensorScale.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->tensorScale[_i] = _e->Get(_i); } } };
-  { auto _e = method(); _o->method = _e; };
-  { auto _e = nbits(); _o->nbits = _e; };
-  { auto _e = zeroPoint(); _o->zeroPoint = _e; };
-  { auto _e = outputZeroPoint(); _o->outputZeroPoint = _e; };
-  { auto _e = clampMin(); _o->clampMin = _e; };
-  { auto _e = clampMax(); _o->clampMax = _e; };
+  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } }
+  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } }
+  { auto _e = scale(); if (_e) { _o->scale.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->scale[_i] = _e->Get(_i); } } }
+  { auto _e = tensorScale(); if (_e) { _o->tensorScale.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->tensorScale[_i] = _e->Get(_i); } } }
+  { auto _e = method(); _o->method = _e; }
+  { auto _e = nbits(); _o->nbits = _e; }
+  { auto _e = zeroPoint(); _o->zeroPoint = _e; }
+  { auto _e = outputZeroPoint(); _o->outputZeroPoint = _e; }
+  { auto _e = clampMin(); _o->clampMin = _e; }
+  { auto _e = clampMax(); _o->clampMax = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedFloatParam> QuantizedFloatParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedFloatParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4742,19 +4842,19 @@ inline flatbuffers::Offset<QuantizedFloatParam> CreateQuantizedFloatParam(flatbu
 }
 
 inline Convolution2DT *Convolution2D::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new Convolution2DT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::Convolution2DT> _o = std::unique_ptr<MNN::Convolution2DT>(new Convolution2DT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Convolution2D::UnPackTo(Convolution2DT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = common(); if (_e) _o->common = std::unique_ptr<Convolution2DCommonT>(_e->UnPack(_resolver)); };
-  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } };
-  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } };
-  { auto _e = quanParameter(); if (_e) _o->quanParameter = std::unique_ptr<IDSTQuanT>(_e->UnPack(_resolver)); };
-  { auto _e = symmetricQuan(); if (_e) _o->symmetricQuan = std::unique_ptr<QuantizedFloatParamT>(_e->UnPack(_resolver)); };
+  { auto _e = common(); if (_e) _o->common = std::unique_ptr<MNN::Convolution2DCommonT>(_e->UnPack(_resolver)); }
+  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } }
+  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } }
+  { auto _e = quanParameter(); if (_e) _o->quanParameter = std::unique_ptr<MNN::IDSTQuanT>(_e->UnPack(_resolver)); }
+  { auto _e = symmetricQuan(); if (_e) _o->symmetricQuan = std::unique_ptr<MNN::QuantizedFloatParamT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<Convolution2D> Convolution2D::Pack(flatbuffers::FlatBufferBuilder &_fbb, const Convolution2DT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4780,17 +4880,17 @@ inline flatbuffers::Offset<Convolution2D> CreateConvolution2D(flatbuffers::FlatB
 }
 
 inline Convolution3DT *Convolution3D::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new Convolution3DT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::Convolution3DT> _o = std::unique_ptr<MNN::Convolution3DT>(new Convolution3DT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Convolution3D::UnPackTo(Convolution3DT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = common(); if (_e) _o->common = std::unique_ptr<Convolution3DCommonT>(_e->UnPack(_resolver)); };
-  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } };
-  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } };
+  { auto _e = common(); if (_e) _o->common = std::unique_ptr<MNN::Convolution3DCommonT>(_e->UnPack(_resolver)); }
+  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } }
+  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<Convolution3D> Convolution3D::Pack(flatbuffers::FlatBufferBuilder &_fbb, const Convolution3DT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4812,22 +4912,22 @@ inline flatbuffers::Offset<Convolution3D> CreateConvolution3D(flatbuffers::FlatB
 }
 
 inline InnerProductT *InnerProduct::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new InnerProductT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::InnerProductT> _o = std::unique_ptr<MNN::InnerProductT>(new InnerProductT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void InnerProduct::UnPackTo(InnerProductT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = outputCount(); _o->outputCount = _e; };
-  { auto _e = biasTerm(); _o->biasTerm = _e; };
-  { auto _e = weightSize(); _o->weightSize = _e; };
-  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } };
-  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } };
-  { auto _e = axis(); _o->axis = _e; };
-  { auto _e = transpose(); _o->transpose = _e; };
-  { auto _e = quanParameter(); if (_e) _o->quanParameter = std::unique_ptr<IDSTQuanT>(_e->UnPack(_resolver)); };
+  { auto _e = outputCount(); _o->outputCount = _e; }
+  { auto _e = biasTerm(); _o->biasTerm = _e; }
+  { auto _e = weightSize(); _o->weightSize = _e; }
+  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } }
+  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } }
+  { auto _e = axis(); _o->axis = _e; }
+  { auto _e = transpose(); _o->transpose = _e; }
+  { auto _e = quanParameter(); if (_e) _o->quanParameter = std::unique_ptr<MNN::IDSTQuanT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<InnerProduct> InnerProduct::Pack(flatbuffers::FlatBufferBuilder &_fbb, const InnerProductT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4859,27 +4959,27 @@ inline flatbuffers::Offset<InnerProduct> CreateInnerProduct(flatbuffers::FlatBuf
 }
 
 inline PoolT *Pool::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new PoolT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::PoolT> _o = std::unique_ptr<MNN::PoolT>(new PoolT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Pool::UnPackTo(PoolT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = padX(); _o->padX = _e; };
-  { auto _e = padY(); _o->padY = _e; };
-  { auto _e = isGlobal(); _o->isGlobal = _e; };
-  { auto _e = kernelX(); _o->kernelX = _e; };
-  { auto _e = kernelY(); _o->kernelY = _e; };
-  { auto _e = strideX(); _o->strideX = _e; };
-  { auto _e = strideY(); _o->strideY = _e; };
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = padType(); _o->padType = _e; };
-  { auto _e = dataType(); _o->dataType = _e; };
-  { auto _e = ceilModel(); _o->ceilModel = _e; };
-  { auto _e = pads(); if (_e) { _o->pads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pads[_i] = _e->Get(_i); } } };
-  { auto _e = countType(); _o->countType = _e; };
+  { auto _e = padX(); _o->padX = _e; }
+  { auto _e = padY(); _o->padY = _e; }
+  { auto _e = isGlobal(); _o->isGlobal = _e; }
+  { auto _e = kernelX(); _o->kernelX = _e; }
+  { auto _e = kernelY(); _o->kernelY = _e; }
+  { auto _e = strideX(); _o->strideX = _e; }
+  { auto _e = strideY(); _o->strideY = _e; }
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = padType(); _o->padType = _e; }
+  { auto _e = dataType(); _o->dataType = _e; }
+  { auto _e = ceilModel(); _o->ceilModel = _e; }
+  { auto _e = pads(); if (_e) { _o->pads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pads[_i] = _e->Get(_i); } } }
+  { auto _e = countType(); _o->countType = _e; }
 }
 
 inline flatbuffers::Offset<Pool> Pool::Pack(flatbuffers::FlatBufferBuilder &_fbb, const PoolT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4921,20 +5021,20 @@ inline flatbuffers::Offset<Pool> CreatePool(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline Pool3DT *Pool3D::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new Pool3DT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::Pool3DT> _o = std::unique_ptr<MNN::Pool3DT>(new Pool3DT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Pool3D::UnPackTo(Pool3DT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = strides(); if (_e) { _o->strides.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->strides[_i] = _e->Get(_i); } } };
-  { auto _e = kernels(); if (_e) { _o->kernels.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->kernels[_i] = _e->Get(_i); } } };
-  { auto _e = pads(); if (_e) { _o->pads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pads[_i] = _e->Get(_i); } } };
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = padType(); _o->padType = _e; };
-  { auto _e = isGlobal(); _o->isGlobal = _e; };
+  { auto _e = strides(); if (_e) { _o->strides.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->strides[_i] = _e->Get(_i); } } }
+  { auto _e = kernels(); if (_e) { _o->kernels.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->kernels[_i] = _e->Get(_i); } } }
+  { auto _e = pads(); if (_e) { _o->pads.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->pads[_i] = _e->Get(_i); } } }
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = padType(); _o->padType = _e; }
+  { auto _e = isGlobal(); _o->isGlobal = _e; }
 }
 
 inline flatbuffers::Offset<Pool3D> Pool3D::Pack(flatbuffers::FlatBufferBuilder &_fbb, const Pool3DT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4962,15 +5062,15 @@ inline flatbuffers::Offset<Pool3D> CreatePool3D(flatbuffers::FlatBufferBuilder &
 }
 
 inline ReluT *Relu::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ReluT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ReluT> _o = std::unique_ptr<MNN::ReluT>(new ReluT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Relu::UnPackTo(ReluT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = slope(); _o->slope = _e; };
+  { auto _e = slope(); _o->slope = _e; }
 }
 
 inline flatbuffers::Offset<Relu> Relu::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ReluT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -4988,16 +5088,16 @@ inline flatbuffers::Offset<Relu> CreateRelu(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline Relu6T *Relu6::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new Relu6T();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::Relu6T> _o = std::unique_ptr<MNN::Relu6T>(new Relu6T());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Relu6::UnPackTo(Relu6T *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = minValue(); _o->minValue = _e; };
-  { auto _e = maxValue(); _o->maxValue = _e; };
+  { auto _e = minValue(); _o->minValue = _e; }
+  { auto _e = maxValue(); _o->maxValue = _e; }
 }
 
 inline flatbuffers::Offset<Relu6> Relu6::Pack(flatbuffers::FlatBufferBuilder &_fbb, const Relu6T* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5017,16 +5117,16 @@ inline flatbuffers::Offset<Relu6> CreateRelu6(flatbuffers::FlatBufferBuilder &_f
 }
 
 inline PReluT *PRelu::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new PReluT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::PReluT> _o = std::unique_ptr<MNN::PReluT>(new PReluT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void PRelu::UnPackTo(PReluT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = slopeCount(); _o->slopeCount = _e; };
-  { auto _e = slope(); if (_e) { _o->slope.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->slope[_i] = _e->Get(_i); } } };
+  { auto _e = slopeCount(); _o->slopeCount = _e; }
+  { auto _e = slope(); if (_e) { _o->slope.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->slope[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<PRelu> PRelu::Pack(flatbuffers::FlatBufferBuilder &_fbb, const PReluT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5046,15 +5146,15 @@ inline flatbuffers::Offset<PRelu> CreatePRelu(flatbuffers::FlatBufferBuilder &_f
 }
 
 inline ELUT *ELU::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ELUT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ELUT> _o = std::unique_ptr<MNN::ELUT>(new ELUT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void ELU::UnPackTo(ELUT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = alpha(); _o->alpha = _e; };
+  { auto _e = alpha(); _o->alpha = _e; }
 }
 
 inline flatbuffers::Offset<ELU> ELU::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ELUT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5072,18 +5172,18 @@ inline flatbuffers::Offset<ELU> CreateELU(flatbuffers::FlatBufferBuilder &_fbb, 
 }
 
 inline LRNT *LRN::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new LRNT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::LRNT> _o = std::unique_ptr<MNN::LRNT>(new LRNT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void LRN::UnPackTo(LRNT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = regionType(); _o->regionType = _e; };
-  { auto _e = localSize(); _o->localSize = _e; };
-  { auto _e = alpha(); _o->alpha = _e; };
-  { auto _e = beta(); _o->beta = _e; };
+  { auto _e = regionType(); _o->regionType = _e; }
+  { auto _e = localSize(); _o->localSize = _e; }
+  { auto _e = alpha(); _o->alpha = _e; }
+  { auto _e = beta(); _o->beta = _e; }
 }
 
 inline flatbuffers::Offset<LRN> LRN::Pack(flatbuffers::FlatBufferBuilder &_fbb, const LRNT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5107,18 +5207,18 @@ inline flatbuffers::Offset<LRN> CreateLRN(flatbuffers::FlatBufferBuilder &_fbb, 
 }
 
 inline ArgMaxT *ArgMax::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ArgMaxT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ArgMaxT> _o = std::unique_ptr<MNN::ArgMaxT>(new ArgMaxT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void ArgMax::UnPackTo(ArgMaxT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = outMaxVal(); _o->outMaxVal = _e; };
-  { auto _e = topK(); _o->topK = _e; };
-  { auto _e = axis(); _o->axis = _e; };
-  { auto _e = softmaxThreshold(); _o->softmaxThreshold = _e; };
+  { auto _e = outMaxVal(); _o->outMaxVal = _e; }
+  { auto _e = topK(); _o->topK = _e; }
+  { auto _e = axis(); _o->axis = _e; }
+  { auto _e = softmaxThreshold(); _o->softmaxThreshold = _e; }
 }
 
 inline flatbuffers::Offset<ArgMax> ArgMax::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ArgMaxT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5142,15 +5242,15 @@ inline flatbuffers::Offset<ArgMax> CreateArgMax(flatbuffers::FlatBufferBuilder &
 }
 
 inline AxisT *Axis::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new AxisT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::AxisT> _o = std::unique_ptr<MNN::AxisT>(new AxisT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Axis::UnPackTo(AxisT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = axis(); _o->axis = _e; };
+  { auto _e = axis(); _o->axis = _e; }
 }
 
 inline flatbuffers::Offset<Axis> Axis::Pack(flatbuffers::FlatBufferBuilder &_fbb, const AxisT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5168,17 +5268,17 @@ inline flatbuffers::Offset<Axis> CreateAxis(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline InputT *Input::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new InputT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::InputT> _o = std::unique_ptr<MNN::InputT>(new InputT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Input::UnPackTo(InputT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } };
-  { auto _e = dtype(); _o->dtype = _e; };
-  { auto _e = dformat(); _o->dformat = _e; };
+  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } }
+  { auto _e = dtype(); _o->dtype = _e; }
+  { auto _e = dformat(); _o->dformat = _e; }
 }
 
 inline flatbuffers::Offset<Input> Input::Pack(flatbuffers::FlatBufferBuilder &_fbb, const InputT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5200,23 +5300,23 @@ inline flatbuffers::Offset<Input> CreateInput(flatbuffers::FlatBufferBuilder &_f
 }
 
 inline LSTMT *LSTM::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new LSTMT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::LSTMT> _o = std::unique_ptr<MNN::LSTMT>(new LSTMT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void LSTM::UnPackTo(LSTMT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = outputCount(); _o->outputCount = _e; };
-  { auto _e = weightSize(); _o->weightSize = _e; };
-  { auto _e = clippingThreshold(); _o->clippingThreshold = _e; };
-  { auto _e = weightI(); if (_e) _o->weightI = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = weightH(); if (_e) _o->weightH = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = bias(); if (_e) _o->bias = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = weightIQ(); if (_e) _o->weightIQ = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = weightIA(); if (_e) _o->weightIA = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = quantScale(); _o->quantScale = _e; };
+  { auto _e = outputCount(); _o->outputCount = _e; }
+  { auto _e = weightSize(); _o->weightSize = _e; }
+  { auto _e = clippingThreshold(); _o->clippingThreshold = _e; }
+  { auto _e = weightI(); if (_e) _o->weightI = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = weightH(); if (_e) _o->weightH = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = bias(); if (_e) _o->bias = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = weightIQ(); if (_e) _o->weightIQ = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = weightIA(); if (_e) _o->weightIA = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = quantScale(); _o->quantScale = _e; }
 }
 
 inline flatbuffers::Offset<LSTM> LSTM::Pack(flatbuffers::FlatBufferBuilder &_fbb, const LSTMT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5250,17 +5350,17 @@ inline flatbuffers::Offset<LSTM> CreateLSTM(flatbuffers::FlatBufferBuilder &_fbb
 }
 
 inline SliceT *Slice::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new SliceT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::SliceT> _o = std::unique_ptr<MNN::SliceT>(new SliceT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Slice::UnPackTo(SliceT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = axis(); _o->axis = _e; };
-  { auto _e = slicePoints(); if (_e) { _o->slicePoints.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->slicePoints[_i] = _e->Get(_i); } } };
-  { auto _e = sourceType(); _o->sourceType = _e; };
+  { auto _e = axis(); _o->axis = _e; }
+  { auto _e = slicePoints(); if (_e) { _o->slicePoints.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->slicePoints[_i] = _e->Get(_i); } } }
+  { auto _e = sourceType(); _o->sourceType = _e; }
 }
 
 inline flatbuffers::Offset<Slice> Slice::Pack(flatbuffers::FlatBufferBuilder &_fbb, const SliceT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5282,22 +5382,22 @@ inline flatbuffers::Offset<Slice> CreateSlice(flatbuffers::FlatBufferBuilder &_f
 }
 
 inline BatchNormT *BatchNorm::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new BatchNormT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::BatchNormT> _o = std::unique_ptr<MNN::BatchNormT>(new BatchNormT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void BatchNorm::UnPackTo(BatchNormT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = channels(); _o->channels = _e; };
-  { auto _e = slopeData(); if (_e) { _o->slopeData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->slopeData[_i] = _e->Get(_i); } } };
-  { auto _e = meanData(); if (_e) { _o->meanData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->meanData[_i] = _e->Get(_i); } } };
-  { auto _e = varData(); if (_e) { _o->varData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->varData[_i] = _e->Get(_i); } } };
-  { auto _e = biasData(); if (_e) { _o->biasData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->biasData[_i] = _e->Get(_i); } } };
-  { auto _e = Adata(); if (_e) { _o->Adata.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->Adata[_i] = _e->Get(_i); } } };
-  { auto _e = Bdata(); if (_e) { _o->Bdata.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->Bdata[_i] = _e->Get(_i); } } };
-  { auto _e = epsilon(); _o->epsilon = _e; };
+  { auto _e = channels(); _o->channels = _e; }
+  { auto _e = slopeData(); if (_e) { _o->slopeData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->slopeData[_i] = _e->Get(_i); } } }
+  { auto _e = meanData(); if (_e) { _o->meanData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->meanData[_i] = _e->Get(_i); } } }
+  { auto _e = varData(); if (_e) { _o->varData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->varData[_i] = _e->Get(_i); } } }
+  { auto _e = biasData(); if (_e) { _o->biasData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->biasData[_i] = _e->Get(_i); } } }
+  { auto _e = Adata(); if (_e) { _o->Adata.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->Adata[_i] = _e->Get(_i); } } }
+  { auto _e = Bdata(); if (_e) { _o->Bdata.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->Bdata[_i] = _e->Get(_i); } } }
+  { auto _e = epsilon(); _o->epsilon = _e; }
 }
 
 inline flatbuffers::Offset<BatchNorm> BatchNorm::Pack(flatbuffers::FlatBufferBuilder &_fbb, const BatchNormT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5329,17 +5429,17 @@ inline flatbuffers::Offset<BatchNorm> CreateBatchNorm(flatbuffers::FlatBufferBui
 }
 
 inline ScaleT *Scale::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ScaleT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ScaleT> _o = std::unique_ptr<MNN::ScaleT>(new ScaleT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Scale::UnPackTo(ScaleT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = channels(); _o->channels = _e; };
-  { auto _e = scaleData(); if (_e) { _o->scaleData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->scaleData[_i] = _e->Get(_i); } } };
-  { auto _e = biasData(); if (_e) { _o->biasData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->biasData[_i] = _e->Get(_i); } } };
+  { auto _e = channels(); _o->channels = _e; }
+  { auto _e = scaleData(); if (_e) { _o->scaleData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->scaleData[_i] = _e->Get(_i); } } }
+  { auto _e = biasData(); if (_e) { _o->biasData.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->biasData[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<Scale> Scale::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ScaleT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5361,16 +5461,16 @@ inline flatbuffers::Offset<Scale> CreateScale(flatbuffers::FlatBufferBuilder &_f
 }
 
 inline EltwiseT *Eltwise::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new EltwiseT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::EltwiseT> _o = std::unique_ptr<MNN::EltwiseT>(new EltwiseT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Eltwise::UnPackTo(EltwiseT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = coeff(); if (_e) { _o->coeff.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->coeff[_i] = _e->Get(_i); } } };
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = coeff(); if (_e) { _o->coeff.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->coeff[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<Eltwise> Eltwise::Pack(flatbuffers::FlatBufferBuilder &_fbb, const EltwiseT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5390,16 +5490,16 @@ inline flatbuffers::Offset<Eltwise> CreateEltwise(flatbuffers::FlatBufferBuilder
 }
 
 inline FlattenT *Flatten::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new FlattenT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::FlattenT> _o = std::unique_ptr<MNN::FlattenT>(new FlattenT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Flatten::UnPackTo(FlattenT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = axis(); _o->axis = _e; };
-  { auto _e = endAxis(); _o->endAxis = _e; };
+  { auto _e = axis(); _o->axis = _e; }
+  { auto _e = endAxis(); _o->endAxis = _e; }
 }
 
 inline flatbuffers::Offset<Flatten> Flatten::Pack(flatbuffers::FlatBufferBuilder &_fbb, const FlattenT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5419,15 +5519,15 @@ inline flatbuffers::Offset<Flatten> CreateFlatten(flatbuffers::FlatBufferBuilder
 }
 
 inline PermuteT *Permute::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new PermuteT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::PermuteT> _o = std::unique_ptr<MNN::PermuteT>(new PermuteT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Permute::UnPackTo(PermuteT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } };
+  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<Permute> Permute::Pack(flatbuffers::FlatBufferBuilder &_fbb, const PermuteT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5445,16 +5545,16 @@ inline flatbuffers::Offset<Permute> CreatePermute(flatbuffers::FlatBufferBuilder
 }
 
 inline ReshapeT *Reshape::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ReshapeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ReshapeT> _o = std::unique_ptr<MNN::ReshapeT>(new ReshapeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Reshape::UnPackTo(ReshapeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } };
-  { auto _e = dimType(); _o->dimType = _e; };
+  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } }
+  { auto _e = dimType(); _o->dimType = _e; }
 }
 
 inline flatbuffers::Offset<Reshape> Reshape::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ReshapeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5474,24 +5574,24 @@ inline flatbuffers::Offset<Reshape> CreateReshape(flatbuffers::FlatBufferBuilder
 }
 
 inline DetectionOutputT *DetectionOutput::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new DetectionOutputT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::DetectionOutputT> _o = std::unique_ptr<MNN::DetectionOutputT>(new DetectionOutputT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void DetectionOutput::UnPackTo(DetectionOutputT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = classCount(); _o->classCount = _e; };
-  { auto _e = nmsThresholdold(); _o->nmsThresholdold = _e; };
-  { auto _e = nmsTopK(); _o->nmsTopK = _e; };
-  { auto _e = keepTopK(); _o->keepTopK = _e; };
-  { auto _e = confidenceThreshold(); _o->confidenceThreshold = _e; };
-  { auto _e = shareLocation(); _o->shareLocation = _e; };
-  { auto _e = backgroundLable(); _o->backgroundLable = _e; };
-  { auto _e = varianceEncodedTarget(); _o->varianceEncodedTarget = _e; };
-  { auto _e = codeType(); _o->codeType = _e; };
-  { auto _e = objectnessScore(); _o->objectnessScore = _e; };
+  { auto _e = classCount(); _o->classCount = _e; }
+  { auto _e = nmsThresholdold(); _o->nmsThresholdold = _e; }
+  { auto _e = nmsTopK(); _o->nmsTopK = _e; }
+  { auto _e = keepTopK(); _o->keepTopK = _e; }
+  { auto _e = confidenceThreshold(); _o->confidenceThreshold = _e; }
+  { auto _e = shareLocation(); _o->shareLocation = _e; }
+  { auto _e = backgroundLable(); _o->backgroundLable = _e; }
+  { auto _e = varianceEncodedTarget(); _o->varianceEncodedTarget = _e; }
+  { auto _e = codeType(); _o->codeType = _e; }
+  { auto _e = objectnessScore(); _o->objectnessScore = _e; }
 }
 
 inline flatbuffers::Offset<DetectionOutput> DetectionOutput::Pack(flatbuffers::FlatBufferBuilder &_fbb, const DetectionOutputT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5527,17 +5627,17 @@ inline flatbuffers::Offset<DetectionOutput> CreateDetectionOutput(flatbuffers::F
 }
 
 inline RoiPoolingT *RoiPooling::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new RoiPoolingT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::RoiPoolingT> _o = std::unique_ptr<MNN::RoiPoolingT>(new RoiPoolingT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void RoiPooling::UnPackTo(RoiPoolingT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = pooledWidth(); _o->pooledWidth = _e; };
-  { auto _e = pooledHeight(); _o->pooledHeight = _e; };
-  { auto _e = spatialScale(); _o->spatialScale = _e; };
+  { auto _e = pooledWidth(); _o->pooledWidth = _e; }
+  { auto _e = pooledHeight(); _o->pooledHeight = _e; }
+  { auto _e = spatialScale(); _o->spatialScale = _e; }
 }
 
 inline flatbuffers::Offset<RoiPooling> RoiPooling::Pack(flatbuffers::FlatBufferBuilder &_fbb, const RoiPoolingT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5559,23 +5659,23 @@ inline flatbuffers::Offset<RoiPooling> CreateRoiPooling(flatbuffers::FlatBufferB
 }
 
 inline ProposalT *Proposal::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ProposalT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ProposalT> _o = std::unique_ptr<MNN::ProposalT>(new ProposalT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Proposal::UnPackTo(ProposalT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = featStride(); _o->featStride = _e; };
-  { auto _e = baseSize(); _o->baseSize = _e; };
-  { auto _e = preNmsTopN(); _o->preNmsTopN = _e; };
-  { auto _e = afterNmsTopN(); _o->afterNmsTopN = _e; };
-  { auto _e = nmsThreshold(); _o->nmsThreshold = _e; };
-  { auto _e = minSize(); _o->minSize = _e; };
-  { auto _e = ratios(); if (_e) _o->ratios = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = scales(); if (_e) _o->scales = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
-  { auto _e = anchors(); if (_e) _o->anchors = std::unique_ptr<BlobT>(_e->UnPack(_resolver)); };
+  { auto _e = featStride(); _o->featStride = _e; }
+  { auto _e = baseSize(); _o->baseSize = _e; }
+  { auto _e = preNmsTopN(); _o->preNmsTopN = _e; }
+  { auto _e = afterNmsTopN(); _o->afterNmsTopN = _e; }
+  { auto _e = nmsThreshold(); _o->nmsThreshold = _e; }
+  { auto _e = minSize(); _o->minSize = _e; }
+  { auto _e = ratios(); if (_e) _o->ratios = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = scales(); if (_e) _o->scales = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
+  { auto _e = anchors(); if (_e) _o->anchors = std::unique_ptr<MNN::BlobT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<Proposal> Proposal::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ProposalT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5609,25 +5709,25 @@ inline flatbuffers::Offset<Proposal> CreateProposal(flatbuffers::FlatBufferBuild
 }
 
 inline InterpT *Interp::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new InterpT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::InterpT> _o = std::unique_ptr<MNN::InterpT>(new InterpT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Interp::UnPackTo(InterpT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = widthScale(); _o->widthScale = _e; };
-  { auto _e = heightScale(); _o->heightScale = _e; };
-  { auto _e = outputWidth(); _o->outputWidth = _e; };
-  { auto _e = outputHeight(); _o->outputHeight = _e; };
-  { auto _e = resizeType(); _o->resizeType = _e; };
-  { auto _e = alignCorners(); _o->alignCorners = _e; };
-  { auto _e = halfPixelCenters(); _o->halfPixelCenters = _e; };
-  { auto _e = widthOffset(); _o->widthOffset = _e; };
-  { auto _e = heightOffset(); _o->heightOffset = _e; };
-  { auto _e = cubicCoeffA(); _o->cubicCoeffA = _e; };
-  { auto _e = ctm(); _o->ctm = _e; };
+  { auto _e = widthScale(); _o->widthScale = _e; }
+  { auto _e = heightScale(); _o->heightScale = _e; }
+  { auto _e = outputWidth(); _o->outputWidth = _e; }
+  { auto _e = outputHeight(); _o->outputHeight = _e; }
+  { auto _e = resizeType(); _o->resizeType = _e; }
+  { auto _e = alignCorners(); _o->alignCorners = _e; }
+  { auto _e = halfPixelCenters(); _o->halfPixelCenters = _e; }
+  { auto _e = widthOffset(); _o->widthOffset = _e; }
+  { auto _e = heightOffset(); _o->heightOffset = _e; }
+  { auto _e = cubicCoeffA(); _o->cubicCoeffA = _e; }
+  { auto _e = ctm(); _o->ctm = _e; }
 }
 
 inline flatbuffers::Offset<Interp> Interp::Pack(flatbuffers::FlatBufferBuilder &_fbb, const InterpT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5665,16 +5765,16 @@ inline flatbuffers::Offset<Interp> CreateInterp(flatbuffers::FlatBufferBuilder &
 }
 
 inline ResizeT *Resize::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new ResizeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::ResizeT> _o = std::unique_ptr<MNN::ResizeT>(new ResizeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Resize::UnPackTo(ResizeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = xScale(); _o->xScale = _e; };
-  { auto _e = yScale(); _o->yScale = _e; };
+  { auto _e = xScale(); _o->xScale = _e; }
+  { auto _e = yScale(); _o->yScale = _e; }
 }
 
 inline flatbuffers::Offset<Resize> Resize::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ResizeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5694,25 +5794,25 @@ inline flatbuffers::Offset<Resize> CreateResize(flatbuffers::FlatBufferBuilder &
 }
 
 inline PriorBoxT *PriorBox::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new PriorBoxT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::PriorBoxT> _o = std::unique_ptr<MNN::PriorBoxT>(new PriorBoxT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void PriorBox::UnPackTo(PriorBoxT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = minSizes(); if (_e) { _o->minSizes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->minSizes[_i] = _e->Get(_i); } } };
-  { auto _e = maxSizes(); if (_e) { _o->maxSizes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->maxSizes[_i] = _e->Get(_i); } } };
-  { auto _e = aspectRatios(); if (_e) { _o->aspectRatios.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aspectRatios[_i] = _e->Get(_i); } } };
-  { auto _e = variances(); if (_e) { _o->variances.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->variances[_i] = _e->Get(_i); } } };
-  { auto _e = flip(); _o->flip = _e; };
-  { auto _e = clip(); _o->clip = _e; };
-  { auto _e = imageWidth(); _o->imageWidth = _e; };
-  { auto _e = imageHeight(); _o->imageHeight = _e; };
-  { auto _e = stepWidth(); _o->stepWidth = _e; };
-  { auto _e = stepHeight(); _o->stepHeight = _e; };
-  { auto _e = offset(); _o->offset = _e; };
+  { auto _e = minSizes(); if (_e) { _o->minSizes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->minSizes[_i] = _e->Get(_i); } } }
+  { auto _e = maxSizes(); if (_e) { _o->maxSizes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->maxSizes[_i] = _e->Get(_i); } } }
+  { auto _e = aspectRatios(); if (_e) { _o->aspectRatios.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->aspectRatios[_i] = _e->Get(_i); } } }
+  { auto _e = variances(); if (_e) { _o->variances.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->variances[_i] = _e->Get(_i); } } }
+  { auto _e = flip(); _o->flip = _e; }
+  { auto _e = clip(); _o->clip = _e; }
+  { auto _e = imageWidth(); _o->imageWidth = _e; }
+  { auto _e = imageHeight(); _o->imageHeight = _e; }
+  { auto _e = stepWidth(); _o->stepWidth = _e; }
+  { auto _e = stepHeight(); _o->stepHeight = _e; }
+  { auto _e = offset(); _o->offset = _e; }
 }
 
 inline flatbuffers::Offset<PriorBox> PriorBox::Pack(flatbuffers::FlatBufferBuilder &_fbb, const PriorBoxT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5750,18 +5850,18 @@ inline flatbuffers::Offset<PriorBox> CreatePriorBox(flatbuffers::FlatBufferBuild
 }
 
 inline NormalizeT *Normalize::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new NormalizeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::NormalizeT> _o = std::unique_ptr<MNN::NormalizeT>(new NormalizeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Normalize::UnPackTo(NormalizeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = acrossSpatial(); _o->acrossSpatial = _e; };
-  { auto _e = channelShared(); _o->channelShared = _e; };
-  { auto _e = eps(); _o->eps = _e; };
-  { auto _e = scale(); if (_e) { _o->scale.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->scale[_i] = _e->Get(_i); } } };
+  { auto _e = acrossSpatial(); _o->acrossSpatial = _e; }
+  { auto _e = channelShared(); _o->channelShared = _e; }
+  { auto _e = eps(); _o->eps = _e; }
+  { auto _e = scale(); if (_e) { _o->scale.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->scale[_i] = _e->Get(_i); } } }
 }
 
 inline flatbuffers::Offset<Normalize> Normalize::Pack(flatbuffers::FlatBufferBuilder &_fbb, const NormalizeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5785,18 +5885,18 @@ inline flatbuffers::Offset<Normalize> CreateNormalize(flatbuffers::FlatBufferBui
 }
 
 inline EltwiseInt8T *EltwiseInt8::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new EltwiseInt8T();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::EltwiseInt8T> _o = std::unique_ptr<MNN::EltwiseInt8T>(new EltwiseInt8T());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void EltwiseInt8::UnPackTo(EltwiseInt8T *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = inputQuan0(); if (_e) _o->inputQuan0 = std::unique_ptr<QuantizedFloatParamT>(_e->UnPack(_resolver)); };
-  { auto _e = inputQuan1(); if (_e) _o->inputQuan1 = std::unique_ptr<QuantizedFloatParamT>(_e->UnPack(_resolver)); };
-  { auto _e = outputQuan(); if (_e) _o->outputQuan = std::unique_ptr<QuantizedFloatParamT>(_e->UnPack(_resolver)); };
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = inputQuan0(); if (_e) _o->inputQuan0 = std::unique_ptr<MNN::QuantizedFloatParamT>(_e->UnPack(_resolver)); }
+  { auto _e = inputQuan1(); if (_e) _o->inputQuan1 = std::unique_ptr<MNN::QuantizedFloatParamT>(_e->UnPack(_resolver)); }
+  { auto _e = outputQuan(); if (_e) _o->outputQuan = std::unique_ptr<MNN::QuantizedFloatParamT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<EltwiseInt8> EltwiseInt8::Pack(flatbuffers::FlatBufferBuilder &_fbb, const EltwiseInt8T* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -5826,7 +5926,7 @@ inline const flatbuffers::TypeTable *PadModeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    PadModeTypeTable
+    MNN::PadModeTypeTable
   };
   static const char * const names[] = {
     "CAFFE",
@@ -5846,7 +5946,7 @@ inline const flatbuffers::TypeTable *QuantizeAlgoTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    QuantizeAlgoTypeTable
+    MNN::QuantizeAlgoTypeTable
   };
   static const char * const names[] = {
     "DEFAULT",
@@ -5865,7 +5965,7 @@ inline const flatbuffers::TypeTable *PoolTypeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    PoolTypeTypeTable
+    MNN::PoolTypeTypeTable
   };
   static const char * const names[] = {
     "MAXPOOL",
@@ -5884,7 +5984,7 @@ inline const flatbuffers::TypeTable *PoolPadTypeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    PoolPadTypeTypeTable
+    MNN::PoolPadTypeTypeTable
   };
   static const char * const names[] = {
     "CAFFE",
@@ -5904,7 +6004,7 @@ inline const flatbuffers::TypeTable *AvgPoolCountTypeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    AvgPoolCountTypeTypeTable
+    MNN::AvgPoolCountTypeTypeTable
   };
   static const char * const names[] = {
     "DEFAULT",
@@ -5925,7 +6025,7 @@ inline const flatbuffers::TypeTable *EltwiseTypeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    EltwiseTypeTypeTable
+    MNN::EltwiseTypeTypeTable
   };
   static const char * const names[] = {
     "PROD",
@@ -5950,7 +6050,7 @@ inline const flatbuffers::TypeTable *CoordinateTransformationModeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    CoordinateTransformationModeTypeTable
+    MNN::CoordinateTransformationModeTypeTable
   };
   static const char * const names[] = {
     "NotSet",
@@ -5988,7 +6088,7 @@ inline const flatbuffers::TypeTable *Convolution2DCommonTypeTable() {
     { flatbuffers::ET_BOOL, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    PadModeTypeTable
+    MNN::PadModeTypeTable
   };
   static const char * const names[] = {
     "padX",
@@ -6028,7 +6128,7 @@ inline const flatbuffers::TypeTable *Convolution3DCommonTypeTable() {
     { flatbuffers::ET_BOOL, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    PadModeTypeTable
+    MNN::PadModeTypeTable
   };
   static const char * const names[] = {
     "dilates",
@@ -6094,7 +6194,7 @@ inline const flatbuffers::TypeTable *QuantizedFloatParamTypeTable() {
     { flatbuffers::ET_CHAR, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    QuantizeAlgoTypeTable
+    MNN::QuantizeAlgoTypeTable
   };
   static const char * const names[] = {
     "weight",
@@ -6123,9 +6223,9 @@ inline const flatbuffers::TypeTable *Convolution2DTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 2 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    Convolution2DCommonTypeTable,
-    IDSTQuanTypeTable,
-    QuantizedFloatParamTypeTable
+    MNN::Convolution2DCommonTypeTable,
+    MNN::IDSTQuanTypeTable,
+    MNN::QuantizedFloatParamTypeTable
   };
   static const char * const names[] = {
     "common",
@@ -6147,7 +6247,7 @@ inline const flatbuffers::TypeTable *Convolution3DTypeTable() {
     { flatbuffers::ET_FLOAT, 1, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    Convolution3DCommonTypeTable
+    MNN::Convolution3DCommonTypeTable
   };
   static const char * const names[] = {
     "common",
@@ -6172,7 +6272,7 @@ inline const flatbuffers::TypeTable *InnerProductTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    IDSTQuanTypeTable
+    MNN::IDSTQuanTypeTable
   };
   static const char * const names[] = {
     "outputCount",
@@ -6207,10 +6307,10 @@ inline const flatbuffers::TypeTable *PoolTypeTable() {
     { flatbuffers::ET_CHAR, 0, 3 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    PoolTypeTypeTable,
-    PoolPadTypeTypeTable,
-    DataTypeTypeTable,
-    AvgPoolCountTypeTypeTable
+    MNN::PoolTypeTypeTable,
+    MNN::PoolPadTypeTypeTable,
+    MNN::DataTypeTypeTable,
+    MNN::AvgPoolCountTypeTypeTable
   };
   static const char * const names[] = {
     "padX",
@@ -6243,8 +6343,8 @@ inline const flatbuffers::TypeTable *Pool3DTypeTable() {
     { flatbuffers::ET_BOOL, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    PoolTypeTypeTable,
-    PoolPadTypeTypeTable
+    MNN::PoolTypeTypeTable,
+    MNN::PoolPadTypeTypeTable
   };
   static const char * const names[] = {
     "strides",
@@ -6374,8 +6474,8 @@ inline const flatbuffers::TypeTable *InputTypeTable() {
     { flatbuffers::ET_CHAR, 0, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable,
-    MNN_DATA_FORMATTypeTable
+    MNN::DataTypeTypeTable,
+    MNN::MNN_DATA_FORMATTypeTable
   };
   static const char * const names[] = {
     "dims",
@@ -6401,7 +6501,7 @@ inline const flatbuffers::TypeTable *LSTMTypeTable() {
     { flatbuffers::ET_FLOAT, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    BlobTypeTable
+    MNN::BlobTypeTable
   };
   static const char * const names[] = {
     "outputCount",
@@ -6427,7 +6527,7 @@ inline const flatbuffers::TypeTable *SliceTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    NetSourceTypeTable
+    MNN::NetSourceTypeTable
   };
   static const char * const names[] = {
     "axis",
@@ -6490,7 +6590,7 @@ inline const flatbuffers::TypeTable *EltwiseTypeTable() {
     { flatbuffers::ET_FLOAT, 1, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    EltwiseTypeTypeTable
+    MNN::EltwiseTypeTypeTable
   };
   static const char * const names[] = {
     "type",
@@ -6536,7 +6636,7 @@ inline const flatbuffers::TypeTable *ReshapeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    MNN_DATA_FORMATTypeTable
+    MNN::MNN_DATA_FORMATTypeTable
   };
   static const char * const names[] = {
     "dims",
@@ -6609,7 +6709,7 @@ inline const flatbuffers::TypeTable *ProposalTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    BlobTypeTable
+    MNN::BlobTypeTable
   };
   static const char * const names[] = {
     "featStride",
@@ -6643,7 +6743,7 @@ inline const flatbuffers::TypeTable *InterpTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    CoordinateTransformationModeTypeTable
+    MNN::CoordinateTransformationModeTypeTable
   };
   static const char * const names[] = {
     "widthScale",
@@ -6739,8 +6839,8 @@ inline const flatbuffers::TypeTable *EltwiseInt8TypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    EltwiseTypeTypeTable,
-    QuantizedFloatParamTypeTable
+    MNN::EltwiseTypeTypeTable,
+    MNN::QuantizedFloatParamTypeTable
   };
   static const char * const names[] = {
     "type",

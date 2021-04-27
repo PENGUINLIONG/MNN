@@ -9,7 +9,7 @@ if (($args[0] -eq "-lazy") -and ( Test-Path "current" -PathType Container )) {
 }
 
 # check is flatbuffer installed or not
-Set-Variable -Name "FLATC" -Value "..\3rd_party\flatbuffers\tmp\flatc.exe"
+Set-Variable -Name "FLATC" -Value "..\3rd_party\flatbuffers\tmp\Debug\flatc.exe"
 if (-Not (Test-Path $FLATC -PathType Leaf)) {
   echo "*** building flatc ***"
 
@@ -21,7 +21,7 @@ if (-Not (Test-Path $FLATC -PathType Leaf)) {
   (cd tmp) -and (rm -r -force *)
 
   # build
-  cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release ..
+  cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release ..
   cmake --build . --target flatc
 
   # dir recover

@@ -4,6 +4,7 @@
 #ifndef FLATBUFFERS_GENERATED_BASICOPTIMIZER_MNN_OPTIMIZER_H_
 #define FLATBUFFERS_GENERATED_BASICOPTIMIZER_MNN_OPTIMIZER_H_
 
+#include "flatbuffers/flatbuffers.h"
 
 #include "CaffeOp_generated.h"
 #include "GpuLibrary_generated.h"
@@ -18,9 +19,11 @@ namespace MNN {
 namespace Optimizer {
 
 struct BackendConfig;
+struct BackendConfigBuilder;
 struct BackendConfigT;
 
 struct Merge;
+struct MergeBuilder;
 struct MergeT;
 
 inline const flatbuffers::TypeTable *BackendConfigTypeTable();
@@ -45,6 +48,7 @@ struct BackendConfigT : public flatbuffers::NativeTable {
 
 struct BackendConfig FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef BackendConfigT NativeTableType;
+  typedef BackendConfigBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return BackendConfigTypeTable();
   }
@@ -85,6 +89,7 @@ struct BackendConfig FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct BackendConfigBuilder {
+  typedef BackendConfig Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_memroy(int32_t memroy) {
@@ -137,7 +142,7 @@ struct MergeT : public flatbuffers::NativeTable {
   std::vector<int32_t> outputIndexes;
   std::vector<int32_t> inputIndexes;
   int32_t tensorNumber;
-  std::unique_ptr<BackendConfigT> backend;
+  std::unique_ptr<MNN::Optimizer::BackendConfigT> backend;
   std::vector<std::unique_ptr<MNN::OpT>> oplists;
   MergeT()
       : tensorNumber(0) {
@@ -146,6 +151,7 @@ struct MergeT : public flatbuffers::NativeTable {
 
 struct Merge FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef MergeT NativeTableType;
+  typedef MergeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return MergeTypeTable();
   }
@@ -165,8 +171,8 @@ struct Merge FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t tensorNumber() const {
     return GetField<int32_t>(VT_TENSORNUMBER, 0);
   }
-  const BackendConfig *backend() const {
-    return GetPointer<const BackendConfig *>(VT_BACKEND);
+  const MNN::Optimizer::BackendConfig *backend() const {
+    return GetPointer<const MNN::Optimizer::BackendConfig *>(VT_BACKEND);
   }
   const flatbuffers::Vector<flatbuffers::Offset<MNN::Op>> *oplists() const {
     return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<MNN::Op>> *>(VT_OPLISTS);
@@ -191,6 +197,7 @@ struct Merge FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct MergeBuilder {
+  typedef Merge Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_outputIndexes(flatbuffers::Offset<flatbuffers::Vector<int32_t>> outputIndexes) {
@@ -202,7 +209,7 @@ struct MergeBuilder {
   void add_tensorNumber(int32_t tensorNumber) {
     fbb_.AddElement<int32_t>(Merge::VT_TENSORNUMBER, tensorNumber, 0);
   }
-  void add_backend(flatbuffers::Offset<BackendConfig> backend) {
+  void add_backend(flatbuffers::Offset<MNN::Optimizer::BackendConfig> backend) {
     fbb_.AddOffset(Merge::VT_BACKEND, backend);
   }
   void add_oplists(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Op>>> oplists) {
@@ -225,7 +232,7 @@ inline flatbuffers::Offset<Merge> CreateMerge(
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> outputIndexes = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> inputIndexes = 0,
     int32_t tensorNumber = 0,
-    flatbuffers::Offset<BackendConfig> backend = 0,
+    flatbuffers::Offset<MNN::Optimizer::BackendConfig> backend = 0,
     flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<MNN::Op>>> oplists = 0) {
   MergeBuilder builder_(_fbb);
   builder_.add_oplists(oplists);
@@ -241,7 +248,7 @@ inline flatbuffers::Offset<Merge> CreateMergeDirect(
     const std::vector<int32_t> *outputIndexes = nullptr,
     const std::vector<int32_t> *inputIndexes = nullptr,
     int32_t tensorNumber = 0,
-    flatbuffers::Offset<BackendConfig> backend = 0,
+    flatbuffers::Offset<MNN::Optimizer::BackendConfig> backend = 0,
     const std::vector<flatbuffers::Offset<MNN::Op>> *oplists = nullptr) {
   auto outputIndexes__ = outputIndexes ? _fbb.CreateVector<int32_t>(*outputIndexes) : 0;
   auto inputIndexes__ = inputIndexes ? _fbb.CreateVector<int32_t>(*inputIndexes) : 0;
@@ -258,19 +265,19 @@ inline flatbuffers::Offset<Merge> CreateMergeDirect(
 flatbuffers::Offset<Merge> CreateMerge(flatbuffers::FlatBufferBuilder &_fbb, const MergeT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline BackendConfigT *BackendConfig::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new BackendConfigT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::Optimizer::BackendConfigT> _o = std::unique_ptr<MNN::Optimizer::BackendConfigT>(new BackendConfigT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void BackendConfig::UnPackTo(BackendConfigT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = memroy(); _o->memroy = _e; };
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = precision(); _o->precision = _e; };
-  { auto _e = power(); _o->power = _e; };
-  { auto _e = numberThread(); _o->numberThread = _e; };
+  { auto _e = memroy(); _o->memroy = _e; }
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = precision(); _o->precision = _e; }
+  { auto _e = power(); _o->power = _e; }
+  { auto _e = numberThread(); _o->numberThread = _e; }
 }
 
 inline flatbuffers::Offset<BackendConfig> BackendConfig::Pack(flatbuffers::FlatBufferBuilder &_fbb, const BackendConfigT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -296,19 +303,19 @@ inline flatbuffers::Offset<BackendConfig> CreateBackendConfig(flatbuffers::FlatB
 }
 
 inline MergeT *Merge::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new MergeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::Optimizer::MergeT> _o = std::unique_ptr<MNN::Optimizer::MergeT>(new MergeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Merge::UnPackTo(MergeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = outputIndexes(); if (_e) { _o->outputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputIndexes[_i] = _e->Get(_i); } } };
-  { auto _e = inputIndexes(); if (_e) { _o->inputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputIndexes[_i] = _e->Get(_i); } } };
-  { auto _e = tensorNumber(); _o->tensorNumber = _e; };
-  { auto _e = backend(); if (_e) _o->backend = std::unique_ptr<BackendConfigT>(_e->UnPack(_resolver)); };
-  { auto _e = oplists(); if (_e) { _o->oplists.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->oplists[_i] = std::unique_ptr<MNN::OpT>(_e->Get(_i)->UnPack(_resolver)); } } };
+  { auto _e = outputIndexes(); if (_e) { _o->outputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->outputIndexes[_i] = _e->Get(_i); } } }
+  { auto _e = inputIndexes(); if (_e) { _o->inputIndexes.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputIndexes[_i] = _e->Get(_i); } } }
+  { auto _e = tensorNumber(); _o->tensorNumber = _e; }
+  { auto _e = backend(); if (_e) _o->backend = std::unique_ptr<MNN::Optimizer::BackendConfigT>(_e->UnPack(_resolver)); }
+  { auto _e = oplists(); if (_e) { _o->oplists.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->oplists[_i] = std::unique_ptr<MNN::OpT>(_e->Get(_i)->UnPack(_resolver)); } } }
 }
 
 inline flatbuffers::Offset<Merge> Merge::Pack(flatbuffers::FlatBufferBuilder &_fbb, const MergeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -366,7 +373,7 @@ inline const flatbuffers::TypeTable *MergeTypeTable() {
     { flatbuffers::ET_SEQUENCE, 1, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    BackendConfigTypeTable,
+    MNN::Optimizer::BackendConfigTypeTable,
     MNN::OpTypeTable
   };
   static const char * const names[] = {

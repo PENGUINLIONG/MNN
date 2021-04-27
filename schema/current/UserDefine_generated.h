@@ -4,6 +4,7 @@
 #ifndef FLATBUFFERS_GENERATED_USERDEFINE_MNN_H_
 #define FLATBUFFERS_GENERATED_USERDEFINE_MNN_H_
 
+#include "flatbuffers/flatbuffers.h"
 
 #include "Tensor_generated.h"
 #include "Type_generated.h"
@@ -11,9 +12,11 @@
 namespace MNN {
 
 struct TensorConvertInfo;
+struct TensorConvertInfoBuilder;
 struct TensorConvertInfoT;
 
 struct GridSample;
+struct GridSampleBuilder;
 struct GridSampleT;
 
 inline const flatbuffers::TypeTable *TensorConvertInfoTypeTable();
@@ -36,7 +39,7 @@ inline const SampleMode (&EnumValuesSampleMode())[2] {
 }
 
 inline const char * const *EnumNamesSampleMode() {
-  static const char * const names[] = {
+  static const char * const names[3] = {
     "BILINEAR",
     "NEAREST",
     nullptr
@@ -45,8 +48,8 @@ inline const char * const *EnumNamesSampleMode() {
 }
 
 inline const char *EnumNameSampleMode(SampleMode e) {
-  if (e < SampleMode_BILINEAR || e > SampleMode_NEAREST) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, SampleMode_BILINEAR, SampleMode_NEAREST)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesSampleMode()[index];
 }
 
@@ -68,7 +71,7 @@ inline const BorderMode (&EnumValuesBorderMode())[3] {
 }
 
 inline const char * const *EnumNamesBorderMode() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "ZEROS",
     "CLAMP",
     "REFLECTION",
@@ -78,23 +81,24 @@ inline const char * const *EnumNamesBorderMode() {
 }
 
 inline const char *EnumNameBorderMode(BorderMode e) {
-  if (e < BorderMode_ZEROS || e > BorderMode_REFLECTION) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, BorderMode_ZEROS, BorderMode_REFLECTION)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesBorderMode()[index];
 }
 
 struct TensorConvertInfoT : public flatbuffers::NativeTable {
   typedef TensorConvertInfo TableType;
-  MNN_DATA_FORMAT source;
-  MNN_DATA_FORMAT dest;
+  MNN::MNN_DATA_FORMAT source;
+  MNN::MNN_DATA_FORMAT dest;
   TensorConvertInfoT()
-      : source(MNN_DATA_FORMAT_NCHW),
-        dest(MNN_DATA_FORMAT_NCHW) {
+      : source(MNN::MNN_DATA_FORMAT_NCHW),
+        dest(MNN::MNN_DATA_FORMAT_NCHW) {
   }
 };
 
 struct TensorConvertInfo FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef TensorConvertInfoT NativeTableType;
+  typedef TensorConvertInfoBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return TensorConvertInfoTypeTable();
   }
@@ -102,11 +106,11 @@ struct TensorConvertInfo FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_SOURCE = 4,
     VT_DEST = 6
   };
-  MNN_DATA_FORMAT source() const {
-    return static_cast<MNN_DATA_FORMAT>(GetField<int8_t>(VT_SOURCE, 0));
+  MNN::MNN_DATA_FORMAT source() const {
+    return static_cast<MNN::MNN_DATA_FORMAT>(GetField<int8_t>(VT_SOURCE, 0));
   }
-  MNN_DATA_FORMAT dest() const {
-    return static_cast<MNN_DATA_FORMAT>(GetField<int8_t>(VT_DEST, 0));
+  MNN::MNN_DATA_FORMAT dest() const {
+    return static_cast<MNN::MNN_DATA_FORMAT>(GetField<int8_t>(VT_DEST, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -120,12 +124,13 @@ struct TensorConvertInfo FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct TensorConvertInfoBuilder {
+  typedef TensorConvertInfo Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_source(MNN_DATA_FORMAT source) {
+  void add_source(MNN::MNN_DATA_FORMAT source) {
     fbb_.AddElement<int8_t>(TensorConvertInfo::VT_SOURCE, static_cast<int8_t>(source), 0);
   }
-  void add_dest(MNN_DATA_FORMAT dest) {
+  void add_dest(MNN::MNN_DATA_FORMAT dest) {
     fbb_.AddElement<int8_t>(TensorConvertInfo::VT_DEST, static_cast<int8_t>(dest), 0);
   }
   explicit TensorConvertInfoBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -142,8 +147,8 @@ struct TensorConvertInfoBuilder {
 
 inline flatbuffers::Offset<TensorConvertInfo> CreateTensorConvertInfo(
     flatbuffers::FlatBufferBuilder &_fbb,
-    MNN_DATA_FORMAT source = MNN_DATA_FORMAT_NCHW,
-    MNN_DATA_FORMAT dest = MNN_DATA_FORMAT_NCHW) {
+    MNN::MNN_DATA_FORMAT source = MNN::MNN_DATA_FORMAT_NCHW,
+    MNN::MNN_DATA_FORMAT dest = MNN::MNN_DATA_FORMAT_NCHW) {
   TensorConvertInfoBuilder builder_(_fbb);
   builder_.add_dest(dest);
   builder_.add_source(source);
@@ -154,18 +159,19 @@ flatbuffers::Offset<TensorConvertInfo> CreateTensorConvertInfo(flatbuffers::Flat
 
 struct GridSampleT : public flatbuffers::NativeTable {
   typedef GridSample TableType;
-  SampleMode mode;
-  BorderMode paddingMode;
+  MNN::SampleMode mode;
+  MNN::BorderMode paddingMode;
   bool alignCorners;
   GridSampleT()
-      : mode(SampleMode_BILINEAR),
-        paddingMode(BorderMode_ZEROS),
+      : mode(MNN::SampleMode_BILINEAR),
+        paddingMode(MNN::BorderMode_ZEROS),
         alignCorners(false) {
   }
 };
 
 struct GridSample FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef GridSampleT NativeTableType;
+  typedef GridSampleBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GridSampleTypeTable();
   }
@@ -174,11 +180,11 @@ struct GridSample FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_PADDINGMODE = 6,
     VT_ALIGNCORNERS = 8
   };
-  SampleMode mode() const {
-    return static_cast<SampleMode>(GetField<int8_t>(VT_MODE, 0));
+  MNN::SampleMode mode() const {
+    return static_cast<MNN::SampleMode>(GetField<int8_t>(VT_MODE, 0));
   }
-  BorderMode paddingMode() const {
-    return static_cast<BorderMode>(GetField<int8_t>(VT_PADDINGMODE, 0));
+  MNN::BorderMode paddingMode() const {
+    return static_cast<MNN::BorderMode>(GetField<int8_t>(VT_PADDINGMODE, 0));
   }
   bool alignCorners() const {
     return GetField<uint8_t>(VT_ALIGNCORNERS, 0) != 0;
@@ -196,12 +202,13 @@ struct GridSample FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct GridSampleBuilder {
+  typedef GridSample Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_mode(SampleMode mode) {
+  void add_mode(MNN::SampleMode mode) {
     fbb_.AddElement<int8_t>(GridSample::VT_MODE, static_cast<int8_t>(mode), 0);
   }
-  void add_paddingMode(BorderMode paddingMode) {
+  void add_paddingMode(MNN::BorderMode paddingMode) {
     fbb_.AddElement<int8_t>(GridSample::VT_PADDINGMODE, static_cast<int8_t>(paddingMode), 0);
   }
   void add_alignCorners(bool alignCorners) {
@@ -221,8 +228,8 @@ struct GridSampleBuilder {
 
 inline flatbuffers::Offset<GridSample> CreateGridSample(
     flatbuffers::FlatBufferBuilder &_fbb,
-    SampleMode mode = SampleMode_BILINEAR,
-    BorderMode paddingMode = BorderMode_ZEROS,
+    MNN::SampleMode mode = MNN::SampleMode_BILINEAR,
+    MNN::BorderMode paddingMode = MNN::BorderMode_ZEROS,
     bool alignCorners = false) {
   GridSampleBuilder builder_(_fbb);
   builder_.add_alignCorners(alignCorners);
@@ -234,16 +241,16 @@ inline flatbuffers::Offset<GridSample> CreateGridSample(
 flatbuffers::Offset<GridSample> CreateGridSample(flatbuffers::FlatBufferBuilder &_fbb, const GridSampleT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline TensorConvertInfoT *TensorConvertInfo::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new TensorConvertInfoT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::TensorConvertInfoT> _o = std::unique_ptr<MNN::TensorConvertInfoT>(new TensorConvertInfoT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void TensorConvertInfo::UnPackTo(TensorConvertInfoT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = source(); _o->source = _e; };
-  { auto _e = dest(); _o->dest = _e; };
+  { auto _e = source(); _o->source = _e; }
+  { auto _e = dest(); _o->dest = _e; }
 }
 
 inline flatbuffers::Offset<TensorConvertInfo> TensorConvertInfo::Pack(flatbuffers::FlatBufferBuilder &_fbb, const TensorConvertInfoT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -263,17 +270,17 @@ inline flatbuffers::Offset<TensorConvertInfo> CreateTensorConvertInfo(flatbuffer
 }
 
 inline GridSampleT *GridSample::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new GridSampleT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::GridSampleT> _o = std::unique_ptr<MNN::GridSampleT>(new GridSampleT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void GridSample::UnPackTo(GridSampleT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = mode(); _o->mode = _e; };
-  { auto _e = paddingMode(); _o->paddingMode = _e; };
-  { auto _e = alignCorners(); _o->alignCorners = _e; };
+  { auto _e = mode(); _o->mode = _e; }
+  { auto _e = paddingMode(); _o->paddingMode = _e; }
+  { auto _e = alignCorners(); _o->alignCorners = _e; }
 }
 
 inline flatbuffers::Offset<GridSample> GridSample::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GridSampleT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -300,7 +307,7 @@ inline const flatbuffers::TypeTable *SampleModeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    SampleModeTypeTable
+    MNN::SampleModeTypeTable
   };
   static const char * const names[] = {
     "BILINEAR",
@@ -319,7 +326,7 @@ inline const flatbuffers::TypeTable *BorderModeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    BorderModeTypeTable
+    MNN::BorderModeTypeTable
   };
   static const char * const names[] = {
     "ZEROS",
@@ -338,7 +345,7 @@ inline const flatbuffers::TypeTable *TensorConvertInfoTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    MNN_DATA_FORMATTypeTable
+    MNN::MNN_DATA_FORMATTypeTable
   };
   static const char * const names[] = {
     "source",
@@ -357,8 +364,8 @@ inline const flatbuffers::TypeTable *GridSampleTypeTable() {
     { flatbuffers::ET_BOOL, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    SampleModeTypeTable,
-    BorderModeTypeTable
+    MNN::SampleModeTypeTable,
+    MNN::BorderModeTypeTable
   };
   static const char * const names[] = {
     "mode",

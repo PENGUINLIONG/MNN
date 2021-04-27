@@ -4,6 +4,7 @@
 #ifndef FLATBUFFERS_GENERATED_TFQUANTIZEOP_MNN_H_
 #define FLATBUFFERS_GENERATED_TFQUANTIZEOP_MNN_H_
 
+#include "flatbuffers/flatbuffers.h"
 
 #include "CaffeOp_generated.h"
 #include "Tensor_generated.h"
@@ -12,54 +13,71 @@
 namespace MNN {
 
 struct QuantizedParam;
+struct QuantizedParamBuilder;
 struct QuantizedParamT;
 
 struct QuantizedAdd;
+struct QuantizedAddBuilder;
 struct QuantizedAddT;
 
 struct Dequantize;
+struct DequantizeBuilder;
 struct DequantizeT;
 
 struct QuantizedAvgPool;
+struct QuantizedAvgPoolBuilder;
 struct QuantizedAvgPoolT;
 
 struct QuantizedBiasAdd;
+struct QuantizedBiasAddBuilder;
 struct QuantizedBiasAddT;
 
 struct QuantizedConcat;
+struct QuantizedConcatBuilder;
 struct QuantizedConcatT;
 
 struct QuantizedLogistic;
+struct QuantizedLogisticBuilder;
 struct QuantizedLogisticT;
 
 struct QuantizedMatMul;
+struct QuantizedMatMulBuilder;
 struct QuantizedMatMulT;
 
 struct QuantizedMaxPool;
+struct QuantizedMaxPoolBuilder;
 struct QuantizedMaxPoolT;
 
 struct QuantizedRelu;
+struct QuantizedReluBuilder;
 struct QuantizedReluT;
 
 struct QuantizedRelu6;
+struct QuantizedRelu6Builder;
 struct QuantizedRelu6T;
 
 struct QuantizedReshape;
+struct QuantizedReshapeBuilder;
 struct QuantizedReshapeT;
 
 struct QuantizedSoftmax;
+struct QuantizedSoftmaxBuilder;
 struct QuantizedSoftmaxT;
 
 struct QuantizeV2;
+struct QuantizeV2Builder;
 struct QuantizeV2T;
 
 struct RequantizationRange;
+struct RequantizationRangeBuilder;
 struct RequantizationRangeT;
 
 struct Requantize;
+struct RequantizeBuilder;
 struct RequantizeT;
 
 struct TfQuantizedConv2D;
+struct TfQuantizedConv2DBuilder;
 struct TfQuantizedConv2DT;
 
 inline const flatbuffers::TypeTable *QuantizedParamTypeTable();
@@ -122,7 +140,7 @@ inline const FusedActivation (&EnumValuesFusedActivation())[7] {
 }
 
 inline const char * const *EnumNamesFusedActivation() {
-  static const char * const names[] = {
+  static const char * const names[8] = {
     "kTfLiteActNone",
     "kTfLiteActRelu",
     "kTfLiteActRelu1",
@@ -136,8 +154,8 @@ inline const char * const *EnumNamesFusedActivation() {
 }
 
 inline const char *EnumNameFusedActivation(FusedActivation e) {
-  if (e < FusedActivation_kTfLiteActNone || e > FusedActivation_kTfLiteActSigmoid) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, FusedActivation_kTfLiteActNone, FusedActivation_kTfLiteActSigmoid)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesFusedActivation()[index];
 }
 
@@ -157,7 +175,7 @@ inline const ModeFormat (&EnumValuesModeFormat())[2] {
 }
 
 inline const char * const *EnumNamesModeFormat() {
-  static const char * const names[] = {
+  static const char * const names[3] = {
     "TENSORFLOW",
     "TFLITE",
     nullptr
@@ -166,8 +184,8 @@ inline const char * const *EnumNamesModeFormat() {
 }
 
 inline const char *EnumNameModeFormat(ModeFormat e) {
-  if (e < ModeFormat_TENSORFLOW || e > ModeFormat_TFLITE) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, ModeFormat_TENSORFLOW, ModeFormat_TFLITE)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesModeFormat()[index];
 }
 
@@ -189,7 +207,7 @@ inline const QuantizeMode (&EnumValuesQuantizeMode())[3] {
 }
 
 inline const char * const *EnumNamesQuantizeMode() {
-  static const char * const names[] = {
+  static const char * const names[4] = {
     "MIN_COMBINED",
     "MIN_FIRST",
     "SCALED",
@@ -199,8 +217,8 @@ inline const char * const *EnumNamesQuantizeMode() {
 }
 
 inline const char *EnumNameQuantizeMode(QuantizeMode e) {
-  if (e < QuantizeMode_MIN_COMBINED || e > QuantizeMode_SCALED) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, QuantizeMode_MIN_COMBINED, QuantizeMode_SCALED)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesQuantizeMode()[index];
 }
 
@@ -220,7 +238,7 @@ inline const QuantizeRoundMode (&EnumValuesQuantizeRoundMode())[2] {
 }
 
 inline const char * const *EnumNamesQuantizeRoundMode() {
-  static const char * const names[] = {
+  static const char * const names[3] = {
     "HALF_AWAY_FROM_ZERO",
     "HALF_TO_EVEN",
     nullptr
@@ -229,8 +247,8 @@ inline const char * const *EnumNamesQuantizeRoundMode() {
 }
 
 inline const char *EnumNameQuantizeRoundMode(QuantizeRoundMode e) {
-  if (e < QuantizeRoundMode_HALF_AWAY_FROM_ZERO || e > QuantizeRoundMode_HALF_TO_EVEN) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, QuantizeRoundMode_HALF_AWAY_FROM_ZERO, QuantizeRoundMode_HALF_TO_EVEN)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesQuantizeRoundMode()[index];
 }
 
@@ -246,6 +264,7 @@ struct QuantizedParamT : public flatbuffers::NativeTable {
 
 struct QuantizedParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedParamT NativeTableType;
+  typedef QuantizedParamBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedParamTypeTable();
   }
@@ -271,6 +290,7 @@ struct QuantizedParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedParamBuilder {
+  typedef QuantizedParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_zeroPoint(int32_t zeroPoint) {
@@ -305,17 +325,18 @@ flatbuffers::Offset<QuantizedParam> CreateQuantizedParam(flatbuffers::FlatBuffer
 
 struct QuantizedAddT : public flatbuffers::NativeTable {
   typedef QuantizedAdd TableType;
-  FusedActivation activationType;
-  std::unique_ptr<QuantizedParamT> input1QuantizedParam;
-  std::unique_ptr<QuantizedParamT> input2QuantizedParam;
-  std::unique_ptr<QuantizedParamT> outputQuantizedParam;
+  MNN::FusedActivation activationType;
+  std::unique_ptr<MNN::QuantizedParamT> input1QuantizedParam;
+  std::unique_ptr<MNN::QuantizedParamT> input2QuantizedParam;
+  std::unique_ptr<MNN::QuantizedParamT> outputQuantizedParam;
   QuantizedAddT()
-      : activationType(FusedActivation_kTfLiteActNone) {
+      : activationType(MNN::FusedActivation_kTfLiteActNone) {
   }
 };
 
 struct QuantizedAdd FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedAddT NativeTableType;
+  typedef QuantizedAddBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedAddTypeTable();
   }
@@ -325,17 +346,17 @@ struct QuantizedAdd FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_INPUT2QUANTIZEDPARAM = 8,
     VT_OUTPUTQUANTIZEDPARAM = 10
   };
-  FusedActivation activationType() const {
-    return static_cast<FusedActivation>(GetField<int8_t>(VT_ACTIVATIONTYPE, 0));
+  MNN::FusedActivation activationType() const {
+    return static_cast<MNN::FusedActivation>(GetField<int8_t>(VT_ACTIVATIONTYPE, 0));
   }
-  const QuantizedParam *input1QuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_INPUT1QUANTIZEDPARAM);
+  const MNN::QuantizedParam *input1QuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_INPUT1QUANTIZEDPARAM);
   }
-  const QuantizedParam *input2QuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_INPUT2QUANTIZEDPARAM);
+  const MNN::QuantizedParam *input2QuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_INPUT2QUANTIZEDPARAM);
   }
-  const QuantizedParam *outputQuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_OUTPUTQUANTIZEDPARAM);
+  const MNN::QuantizedParam *outputQuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_OUTPUTQUANTIZEDPARAM);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -354,18 +375,19 @@ struct QuantizedAdd FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedAddBuilder {
+  typedef QuantizedAdd Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_activationType(FusedActivation activationType) {
+  void add_activationType(MNN::FusedActivation activationType) {
     fbb_.AddElement<int8_t>(QuantizedAdd::VT_ACTIVATIONTYPE, static_cast<int8_t>(activationType), 0);
   }
-  void add_input1QuantizedParam(flatbuffers::Offset<QuantizedParam> input1QuantizedParam) {
+  void add_input1QuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> input1QuantizedParam) {
     fbb_.AddOffset(QuantizedAdd::VT_INPUT1QUANTIZEDPARAM, input1QuantizedParam);
   }
-  void add_input2QuantizedParam(flatbuffers::Offset<QuantizedParam> input2QuantizedParam) {
+  void add_input2QuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> input2QuantizedParam) {
     fbb_.AddOffset(QuantizedAdd::VT_INPUT2QUANTIZEDPARAM, input2QuantizedParam);
   }
-  void add_outputQuantizedParam(flatbuffers::Offset<QuantizedParam> outputQuantizedParam) {
+  void add_outputQuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam) {
     fbb_.AddOffset(QuantizedAdd::VT_OUTPUTQUANTIZEDPARAM, outputQuantizedParam);
   }
   explicit QuantizedAddBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -382,10 +404,10 @@ struct QuantizedAddBuilder {
 
 inline flatbuffers::Offset<QuantizedAdd> CreateQuantizedAdd(
     flatbuffers::FlatBufferBuilder &_fbb,
-    FusedActivation activationType = FusedActivation_kTfLiteActNone,
-    flatbuffers::Offset<QuantizedParam> input1QuantizedParam = 0,
-    flatbuffers::Offset<QuantizedParam> input2QuantizedParam = 0,
-    flatbuffers::Offset<QuantizedParam> outputQuantizedParam = 0) {
+    MNN::FusedActivation activationType = MNN::FusedActivation_kTfLiteActNone,
+    flatbuffers::Offset<MNN::QuantizedParam> input1QuantizedParam = 0,
+    flatbuffers::Offset<MNN::QuantizedParam> input2QuantizedParam = 0,
+    flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam = 0) {
   QuantizedAddBuilder builder_(_fbb);
   builder_.add_outputQuantizedParam(outputQuantizedParam);
   builder_.add_input2QuantizedParam(input2QuantizedParam);
@@ -398,19 +420,20 @@ flatbuffers::Offset<QuantizedAdd> CreateQuantizedAdd(flatbuffers::FlatBufferBuil
 
 struct DequantizeT : public flatbuffers::NativeTable {
   typedef Dequantize TableType;
-  std::unique_ptr<QuantizedParamT> inputQuantizedParam;
-  QuantizeMode mode;
-  ModeFormat modelFormat;
-  DataType type;
+  std::unique_ptr<MNN::QuantizedParamT> inputQuantizedParam;
+  MNN::QuantizeMode mode;
+  MNN::ModeFormat modelFormat;
+  MNN::DataType type;
   DequantizeT()
-      : mode(QuantizeMode_MIN_COMBINED),
-        modelFormat(ModeFormat_TENSORFLOW),
-        type(DataType_DT_INVALID) {
+      : mode(MNN::QuantizeMode_MIN_COMBINED),
+        modelFormat(MNN::ModeFormat_TENSORFLOW),
+        type(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct Dequantize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef DequantizeT NativeTableType;
+  typedef DequantizeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return DequantizeTypeTable();
   }
@@ -420,17 +443,17 @@ struct Dequantize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_MODELFORMAT = 8,
     VT_TYPE = 10
   };
-  const QuantizedParam *inputQuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_INPUTQUANTIZEDPARAM);
+  const MNN::QuantizedParam *inputQuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_INPUTQUANTIZEDPARAM);
   }
-  QuantizeMode mode() const {
-    return static_cast<QuantizeMode>(GetField<int8_t>(VT_MODE, 0));
+  MNN::QuantizeMode mode() const {
+    return static_cast<MNN::QuantizeMode>(GetField<int8_t>(VT_MODE, 0));
   }
-  ModeFormat modelFormat() const {
-    return static_cast<ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
+  MNN::ModeFormat modelFormat() const {
+    return static_cast<MNN::ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
   }
-  DataType type() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TYPE, 0));
+  MNN::DataType type() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -447,18 +470,19 @@ struct Dequantize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct DequantizeBuilder {
+  typedef Dequantize Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_inputQuantizedParam(flatbuffers::Offset<QuantizedParam> inputQuantizedParam) {
+  void add_inputQuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> inputQuantizedParam) {
     fbb_.AddOffset(Dequantize::VT_INPUTQUANTIZEDPARAM, inputQuantizedParam);
   }
-  void add_mode(QuantizeMode mode) {
+  void add_mode(MNN::QuantizeMode mode) {
     fbb_.AddElement<int8_t>(Dequantize::VT_MODE, static_cast<int8_t>(mode), 0);
   }
-  void add_modelFormat(ModeFormat modelFormat) {
+  void add_modelFormat(MNN::ModeFormat modelFormat) {
     fbb_.AddElement<int8_t>(Dequantize::VT_MODELFORMAT, static_cast<int8_t>(modelFormat), 0);
   }
-  void add_type(DataType type) {
+  void add_type(MNN::DataType type) {
     fbb_.AddElement<int32_t>(Dequantize::VT_TYPE, static_cast<int32_t>(type), 0);
   }
   explicit DequantizeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -475,10 +499,10 @@ struct DequantizeBuilder {
 
 inline flatbuffers::Offset<Dequantize> CreateDequantize(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<QuantizedParam> inputQuantizedParam = 0,
-    QuantizeMode mode = QuantizeMode_MIN_COMBINED,
-    ModeFormat modelFormat = ModeFormat_TENSORFLOW,
-    DataType type = DataType_DT_INVALID) {
+    flatbuffers::Offset<MNN::QuantizedParam> inputQuantizedParam = 0,
+    MNN::QuantizeMode mode = MNN::QuantizeMode_MIN_COMBINED,
+    MNN::ModeFormat modelFormat = MNN::ModeFormat_TENSORFLOW,
+    MNN::DataType type = MNN::DataType_DT_INVALID) {
   DequantizeBuilder builder_(_fbb);
   builder_.add_type(type);
   builder_.add_inputQuantizedParam(inputQuantizedParam);
@@ -493,32 +517,33 @@ struct QuantizedAvgPoolT : public flatbuffers::NativeTable {
   typedef QuantizedAvgPool TableType;
   int32_t kernelX;
   int32_t kernelY;
-  ModeFormat modelFormat;
+  MNN::ModeFormat modelFormat;
   int32_t outputActivationMax;
   int32_t outputActivationMin;
-  PoolPadType padType;
+  MNN::PoolPadType padType;
   int32_t padX;
   int32_t padY;
   int32_t strideX;
   int32_t strideY;
-  DataType type;
+  MNN::DataType type;
   QuantizedAvgPoolT()
       : kernelX(0),
         kernelY(0),
-        modelFormat(ModeFormat_TENSORFLOW),
+        modelFormat(MNN::ModeFormat_TENSORFLOW),
         outputActivationMax(0),
         outputActivationMin(0),
-        padType(PoolPadType_CAFFE),
+        padType(MNN::PoolPadType_CAFFE),
         padX(0),
         padY(0),
         strideX(0),
         strideY(0),
-        type(DataType_DT_INVALID) {
+        type(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct QuantizedAvgPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedAvgPoolT NativeTableType;
+  typedef QuantizedAvgPoolBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedAvgPoolTypeTable();
   }
@@ -541,8 +566,8 @@ struct QuantizedAvgPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t kernelY() const {
     return GetField<int32_t>(VT_KERNELY, 0);
   }
-  ModeFormat modelFormat() const {
-    return static_cast<ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
+  MNN::ModeFormat modelFormat() const {
+    return static_cast<MNN::ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
   }
   int32_t outputActivationMax() const {
     return GetField<int32_t>(VT_OUTPUTACTIVATIONMAX, 0);
@@ -550,8 +575,8 @@ struct QuantizedAvgPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t outputActivationMin() const {
     return GetField<int32_t>(VT_OUTPUTACTIVATIONMIN, 0);
   }
-  PoolPadType padType() const {
-    return static_cast<PoolPadType>(GetField<int8_t>(VT_PADTYPE, 0));
+  MNN::PoolPadType padType() const {
+    return static_cast<MNN::PoolPadType>(GetField<int8_t>(VT_PADTYPE, 0));
   }
   int32_t padX() const {
     return GetField<int32_t>(VT_PADX, 0);
@@ -565,8 +590,8 @@ struct QuantizedAvgPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t strideY() const {
     return GetField<int32_t>(VT_STRIDEY, 0);
   }
-  DataType type() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TYPE, 0));
+  MNN::DataType type() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -589,6 +614,7 @@ struct QuantizedAvgPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedAvgPoolBuilder {
+  typedef QuantizedAvgPool Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_kernelX(int32_t kernelX) {
@@ -597,7 +623,7 @@ struct QuantizedAvgPoolBuilder {
   void add_kernelY(int32_t kernelY) {
     fbb_.AddElement<int32_t>(QuantizedAvgPool::VT_KERNELY, kernelY, 0);
   }
-  void add_modelFormat(ModeFormat modelFormat) {
+  void add_modelFormat(MNN::ModeFormat modelFormat) {
     fbb_.AddElement<int8_t>(QuantizedAvgPool::VT_MODELFORMAT, static_cast<int8_t>(modelFormat), 0);
   }
   void add_outputActivationMax(int32_t outputActivationMax) {
@@ -606,7 +632,7 @@ struct QuantizedAvgPoolBuilder {
   void add_outputActivationMin(int32_t outputActivationMin) {
     fbb_.AddElement<int32_t>(QuantizedAvgPool::VT_OUTPUTACTIVATIONMIN, outputActivationMin, 0);
   }
-  void add_padType(PoolPadType padType) {
+  void add_padType(MNN::PoolPadType padType) {
     fbb_.AddElement<int8_t>(QuantizedAvgPool::VT_PADTYPE, static_cast<int8_t>(padType), 0);
   }
   void add_padX(int32_t padX) {
@@ -621,7 +647,7 @@ struct QuantizedAvgPoolBuilder {
   void add_strideY(int32_t strideY) {
     fbb_.AddElement<int32_t>(QuantizedAvgPool::VT_STRIDEY, strideY, 0);
   }
-  void add_type(DataType type) {
+  void add_type(MNN::DataType type) {
     fbb_.AddElement<int32_t>(QuantizedAvgPool::VT_TYPE, static_cast<int32_t>(type), 0);
   }
   explicit QuantizedAvgPoolBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -640,15 +666,15 @@ inline flatbuffers::Offset<QuantizedAvgPool> CreateQuantizedAvgPool(
     flatbuffers::FlatBufferBuilder &_fbb,
     int32_t kernelX = 0,
     int32_t kernelY = 0,
-    ModeFormat modelFormat = ModeFormat_TENSORFLOW,
+    MNN::ModeFormat modelFormat = MNN::ModeFormat_TENSORFLOW,
     int32_t outputActivationMax = 0,
     int32_t outputActivationMin = 0,
-    PoolPadType padType = PoolPadType_CAFFE,
+    MNN::PoolPadType padType = MNN::PoolPadType_CAFFE,
     int32_t padX = 0,
     int32_t padY = 0,
     int32_t strideX = 0,
     int32_t strideY = 0,
-    DataType type = DataType_DT_INVALID) {
+    MNN::DataType type = MNN::DataType_DT_INVALID) {
   QuantizedAvgPoolBuilder builder_(_fbb);
   builder_.add_type(type);
   builder_.add_strideY(strideY);
@@ -669,20 +695,21 @@ flatbuffers::Offset<QuantizedAvgPool> CreateQuantizedAvgPool(flatbuffers::FlatBu
 struct QuantizedBiasAddT : public flatbuffers::NativeTable {
   typedef QuantizedBiasAdd TableType;
   std::vector<int32_t> bias;
-  DataType inputType;
+  MNN::DataType inputType;
   int32_t max;
   int32_t min;
-  DataType outputType;
+  MNN::DataType outputType;
   QuantizedBiasAddT()
-      : inputType(DataType_DT_INVALID),
+      : inputType(MNN::DataType_DT_INVALID),
         max(0),
         min(0),
-        outputType(DataType_DT_INVALID) {
+        outputType(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct QuantizedBiasAdd FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedBiasAddT NativeTableType;
+  typedef QuantizedBiasAddBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedBiasAddTypeTable();
   }
@@ -696,8 +723,8 @@ struct QuantizedBiasAdd FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *bias() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_BIAS);
   }
-  DataType inputType() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_INPUTTYPE, 0));
+  MNN::DataType inputType() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_INPUTTYPE, 0));
   }
   int32_t max() const {
     return GetField<int32_t>(VT_MAX, 0);
@@ -705,8 +732,8 @@ struct QuantizedBiasAdd FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t min() const {
     return GetField<int32_t>(VT_MIN, 0);
   }
-  DataType outputType() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_OUTPUTTYPE, 0));
+  MNN::DataType outputType() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_OUTPUTTYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -724,12 +751,13 @@ struct QuantizedBiasAdd FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedBiasAddBuilder {
+  typedef QuantizedBiasAdd Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_bias(flatbuffers::Offset<flatbuffers::Vector<int32_t>> bias) {
     fbb_.AddOffset(QuantizedBiasAdd::VT_BIAS, bias);
   }
-  void add_inputType(DataType inputType) {
+  void add_inputType(MNN::DataType inputType) {
     fbb_.AddElement<int32_t>(QuantizedBiasAdd::VT_INPUTTYPE, static_cast<int32_t>(inputType), 0);
   }
   void add_max(int32_t max) {
@@ -738,7 +766,7 @@ struct QuantizedBiasAddBuilder {
   void add_min(int32_t min) {
     fbb_.AddElement<int32_t>(QuantizedBiasAdd::VT_MIN, min, 0);
   }
-  void add_outputType(DataType outputType) {
+  void add_outputType(MNN::DataType outputType) {
     fbb_.AddElement<int32_t>(QuantizedBiasAdd::VT_OUTPUTTYPE, static_cast<int32_t>(outputType), 0);
   }
   explicit QuantizedBiasAddBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -756,10 +784,10 @@ struct QuantizedBiasAddBuilder {
 inline flatbuffers::Offset<QuantizedBiasAdd> CreateQuantizedBiasAdd(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> bias = 0,
-    DataType inputType = DataType_DT_INVALID,
+    MNN::DataType inputType = MNN::DataType_DT_INVALID,
     int32_t max = 0,
     int32_t min = 0,
-    DataType outputType = DataType_DT_INVALID) {
+    MNN::DataType outputType = MNN::DataType_DT_INVALID) {
   QuantizedBiasAddBuilder builder_(_fbb);
   builder_.add_outputType(outputType);
   builder_.add_min(min);
@@ -772,10 +800,10 @@ inline flatbuffers::Offset<QuantizedBiasAdd> CreateQuantizedBiasAdd(
 inline flatbuffers::Offset<QuantizedBiasAdd> CreateQuantizedBiasAddDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<int32_t> *bias = nullptr,
-    DataType inputType = DataType_DT_INVALID,
+    MNN::DataType inputType = MNN::DataType_DT_INVALID,
     int32_t max = 0,
     int32_t min = 0,
-    DataType outputType = DataType_DT_INVALID) {
+    MNN::DataType outputType = MNN::DataType_DT_INVALID) {
   auto bias__ = bias ? _fbb.CreateVector<int32_t>(*bias) : 0;
   return MNN::CreateQuantizedBiasAdd(
       _fbb,
@@ -790,19 +818,20 @@ flatbuffers::Offset<QuantizedBiasAdd> CreateQuantizedBiasAdd(flatbuffers::FlatBu
 
 struct QuantizedConcatT : public flatbuffers::NativeTable {
   typedef QuantizedConcat TableType;
-  FusedActivation activationType;
+  MNN::FusedActivation activationType;
   int32_t axis;
   std::vector<float> inputScale;
   std::vector<int32_t> inputZeroPoint;
-  std::unique_ptr<QuantizedParamT> outputQuantizedParam;
+  std::unique_ptr<MNN::QuantizedParamT> outputQuantizedParam;
   QuantizedConcatT()
-      : activationType(FusedActivation_kTfLiteActNone),
+      : activationType(MNN::FusedActivation_kTfLiteActNone),
         axis(0) {
   }
 };
 
 struct QuantizedConcat FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedConcatT NativeTableType;
+  typedef QuantizedConcatBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedConcatTypeTable();
   }
@@ -813,8 +842,8 @@ struct QuantizedConcat FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_INPUTZEROPOINT = 10,
     VT_OUTPUTQUANTIZEDPARAM = 12
   };
-  FusedActivation activationType() const {
-    return static_cast<FusedActivation>(GetField<int8_t>(VT_ACTIVATIONTYPE, 0));
+  MNN::FusedActivation activationType() const {
+    return static_cast<MNN::FusedActivation>(GetField<int8_t>(VT_ACTIVATIONTYPE, 0));
   }
   int32_t axis() const {
     return GetField<int32_t>(VT_AXIS, 0);
@@ -825,8 +854,8 @@ struct QuantizedConcat FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *inputZeroPoint() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_INPUTZEROPOINT);
   }
-  const QuantizedParam *outputQuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_OUTPUTQUANTIZEDPARAM);
+  const MNN::QuantizedParam *outputQuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_OUTPUTQUANTIZEDPARAM);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -846,9 +875,10 @@ struct QuantizedConcat FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedConcatBuilder {
+  typedef QuantizedConcat Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_activationType(FusedActivation activationType) {
+  void add_activationType(MNN::FusedActivation activationType) {
     fbb_.AddElement<int8_t>(QuantizedConcat::VT_ACTIVATIONTYPE, static_cast<int8_t>(activationType), 0);
   }
   void add_axis(int32_t axis) {
@@ -860,7 +890,7 @@ struct QuantizedConcatBuilder {
   void add_inputZeroPoint(flatbuffers::Offset<flatbuffers::Vector<int32_t>> inputZeroPoint) {
     fbb_.AddOffset(QuantizedConcat::VT_INPUTZEROPOINT, inputZeroPoint);
   }
-  void add_outputQuantizedParam(flatbuffers::Offset<QuantizedParam> outputQuantizedParam) {
+  void add_outputQuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam) {
     fbb_.AddOffset(QuantizedConcat::VT_OUTPUTQUANTIZEDPARAM, outputQuantizedParam);
   }
   explicit QuantizedConcatBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -877,11 +907,11 @@ struct QuantizedConcatBuilder {
 
 inline flatbuffers::Offset<QuantizedConcat> CreateQuantizedConcat(
     flatbuffers::FlatBufferBuilder &_fbb,
-    FusedActivation activationType = FusedActivation_kTfLiteActNone,
+    MNN::FusedActivation activationType = MNN::FusedActivation_kTfLiteActNone,
     int32_t axis = 0,
     flatbuffers::Offset<flatbuffers::Vector<float>> inputScale = 0,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> inputZeroPoint = 0,
-    flatbuffers::Offset<QuantizedParam> outputQuantizedParam = 0) {
+    flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam = 0) {
   QuantizedConcatBuilder builder_(_fbb);
   builder_.add_outputQuantizedParam(outputQuantizedParam);
   builder_.add_inputZeroPoint(inputZeroPoint);
@@ -893,11 +923,11 @@ inline flatbuffers::Offset<QuantizedConcat> CreateQuantizedConcat(
 
 inline flatbuffers::Offset<QuantizedConcat> CreateQuantizedConcatDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
-    FusedActivation activationType = FusedActivation_kTfLiteActNone,
+    MNN::FusedActivation activationType = MNN::FusedActivation_kTfLiteActNone,
     int32_t axis = 0,
     const std::vector<float> *inputScale = nullptr,
     const std::vector<int32_t> *inputZeroPoint = nullptr,
-    flatbuffers::Offset<QuantizedParam> outputQuantizedParam = 0) {
+    flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam = 0) {
   auto inputScale__ = inputScale ? _fbb.CreateVector<float>(*inputScale) : 0;
   auto inputZeroPoint__ = inputZeroPoint ? _fbb.CreateVector<int32_t>(*inputZeroPoint) : 0;
   return MNN::CreateQuantizedConcat(
@@ -913,14 +943,15 @@ flatbuffers::Offset<QuantizedConcat> CreateQuantizedConcat(flatbuffers::FlatBuff
 
 struct QuantizedLogisticT : public flatbuffers::NativeTable {
   typedef QuantizedLogistic TableType;
-  std::unique_ptr<QuantizedParamT> inputQuantizedParam;
-  std::unique_ptr<QuantizedParamT> outputQuantizedParam;
+  std::unique_ptr<MNN::QuantizedParamT> inputQuantizedParam;
+  std::unique_ptr<MNN::QuantizedParamT> outputQuantizedParam;
   QuantizedLogisticT() {
   }
 };
 
 struct QuantizedLogistic FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedLogisticT NativeTableType;
+  typedef QuantizedLogisticBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedLogisticTypeTable();
   }
@@ -928,11 +959,11 @@ struct QuantizedLogistic FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_INPUTQUANTIZEDPARAM = 4,
     VT_OUTPUTQUANTIZEDPARAM = 6
   };
-  const QuantizedParam *inputQuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_INPUTQUANTIZEDPARAM);
+  const MNN::QuantizedParam *inputQuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_INPUTQUANTIZEDPARAM);
   }
-  const QuantizedParam *outputQuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_OUTPUTQUANTIZEDPARAM);
+  const MNN::QuantizedParam *outputQuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_OUTPUTQUANTIZEDPARAM);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -948,12 +979,13 @@ struct QuantizedLogistic FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedLogisticBuilder {
+  typedef QuantizedLogistic Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_inputQuantizedParam(flatbuffers::Offset<QuantizedParam> inputQuantizedParam) {
+  void add_inputQuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> inputQuantizedParam) {
     fbb_.AddOffset(QuantizedLogistic::VT_INPUTQUANTIZEDPARAM, inputQuantizedParam);
   }
-  void add_outputQuantizedParam(flatbuffers::Offset<QuantizedParam> outputQuantizedParam) {
+  void add_outputQuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam) {
     fbb_.AddOffset(QuantizedLogistic::VT_OUTPUTQUANTIZEDPARAM, outputQuantizedParam);
   }
   explicit QuantizedLogisticBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -970,8 +1002,8 @@ struct QuantizedLogisticBuilder {
 
 inline flatbuffers::Offset<QuantizedLogistic> CreateQuantizedLogistic(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<QuantizedParam> inputQuantizedParam = 0,
-    flatbuffers::Offset<QuantizedParam> outputQuantizedParam = 0) {
+    flatbuffers::Offset<MNN::QuantizedParam> inputQuantizedParam = 0,
+    flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam = 0) {
   QuantizedLogisticBuilder builder_(_fbb);
   builder_.add_outputQuantizedParam(outputQuantizedParam);
   builder_.add_inputQuantizedParam(inputQuantizedParam);
@@ -992,6 +1024,7 @@ struct QuantizedMatMulT : public flatbuffers::NativeTable {
 
 struct QuantizedMatMul FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedMatMulT NativeTableType;
+  typedef QuantizedMatMulBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedMatMulTypeTable();
   }
@@ -1017,6 +1050,7 @@ struct QuantizedMatMul FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedMatMulBuilder {
+  typedef QuantizedMatMul Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_transposeA(bool transposeA) {
@@ -1053,32 +1087,33 @@ struct QuantizedMaxPoolT : public flatbuffers::NativeTable {
   typedef QuantizedMaxPool TableType;
   int32_t kernelX;
   int32_t kernelY;
-  ModeFormat modelFormat;
+  MNN::ModeFormat modelFormat;
   int32_t outputActivationMax;
   int32_t outputActivationMin;
-  PoolPadType padType;
+  MNN::PoolPadType padType;
   int32_t padX;
   int32_t padY;
   int32_t strideX;
   int32_t strideY;
-  DataType type;
+  MNN::DataType type;
   QuantizedMaxPoolT()
       : kernelX(0),
         kernelY(0),
-        modelFormat(ModeFormat_TENSORFLOW),
+        modelFormat(MNN::ModeFormat_TENSORFLOW),
         outputActivationMax(0),
         outputActivationMin(0),
-        padType(PoolPadType_CAFFE),
+        padType(MNN::PoolPadType_CAFFE),
         padX(0),
         padY(0),
         strideX(0),
         strideY(0),
-        type(DataType_DT_INVALID) {
+        type(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct QuantizedMaxPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedMaxPoolT NativeTableType;
+  typedef QuantizedMaxPoolBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedMaxPoolTypeTable();
   }
@@ -1101,8 +1136,8 @@ struct QuantizedMaxPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t kernelY() const {
     return GetField<int32_t>(VT_KERNELY, 0);
   }
-  ModeFormat modelFormat() const {
-    return static_cast<ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
+  MNN::ModeFormat modelFormat() const {
+    return static_cast<MNN::ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
   }
   int32_t outputActivationMax() const {
     return GetField<int32_t>(VT_OUTPUTACTIVATIONMAX, 0);
@@ -1110,8 +1145,8 @@ struct QuantizedMaxPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t outputActivationMin() const {
     return GetField<int32_t>(VT_OUTPUTACTIVATIONMIN, 0);
   }
-  PoolPadType padType() const {
-    return static_cast<PoolPadType>(GetField<int8_t>(VT_PADTYPE, 0));
+  MNN::PoolPadType padType() const {
+    return static_cast<MNN::PoolPadType>(GetField<int8_t>(VT_PADTYPE, 0));
   }
   int32_t padX() const {
     return GetField<int32_t>(VT_PADX, 0);
@@ -1125,8 +1160,8 @@ struct QuantizedMaxPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t strideY() const {
     return GetField<int32_t>(VT_STRIDEY, 0);
   }
-  DataType type() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TYPE, 0));
+  MNN::DataType type() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1149,6 +1184,7 @@ struct QuantizedMaxPool FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedMaxPoolBuilder {
+  typedef QuantizedMaxPool Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_kernelX(int32_t kernelX) {
@@ -1157,7 +1193,7 @@ struct QuantizedMaxPoolBuilder {
   void add_kernelY(int32_t kernelY) {
     fbb_.AddElement<int32_t>(QuantizedMaxPool::VT_KERNELY, kernelY, 0);
   }
-  void add_modelFormat(ModeFormat modelFormat) {
+  void add_modelFormat(MNN::ModeFormat modelFormat) {
     fbb_.AddElement<int8_t>(QuantizedMaxPool::VT_MODELFORMAT, static_cast<int8_t>(modelFormat), 0);
   }
   void add_outputActivationMax(int32_t outputActivationMax) {
@@ -1166,7 +1202,7 @@ struct QuantizedMaxPoolBuilder {
   void add_outputActivationMin(int32_t outputActivationMin) {
     fbb_.AddElement<int32_t>(QuantizedMaxPool::VT_OUTPUTACTIVATIONMIN, outputActivationMin, 0);
   }
-  void add_padType(PoolPadType padType) {
+  void add_padType(MNN::PoolPadType padType) {
     fbb_.AddElement<int8_t>(QuantizedMaxPool::VT_PADTYPE, static_cast<int8_t>(padType), 0);
   }
   void add_padX(int32_t padX) {
@@ -1181,7 +1217,7 @@ struct QuantizedMaxPoolBuilder {
   void add_strideY(int32_t strideY) {
     fbb_.AddElement<int32_t>(QuantizedMaxPool::VT_STRIDEY, strideY, 0);
   }
-  void add_type(DataType type) {
+  void add_type(MNN::DataType type) {
     fbb_.AddElement<int32_t>(QuantizedMaxPool::VT_TYPE, static_cast<int32_t>(type), 0);
   }
   explicit QuantizedMaxPoolBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1200,15 +1236,15 @@ inline flatbuffers::Offset<QuantizedMaxPool> CreateQuantizedMaxPool(
     flatbuffers::FlatBufferBuilder &_fbb,
     int32_t kernelX = 0,
     int32_t kernelY = 0,
-    ModeFormat modelFormat = ModeFormat_TENSORFLOW,
+    MNN::ModeFormat modelFormat = MNN::ModeFormat_TENSORFLOW,
     int32_t outputActivationMax = 0,
     int32_t outputActivationMin = 0,
-    PoolPadType padType = PoolPadType_CAFFE,
+    MNN::PoolPadType padType = MNN::PoolPadType_CAFFE,
     int32_t padX = 0,
     int32_t padY = 0,
     int32_t strideX = 0,
     int32_t strideY = 0,
-    DataType type = DataType_DT_INVALID) {
+    MNN::DataType type = MNN::DataType_DT_INVALID) {
   QuantizedMaxPoolBuilder builder_(_fbb);
   builder_.add_type(type);
   builder_.add_strideY(strideY);
@@ -1228,22 +1264,23 @@ flatbuffers::Offset<QuantizedMaxPool> CreateQuantizedMaxPool(flatbuffers::FlatBu
 
 struct QuantizedReluT : public flatbuffers::NativeTable {
   typedef QuantizedRelu TableType;
-  DataType type;
+  MNN::DataType type;
   QuantizedReluT()
-      : type(DataType_DT_INVALID) {
+      : type(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct QuantizedRelu FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedReluT NativeTableType;
+  typedef QuantizedReluBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedReluTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_TYPE = 4
   };
-  DataType type() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TYPE, 0));
+  MNN::DataType type() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1256,9 +1293,10 @@ struct QuantizedRelu FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedReluBuilder {
+  typedef QuantizedRelu Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_type(DataType type) {
+  void add_type(MNN::DataType type) {
     fbb_.AddElement<int32_t>(QuantizedRelu::VT_TYPE, static_cast<int32_t>(type), 0);
   }
   explicit QuantizedReluBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1275,7 +1313,7 @@ struct QuantizedReluBuilder {
 
 inline flatbuffers::Offset<QuantizedRelu> CreateQuantizedRelu(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType type = DataType_DT_INVALID) {
+    MNN::DataType type = MNN::DataType_DT_INVALID) {
   QuantizedReluBuilder builder_(_fbb);
   builder_.add_type(type);
   return builder_.Finish();
@@ -1285,22 +1323,23 @@ flatbuffers::Offset<QuantizedRelu> CreateQuantizedRelu(flatbuffers::FlatBufferBu
 
 struct QuantizedRelu6T : public flatbuffers::NativeTable {
   typedef QuantizedRelu6 TableType;
-  DataType type;
+  MNN::DataType type;
   QuantizedRelu6T()
-      : type(DataType_DT_INVALID) {
+      : type(MNN::DataType_DT_INVALID) {
   }
 };
 
 struct QuantizedRelu6 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedRelu6T NativeTableType;
+  typedef QuantizedRelu6Builder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedRelu6TypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_TYPE = 4
   };
-  DataType type() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TYPE, 0));
+  MNN::DataType type() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TYPE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1313,9 +1352,10 @@ struct QuantizedRelu6 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedRelu6Builder {
+  typedef QuantizedRelu6 Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_type(DataType type) {
+  void add_type(MNN::DataType type) {
     fbb_.AddElement<int32_t>(QuantizedRelu6::VT_TYPE, static_cast<int32_t>(type), 0);
   }
   explicit QuantizedRelu6Builder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1332,7 +1372,7 @@ struct QuantizedRelu6Builder {
 
 inline flatbuffers::Offset<QuantizedRelu6> CreateQuantizedRelu6(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType type = DataType_DT_INVALID) {
+    MNN::DataType type = MNN::DataType_DT_INVALID) {
   QuantizedRelu6Builder builder_(_fbb);
   builder_.add_type(type);
   return builder_.Finish();
@@ -1343,14 +1383,15 @@ flatbuffers::Offset<QuantizedRelu6> CreateQuantizedRelu6(flatbuffers::FlatBuffer
 struct QuantizedReshapeT : public flatbuffers::NativeTable {
   typedef QuantizedReshape TableType;
   std::vector<int32_t> dims;
-  ModeFormat modelFormat;
+  MNN::ModeFormat modelFormat;
   QuantizedReshapeT()
-      : modelFormat(ModeFormat_TENSORFLOW) {
+      : modelFormat(MNN::ModeFormat_TENSORFLOW) {
   }
 };
 
 struct QuantizedReshape FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedReshapeT NativeTableType;
+  typedef QuantizedReshapeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedReshapeTypeTable();
   }
@@ -1361,8 +1402,8 @@ struct QuantizedReshape FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const flatbuffers::Vector<int32_t> *dims() const {
     return GetPointer<const flatbuffers::Vector<int32_t> *>(VT_DIMS);
   }
-  ModeFormat modelFormat() const {
-    return static_cast<ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
+  MNN::ModeFormat modelFormat() const {
+    return static_cast<MNN::ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1377,12 +1418,13 @@ struct QuantizedReshape FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedReshapeBuilder {
+  typedef QuantizedReshape Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_dims(flatbuffers::Offset<flatbuffers::Vector<int32_t>> dims) {
     fbb_.AddOffset(QuantizedReshape::VT_DIMS, dims);
   }
-  void add_modelFormat(ModeFormat modelFormat) {
+  void add_modelFormat(MNN::ModeFormat modelFormat) {
     fbb_.AddElement<int8_t>(QuantizedReshape::VT_MODELFORMAT, static_cast<int8_t>(modelFormat), 0);
   }
   explicit QuantizedReshapeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1400,7 +1442,7 @@ struct QuantizedReshapeBuilder {
 inline flatbuffers::Offset<QuantizedReshape> CreateQuantizedReshape(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> dims = 0,
-    ModeFormat modelFormat = ModeFormat_TENSORFLOW) {
+    MNN::ModeFormat modelFormat = MNN::ModeFormat_TENSORFLOW) {
   QuantizedReshapeBuilder builder_(_fbb);
   builder_.add_dims(dims);
   builder_.add_modelFormat(modelFormat);
@@ -1410,7 +1452,7 @@ inline flatbuffers::Offset<QuantizedReshape> CreateQuantizedReshape(
 inline flatbuffers::Offset<QuantizedReshape> CreateQuantizedReshapeDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<int32_t> *dims = nullptr,
-    ModeFormat modelFormat = ModeFormat_TENSORFLOW) {
+    MNN::ModeFormat modelFormat = MNN::ModeFormat_TENSORFLOW) {
   auto dims__ = dims ? _fbb.CreateVector<int32_t>(*dims) : 0;
   return MNN::CreateQuantizedReshape(
       _fbb,
@@ -1432,6 +1474,7 @@ struct QuantizedSoftmaxT : public flatbuffers::NativeTable {
 
 struct QuantizedSoftmax FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizedSoftmaxT NativeTableType;
+  typedef QuantizedSoftmaxBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizedSoftmaxTypeTable();
   }
@@ -1457,6 +1500,7 @@ struct QuantizedSoftmax FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizedSoftmaxBuilder {
+  typedef QuantizedSoftmax Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_beta(float beta) {
@@ -1491,18 +1535,19 @@ flatbuffers::Offset<QuantizedSoftmax> CreateQuantizedSoftmax(flatbuffers::FlatBu
 
 struct QuantizeV2T : public flatbuffers::NativeTable {
   typedef QuantizeV2 TableType;
-  DataType type;
-  QuantizeMode mode;
-  QuantizeRoundMode roundMode;
+  MNN::DataType type;
+  MNN::QuantizeMode mode;
+  MNN::QuantizeRoundMode roundMode;
   QuantizeV2T()
-      : type(DataType_DT_INVALID),
-        mode(QuantizeMode_MIN_COMBINED),
-        roundMode(QuantizeRoundMode_HALF_AWAY_FROM_ZERO) {
+      : type(MNN::DataType_DT_INVALID),
+        mode(MNN::QuantizeMode_MIN_COMBINED),
+        roundMode(MNN::QuantizeRoundMode_HALF_AWAY_FROM_ZERO) {
   }
 };
 
 struct QuantizeV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef QuantizeV2T NativeTableType;
+  typedef QuantizeV2Builder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return QuantizeV2TypeTable();
   }
@@ -1511,14 +1556,14 @@ struct QuantizeV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_MODE = 6,
     VT_ROUNDMODE = 8
   };
-  DataType type() const {
-    return static_cast<DataType>(GetField<int32_t>(VT_TYPE, 0));
+  MNN::DataType type() const {
+    return static_cast<MNN::DataType>(GetField<int32_t>(VT_TYPE, 0));
   }
-  QuantizeMode mode() const {
-    return static_cast<QuantizeMode>(GetField<int8_t>(VT_MODE, 0));
+  MNN::QuantizeMode mode() const {
+    return static_cast<MNN::QuantizeMode>(GetField<int8_t>(VT_MODE, 0));
   }
-  QuantizeRoundMode roundMode() const {
-    return static_cast<QuantizeRoundMode>(GetField<int8_t>(VT_ROUNDMODE, 0));
+  MNN::QuantizeRoundMode roundMode() const {
+    return static_cast<MNN::QuantizeRoundMode>(GetField<int8_t>(VT_ROUNDMODE, 0));
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1533,15 +1578,16 @@ struct QuantizeV2 FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct QuantizeV2Builder {
+  typedef QuantizeV2 Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_type(DataType type) {
+  void add_type(MNN::DataType type) {
     fbb_.AddElement<int32_t>(QuantizeV2::VT_TYPE, static_cast<int32_t>(type), 0);
   }
-  void add_mode(QuantizeMode mode) {
+  void add_mode(MNN::QuantizeMode mode) {
     fbb_.AddElement<int8_t>(QuantizeV2::VT_MODE, static_cast<int8_t>(mode), 0);
   }
-  void add_roundMode(QuantizeRoundMode roundMode) {
+  void add_roundMode(MNN::QuantizeRoundMode roundMode) {
     fbb_.AddElement<int8_t>(QuantizeV2::VT_ROUNDMODE, static_cast<int8_t>(roundMode), 0);
   }
   explicit QuantizeV2Builder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1558,9 +1604,9 @@ struct QuantizeV2Builder {
 
 inline flatbuffers::Offset<QuantizeV2> CreateQuantizeV2(
     flatbuffers::FlatBufferBuilder &_fbb,
-    DataType type = DataType_DT_INVALID,
-    QuantizeMode mode = QuantizeMode_MIN_COMBINED,
-    QuantizeRoundMode roundMode = QuantizeRoundMode_HALF_AWAY_FROM_ZERO) {
+    MNN::DataType type = MNN::DataType_DT_INVALID,
+    MNN::QuantizeMode mode = MNN::QuantizeMode_MIN_COMBINED,
+    MNN::QuantizeRoundMode roundMode = MNN::QuantizeRoundMode_HALF_AWAY_FROM_ZERO) {
   QuantizeV2Builder builder_(_fbb);
   builder_.add_type(type);
   builder_.add_roundMode(roundMode);
@@ -1578,6 +1624,7 @@ struct RequantizationRangeT : public flatbuffers::NativeTable {
 
 struct RequantizationRange FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef RequantizationRangeT NativeTableType;
+  typedef RequantizationRangeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return RequantizationRangeTypeTable();
   }
@@ -1591,6 +1638,7 @@ struct RequantizationRange FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
 };
 
 struct RequantizationRangeBuilder {
+  typedef RequantizationRange Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   explicit RequantizationRangeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1621,6 +1669,7 @@ struct RequantizeT : public flatbuffers::NativeTable {
 
 struct Requantize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef RequantizeT NativeTableType;
+  typedef RequantizeBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return RequantizeTypeTable();
   }
@@ -1634,6 +1683,7 @@ struct Requantize FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct RequantizeBuilder {
+  typedef Requantize Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   explicit RequantizeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1660,33 +1710,34 @@ struct TfQuantizedConv2DT : public flatbuffers::NativeTable {
   typedef TfQuantizedConv2D TableType;
   std::vector<int32_t> bias;
   bool biasflag;
-  std::unique_ptr<Convolution2DCommonT> common;
+  std::unique_ptr<MNN::Convolution2DCommonT> common;
   std::vector<uint8_t> weight;
-  FusedActivation activationType;
+  MNN::FusedActivation activationType;
   int32_t multiplier;
   int32_t outMax;
   int32_t outMin;
   int32_t shift;
-  std::unique_ptr<QuantizedParamT> biasQuantizedParam;
+  std::unique_ptr<MNN::QuantizedParamT> biasQuantizedParam;
   int32_t depthMultiplier;
-  std::unique_ptr<QuantizedParamT> filterQuantizedParam;
-  std::unique_ptr<QuantizedParamT> inputQuantizedParam;
-  ModeFormat modelFormat;
-  std::unique_ptr<QuantizedParamT> outputQuantizedParam;
+  std::unique_ptr<MNN::QuantizedParamT> filterQuantizedParam;
+  std::unique_ptr<MNN::QuantizedParamT> inputQuantizedParam;
+  MNN::ModeFormat modelFormat;
+  std::unique_ptr<MNN::QuantizedParamT> outputQuantizedParam;
   TfQuantizedConv2DT()
       : biasflag(false),
-        activationType(FusedActivation_kTfLiteActNone),
+        activationType(MNN::FusedActivation_kTfLiteActNone),
         multiplier(0),
         outMax(0),
         outMin(0),
         shift(0),
         depthMultiplier(0),
-        modelFormat(ModeFormat_TENSORFLOW) {
+        modelFormat(MNN::ModeFormat_TENSORFLOW) {
   }
 };
 
 struct TfQuantizedConv2D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   typedef TfQuantizedConv2DT NativeTableType;
+  typedef TfQuantizedConv2DBuilder Builder;
   static const flatbuffers::TypeTable *MiniReflectTypeTable() {
     return TfQuantizedConv2DTypeTable();
   }
@@ -1713,14 +1764,14 @@ struct TfQuantizedConv2D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   bool biasflag() const {
     return GetField<uint8_t>(VT_BIASFLAG, 0) != 0;
   }
-  const Convolution2DCommon *common() const {
-    return GetPointer<const Convolution2DCommon *>(VT_COMMON);
+  const MNN::Convolution2DCommon *common() const {
+    return GetPointer<const MNN::Convolution2DCommon *>(VT_COMMON);
   }
   const flatbuffers::Vector<uint8_t> *weight() const {
     return GetPointer<const flatbuffers::Vector<uint8_t> *>(VT_WEIGHT);
   }
-  FusedActivation activationType() const {
-    return static_cast<FusedActivation>(GetField<int8_t>(VT_ACTIVATIONTYPE, 0));
+  MNN::FusedActivation activationType() const {
+    return static_cast<MNN::FusedActivation>(GetField<int8_t>(VT_ACTIVATIONTYPE, 0));
   }
   int32_t multiplier() const {
     return GetField<int32_t>(VT_MULTIPLIER, 0);
@@ -1734,23 +1785,23 @@ struct TfQuantizedConv2D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t shift() const {
     return GetField<int32_t>(VT_SHIFT, 0);
   }
-  const QuantizedParam *biasQuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_BIASQUANTIZEDPARAM);
+  const MNN::QuantizedParam *biasQuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_BIASQUANTIZEDPARAM);
   }
   int32_t depthMultiplier() const {
     return GetField<int32_t>(VT_DEPTHMULTIPLIER, 0);
   }
-  const QuantizedParam *filterQuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_FILTERQUANTIZEDPARAM);
+  const MNN::QuantizedParam *filterQuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_FILTERQUANTIZEDPARAM);
   }
-  const QuantizedParam *inputQuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_INPUTQUANTIZEDPARAM);
+  const MNN::QuantizedParam *inputQuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_INPUTQUANTIZEDPARAM);
   }
-  ModeFormat modelFormat() const {
-    return static_cast<ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
+  MNN::ModeFormat modelFormat() const {
+    return static_cast<MNN::ModeFormat>(GetField<int8_t>(VT_MODELFORMAT, 0));
   }
-  const QuantizedParam *outputQuantizedParam() const {
-    return GetPointer<const QuantizedParam *>(VT_OUTPUTQUANTIZEDPARAM);
+  const MNN::QuantizedParam *outputQuantizedParam() const {
+    return GetPointer<const MNN::QuantizedParam *>(VT_OUTPUTQUANTIZEDPARAM);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -1784,6 +1835,7 @@ struct TfQuantizedConv2D FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
 };
 
 struct TfQuantizedConv2DBuilder {
+  typedef TfQuantizedConv2D Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
   void add_bias(flatbuffers::Offset<flatbuffers::Vector<int32_t>> bias) {
@@ -1792,13 +1844,13 @@ struct TfQuantizedConv2DBuilder {
   void add_biasflag(bool biasflag) {
     fbb_.AddElement<uint8_t>(TfQuantizedConv2D::VT_BIASFLAG, static_cast<uint8_t>(biasflag), 0);
   }
-  void add_common(flatbuffers::Offset<Convolution2DCommon> common) {
+  void add_common(flatbuffers::Offset<MNN::Convolution2DCommon> common) {
     fbb_.AddOffset(TfQuantizedConv2D::VT_COMMON, common);
   }
   void add_weight(flatbuffers::Offset<flatbuffers::Vector<uint8_t>> weight) {
     fbb_.AddOffset(TfQuantizedConv2D::VT_WEIGHT, weight);
   }
-  void add_activationType(FusedActivation activationType) {
+  void add_activationType(MNN::FusedActivation activationType) {
     fbb_.AddElement<int8_t>(TfQuantizedConv2D::VT_ACTIVATIONTYPE, static_cast<int8_t>(activationType), 0);
   }
   void add_multiplier(int32_t multiplier) {
@@ -1813,22 +1865,22 @@ struct TfQuantizedConv2DBuilder {
   void add_shift(int32_t shift) {
     fbb_.AddElement<int32_t>(TfQuantizedConv2D::VT_SHIFT, shift, 0);
   }
-  void add_biasQuantizedParam(flatbuffers::Offset<QuantizedParam> biasQuantizedParam) {
+  void add_biasQuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> biasQuantizedParam) {
     fbb_.AddOffset(TfQuantizedConv2D::VT_BIASQUANTIZEDPARAM, biasQuantizedParam);
   }
   void add_depthMultiplier(int32_t depthMultiplier) {
     fbb_.AddElement<int32_t>(TfQuantizedConv2D::VT_DEPTHMULTIPLIER, depthMultiplier, 0);
   }
-  void add_filterQuantizedParam(flatbuffers::Offset<QuantizedParam> filterQuantizedParam) {
+  void add_filterQuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> filterQuantizedParam) {
     fbb_.AddOffset(TfQuantizedConv2D::VT_FILTERQUANTIZEDPARAM, filterQuantizedParam);
   }
-  void add_inputQuantizedParam(flatbuffers::Offset<QuantizedParam> inputQuantizedParam) {
+  void add_inputQuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> inputQuantizedParam) {
     fbb_.AddOffset(TfQuantizedConv2D::VT_INPUTQUANTIZEDPARAM, inputQuantizedParam);
   }
-  void add_modelFormat(ModeFormat modelFormat) {
+  void add_modelFormat(MNN::ModeFormat modelFormat) {
     fbb_.AddElement<int8_t>(TfQuantizedConv2D::VT_MODELFORMAT, static_cast<int8_t>(modelFormat), 0);
   }
-  void add_outputQuantizedParam(flatbuffers::Offset<QuantizedParam> outputQuantizedParam) {
+  void add_outputQuantizedParam(flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam) {
     fbb_.AddOffset(TfQuantizedConv2D::VT_OUTPUTQUANTIZEDPARAM, outputQuantizedParam);
   }
   explicit TfQuantizedConv2DBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -1847,19 +1899,19 @@ inline flatbuffers::Offset<TfQuantizedConv2D> CreateTfQuantizedConv2D(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::Vector<int32_t>> bias = 0,
     bool biasflag = false,
-    flatbuffers::Offset<Convolution2DCommon> common = 0,
+    flatbuffers::Offset<MNN::Convolution2DCommon> common = 0,
     flatbuffers::Offset<flatbuffers::Vector<uint8_t>> weight = 0,
-    FusedActivation activationType = FusedActivation_kTfLiteActNone,
+    MNN::FusedActivation activationType = MNN::FusedActivation_kTfLiteActNone,
     int32_t multiplier = 0,
     int32_t outMax = 0,
     int32_t outMin = 0,
     int32_t shift = 0,
-    flatbuffers::Offset<QuantizedParam> biasQuantizedParam = 0,
+    flatbuffers::Offset<MNN::QuantizedParam> biasQuantizedParam = 0,
     int32_t depthMultiplier = 0,
-    flatbuffers::Offset<QuantizedParam> filterQuantizedParam = 0,
-    flatbuffers::Offset<QuantizedParam> inputQuantizedParam = 0,
-    ModeFormat modelFormat = ModeFormat_TENSORFLOW,
-    flatbuffers::Offset<QuantizedParam> outputQuantizedParam = 0) {
+    flatbuffers::Offset<MNN::QuantizedParam> filterQuantizedParam = 0,
+    flatbuffers::Offset<MNN::QuantizedParam> inputQuantizedParam = 0,
+    MNN::ModeFormat modelFormat = MNN::ModeFormat_TENSORFLOW,
+    flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam = 0) {
   TfQuantizedConv2DBuilder builder_(_fbb);
   builder_.add_outputQuantizedParam(outputQuantizedParam);
   builder_.add_inputQuantizedParam(inputQuantizedParam);
@@ -1883,19 +1935,19 @@ inline flatbuffers::Offset<TfQuantizedConv2D> CreateTfQuantizedConv2DDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<int32_t> *bias = nullptr,
     bool biasflag = false,
-    flatbuffers::Offset<Convolution2DCommon> common = 0,
+    flatbuffers::Offset<MNN::Convolution2DCommon> common = 0,
     const std::vector<uint8_t> *weight = nullptr,
-    FusedActivation activationType = FusedActivation_kTfLiteActNone,
+    MNN::FusedActivation activationType = MNN::FusedActivation_kTfLiteActNone,
     int32_t multiplier = 0,
     int32_t outMax = 0,
     int32_t outMin = 0,
     int32_t shift = 0,
-    flatbuffers::Offset<QuantizedParam> biasQuantizedParam = 0,
+    flatbuffers::Offset<MNN::QuantizedParam> biasQuantizedParam = 0,
     int32_t depthMultiplier = 0,
-    flatbuffers::Offset<QuantizedParam> filterQuantizedParam = 0,
-    flatbuffers::Offset<QuantizedParam> inputQuantizedParam = 0,
-    ModeFormat modelFormat = ModeFormat_TENSORFLOW,
-    flatbuffers::Offset<QuantizedParam> outputQuantizedParam = 0) {
+    flatbuffers::Offset<MNN::QuantizedParam> filterQuantizedParam = 0,
+    flatbuffers::Offset<MNN::QuantizedParam> inputQuantizedParam = 0,
+    MNN::ModeFormat modelFormat = MNN::ModeFormat_TENSORFLOW,
+    flatbuffers::Offset<MNN::QuantizedParam> outputQuantizedParam = 0) {
   auto bias__ = bias ? _fbb.CreateVector<int32_t>(*bias) : 0;
   auto weight__ = weight ? _fbb.CreateVector<uint8_t>(*weight) : 0;
   return MNN::CreateTfQuantizedConv2D(
@@ -1920,16 +1972,16 @@ inline flatbuffers::Offset<TfQuantizedConv2D> CreateTfQuantizedConv2DDirect(
 flatbuffers::Offset<TfQuantizedConv2D> CreateTfQuantizedConv2D(flatbuffers::FlatBufferBuilder &_fbb, const TfQuantizedConv2DT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
 inline QuantizedParamT *QuantizedParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedParamT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedParamT> _o = std::unique_ptr<MNN::QuantizedParamT>(new QuantizedParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedParam::UnPackTo(QuantizedParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = zeroPoint(); _o->zeroPoint = _e; };
-  { auto _e = scale(); _o->scale = _e; };
+  { auto _e = zeroPoint(); _o->zeroPoint = _e; }
+  { auto _e = scale(); _o->scale = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedParam> QuantizedParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -1949,18 +2001,18 @@ inline flatbuffers::Offset<QuantizedParam> CreateQuantizedParam(flatbuffers::Fla
 }
 
 inline QuantizedAddT *QuantizedAdd::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedAddT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedAddT> _o = std::unique_ptr<MNN::QuantizedAddT>(new QuantizedAddT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedAdd::UnPackTo(QuantizedAddT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = activationType(); _o->activationType = _e; };
-  { auto _e = input1QuantizedParam(); if (_e) _o->input1QuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
-  { auto _e = input2QuantizedParam(); if (_e) _o->input2QuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
-  { auto _e = outputQuantizedParam(); if (_e) _o->outputQuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
+  { auto _e = activationType(); _o->activationType = _e; }
+  { auto _e = input1QuantizedParam(); if (_e) _o->input1QuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
+  { auto _e = input2QuantizedParam(); if (_e) _o->input2QuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
+  { auto _e = outputQuantizedParam(); if (_e) _o->outputQuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<QuantizedAdd> QuantizedAdd::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedAddT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -1984,18 +2036,18 @@ inline flatbuffers::Offset<QuantizedAdd> CreateQuantizedAdd(flatbuffers::FlatBuf
 }
 
 inline DequantizeT *Dequantize::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new DequantizeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::DequantizeT> _o = std::unique_ptr<MNN::DequantizeT>(new DequantizeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Dequantize::UnPackTo(DequantizeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = inputQuantizedParam(); if (_e) _o->inputQuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
-  { auto _e = mode(); _o->mode = _e; };
-  { auto _e = modelFormat(); _o->modelFormat = _e; };
-  { auto _e = type(); _o->type = _e; };
+  { auto _e = inputQuantizedParam(); if (_e) _o->inputQuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
+  { auto _e = mode(); _o->mode = _e; }
+  { auto _e = modelFormat(); _o->modelFormat = _e; }
+  { auto _e = type(); _o->type = _e; }
 }
 
 inline flatbuffers::Offset<Dequantize> Dequantize::Pack(flatbuffers::FlatBufferBuilder &_fbb, const DequantizeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2019,25 +2071,25 @@ inline flatbuffers::Offset<Dequantize> CreateDequantize(flatbuffers::FlatBufferB
 }
 
 inline QuantizedAvgPoolT *QuantizedAvgPool::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedAvgPoolT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedAvgPoolT> _o = std::unique_ptr<MNN::QuantizedAvgPoolT>(new QuantizedAvgPoolT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedAvgPool::UnPackTo(QuantizedAvgPoolT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = kernelX(); _o->kernelX = _e; };
-  { auto _e = kernelY(); _o->kernelY = _e; };
-  { auto _e = modelFormat(); _o->modelFormat = _e; };
-  { auto _e = outputActivationMax(); _o->outputActivationMax = _e; };
-  { auto _e = outputActivationMin(); _o->outputActivationMin = _e; };
-  { auto _e = padType(); _o->padType = _e; };
-  { auto _e = padX(); _o->padX = _e; };
-  { auto _e = padY(); _o->padY = _e; };
-  { auto _e = strideX(); _o->strideX = _e; };
-  { auto _e = strideY(); _o->strideY = _e; };
-  { auto _e = type(); _o->type = _e; };
+  { auto _e = kernelX(); _o->kernelX = _e; }
+  { auto _e = kernelY(); _o->kernelY = _e; }
+  { auto _e = modelFormat(); _o->modelFormat = _e; }
+  { auto _e = outputActivationMax(); _o->outputActivationMax = _e; }
+  { auto _e = outputActivationMin(); _o->outputActivationMin = _e; }
+  { auto _e = padType(); _o->padType = _e; }
+  { auto _e = padX(); _o->padX = _e; }
+  { auto _e = padY(); _o->padY = _e; }
+  { auto _e = strideX(); _o->strideX = _e; }
+  { auto _e = strideY(); _o->strideY = _e; }
+  { auto _e = type(); _o->type = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedAvgPool> QuantizedAvgPool::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedAvgPoolT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2075,19 +2127,19 @@ inline flatbuffers::Offset<QuantizedAvgPool> CreateQuantizedAvgPool(flatbuffers:
 }
 
 inline QuantizedBiasAddT *QuantizedBiasAdd::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedBiasAddT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedBiasAddT> _o = std::unique_ptr<MNN::QuantizedBiasAddT>(new QuantizedBiasAddT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedBiasAdd::UnPackTo(QuantizedBiasAddT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } };
-  { auto _e = inputType(); _o->inputType = _e; };
-  { auto _e = max(); _o->max = _e; };
-  { auto _e = min(); _o->min = _e; };
-  { auto _e = outputType(); _o->outputType = _e; };
+  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } }
+  { auto _e = inputType(); _o->inputType = _e; }
+  { auto _e = max(); _o->max = _e; }
+  { auto _e = min(); _o->min = _e; }
+  { auto _e = outputType(); _o->outputType = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedBiasAdd> QuantizedBiasAdd::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedBiasAddT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2113,19 +2165,19 @@ inline flatbuffers::Offset<QuantizedBiasAdd> CreateQuantizedBiasAdd(flatbuffers:
 }
 
 inline QuantizedConcatT *QuantizedConcat::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedConcatT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedConcatT> _o = std::unique_ptr<MNN::QuantizedConcatT>(new QuantizedConcatT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedConcat::UnPackTo(QuantizedConcatT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = activationType(); _o->activationType = _e; };
-  { auto _e = axis(); _o->axis = _e; };
-  { auto _e = inputScale(); if (_e) { _o->inputScale.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputScale[_i] = _e->Get(_i); } } };
-  { auto _e = inputZeroPoint(); if (_e) { _o->inputZeroPoint.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputZeroPoint[_i] = _e->Get(_i); } } };
-  { auto _e = outputQuantizedParam(); if (_e) _o->outputQuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
+  { auto _e = activationType(); _o->activationType = _e; }
+  { auto _e = axis(); _o->axis = _e; }
+  { auto _e = inputScale(); if (_e) { _o->inputScale.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputScale[_i] = _e->Get(_i); } } }
+  { auto _e = inputZeroPoint(); if (_e) { _o->inputZeroPoint.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->inputZeroPoint[_i] = _e->Get(_i); } } }
+  { auto _e = outputQuantizedParam(); if (_e) _o->outputQuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<QuantizedConcat> QuantizedConcat::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedConcatT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2151,16 +2203,16 @@ inline flatbuffers::Offset<QuantizedConcat> CreateQuantizedConcat(flatbuffers::F
 }
 
 inline QuantizedLogisticT *QuantizedLogistic::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedLogisticT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedLogisticT> _o = std::unique_ptr<MNN::QuantizedLogisticT>(new QuantizedLogisticT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedLogistic::UnPackTo(QuantizedLogisticT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = inputQuantizedParam(); if (_e) _o->inputQuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
-  { auto _e = outputQuantizedParam(); if (_e) _o->outputQuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
+  { auto _e = inputQuantizedParam(); if (_e) _o->inputQuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
+  { auto _e = outputQuantizedParam(); if (_e) _o->outputQuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<QuantizedLogistic> QuantizedLogistic::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedLogisticT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2180,16 +2232,16 @@ inline flatbuffers::Offset<QuantizedLogistic> CreateQuantizedLogistic(flatbuffer
 }
 
 inline QuantizedMatMulT *QuantizedMatMul::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedMatMulT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedMatMulT> _o = std::unique_ptr<MNN::QuantizedMatMulT>(new QuantizedMatMulT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedMatMul::UnPackTo(QuantizedMatMulT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = transposeA(); _o->transposeA = _e; };
-  { auto _e = transposeB(); _o->transposeB = _e; };
+  { auto _e = transposeA(); _o->transposeA = _e; }
+  { auto _e = transposeB(); _o->transposeB = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedMatMul> QuantizedMatMul::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedMatMulT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2209,25 +2261,25 @@ inline flatbuffers::Offset<QuantizedMatMul> CreateQuantizedMatMul(flatbuffers::F
 }
 
 inline QuantizedMaxPoolT *QuantizedMaxPool::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedMaxPoolT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedMaxPoolT> _o = std::unique_ptr<MNN::QuantizedMaxPoolT>(new QuantizedMaxPoolT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedMaxPool::UnPackTo(QuantizedMaxPoolT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = kernelX(); _o->kernelX = _e; };
-  { auto _e = kernelY(); _o->kernelY = _e; };
-  { auto _e = modelFormat(); _o->modelFormat = _e; };
-  { auto _e = outputActivationMax(); _o->outputActivationMax = _e; };
-  { auto _e = outputActivationMin(); _o->outputActivationMin = _e; };
-  { auto _e = padType(); _o->padType = _e; };
-  { auto _e = padX(); _o->padX = _e; };
-  { auto _e = padY(); _o->padY = _e; };
-  { auto _e = strideX(); _o->strideX = _e; };
-  { auto _e = strideY(); _o->strideY = _e; };
-  { auto _e = type(); _o->type = _e; };
+  { auto _e = kernelX(); _o->kernelX = _e; }
+  { auto _e = kernelY(); _o->kernelY = _e; }
+  { auto _e = modelFormat(); _o->modelFormat = _e; }
+  { auto _e = outputActivationMax(); _o->outputActivationMax = _e; }
+  { auto _e = outputActivationMin(); _o->outputActivationMin = _e; }
+  { auto _e = padType(); _o->padType = _e; }
+  { auto _e = padX(); _o->padX = _e; }
+  { auto _e = padY(); _o->padY = _e; }
+  { auto _e = strideX(); _o->strideX = _e; }
+  { auto _e = strideY(); _o->strideY = _e; }
+  { auto _e = type(); _o->type = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedMaxPool> QuantizedMaxPool::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedMaxPoolT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2265,15 +2317,15 @@ inline flatbuffers::Offset<QuantizedMaxPool> CreateQuantizedMaxPool(flatbuffers:
 }
 
 inline QuantizedReluT *QuantizedRelu::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedReluT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedReluT> _o = std::unique_ptr<MNN::QuantizedReluT>(new QuantizedReluT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedRelu::UnPackTo(QuantizedReluT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = type(); _o->type = _e; };
+  { auto _e = type(); _o->type = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedRelu> QuantizedRelu::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedReluT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2291,15 +2343,15 @@ inline flatbuffers::Offset<QuantizedRelu> CreateQuantizedRelu(flatbuffers::FlatB
 }
 
 inline QuantizedRelu6T *QuantizedRelu6::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedRelu6T();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedRelu6T> _o = std::unique_ptr<MNN::QuantizedRelu6T>(new QuantizedRelu6T());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedRelu6::UnPackTo(QuantizedRelu6T *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = type(); _o->type = _e; };
+  { auto _e = type(); _o->type = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedRelu6> QuantizedRelu6::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedRelu6T* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2317,16 +2369,16 @@ inline flatbuffers::Offset<QuantizedRelu6> CreateQuantizedRelu6(flatbuffers::Fla
 }
 
 inline QuantizedReshapeT *QuantizedReshape::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedReshapeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedReshapeT> _o = std::unique_ptr<MNN::QuantizedReshapeT>(new QuantizedReshapeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedReshape::UnPackTo(QuantizedReshapeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } };
-  { auto _e = modelFormat(); _o->modelFormat = _e; };
+  { auto _e = dims(); if (_e) { _o->dims.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->dims[_i] = _e->Get(_i); } } }
+  { auto _e = modelFormat(); _o->modelFormat = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedReshape> QuantizedReshape::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedReshapeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2346,16 +2398,16 @@ inline flatbuffers::Offset<QuantizedReshape> CreateQuantizedReshape(flatbuffers:
 }
 
 inline QuantizedSoftmaxT *QuantizedSoftmax::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizedSoftmaxT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizedSoftmaxT> _o = std::unique_ptr<MNN::QuantizedSoftmaxT>(new QuantizedSoftmaxT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizedSoftmax::UnPackTo(QuantizedSoftmaxT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = beta(); _o->beta = _e; };
-  { auto _e = inputScale(); _o->inputScale = _e; };
+  { auto _e = beta(); _o->beta = _e; }
+  { auto _e = inputScale(); _o->inputScale = _e; }
 }
 
 inline flatbuffers::Offset<QuantizedSoftmax> QuantizedSoftmax::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizedSoftmaxT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2375,17 +2427,17 @@ inline flatbuffers::Offset<QuantizedSoftmax> CreateQuantizedSoftmax(flatbuffers:
 }
 
 inline QuantizeV2T *QuantizeV2::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new QuantizeV2T();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::QuantizeV2T> _o = std::unique_ptr<MNN::QuantizeV2T>(new QuantizeV2T());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void QuantizeV2::UnPackTo(QuantizeV2T *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = type(); _o->type = _e; };
-  { auto _e = mode(); _o->mode = _e; };
-  { auto _e = roundMode(); _o->roundMode = _e; };
+  { auto _e = type(); _o->type = _e; }
+  { auto _e = mode(); _o->mode = _e; }
+  { auto _e = roundMode(); _o->roundMode = _e; }
 }
 
 inline flatbuffers::Offset<QuantizeV2> QuantizeV2::Pack(flatbuffers::FlatBufferBuilder &_fbb, const QuantizeV2T* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2407,9 +2459,9 @@ inline flatbuffers::Offset<QuantizeV2> CreateQuantizeV2(flatbuffers::FlatBufferB
 }
 
 inline RequantizationRangeT *RequantizationRange::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new RequantizationRangeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::RequantizationRangeT> _o = std::unique_ptr<MNN::RequantizationRangeT>(new RequantizationRangeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void RequantizationRange::UnPackTo(RequantizationRangeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
@@ -2430,9 +2482,9 @@ inline flatbuffers::Offset<RequantizationRange> CreateRequantizationRange(flatbu
 }
 
 inline RequantizeT *Requantize::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new RequantizeT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::RequantizeT> _o = std::unique_ptr<MNN::RequantizeT>(new RequantizeT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void Requantize::UnPackTo(RequantizeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
@@ -2453,29 +2505,29 @@ inline flatbuffers::Offset<Requantize> CreateRequantize(flatbuffers::FlatBufferB
 }
 
 inline TfQuantizedConv2DT *TfQuantizedConv2D::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
-  auto _o = new TfQuantizedConv2DT();
-  UnPackTo(_o, _resolver);
-  return _o;
+  std::unique_ptr<MNN::TfQuantizedConv2DT> _o = std::unique_ptr<MNN::TfQuantizedConv2DT>(new TfQuantizedConv2DT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
 }
 
 inline void TfQuantizedConv2D::UnPackTo(TfQuantizedConv2DT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } };
-  { auto _e = biasflag(); _o->biasflag = _e; };
-  { auto _e = common(); if (_e) _o->common = std::unique_ptr<Convolution2DCommonT>(_e->UnPack(_resolver)); };
-  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } };
-  { auto _e = activationType(); _o->activationType = _e; };
-  { auto _e = multiplier(); _o->multiplier = _e; };
-  { auto _e = outMax(); _o->outMax = _e; };
-  { auto _e = outMin(); _o->outMin = _e; };
-  { auto _e = shift(); _o->shift = _e; };
-  { auto _e = biasQuantizedParam(); if (_e) _o->biasQuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
-  { auto _e = depthMultiplier(); _o->depthMultiplier = _e; };
-  { auto _e = filterQuantizedParam(); if (_e) _o->filterQuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
-  { auto _e = inputQuantizedParam(); if (_e) _o->inputQuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
-  { auto _e = modelFormat(); _o->modelFormat = _e; };
-  { auto _e = outputQuantizedParam(); if (_e) _o->outputQuantizedParam = std::unique_ptr<QuantizedParamT>(_e->UnPack(_resolver)); };
+  { auto _e = bias(); if (_e) { _o->bias.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->bias[_i] = _e->Get(_i); } } }
+  { auto _e = biasflag(); _o->biasflag = _e; }
+  { auto _e = common(); if (_e) _o->common = std::unique_ptr<MNN::Convolution2DCommonT>(_e->UnPack(_resolver)); }
+  { auto _e = weight(); if (_e) { _o->weight.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->weight[_i] = _e->Get(_i); } } }
+  { auto _e = activationType(); _o->activationType = _e; }
+  { auto _e = multiplier(); _o->multiplier = _e; }
+  { auto _e = outMax(); _o->outMax = _e; }
+  { auto _e = outMin(); _o->outMin = _e; }
+  { auto _e = shift(); _o->shift = _e; }
+  { auto _e = biasQuantizedParam(); if (_e) _o->biasQuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
+  { auto _e = depthMultiplier(); _o->depthMultiplier = _e; }
+  { auto _e = filterQuantizedParam(); if (_e) _o->filterQuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
+  { auto _e = inputQuantizedParam(); if (_e) _o->inputQuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
+  { auto _e = modelFormat(); _o->modelFormat = _e; }
+  { auto _e = outputQuantizedParam(); if (_e) _o->outputQuantizedParam = std::unique_ptr<MNN::QuantizedParamT>(_e->UnPack(_resolver)); }
 }
 
 inline flatbuffers::Offset<TfQuantizedConv2D> TfQuantizedConv2D::Pack(flatbuffers::FlatBufferBuilder &_fbb, const TfQuantizedConv2DT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -2531,7 +2583,7 @@ inline const flatbuffers::TypeTable *FusedActivationTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    FusedActivationTypeTable
+    MNN::FusedActivationTypeTable
   };
   static const char * const names[] = {
     "kTfLiteActNone",
@@ -2554,7 +2606,7 @@ inline const flatbuffers::TypeTable *ModeFormatTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ModeFormatTypeTable
+    MNN::ModeFormatTypeTable
   };
   static const char * const names[] = {
     "TENSORFLOW",
@@ -2573,7 +2625,7 @@ inline const flatbuffers::TypeTable *QuantizeModeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    QuantizeModeTypeTable
+    MNN::QuantizeModeTypeTable
   };
   static const char * const names[] = {
     "MIN_COMBINED",
@@ -2592,7 +2644,7 @@ inline const flatbuffers::TypeTable *QuantizeRoundModeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    QuantizeRoundModeTypeTable
+    MNN::QuantizeRoundModeTypeTable
   };
   static const char * const names[] = {
     "HALF_AWAY_FROM_ZERO",
@@ -2627,8 +2679,8 @@ inline const flatbuffers::TypeTable *QuantizedAddTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    FusedActivationTypeTable,
-    QuantizedParamTypeTable
+    MNN::FusedActivationTypeTable,
+    MNN::QuantizedParamTypeTable
   };
   static const char * const names[] = {
     "activationType",
@@ -2650,10 +2702,10 @@ inline const flatbuffers::TypeTable *DequantizeTypeTable() {
     { flatbuffers::ET_INT, 0, 3 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    QuantizedParamTypeTable,
-    QuantizeModeTypeTable,
-    ModeFormatTypeTable,
-    DataTypeTypeTable
+    MNN::QuantizedParamTypeTable,
+    MNN::QuantizeModeTypeTable,
+    MNN::ModeFormatTypeTable,
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "inputQuantizedParam",
@@ -2682,9 +2734,9 @@ inline const flatbuffers::TypeTable *QuantizedAvgPoolTypeTable() {
     { flatbuffers::ET_INT, 0, 2 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ModeFormatTypeTable,
-    PoolPadTypeTypeTable,
-    DataTypeTypeTable
+    MNN::ModeFormatTypeTable,
+    MNN::PoolPadTypeTypeTable,
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "kernelX",
@@ -2714,7 +2766,7 @@ inline const flatbuffers::TypeTable *QuantizedBiasAddTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "bias",
@@ -2738,8 +2790,8 @@ inline const flatbuffers::TypeTable *QuantizedConcatTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    FusedActivationTypeTable,
-    QuantizedParamTypeTable
+    MNN::FusedActivationTypeTable,
+    MNN::QuantizedParamTypeTable
   };
   static const char * const names[] = {
     "activationType",
@@ -2760,7 +2812,7 @@ inline const flatbuffers::TypeTable *QuantizedLogisticTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    QuantizedParamTypeTable
+    MNN::QuantizedParamTypeTable
   };
   static const char * const names[] = {
     "inputQuantizedParam",
@@ -2802,9 +2854,9 @@ inline const flatbuffers::TypeTable *QuantizedMaxPoolTypeTable() {
     { flatbuffers::ET_INT, 0, 2 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ModeFormatTypeTable,
-    PoolPadTypeTypeTable,
-    DataTypeTypeTable
+    MNN::ModeFormatTypeTable,
+    MNN::PoolPadTypeTypeTable,
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "kernelX",
@@ -2830,7 +2882,7 @@ inline const flatbuffers::TypeTable *QuantizedReluTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "type"
@@ -2846,7 +2898,7 @@ inline const flatbuffers::TypeTable *QuantizedRelu6TypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "type"
@@ -2863,7 +2915,7 @@ inline const flatbuffers::TypeTable *QuantizedReshapeTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    ModeFormatTypeTable
+    MNN::ModeFormatTypeTable
   };
   static const char * const names[] = {
     "dims",
@@ -2897,9 +2949,9 @@ inline const flatbuffers::TypeTable *QuantizeV2TypeTable() {
     { flatbuffers::ET_CHAR, 0, 2 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable,
-    QuantizeModeTypeTable,
-    QuantizeRoundModeTypeTable
+    MNN::DataTypeTypeTable,
+    MNN::QuantizeModeTypeTable,
+    MNN::QuantizeRoundModeTypeTable
   };
   static const char * const names[] = {
     "type",
@@ -2945,10 +2997,10 @@ inline const flatbuffers::TypeTable *TfQuantizedConv2DTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 2 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    Convolution2DCommonTypeTable,
-    FusedActivationTypeTable,
-    QuantizedParamTypeTable,
-    ModeFormatTypeTable
+    MNN::Convolution2DCommonTypeTable,
+    MNN::FusedActivationTypeTable,
+    MNN::QuantizedParamTypeTable,
+    MNN::ModeFormatTypeTable
   };
   static const char * const names[] = {
     "bias",

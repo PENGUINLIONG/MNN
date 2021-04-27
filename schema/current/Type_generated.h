@@ -28,7 +28,7 @@ inline const NetSource (&EnumValuesNetSource())[4] {
 }
 
 inline const char * const *EnumNamesNetSource() {
-  static const char * const names[] = {
+  static const char * const names[5] = {
     "CAFFE",
     "TENSORFLOW",
     "TFLITE",
@@ -39,8 +39,8 @@ inline const char * const *EnumNamesNetSource() {
 }
 
 inline const char *EnumNameNetSource(NetSource e) {
-  if (e < NetSource_CAFFE || e > NetSource_ONNX) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, NetSource_CAFFE, NetSource_ONNX)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesNetSource()[index];
 }
 
@@ -100,7 +100,7 @@ inline const DataType (&EnumValuesDataType())[22] {
 }
 
 inline const char * const *EnumNamesDataType() {
-  static const char * const names[] = {
+  static const char * const names[23] = {
     "DT_INVALID",
     "DT_FLOAT",
     "DT_DOUBLE",
@@ -129,8 +129,8 @@ inline const char * const *EnumNamesDataType() {
 }
 
 inline const char *EnumNameDataType(DataType e) {
-  if (e < DataType_DT_INVALID || e > DataType_DT_VARIANT) return "";
-  const size_t index = static_cast<int>(e);
+  if (flatbuffers::IsOutRange(e, DataType_DT_INVALID, DataType_DT_VARIANT)) return "";
+  const size_t index = static_cast<size_t>(e);
   return EnumNamesDataType()[index];
 }
 
@@ -142,7 +142,7 @@ inline const flatbuffers::TypeTable *NetSourceTypeTable() {
     { flatbuffers::ET_CHAR, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    NetSourceTypeTable
+    MNN::NetSourceTypeTable
   };
   static const char * const names[] = {
     "CAFFE",
@@ -182,7 +182,7 @@ inline const flatbuffers::TypeTable *DataTypeTypeTable() {
     { flatbuffers::ET_INT, 0, 0 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
-    DataTypeTypeTable
+    MNN::DataTypeTypeTable
   };
   static const char * const names[] = {
     "DT_INVALID",
